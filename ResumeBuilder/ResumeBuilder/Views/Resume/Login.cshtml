@@ -1,0 +1,44 @@
+﻿@model ResumeBuilder.Models.Login
+@{
+    ViewBag.Title = "Login";
+}
+@*<nav class="navbar navbar-light bg-primary">
+    <i class="fa fa-book text-white">
+        @Html.ActionLink("Resume Builder", "Login", "Resume", new { @class = "navbar-brand text-white" })
+    </i>
+</nav>*@
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="container mt-5">
+            <h2 class="text-center">Welcome</h2>
+            <h2 class="text-center">To</h2>
+            <h2 class="text-center">Resume Builder</h2>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="container">
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        @Html.LabelFor(x => x.Username)
+                        @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        @Html.LabelFor(x => x.Password)
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                        <button type="reset" class="btn btn-warning text-white">RESET</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
