@@ -10,10 +10,7 @@ namespace ResumeBuilder.Models
     {
         public int UserID { get; set; }
 
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
-        [DataType(DataType.Password)]
-        [RegularExpression("[a-zA-Z]{3,14}$", ErrorMessage = "Invalid password format")]
-        public string UserPassword { get; set; }
     }
 }
