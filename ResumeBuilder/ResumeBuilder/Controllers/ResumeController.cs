@@ -13,5 +13,12 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
+        public ActionResult ValidateLogin(){
+            return View();
+        }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }
