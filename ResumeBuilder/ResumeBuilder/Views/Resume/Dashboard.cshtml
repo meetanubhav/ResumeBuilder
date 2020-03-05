@@ -2,6 +2,17 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
-<h2>Dashboard</h2>
-
+<section>
+    <div class="row">
+        <div class="col-md-2 bg-primary">
+            @Html.ActionLink("Home", "Index", "Resume")
+            @Html.ActionLink("Details", "Index", "Resume")
+            @Html.ActionLink("About", "Resume")
+            @Html.ActionLink("Resume Themes", "Resume")
+            @Html.ActionLink("Home", "Index", "Resume")
+        </div>
+        <div class="col-md-10 bg-secondary">
+            33
+        </div>
+    </div>
+</section>
