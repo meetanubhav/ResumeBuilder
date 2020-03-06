@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 <div class="container-fluid w-75 bg-light mt-5 mb-5 rounded">
     <form class="p-4">
@@ -78,23 +78,3 @@
     </div>
 
 </div>
-
-
-@section Scripts
-{
-    <script>
-        $(document).ready(function () {
-            $('.js-show-summary .js-show-education').hide();
-
-            $('.summary').on("click", function (e) {
-                e.preventDefault();
-                $('.js-show-summary').toggle(300);
-            });
-
-            $('.education').on("click", function (e) {
-                e.preventDefault();
-                $('.js-show-education').toggle(300);
-            });
-        });
-    </script>
-}
