@@ -36,13 +36,13 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Dashboard()
         {
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Edit()
         {
             return View();
