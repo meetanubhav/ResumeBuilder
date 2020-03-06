@@ -43,8 +43,6 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.changed_usermodel.resources
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.addeduser.resources
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.addedusermodel.resources
