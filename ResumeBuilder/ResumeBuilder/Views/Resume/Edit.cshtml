@@ -1,16 +1,15 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container-sm w-75 bg-light mt-5 mb-5 rounded">
+<div class="container-fluid w-75 bg-light mt-5 mb-5 rounded">
     <form class="p-4">
         <div class=""><h2>Basic Information</h2></div>
-        <div class="form-group mb-2">
-            <label for="fname">First Name</label>
-            <input type="text" class="form-control" id="fname">
-        </div>
-        <div class="form-group mb-2">
-            <label for="lname">Last Name</label>
-            <input type="text" class="form-control" id="lname">
+        <div class="input-group mb-2 mt-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">First and last name</span>
+            </div>
+            <input type="text" class="form-control">
+            <input type="text" class="form-control">
         </div>
         <div class="form-group mb-2">
             <label for="email">Email</label>
@@ -20,12 +19,64 @@
             <label for="contact">Contact</label>
             <input type="number" class="form-control" id="contact">
         </div>
-
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Summary<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Education<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Work Experience<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Projects<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Skills<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Languages<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     </form>
+    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 summary">Summary<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <div class="js-show-summary">
+        <form>
+            <div class="form-group">
+                <label>Resume Name</label>
+                <input type="text" class="form-control" name="resume">
+            </div>
+            <div class="form-group">
+                <label>Summary</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+    <!-- Summary field -->
+    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 education">Education<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <div class="js-show-education mb-4">
+        <div class="form-check">
+            <label class="form-check-label ml-5">
+                <input type="radio" class="form-check-input" name="optradio">10th
+            </label>
+            <label class="form-check-label ml-4">
+                <input type="radio" class="form-check-input" name="optradio">12th
+            </label>
+            <label class="form-check-label ml-4">
+                <input type="radio" class="form-check-input" name="optradio">Graduation
+            </label>
+            <label class="form-check-label ml-4">
+                <input type="radio" class="form-check-input" name="optradio">Post Graduation
+            </label>
+            <div class="mt-3 mb-3">
+                <input type="text" class="form-control" name="yop" placeholder="Year of Passing" />
+            </div>
+            
+        </div>
+    </div>
+    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 workexp">Work Experience<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Projects<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Skills<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2">Languages<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
 </div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.js-show-summary .js-show-education').hide();
+
+            $('.summary').on("click", function (e) {
+                e.preventDefault();
+                $('.js-show-summary').toggle(300);
+            });
+
+            $('.education').on("click", function (e) {
+                e.preventDefault();
+                $('.js-show-education').toggle(300);
+            });
+        });
+    </script>
+}
