@@ -14,10 +14,19 @@
 
         protected override void Seed(ResumeBuilder.Models.ResumeBuilderDBContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if(!context.Users.Any())
+            {
+                context.Users.Add(new Models.User { 
+                    Username = "admin",
+                    Password = "12345678"
+                });
+                context.Users.Add(new Models.User
+                {
+                    Username = "ag",
+                    Password = "12345678"
+                });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            }
         }
     }
 }
