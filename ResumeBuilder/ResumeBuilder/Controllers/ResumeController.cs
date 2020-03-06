@@ -20,5 +20,9 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }
