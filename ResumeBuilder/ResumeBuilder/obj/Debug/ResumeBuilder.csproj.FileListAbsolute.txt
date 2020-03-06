@@ -40,3 +40,9 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Mvc.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.pdb
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.dll
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.dll
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.addeduser.resources
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache

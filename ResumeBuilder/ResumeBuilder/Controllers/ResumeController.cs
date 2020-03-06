@@ -1,4 +1,5 @@
 ﻿using System;
+using ResumeBuilder.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,8 +14,17 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
-        public ActionResult ValidateLogin(){
-            return View();
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         public ActionResult Dashboard()
         {
