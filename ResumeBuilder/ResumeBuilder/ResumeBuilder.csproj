@@ -246,6 +246,7 @@
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="ViewModel\UserResumeVM.cs" />
     <Compile Include="Models\UserSkill.cs" />
     <Compile Include="Models\WorkExperience.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
