@@ -35,9 +35,9 @@
     </div>
     <!-- Summary field -->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 education">Education<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-    <div class="js-show-education mb-4">
-        <div class="form-check">
-            <label class="form-check-label ml-5">
+    <div class="js-show-education mb-md-5">
+        <div class="form-group">
+            <label class="form-check-label ml-4">
                 <input type="radio" class="form-check-input" name="optradio">10th
             </label>
             <label class="form-check-label ml-4">
@@ -54,11 +54,16 @@
             </div>
             <div>
                 <label class="form-check-label ml-5">
-                    <input type="radio" class="form-check-input" name="optradio">CGPA
+                    <input type="radio" class="form-check-input" name="optradio" value="cgpa">CGPA
                 </label>
                 <label class="form-check-label ml-4">
-                    <input type="radio" class="form-check-input" name="optradio">Percentage
+                    <input type="radio" class="form-check-input" name="optradio" value="percentage">Percentage
                 </label>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" name="gradetype" placeholder="CGPA" />
+                <input type="text" class="form-control" name="stream" placeholder="STREAM" />
+                <input type="text" class="form-control" name="university" placeholder="UNIVERSITY" />
             </div>
         </div>
     </div>
@@ -83,6 +88,16 @@
             $('.education').on("click", function (e) {
                 e.preventDefault();
                 $('.js-show-education').toggle(300);
+            });
+
+            $('input[name="optradio"]').on("click", function () {
+
+                if ($(this).attr('value') == "percentage") {
+                    $('input[name = "gradetype"]').attr('placeholder', "Percentage");
+                }
+                else {
+                    $('input[name = "gradetype"]').attr('placeholder', "CGPA");
+                }
             });
         });
     </script>
