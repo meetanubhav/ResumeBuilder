@@ -230,9 +230,22 @@
     <Compile Include="Migrations\202003060921281_added user model.designer.cs">
       <DependentUpon>202003060921281_added user model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003062305059_added_classes.cs" />
+    <Compile Include="Migrations\202003062305059_added_classes.designer.cs">
+      <DependentUpon>202003062305059_added_classes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ResumeBuilderDBContext.cs" />
+    <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\Stream.cs" />
+    <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\UserSkill.cs" />
+    <Compile Include="Models\WorkExperience.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +272,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003060921281_added user model.resx">
       <DependentUpon>202003060921281_added user model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003062305059_added_classes.resx">
+      <DependentUpon>202003062305059_added_classes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
