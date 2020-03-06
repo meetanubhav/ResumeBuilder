@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
-    $('.js-show-summary .js-show-education .js-show-language .js-show-skills').hide();
+    $('.js-show-summary .js-show-education .js-show-language .js-show-skills .js-show-projects .js-show-workexp').hide();
+    for (i = 0; i <= 50; i++) {
+        $('.project-duration').append($('<option></option>').val(i).html(i))
+    }
 
     $('.summary').on("click", function (e) {
         e.preventDefault();
@@ -9,6 +12,26 @@
     $('.education').on("click", function (e) {
         e.preventDefault();
         $('.js-show-education').toggle(300);
+    });
+
+    $('.language').on("click", function (e) {
+        e.preventDefault();
+        $('.js-show-language').toggle(300);
+    });
+
+    $('.skills').on("click", function (e) {
+        e.preventDefault();
+        $('.js-show-skills').toggle(300);
+    });
+
+    $('.projects').on("click", function (e) {
+        e.preventDefault();
+        $('.js-show-projects').toggle(300);
+    });
+
+    $('.workexp').on("click", function (e) {
+        e.preventDefault();
+        $('.js-show-workexp').toggle(300);
     });
 
     $('input[name = "optradio"]').on("click", function () {
