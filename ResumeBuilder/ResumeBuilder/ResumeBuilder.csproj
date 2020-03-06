@@ -222,6 +222,7 @@
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
+    <Content Include="Views\Resume\SummaryModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
