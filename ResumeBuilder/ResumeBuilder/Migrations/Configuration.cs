@@ -25,6 +25,7 @@
                     Username = "ag",
                     Password = "12345678"
                 });
+                context.SaveChanges();
 
             }
         }

@@ -9,7 +9,7 @@ namespace ResumeBuilder.Controllers
 {
     public class ResumeController : Controller
     {
-        // GET: Resume
+        private ResumeBuilderDBContext db = new ResumeBuilderDBContext();
         public ActionResult Login()
         {
             return View();
@@ -19,19 +19,30 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                ResumeBuilderDBContext db = new ResumeBuilderDBContext();
-                var getUserId = db.Users.Where(x => (x.Username == user.Username && x.Password == user.Password)).Select(x=>x.UserID);
-                return RedirectToAction("Dashboard");
+                var getUserId = db.Users.Where(x => x.Username == user.Username);
+                if (getUserId.Where(x => x.Password == user.Password).Any())
+                {
+                    return RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+
+                }
             }
             else
             {
                 return RedirectToAction("Login");
             }
         }
+
+        [Authorize]
         public ActionResult Dashboard()
         {
             return View();
         }
+
+        [Authorize]
         public ActionResult Edit()
         {
             return View();
