@@ -1,6 +1,8 @@
 ﻿body {
     font-family: "Lato", sans-serif;
-    font-size: 10px;
+    margin: 10%;
+    background: #dc3545;
+    background: linear-gradient(to right, #dc3545, #343a40);
 }
 
 .sidenav {
@@ -31,7 +33,6 @@
     margin-left: 20%; /* Same as the width of the sidenav */
     font-size: 18px; /* Increased text to enable scrolling */
 }
-
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;

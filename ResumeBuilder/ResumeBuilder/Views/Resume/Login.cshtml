@@ -1,21 +1,16 @@
-﻿@model ResumeBuilder.Models.Login
+﻿@model ResumeBuilder.Models.User
 @{
     ViewBag.Title = "Login";
 }
-@*<nav class="navbar navbar-light bg-primary">
-    <i class="fa fa-book text-white">
-        @Html.ActionLink("Resume Builder", "Login", "Resume", new { @class = "navbar-brand text-white" })
-    </i>
-</nav>*@
 <div class="row">
-    <div class="col-md-6 bg-dark text-white">
+    <div class="col-xl-6 col-md-6 bg-dark text-white">
         <div class="container mt-5 p-5">
             <h2 class="text-center">Welcome</h2>
             <h2 class="text-center">To</h2>
             <h2 class="text-center">Resume Builder</h2>
         </div>
     </div>
-    <div class="col-md-6 bg-danger text-white">
+    <div class="col-xl-6 col-md-6 bg-danger text-white">
         <div class="container mt-5 p-5">
             @using (Html.BeginForm())
             {
@@ -23,21 +18,23 @@
                     <div class="form-group">
                         <i class="fa fa-user"></i>
                         @Html.LabelFor(x => x.Username)
-                        @Html.TextBoxFor(x => x.Username,"LoginUsername", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.Username, "LoginUsername", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-white" })
                     </div>
                     <div class="form-group">
                         <i class="fa fa-lock"></i>
                         @Html.LabelFor(x => x.Password)
                         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-white" })
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                        <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> LOGIN</button>
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
-
+<footer class="fixed-bottom text-center">
+    Make RESUMES With <i class="fa fa-heart text-white"></i>
+</footer>
