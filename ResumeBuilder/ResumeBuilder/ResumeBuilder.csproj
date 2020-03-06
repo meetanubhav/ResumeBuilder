@@ -221,8 +221,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Resume\Edit.cshtml" />
     <Content Include="Views\Resume\SummaryModal.cshtml" />
+=======
+>>>>>>> parent of 4ff14dd... created form for edit and add part
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
