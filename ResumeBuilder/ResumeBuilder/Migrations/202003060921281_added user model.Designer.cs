@@ -7,13 +7,13 @@ namespace ResumeBuilder.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class changed_usermodel : IMigrationMetadata
+    public sealed partial class addedusermodel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changed_usermodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedusermodel));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003060653235_changed_usermodel"; }
+            get { return "202003060921281_added user model"; }
         }
         
         string IMigrationMetadata.Source

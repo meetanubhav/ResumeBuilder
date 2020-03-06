@@ -3,11 +3,11 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class changed_usermodel : DbMigration
+    public partial class addedusermodel : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Users", "Password", c => c.String(nullable: false, maxLength: 100));
+     
             AlterColumn("dbo.Users", "Username", c => c.String(nullable: false));
         }
         

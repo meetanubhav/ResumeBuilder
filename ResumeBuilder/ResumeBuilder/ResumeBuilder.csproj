@@ -226,13 +226,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003060653235_changed_usermodel.cs" />
-    <Compile Include="Migrations\202003060653235_changed_usermodel.designer.cs">
-      <DependentUpon>202003060653235_changed_usermodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003060856246_added user.cs" />
-    <Compile Include="Migrations\202003060856246_added user.designer.cs">
-      <DependentUpon>202003060856246_added user.cs</DependentUpon>
+    <Compile Include="Migrations\202003060921281_added user model.cs" />
+    <Compile Include="Migrations\202003060921281_added user model.designer.cs">
+      <DependentUpon>202003060921281_added user model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ResumeBuilderDBContext.cs" />
@@ -247,7 +243,6 @@
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
-    <Content Include="Views\Resume\In.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -262,11 +257,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003060653235_changed_usermodel.resx">
-      <DependentUpon>202003060653235_changed_usermodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003060856246_added user.resx">
-      <DependentUpon>202003060856246_added user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003060921281_added user model.resx">
+      <DependentUpon>202003060921281_added user model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
