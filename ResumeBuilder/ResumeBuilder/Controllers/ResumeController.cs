@@ -19,6 +19,8 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
+                ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+                var getUserId = db.Users.Where(x => (x.Username == user.Username && x.Password == user.Password)).Select(x=>x.UserID);
                 return RedirectToAction("Dashboard");
             }
             else

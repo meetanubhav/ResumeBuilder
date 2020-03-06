@@ -37,7 +37,6 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Webpages.Deployment.
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Webpages.Razor.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Helpers.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Mvc.xml
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.pdb
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.dll
