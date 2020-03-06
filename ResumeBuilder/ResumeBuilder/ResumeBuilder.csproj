@@ -230,10 +230,6 @@
     <Compile Include="Migrations\202003060653235_changed_usermodel.designer.cs">
       <DependentUpon>202003060653235_changed_usermodel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003060856246_added user.cs" />
-    <Compile Include="Migrations\202003060856246_added user.designer.cs">
-      <DependentUpon>202003060856246_added user.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202003062305059_added_classes.cs" />
     <Compile Include="Migrations\202003062305059_added_classes.designer.cs">
       <DependentUpon>202003062305059_added_classes.cs</DependentUpon>
@@ -277,9 +273,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003060653235_changed_usermodel.resx">
       <DependentUpon>202003060653235_changed_usermodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003060856246_added user.resx">
-      <DependentUpon>202003060856246_added user.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003062305059_added_classes.resx">
       <DependentUpon>202003062305059_added_classes.cs</DependentUpon>
