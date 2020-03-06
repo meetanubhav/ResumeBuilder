@@ -2,11 +2,6 @@
 @{
     ViewBag.Title = "Login";
 }
-@*<nav class="navbar navbar-light bg-primary">
-    <i class="fa fa-book text-white">
-        @Html.ActionLink("Resume Builder", "Login", "Resume", new { @class = "navbar-brand text-white" })
-    </i>
-</nav>*@
 <div class="row">
     <div class="col-xl-6 col-md-6 bg-dark text-white">
         <div class="container mt-5 p-5">
@@ -19,7 +14,6 @@
         <div class="container mt-5 p-5">
             @using (Html.BeginForm())
             {
-                @Html.ValidationSummary()
                 <div class="form-horizontal">
                     <div class="form-group">
                         <i class="fa fa-user"></i>
