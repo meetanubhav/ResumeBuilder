@@ -107,6 +107,8 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CommonAjaxScripts.js" />
+    <Content Include="Scripts\CommonScripts.js" />
     <Content Include="Scripts\EditSectionScript.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
