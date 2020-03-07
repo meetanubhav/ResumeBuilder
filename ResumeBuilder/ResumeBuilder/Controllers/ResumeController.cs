@@ -14,21 +14,29 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(User user)
         {
             if (ModelState.IsValid)
             {
                 var getUserId = db.Users.Where(x => x.Username == user.Username);
+                var userdata = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
+                    Session["userid"] = userdata.UserID;
                     return RedirectToAction("Dashboard");
                 }
                 else
                 {
-                    return RedirectToAction("Login");
-
+                    ModelState.AddModelError("","Invalid UserName or Password");
                 }
+                //else
+                //{
+                //    return RedirectToAction("Login");
+
+                //}
+                return View(user);
             }
             else
             {
@@ -46,6 +54,11 @@ namespace ResumeBuilder.Controllers
         public ActionResult Edit()
         {
             return View();
+        }
+
+        public void SendData()
+        {
+            
         }
     }
 }

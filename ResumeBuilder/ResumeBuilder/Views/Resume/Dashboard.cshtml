@@ -1,5 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userid"] == null)
+    {
+        Response.Redirect("~/Resume/Login");
+    }
 }
 
 <div class="sidenav col-md-2">
