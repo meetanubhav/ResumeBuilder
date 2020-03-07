@@ -1,6 +1,6 @@
 ﻿function EditSectionScripts() {
     $('.js-toggle , .hide').hide();
-    for (i = 0; i <= 50; i++) {
+    for (i = 1; i <= 50; i++) {
         $('.project-duration').append($('<option></option>').val(i).html(i))
     }
     $('.js-edit').on("click", function () {
