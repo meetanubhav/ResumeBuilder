@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('.js-show-summary .js-show-education .js-show-language .js-show-skills .js-show-projects .js-show-workexp').hide();
+    $('.js-show-summary, .js-show-education , .js-show-language , .js-show-skills , .js-show-projects , .js-show-workexp').hide();
     for (i = 0; i <= 50; i++) {
         $('.project-duration').append($('<option></option>').val(i).html(i))
     }
