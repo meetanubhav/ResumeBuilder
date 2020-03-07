@@ -5,7 +5,7 @@
         Response.Redirect("~/Resume/Login");
     }
 }
-
+<input type="hidden" value="@Session["userId"]" id="userId" />
 <div class="sidenav col-md-2">
     <div class="text-secondary mt-5">
         <a href="" class="js-edit">
@@ -31,12 +31,15 @@
             Settings
         </a>
     </div>
+    <div class="text-primary mt-3">
+        <a href="SignOut" type="button" class="btn btn-danger text-white mt-5">Sign Out</a>
+    </div>
 </div>
 
 <!-- Dynamic goes here -->
 <div class="main col-md-8">
     <div class="m-5 home-dash">
-            <img src="https://ak7.picdn.net/shutterstock/videos/20490997/thumb/10.jpg" class="img-fluid" alt="background-resume-image" />
+        <img src="https://ak7.picdn.net/shutterstock/videos/20490997/thumb/10.jpg" class="img-fluid" alt="background-resume-image" />
         <h2 class="text-center">
             Build Resumes With <i class="fa fa-heart text-danger"></i>
         </h2>
