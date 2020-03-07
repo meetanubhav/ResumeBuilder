@@ -1,7 +1,11 @@
-﻿
-@{
-    ViewBag.Title = "Dashboard";
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userid"] == null)
+    {
+        Response.Redirect("~/Resume/Login");
+    }
 }
+<<<<<<< HEAD
 <section>
     <div class="row">
         <div class="col-md-2 bg-primary">
@@ -19,5 +23,45 @@
             33
 >>>>>>> parent of 4ff14dd... created form for edit and add part
         </div>
+=======
+
+<div class="sidenav col-md-2">
+    <div class="text-secondary mt-5">
+        <a href="" class="js-edit">
+            <i class="fa fa-edit mr-3"> </i>
+            Edit
+        </a>
+>>>>>>> master
     </div>
-</section>
+    <div class="text-primary mt-3">
+        <a href="~/Resume/Login">
+            <i class="fa fa-file-contract mr-4"> </i>
+            Template
+        </a>
+    </div>
+    <div class="text-primary mt-3">
+        <a href="~/Resume/Login">
+            <i class="fa fa-portrait mr-4"> </i>
+            Profile
+        </a>
+    </div>
+    <div class="text-primary mt-3">
+        <a href="~/Resume/Login">
+            <i class="fa fa-cogs mr-3"> </i>
+            Settings
+        </a>
+    </div>
+</div>
+
+<!-- Dynamic goes here -->
+<div class="main col-md-8">
+    <div class="m-5 home-dash">
+            <img src="https://ak7.picdn.net/shutterstock/videos/20490997/thumb/10.jpg" class="img-fluid" alt="background-resume-image" />
+        <h2 class="text-center">
+            Build Resumes With <i class="fa fa-heart text-danger"></i>
+        </h2>
+    </div>
+    <div class="w-auto ml-lg-5 show-edit-section hide">
+        @Html.Partial("Edit")
+    </div>
+</div>

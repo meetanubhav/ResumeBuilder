@@ -8,12 +8,15 @@ namespace ResumeBuilder.Models
 {
     public class User
     {
+        [Key]
         public int UserID { get; set; }
 
-        public string UserName { get; set; }
+        [Required]
+        public string Username { get; set; }
 
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [RegularExpression("[a-zA-Z]{3,14}$", ErrorMessage = "Invalid password format")]
-        public string UserPassword { get; set; }
+        public string Password { get; set; }
     }
 }
