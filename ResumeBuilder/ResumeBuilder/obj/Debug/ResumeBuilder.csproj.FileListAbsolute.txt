@@ -19,6 +19,8 @@ D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.dll
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
+D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.addeduser.resources
+D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\ResumeBuilder.dll.config
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\ResumeBuilder.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\ResumeBuilder.pdb
@@ -36,14 +38,9 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Helpers.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\System.Web.Mvc.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.pdb
+D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.addedusermodel.resources
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
-D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
-D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
-D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
