@@ -21,10 +21,10 @@ namespace ResumeBuilder.Controllers
             if (ModelState.IsValid)
             {
                 var getUserId = db.Users.Where(x => x.Username == user.Username);
-                var userdata = db.Users.SingleOrDefault(x => x.Username == user.Username);
+                var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
-                    Session["userid"] = userdata.UserID;
+                    Session["userId"] = userData.UserID;
                     return RedirectToAction("Dashboard");
                 }
                 else
@@ -52,19 +52,31 @@ namespace ResumeBuilder.Controllers
 
         //[Authorize]
         public ActionResult Dashboard()
-        {
+        { 
             return View();
         }
 
-        //[Authorize]
-        public ActionResult Edit()
+        
+        public ActionResult Edit(int? userId)
+        {
+            if (userId != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Dashboard");
+            }
+        }
+
+        public ActionResult Templete()
         {
             return View();
         }
-
-        public void SendData()
+        public ActionResult SignOut()
         {
-            
+            Session.Abandon();
+            return RedirectToAction("Login");
         }
     }
 }

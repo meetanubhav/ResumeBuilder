@@ -231,10 +231,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003071558056_added_classes.cs" />
-    <Compile Include="Migrations\202003071558056_added_classes.designer.cs">
-      <DependentUpon>202003071558056_added_classes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -257,15 +253,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Resume\Edit.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Resume\SummaryModal.cshtml" />
-=======
->>>>>>> parent of 4ff14dd... created form for edit and add part
-=======
     <Content Include="Views\Resume\Summary.cshtml" />
->>>>>>> master
+    <Content Include="Views\Resume\Templete.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -279,11 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003071558056_added_classes.resx">
-      <DependentUpon>202003071558056_added_classes.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
