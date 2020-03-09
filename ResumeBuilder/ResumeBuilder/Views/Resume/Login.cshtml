@@ -2,16 +2,18 @@
 @{
     ViewBag.Title = "Login";
 }
-<div class="row">
-    <div class="col-xl-6 col-md-6 bg-dark text-white">
-        <div class="container mt-5 p-5">
+<div class="row w-100">
+    <section class="bg-dark text-white text-center w-50 min-vh-100">
+        <div class="container pt-5 my-auto w-50 ">
+            <div>
             <h2 class="text-center">Welcome</h2>
             <h2 class="text-center">To</h2>
             <h2 class="text-center">Resume Builder</h2>
+            </div>
         </div>
-    </div>
-    <div class="col-xl-6 col-md-6 bg-danger text-white">
-        <div class="container mt-5 p-5">
+    </section>
+    <section class="bg-danger text-white w-50 min-vh-100">
+        <div class="container  p-5 w-50">
             @using (Html.BeginForm())
             {
                 <div class="form-horizontal">
@@ -33,7 +35,7 @@
                 </div>
             }
         </div>
-    </div>
+    </section>
 </div>
 <footer class="fixed-bottom text-center">
     Make RESUMES With <i class="fa fa-heart text-white"></i>

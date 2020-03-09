@@ -44,12 +44,6 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult SignOut()
-        {
-            Session.Abandon();
-            return RedirectToAction("Login");
-        }
-
         //[Authorize]
         public ActionResult Dashboard()
         { 
@@ -69,7 +63,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult Templete()
+        public ActionResult Template()
         {
             return View();
         }
