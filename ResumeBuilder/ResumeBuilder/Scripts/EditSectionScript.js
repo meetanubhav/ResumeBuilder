@@ -15,8 +15,8 @@
         $(this).next().toggle(300);
     });
     
-    $('input[name = "optradio"]').on("click", function () {
-        if ($(this).attr('value') == "10th" || $(this).attr('value') == "12th") {
+    $('input[name = "educationLevel"]').on("click", function () {
+        if ($(this).attr('value') == "secondary" || $(this).attr('value') == "seniorSecondary") {
             $('input[name = "stream"]').hide();
             $('input[name = "university"]').hide();
         }

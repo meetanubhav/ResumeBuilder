@@ -44,13 +44,13 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        //[Authorize]
+        
         public ActionResult Dashboard()
         { 
             return View();
         }
 
-        //[Authorize]
+        
         public ActionResult Edit(int? userId)
         {
             if (userId != null)
@@ -61,6 +61,11 @@ namespace ResumeBuilder.Controllers
             {
                 return RedirectToAction("Dashboard");
             }
+        }
+
+        public ActionResult Templete()
+        {
+            return View();
         }
         public ActionResult SignOut()
         {
