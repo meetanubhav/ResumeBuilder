@@ -229,13 +229,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003060921281_added user model.cs" />
-    <Compile Include="Migrations\202003060921281_added user model.designer.cs">
-      <DependentUpon>202003060921281_added user model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003062305059_added_classes.cs" />
-    <Compile Include="Migrations\202003062305059_added_classes.designer.cs">
-      <DependentUpon>202003062305059_added_classes.cs</DependentUpon>
+    <Compile Include="Migrations\202003091946332_added_classes.cs" />
+    <Compile Include="Migrations\202003091946332_added_classes.designer.cs">
+      <DependentUpon>202003091946332_added_classes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
@@ -276,11 +272,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003060921281_added user model.resx">
-      <DependentUpon>202003060921281_added user model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003062305059_added_classes.resx">
-      <DependentUpon>202003062305059_added_classes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003091946332_added_classes.resx">
+      <DependentUpon>202003091946332_added_classes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

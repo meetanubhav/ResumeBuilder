@@ -48,6 +48,16 @@
                 .PrimaryKey(t => t.UniversityID);
             
             CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        UserID = c.Int(nullable: false, identity: true),
+                        Username = c.String(nullable: false),
+                        Password = c.String(nullable: false, maxLength: 100),
+                    })
+                .PrimaryKey(t => t.UserID);
+            
+            CreateTable(
                 "dbo.Languages",
                 c => new
                     {
@@ -133,8 +143,6 @@
                 .ForeignKey("dbo.UserInfoes", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
             
-            AddColumn("dbo.Users", "Password", c => c.String(nullable: false, maxLength: 100));
-            AlterColumn("dbo.Users", "Username", c => c.String(nullable: false));
         }
         
         public override void Down()
@@ -160,14 +168,13 @@
             DropIndex("dbo.Educations", new[] { "University_UniversityID" });
             DropIndex("dbo.Educations", new[] { "Stream_StreamID" });
             DropIndex("dbo.Educations", new[] { "UserID" });
-            AlterColumn("dbo.Users", "Username", c => c.String());
-            DropColumn("dbo.Users", "Password");
             DropTable("dbo.WorkExperiences");
             DropTable("dbo.UserSkills");
             DropTable("dbo.UserInfoes");
             DropTable("dbo.Skills");
             DropTable("dbo.Projects");
             DropTable("dbo.Languages");
+            DropTable("dbo.Users");
             DropTable("dbo.Universities");
             DropTable("dbo.Streams");
             DropTable("dbo.Educations");
