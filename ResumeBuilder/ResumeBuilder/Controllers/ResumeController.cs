@@ -44,7 +44,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        
+        //[Authorize]
         public ActionResult Dashboard()
         { 
             return View();
@@ -63,7 +63,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult Templete()
+        public ActionResult Template()
         {
             return View();
         }
