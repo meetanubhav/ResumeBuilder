@@ -1,48 +1,50 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userid"] == null)
+    {
+        Response.Redirect("~/Resume/Login");
+    }
 }
-
-<div class="sidenav col-xl-2">
-    <div class="text-primary mt-5">
-        <a href="~/Resume/Login">
+<input type="hidden" value="@Session["userId"]" id="userId" />
+<div class="sidenav col-md-2">
+    <div class="text-secondary mt-5">
+        <a href="" class="js-edit">
             <i class="fa fa-edit mr-3"> </i>
             Edit
         </a>
-        @*@Html.ActionLink("Edit", "EditDetails", "Resume", new { @class = "d-inline"})*@
     </div>
     <div class="text-primary mt-3">
-        <a href="~/Resume/Login">
+        <a href="~/Resume/Template">
             <i class="fa fa-file-contract mr-4"> </i>
             Template
         </a>
-        @*@Html.ActionLink("Edit", "EditDetails", "Resume", new { @class = "d-inline"})*@
     </div>
     <div class="text-primary mt-3">
         <a href="~/Resume/Login">
             <i class="fa fa-portrait mr-4"> </i>
             Profile
         </a>
-        @*@Html.ActionLink("Edit", "EditDetails", "Resume", new { @class = "d-inline"})*@
     </div>
     <div class="text-primary mt-3">
         <a href="~/Resume/Login">
             <i class="fa fa-cogs mr-3"> </i>
             Settings
         </a>
-        @*@Html.ActionLink("Edit", "EditDetails", "Resume", new { @class = "d-inline"})*@
     </div>
-    <div class="fixed-bottom text-primary text-sm-left pl-3">
-        Make resumes with <i class="fa fa-heart text-danger ml-2"></i>
+    <div class="text-primary mt-3">
+        <a href="SignOut" type="button" class="btn btn-danger text-white mt-5">Sign Out</a>
     </div>
-
 </div>
 
 <!-- Dynamic goes here -->
-<div class="main col-md-10">
-    <div class="w-75 ml-lg-5">
+<div class="main col-md-8">
+    <div class="m-5 home-dash">
+        <img src="https://ak7.picdn.net/shutterstock/videos/20490997/thumb/10.jpg" class="img-fluid" alt="background-resume-image" />
+        <h2 class="text-center">
+            Build Resumes With <i class="fa fa-heart text-danger"></i>
+        </h2>
+    </div>
+    <div class="w-auto ml-lg-5 show-edit-section hide">
         @Html.Partial("Edit")
     </div>
 </div>
-
-
-

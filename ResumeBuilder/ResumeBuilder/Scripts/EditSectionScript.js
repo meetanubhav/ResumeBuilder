@@ -1,41 +1,22 @@
-﻿$(document).ready(function () {
-    $('.js-show-summary .js-show-education .js-show-language .js-show-skills .js-show-projects .js-show-workexp').hide();
+﻿function EditSectionScripts() {
+    $('.js-show-summary, .js-show-education , .hide, .js-show-language , .js-show-skills , .js-show-projects , .js-show-workexp').hide();
+
+    $('.js-toggle').hide();
     for (i = 0; i <= 50; i++) {
         $('.project-duration').append($('<option></option>').val(i).html(i))
     }
-
-    $('.summary').on("click", function (e) {
-        e.preventDefault();
-        $('.js-show-summary').toggle(300);
+    $('.js-edit').on("click", function () {
+        $('.home-dash').toggle();
+        $('.show-edit-section').toggle();
+        return false;
     });
-
-    $('.education').on("click", function (e) {
-        e.preventDefault();
-        $('.js-show-education').toggle(300);
+    $('.js-click').on('click', function () {
+        console.log(1);
+        $(this).next().toggle(300);
     });
-
-    $('.language').on("click", function (e) {
-        e.preventDefault();
-        $('.js-show-language').toggle(300);
-    });
-
-    $('.skills').on("click", function (e) {
-        e.preventDefault();
-        $('.js-show-skills').toggle(300);
-    });
-
-    $('.projects').on("click", function (e) {
-        e.preventDefault();
-        $('.js-show-projects').toggle(300);
-    });
-
-    $('.workexp').on("click", function (e) {
-        e.preventDefault();
-        $('.js-show-workexp').toggle(300);
-    });
-
-    $('input[name = "optradio"]').on("click", function () {
-        if ($(this).attr('value') == "10th" || $(this).attr('value') == "12th") {
+    
+    $('input[name = "educationLevel"]').on("click", function () {
+        if ($(this).attr('value') == "secondary" || $(this).attr('value') == "seniorSecondary") {
             $('input[name = "stream"]').hide();
             $('input[name = "university"]').hide();
         }
@@ -52,4 +33,4 @@
             $('input[name = "gradetype"]').attr('placeholder', "CGPA");
         }
     });
-});
+}

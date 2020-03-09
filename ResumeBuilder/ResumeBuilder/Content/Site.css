@@ -30,12 +30,21 @@
     margin-left: 20%; /* Same as the width of the sidenav */
     font-size: 18px; /* Increased text to enable scrolling */
 }
-@media screen and (max-height: 450px) {
+@media screen and (max-height: 400px) {
+
+    .main{
+        margin-left:0%;
+    }
     .sidenav {
         padding-top: 15px;
+        /*display:none;*/
     }
 
         .sidenav a {
             font-size: 18px;
+            margin-top: -50px;
+            padding-bottom:50px;
+            /*padding-top: 3%;*/
+            
         }
 }
