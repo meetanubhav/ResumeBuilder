@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ResumeBuilder.Repository
 {
@@ -12,6 +13,7 @@ namespace ResumeBuilder.Repository
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
 
+        [HttpPost]
         public bool AddBasicInformation(UserInfo userInfo)
         {
             try
