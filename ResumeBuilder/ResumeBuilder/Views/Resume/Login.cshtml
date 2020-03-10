@@ -1,0 +1,42 @@
+﻿@model ResumeBuilder.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+<div class="row w-100">
+    <section class="bg-dark text-white text-center w-50 min-vh-100">
+        <div class="container pt-5 my-auto w-50 ">
+            <div>
+            <h2 class="text-center">Welcome</h2>
+            <h2 class="text-center">To</h2>
+            <h2 class="text-center">Resume Builder</h2>
+            </div>
+        </div>
+    </section>
+    <section class="bg-danger text-white w-50 min-vh-100">
+        <div class="container  p-5 w-50">
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        @Html.LabelFor(x => x.Username)
+                        @Html.TextBoxFor(x => x.Username, "LoginUsername", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-white" })
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        @Html.LabelFor(x => x.Password)
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-white" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> LOGIN</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+<footer class="fixed-bottom text-center">
+    Make RESUMES With <i class="fa fa-heart text-white"></i>
+</footer>
