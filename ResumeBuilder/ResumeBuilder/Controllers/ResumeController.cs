@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections;
 
 namespace ResumeBuilder.Controllers
 {
@@ -73,8 +74,15 @@ namespace ResumeBuilder.Controllers
             return RedirectToAction("Login");
         }
 
+<<<<<<< Updated upstream
         public ActionResult display(UserInfo u)
         {
+=======
+        [HttpPost]
+        public ActionResult display(UserInfo u)
+        {
+
+>>>>>>> Stashed changes
             return Json(u);
         }
     }
