@@ -44,6 +44,14 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
+<<<<<<< Updated upstream
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.addedusermodel.resources
+=======
+D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
+D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
+D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
+>>>>>>> Stashed changes
