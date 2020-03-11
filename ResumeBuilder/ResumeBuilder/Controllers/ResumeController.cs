@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections;
+using System.Web.Security;
 
 namespace ResumeBuilder.Controllers
 {
@@ -13,6 +14,9 @@ namespace ResumeBuilder.Controllers
         private ResumeBuilderDBContext db = new ResumeBuilderDBContext();
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Dashboard");
+
             return View();
         }
 
@@ -25,7 +29,7 @@ namespace ResumeBuilder.Controllers
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
-                    Session["userId"] = userData.UserID;
+                    FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
                 }
                 else
@@ -45,7 +49,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Dashboard()
         { 
             return View();
@@ -55,7 +59,7 @@ namespace ResumeBuilder.Controllers
         {
             return Content("..");
         }
-        //[Authorize]
+        [Authorize]
         public ActionResult Edit(int? userId)
         {
             if (userId != null)
@@ -74,26 +78,11 @@ namespace ResumeBuilder.Controllers
         }
         public ActionResult SignOut()
         {
+            FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login");
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        public ActionResult display(UserInfo u)
-        {
-=======
-=======
->>>>>>> Stashed changes
-        [HttpPost]
-        public ActionResult display(UserInfo u)
-        {
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-            return Json(u);
-        }
     }
 }
