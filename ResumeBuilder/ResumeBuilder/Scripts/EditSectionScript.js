@@ -30,12 +30,35 @@
             $('input[name = "gradetype"]').attr('placeholder', "CGPA");
         }
     });
+    
+    //Data Fill Contents by Bhabani "/EditResume/BasicInfo"
+    $('.save-basic-info').on("click", function () {
 
-    $('.save-summary').on("click", function () {
-        var formData = $('.summary-form').serialize();        $.ajax({
-            url: "/ActionName",            data: formData,            success: function (data) {
+        var formData = $('.basic-info-form').serialize();
+        $.ajax({
+            url: @Url.Action("BasicInfo","EditResume"),
+            method: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                alert("Data Saved Successfully");
+            }
+        });
+        $(this).parent().next().next().show(300);
+    });
+
+    $('.btn-save').on("click", function () {
+
+        var formData = $(this).parent().serialize();
+        $.ajax({
+            url: "/EditResume/BasicInfo",
+            method: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
                 alert(data);
             }
-        });        $(this).parent().parent().next().next().show(300);
-    });    //
+        });
+        $(this).parent().parent().next().next().show(300);
+    });
 }
