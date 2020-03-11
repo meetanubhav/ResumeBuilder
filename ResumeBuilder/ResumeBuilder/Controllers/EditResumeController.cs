@@ -11,9 +11,9 @@ namespace ResumeBuilder.Controllers
     public class EditResumeController : Controller
     {
         private readonly IResumeBuilderRepository _resumeRepository;
-        public EditResumeController(IResumeBuilderRepository resumeRepository)
+        public EditResumeController()
         {
-            _resumeRepository = resumeRepository;
+            _resumeRepository = new ResumeBuilderRepository();
         }
 
         // GET: Resume
@@ -34,7 +34,7 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public bool AddBasicInformation(UserInfo user)
         {
-
+            user.UserID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
                 //Creating Mapping
@@ -48,7 +48,7 @@ namespace ResumeBuilder.Controllers
 
                 if (result)
                 {
-                    Session["IdSelected"] = _resumeRepository.GetIdPerson(user.Email);
+                    //Session["IdSelected"] = _resumeRepository.GetIdPerson(user.Email);
                     return result;
                 }
                 else

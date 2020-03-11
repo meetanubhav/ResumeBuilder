@@ -16,7 +16,6 @@ namespace ResumeBuilder.Controllers
         {
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Dashboard");
-
             return View();
         }
 
@@ -34,7 +33,7 @@ namespace ResumeBuilder.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Invalid UserName or Password");
+                    ModelState.AddModelError("", "Invalid UserName or Password");
                 }
                 //else
                 //{
@@ -51,13 +50,14 @@ namespace ResumeBuilder.Controllers
 
         [Authorize]
         public ActionResult Dashboard()
-        { 
+        {
             return View();
         }
+
         [HttpPost]
         public ActionResult AddBasicInfo(UserInfo userBasicInfo)
         {
-            
+            var userId = User.Identity.Name;
             return Content("..");
         }
         [Authorize]
