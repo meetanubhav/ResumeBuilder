@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 using System.Security.Claims;
 using System.Security.Authentication;
 =======
@@ -12,6 +13,10 @@ using System.Web.Security;
 using System.Data.Entity;
 >>>>>>> Stashed changes
 =======
+using System.Web.Security;
+>>>>>>> Stashed changes
+=======
+using System.Collections;
 using System.Web.Security;
 >>>>>>> Stashed changes
 
@@ -73,13 +78,18 @@ namespace ResumeBuilder.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Invalid UserName or Password");
+                    ModelState.AddModelError("", "Invalid UserName or Password");
                 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+
 >>>>>>> Stashed changes
                 return View(user);
             }
         }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         [Authorize]
@@ -90,6 +100,15 @@ namespace ResumeBuilder.Controllers
         [Authorize]
 >>>>>>> Stashed changes
         public ActionResult Dashboard()
+=======
+        [Authorize]
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddBasicInfo(UserInfo userBasicInfo)
+>>>>>>> Stashed changes
         {
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
@@ -111,6 +130,7 @@ namespace ResumeBuilder.Controllers
 >>>>>>> Stashed changes
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         public ActionResult Dashboard()
 =======
 
@@ -120,5 +140,17 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
+=======
+
+        public ActionResult Template()
+        {
+            return View();
+        }
+        public ActionResult SignOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+>>>>>>> Stashed changes
     }
 }
