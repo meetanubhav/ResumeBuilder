@@ -35,6 +35,7 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public ActionResult AddBasicInformation(UserInfo user)
         {
+            user.UserID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
                 user.UserID = 1;//Int32.Parse(User.Identity.Name);

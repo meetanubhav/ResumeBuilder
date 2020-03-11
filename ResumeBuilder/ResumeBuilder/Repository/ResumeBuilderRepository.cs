@@ -26,6 +26,10 @@ namespace ResumeBuilder.Repository
                     userInfo.ResumeName = string.Empty;
                     userInfo.UserID = 1;
                     db.UserInfos.Add(userInfo);
+                    //userInfo.Summary = string.Empty;
+                    //userInfo.ResumeName = string.Empty;
+                    //db.UserInfos.Add(userInfo);
+                    db.Entry(userInfo).State = EntityState.Modified;
                     records = db.SaveChanges();
                 }
 
