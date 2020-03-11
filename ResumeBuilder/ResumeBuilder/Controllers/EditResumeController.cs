@@ -32,7 +32,6 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        [ActionName("BasicInfo")]
         public bool AddBasicInformation(UserInfo user)
         {
 

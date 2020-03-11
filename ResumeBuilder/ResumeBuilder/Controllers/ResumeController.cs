@@ -53,10 +53,11 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public ActionResult AddBasicInfo(UserInfo userBasicInfo)
         {
+            
             return Content("..");
         }
         //[Authorize]
-        public ActionResult Edit(int? userId)
+        public ActionResult Edit(int? userId)   
         {
             if (userId != null)
             {
@@ -78,22 +79,5 @@ namespace ResumeBuilder.Controllers
             return RedirectToAction("Login");
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        public ActionResult display(UserInfo u)
-        {
-=======
-=======
->>>>>>> Stashed changes
-        [HttpPost]
-        public ActionResult display(UserInfo u)
-        {
-
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-            return Json(u);
-        }
     }
 }
