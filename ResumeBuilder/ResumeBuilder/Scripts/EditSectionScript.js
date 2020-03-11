@@ -2,9 +2,6 @@
     $('.js-show-summary, .js-show-education , .hide, .js-show-language , .js-show-skills , .js-show-projects , .js-show-workexp').hide();
 
     $('.js-toggle').hide();
-    for (i = 0; i <= 50; i++) {
-        $('.project-duration').append($('<option></option>').val(i).html(i))
-    }
     $('.js-edit').on("click", function () {
         $('.home-dash').toggle();
         $('.show-edit-section').toggle();
@@ -15,8 +12,8 @@
         $(this).next().toggle(300);
     });
     
-    $('input[name = "optradio"]').on("click", function () {
-        if ($(this).attr('value') == "10th" || $(this).attr('value') == "12th") {
+    $('input[name = "educationLevel"]').on("click", function () {
+        if ($(this).attr('value') == "secondary" || $(this).attr('value') == "seniorSecondary") {
             $('input[name = "stream"]').hide();
             $('input[name = "university"]').hide();
         }
@@ -33,4 +30,18 @@
             $('input[name = "gradetype"]').attr('placeholder', "CGPA");
         }
     });
+
+    //Data Fill Contents by Bhabani    $('.save-basic-info').on("click", function () {
+        var formData = $('.basic-info-form').serialize();        $.ajax({
+            url: "/ResumeBuilderRepository/AddBasicInformation",            method: "POST",            data: formData,            success: function (data) {
+                alert(data);
+            }
+        });        $(this).parent().next().next().show(300);
+    });    $('.save-summary').on("click", function () {
+        var formData = $('.summary-form').serialize();        $.ajax({
+            url: "/ActionName",            data: formData,            success: function (data) {
+                alert(data);
+            }
+        });        $(this).parent().parent().next().next().show(300);
+    });    //
 }

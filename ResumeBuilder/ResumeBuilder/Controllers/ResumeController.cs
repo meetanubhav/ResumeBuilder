@@ -66,6 +66,11 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
+
+        public ActionResult Template()
+        {
+            return View();
+        }
         public ActionResult SignOut()
         {
             Session.Abandon();

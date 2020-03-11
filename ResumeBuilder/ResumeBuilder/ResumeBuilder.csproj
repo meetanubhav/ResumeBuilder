@@ -231,6 +231,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003091134171_added_classes.cs" />
+    <Compile Include="Migrations\202003091134171_added_classes.designer.cs">
+      <DependentUpon>202003091134171_added_classes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -241,6 +245,8 @@
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Repository\IResumeBuilderRepository.cs" />
+    <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="ViewModel\UserResumeVM.cs" />
     <Compile Include="Models\UserSkill.cs" />
     <Compile Include="Models\WorkExperience.cs" />
@@ -255,6 +261,7 @@
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
     <Content Include="Views\Resume\Summary.cshtml" />
+    <Content Include="Views\Resume\Template.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -268,6 +275,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003091134171_added_classes.resx">
+      <DependentUpon>202003091134171_added_classes.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
