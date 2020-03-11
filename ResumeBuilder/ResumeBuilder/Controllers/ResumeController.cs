@@ -49,7 +49,11 @@ namespace ResumeBuilder.Controllers
         { 
             return View();
         }
-
+        [HttpPost]
+        public ActionResult AddBasicInfo(UserInfo userBasicInfo)
+        {
+            return Content("..");
+        }
         //[Authorize]
         public ActionResult Edit(int? userId)
         {
