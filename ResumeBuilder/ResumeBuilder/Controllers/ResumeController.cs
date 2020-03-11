@@ -72,5 +72,10 @@ namespace ResumeBuilder.Controllers
             Session.Abandon();
             return RedirectToAction("Login");
         }
+
+        public ActionResult display(UserInfo u)
+        {
+            return Json(u);
+        }
     }
 }
