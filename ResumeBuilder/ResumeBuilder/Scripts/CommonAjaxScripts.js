@@ -12,12 +12,14 @@
             contentType: 'application/html; charset=utf-8',
             type: 'POST',
             data: JSON.stringify(userData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
             success: function (response) {
                 //$('.show-content').html(response);
-                alert("success")
+                //alert("success")
             },
             failure: function (response) {
-                alert(status);
+                //alert(status);
             }
         })
         return false;

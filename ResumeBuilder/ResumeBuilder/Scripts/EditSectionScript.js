@@ -31,13 +31,7 @@
         }
     });
 
-    //Data Fill Contents by Bhabani    $('.save-basic-info').on("click", function () {
-        var formData = $('.basic-info-form').serialize();        $.ajax({
-            url: "/ResumeBuilderRepository/AddBasicInformation",            method: "POST",            data: formData,            success: function (data) {
-                alert(data);
-            }
-        });        $(this).parent().next().next().show(300);
-    });    $('.save-summary').on("click", function () {
+    $('.save-summary').on("click", function () {
         var formData = $('.summary-form').serialize();        $.ajax({
             url: "/ActionName",            data: formData,            success: function (data) {
                 alert(data);
