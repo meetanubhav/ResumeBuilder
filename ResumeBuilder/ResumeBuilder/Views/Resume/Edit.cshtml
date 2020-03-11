@@ -27,7 +27,7 @@
     <!-- Summary Section -->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 js-click">Summary<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     <div class="js-toggle mb-2 hide">
-        <form>
+        <form class="summary-form">
             <div class="form-group">
                 <label>Resume Name</label>
                 <input type="text" class="form-control" name="resumeName" />
@@ -36,13 +36,13 @@
                 <label>Summary</label>
                 <textarea class="form-control" name="summary" rows="3"></textarea>
             </div>
-            <button type="button" class="mt-2 btn btn-sm btn-success save-summary">SAVE</button>
+            <button type="button" class="mt-2 btn btn-sm btn-success save-summary btn-save">SAVE</button>
         </form>
     </div>
     <!-- Education Section -->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 js-click">Education<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     <div class="js-toggle mb-3 hide">
-        <form action="/" method="post">
+        <form action="/" method="post" class="education-form">
             <div class="form-group mt-2">
                 <div class="row">
                     <div class="col-md-3">
@@ -89,16 +89,16 @@
                     <input type="text" class="form-control" name="university" placeholder="UNIVERSITY" />
                 </div>
             </div>
-            <button type="button" class="mt-2 btn btn-sm btn-success save-education">SAVE</button>
+            <button type="button" class="mt-2 btn btn-sm btn-success save-education btn-save">SAVE</button>
         </form>
     </div>
     <!-- Work experience Section-->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 js-click">Work Experience<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     <div class="js-toggle mb-3">
-        <form method="post">
+        <form class="workExp-form">
             <div class="form-group">
-                <input type="text" class="form-control mb-4" value="" placeholder="Organization" />
-                <input type="text" class="form-control" value="" placeholder="Designation" />
+                <input type="text" class="form-control mb-4" placeholder="Organization" />
+                <input type="text" class="form-control" placeholder="Designation" />
             </div>
             <div class="row form-group">
                 <div class="col-md-6">
@@ -110,13 +110,13 @@
                     <input class="form-control" type="text" placeholder="To Year" />
                 </div>
             </div>
-            <button type="button" class="mt-2 btn btn-sm btn-success save-work">SAVE</button>
+            <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
         </form>
     </div>
     <!-- Project Section-->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 js-click">Projects<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     <div class="js-toggle mb-4">
-        <div class="form-check">
+        <form class="projects-form">
             <div class="mt-3 mb-3">
                 <input type="text" class="form-control mt-3" name="projectName" placeholder="Project Name" />
                 <textarea class="form-control mt-3" name="projectDetails" rows="3" cols="50" placeholder="Project Details"></textarea>
@@ -128,29 +128,29 @@
                     <select class="custom-select project-duration" id="projectDuration"></select>
                 </div>
             </div>
-            <button type="button" class="mt-2 btn btn-sm btn-success save-work">SAVE</button>
-        </div>
+            <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+        </form>
     </div>
 
     <!--Skill Section -->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 js-click">Skills<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     <div class="js-toggle mb-4">
-        <div class="form-check">
+        <form class="skills-form">
             <div class="mt-3 mb-3">
                 <input type="text" class="form-control" name="skill" placeholder="Add Skills" />
             </div>
-            <button type="button" class="mt-2 btn btn-sm btn-success save-work">SAVE</button>
-        </div>
+            <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+        </form>
     </div>
     <!--Languages Section -->
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 js-click">Languages<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
     <div class="js-toggle mb-4">
-        <div class="form-check">
+        <form class="language-form">
             <div class="mt-3 mb-3">
                 <input type="text" class="form-control" name="language" placeholder="Add Language" />
             </div>
-            <button type="button" class="mt-2 btn btn-sm btn-success save-work">SAVE</button>
-        </div>
+            <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+        </form>
     </div>
 
 </div>

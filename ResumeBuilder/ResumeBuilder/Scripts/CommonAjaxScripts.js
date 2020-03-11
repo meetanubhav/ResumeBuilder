@@ -1,27 +1,33 @@
 ﻿function AjaxScripts() {
-    //Ajax Script for edit section view
-    $('.save-basic-info').on("click", function (e) {
-        var userData = new Object();
-        userData.userID = $("#userId").val();
-        userData.firstName = $("[name = firstName]").val();
-        userData.lastName = $("[name = lastName]").val();
-        userData.email = $("[name = email]").val();
-        userData.contact = $("[name = contact]").val();
+
+    //Ajax Script by bhabani
+    $('.save-basic-info').on("click", function () {
+
+        var formData = $('.basic-info-form').serialize();
         $.ajax({
-            url: '/Resume/AddBasicInfo',
-            contentType: 'application/html; charset=utf-8',
-            type: 'POST',
-            data: JSON.stringify(userData),
-            contentType: "application/json; charset=utf-8",
+            url: "/Resume/display",
+            method: "POST",
+            data: formData,
             dataType: "json",
-            success: function (response) {
-                //$('.show-content').html(response);
-                //alert("success")
-            },
-            failure: function (response) {
-                //alert(status);
+            success: function (data) {
+                alert("Data Saved Successfully");
             }
-        })
-        return false;
+        });
+        $(this).parent().next().next().show(300);
+    });
+
+    $('.btn-save').on("click", function () {
+
+        var formData = $(this).parent().serialize();
+        $.ajax({
+            url: "/Resume/display",
+            method: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                alert(data);
+            }
+        });
+        $(this).parent().parent().next().next().show(300);
     });
 }
