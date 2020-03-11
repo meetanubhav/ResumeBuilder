@@ -75,13 +75,19 @@ namespace ResumeBuilder.Controllers
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         public ActionResult display(UserInfo u)
         {
 =======
+=======
+>>>>>>> Stashed changes
         [HttpPost]
         public ActionResult display(UserInfo u)
         {
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             return Json(u);
         }
