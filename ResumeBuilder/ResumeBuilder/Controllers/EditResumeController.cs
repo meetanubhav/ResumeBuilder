@@ -35,8 +35,8 @@ namespace ResumeBuilder.Controllers
         public bool AddBasicInformation(UserInfo user)
         {
             user.UserID = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 //Creating Mapping
                 //Mapper.Initialize(cfg => cfg.CreateMap<PersonVM, Person>());
 
@@ -57,7 +57,7 @@ namespace ResumeBuilder.Controllers
                     return result;
                 }
 
-            }
+            //}
 
            
             ViewBag.MessageForm = "Please Check your form before submit !";
