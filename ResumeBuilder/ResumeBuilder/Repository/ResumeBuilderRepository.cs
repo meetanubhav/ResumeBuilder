@@ -22,6 +22,10 @@ namespace ResumeBuilder.Repository
                 
                 if (userInfo != null)
                 {
+                    userInfo.Summary = string.Empty;
+                    userInfo.ResumeName = string.Empty;
+                    userInfo.UserID = 1;
+                    db.UserInfos.Add(userInfo);
                     //userInfo.Summary = string.Empty;
                     //userInfo.ResumeName = string.Empty;
                     //db.UserInfos.Add(userInfo);

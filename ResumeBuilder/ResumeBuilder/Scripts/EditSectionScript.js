@@ -12,7 +12,7 @@
     });
     $('.js-click').on('click', function () {
         console.log(1);
-        $(this).next().toggle(300);
+        $(this).next.show(300);
     });
     
     $('input[name = "educationLevel"]').on("click", function () {

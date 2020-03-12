@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections;
-using System.Web.Security;
 
 namespace ResumeBuilder.Controllers
 {
@@ -28,7 +27,7 @@ namespace ResumeBuilder.Controllers
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
-                    FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
+                    Session["userId"] = userData.UserID;
                     return RedirectToAction("Dashboard");
                 }
                 else
@@ -48,7 +47,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Dashboard()
         {
             return View();
@@ -60,7 +59,7 @@ namespace ResumeBuilder.Controllers
             var userId = User.Identity.Name;
             return Content("..");
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult Edit(int? userId)
         {
             if (userId != null)
@@ -79,7 +78,6 @@ namespace ResumeBuilder.Controllers
         }
         public ActionResult SignOut()
         {
-            FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login");
         }
