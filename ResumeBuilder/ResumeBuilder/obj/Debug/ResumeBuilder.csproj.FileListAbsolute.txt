@@ -40,11 +40,8 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.dll
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
-D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.changed_phone_annotation.resources
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.changed_phone_annotation.resources

@@ -22,7 +22,7 @@ namespace ResumeBuilder.Models.ViewModel
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string AlternatePhoneNumber { get; set; }
-        public string ResumeName { get; set; }
-        public string Summary { get; set; }
+        //public string ResumeName { get; set; }
+        //public string Summary { get; set; }
     }
 }

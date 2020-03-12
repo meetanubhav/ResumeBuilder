@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ResumeBuilder.ViewModel.UserResumeVM
+@{
     Layout = null;
 }
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
@@ -123,9 +124,64 @@
         </div>
     </div>
 </div>
-
+<!--Education Modal-->
+<div class="modal fade educationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2>Education</h2>
+                <form action="/" method="post" class="education-form">
+                    <div class="form-group mt-2">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="educationLevel" value="secondary" />10th
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="educationLevel" value="seniorSecondary" />12th
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="educationLevel" value="graduation" />Graduation
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="educationLevel" value="postGraduation" />Post Graduation
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <input type="text" class="form-control" name="yop" placeholder="Year of Passing" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-check-label ml-5">
+                                    <input type="radio" class="form-check-input" name="optradio" value="cgpa" />CGPA
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-check-label ml-4">
+                                    <input type="radio" class="form-check-input" name="optradio" value="percentage" />Percentage
+                                </label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="gradetype" placeholder="CGPA" />
+                            <input type="text" class="form-control" name="stream" placeholder="STREAM" />
+                            <input type="text" class="form-control" name="university" placeholder="UNIVERSITY" />
+                        </div>
+                    </div>
+                    <button type="button" class="mt-2 btn btn-sm btn-success save-education btn-save">SAVE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!--Work Experience Modal-->
-
 <div class="modal fade workexperienceModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
