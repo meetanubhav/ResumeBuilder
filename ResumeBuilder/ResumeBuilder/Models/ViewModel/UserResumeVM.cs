@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ResumeBuilder.ViewModel
+namespace ResumeBuilder.Models.ViewModel
 {
     public class UserResumeVM
     {

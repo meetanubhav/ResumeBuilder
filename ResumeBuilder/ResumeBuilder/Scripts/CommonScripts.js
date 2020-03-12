@@ -7,7 +7,7 @@
     });
     
     $('.js-settings').on("click", function () {
-        $('.render-partial-view').load("/Resume/Settings");
+        $('.render-partial-view').load("/Settings/Settings");
         return false;
     });
     AjaxScripts();

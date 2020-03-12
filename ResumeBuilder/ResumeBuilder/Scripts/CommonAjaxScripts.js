@@ -11,7 +11,8 @@
         ajaxFunct('/EditResume/AddBasicInfo', userData)
         return false;
     });
-    var ajaxFunct = function (url, formData) {
+
+    var ajaxFunc = function (url, formData, message) {
         $.ajax({
             url: url,
             type: 'POST',
