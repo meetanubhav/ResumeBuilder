@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('.js-edit').on("click", function () {
-        var userId = parseInt($("#userId").val());
-        $('.render-partial-view').load("/Resume/Edit", { userId: userId });
+        //var userId = parseInt($("#userId").val());
+        $('.render-partial-view').load("/Resume/Edit");
         EditSectionScripts();
 
         return false;
@@ -11,6 +11,5 @@
         $('.render-partial-view').load("/Resume/Settings");
         return false;
     });
-    
     AjaxScripts();
 });

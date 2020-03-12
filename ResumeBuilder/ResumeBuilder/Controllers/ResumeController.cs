@@ -5,12 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ResumeBuilder.ViewModel;
+using System.Web.Security;
 
 namespace ResumeBuilder.Controllers
 {
     public class ResumeController : Controller
     {
-        private ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+        ResumeBuilderDBContext db = new ResumeBuilderDBContext();
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -27,18 +28,13 @@ namespace ResumeBuilder.Controllers
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
-                    //Session["userId"] = userData.UserID;
+                    FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid UserName or Password");
                 }
-                //else
-                //{
-                //    return RedirectToAction("Login");
-
-                //}
                 return View(user);
             }
             else
@@ -47,7 +43,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Dashboard()
         {
             return View();
@@ -56,13 +52,24 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public ActionResult AddBasicInfo(UserInfo userBasicInfo)
         {
-            var userId = User.Identity.Name;
-            return Content("..");
+           userBasicInfo.UserID = Int32.Parse(User.Identity.Name);
+           if (ModelState.IsValid)
+           {
+               var usertFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userBasicInfo.UserID);
+               db.Entry(usertFromDB).State = System.Data.Entity.EntityState.Modified;
+               db.SaveChanges();
+
+               return Content("Success");
+           }
+           else
+           {
+               return Content("Failed");
+           }
         }
-        //[Authorize]
-        public ActionResult Edit(int? userId)
+        [Authorize]
+        public ActionResult Edit()
         {
-            if (userId != null)
+            if (User.Identity.Name != null)
             {
                 return PartialView("~/Views/Resume/Edit.cshtml");
             }
@@ -80,10 +87,11 @@ namespace ResumeBuilder.Controllers
         public ActionResult Settings()
         {
             var vm = new SettingsVM();
-            return PartialView("~/Views/Resume/Settings.cshtml",vm);
+            return PartialView("~/Views/Resume/Settings.cshtml", vm);
         }
         public ActionResult SignOut()
         {
+            FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login");
         }
