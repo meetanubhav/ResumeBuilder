@@ -11,7 +11,7 @@
         console.log(1);
         $(this).next().toggle(300);
     });
-    
+
     $('input[name = "educationLevel"]').on("click", function () {
         if ($(this).attr('value') == "secondary" || $(this).attr('value') == "seniorSecondary") {
             $('input[name = "stream"]').hide();
@@ -31,17 +31,32 @@
         }
     });
 
-    //Data Fill Contents by Bhabani    $('.save-basic-info').on("click", function () {
-        var formData = $('.basic-info-form').serialize();        $.ajax({
-            url: "/ResumeBuilderRepository/AddBasicInformation",            method: "POST",            data: formData,            success: function (data) {
+    //Data Fill Contents by Bhabani
+    $('.save-basic-info').on("click", function () {
+
+        var formData = $('.basic-info-form').serialize();
+        $.ajax({
+            url: "/ResumeBuilderRepository/AddBasicInformation",
+            method: "POST",
+            data: formData,
+            success: function (data) {
                 alert(data);
             }
-        });        $(this).parent().next().next().show(300);
-    });    $('.save-summary').on("click", function () {
-        var formData = $('.summary-form').serialize();        $.ajax({
-            url: "/ActionName",            data: formData,            success: function (data) {
+        });
+        $(this).parent().next().next().show(300);
+    });
+
+    $('.save-summary').on("click", function () {
+
+        var formData = $('.summary-form').serialize();
+        $.ajax({
+            url: "/ActionName",
+            data: formData,
+            success: function (data) {
                 alert(data);
             }
-        });        $(this).parent().parent().next().next().show(300);
-    });    //
+        });
+        $(this).parent().parent().next().next().show(300);
+    });
+    //
 }
