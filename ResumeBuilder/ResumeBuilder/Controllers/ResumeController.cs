@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ResumeBuilder.ViewModel;
 
 namespace ResumeBuilder.Controllers
 {
@@ -46,7 +47,7 @@ namespace ResumeBuilder.Controllers
 
         //[Authorize]
         public ActionResult Dashboard()
-        { 
+        {
             return View();
         }
         [HttpPost]
@@ -59,7 +60,7 @@ namespace ResumeBuilder.Controllers
         {
             if (userId != null)
             {
-                return View();
+                return PartialView("~/Views/Resume/Edit.cshtml");
             }
             else
             {
@@ -70,6 +71,12 @@ namespace ResumeBuilder.Controllers
         public ActionResult Template()
         {
             return View();
+        }
+
+        public ActionResult Settings()
+        {
+            var vm = new SettingsVM();
+            return PartialView("~/Views/Resume/Settings.cshtml",vm);
         }
         public ActionResult SignOut()
         {

@@ -2,11 +2,10 @@
     $('.js-show-summary, .js-show-education , .hide, .js-show-language , .js-show-skills , .js-show-projects , .js-show-workexp').hide();
 
     $('.js-toggle').hide();
-    $('.js-edit').on("click", function () {
-        $('.home-dash').toggle();
-        $('.show-edit-section').toggle();
-        return false;
-    });
+    
+    //$('.home-dash').toggle();
+    $('.show-edit-section').show();
+
     $('.js-click').on('click', function () {
         console.log(1);
         $(this).next().toggle(300);
@@ -31,5 +30,34 @@
         }
     });
     
-    //Data Fill Contents by Bhabani "/EditResume/BasicInfo"    $('.save-basic-info').on("click", function () {        var formData = $('.basic-info-form').serialize();        $.ajax({            url: @Url.Action("BasicInfo","EditResume"),            method: "POST",            data: formData,            dataType: "json",            success: function (data) {                alert("Data Saved Successfully");            }        });        $(this).parent().next().next().show(300);    });    $('.btn-save').on("click", function () {        var formData = $(this).parent().serialize();        $.ajax({            url: "/EditResume/BasicInfo",            method: "POST",            data: formData,            dataType: "json",            success: function (data) {                alert(data);            }        });        $(this).parent().parent().next().next().show(300);    });
+    //Data Fill Contents by Bhabani "/EditResume/BasicInfo"
+    $('.save-basic-info').on("click", function () {
+
+        var formData = $('.basic-info-form').serialize();
+        $.ajax({
+            url: "",
+            method: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                alert("Data Saved Successfully");
+            }
+        });
+        $(this).parent().next().next().show(300);
+    });
+
+    $('.btn-save').on("click", function () {
+
+        var formData = $(this).parent().serialize();
+        $.ajax({
+            url: "/EditResume/BasicInfo",
+            method: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                alert(data);
+            }
+        });
+        $(this).parent().parent().next().next().show(300);
+    });
 }
