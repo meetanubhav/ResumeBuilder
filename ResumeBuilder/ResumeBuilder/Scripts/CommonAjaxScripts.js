@@ -19,20 +19,12 @@
     var ajaxFunc = function (url, formData, message) {
         $.ajax({
             url: url,
-<<<<<<< Updated upstream
-            method: "POST",
-            data: formdata,
-            dataType: "json",
-            success: function () {
-                alert("Sent Successfully")
-=======
             type: 'POST',
             data: formData,
             success: function (response) {
                 //$('.show-content').html(response);
             },
             failure: function (response) {
->>>>>>> Stashed changes
             }
         });
     }

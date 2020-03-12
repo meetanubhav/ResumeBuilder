@@ -34,35 +34,12 @@
     $('.save-basic-info').on("click", function () {
 
         var formData = $('.basic-info-form').serialize();
-        var params = $.extend({}, doAjax_params_default);
-        params['url'] = `your url`;
-        params['data'] = `your data`;
-        params['successCallbackFunction'] = `your success callback function`
-        doAjax(params);
-        $.ajax({
-            url: "",
-            method: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                alert("Data Saved Successfully");
-            }
-        });
-        $(this).parent().next().next().show(300);
+        
     });
 
     $('.btn-save').on("click", function () {
 
         var formData = $(this).parent().serialize();
-        $.ajax({
-            url: "/EditResume/BasicInfo",
-            method: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                alert(data);
-            }
-        });
-        $(this).parent().parent().next().next().show(300);
+        
     });
 }
