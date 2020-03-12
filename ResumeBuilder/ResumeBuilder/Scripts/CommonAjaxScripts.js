@@ -7,7 +7,8 @@
             userData.firstName = $("[name = firstName]").val();
             userData.lastName = $("[name = lastName]").val();
             userData.email = $("[name = email]").val();
-            userData.contact = $("[name = contact]").val();
+            userData.PhoneNumber = $("[name = primaryPhoneNumber]").val();
+            userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
         }
 
         ajaxFunc('/EditResume/AddBasicInformation', userData, 'success');
@@ -15,14 +16,23 @@
         return false;
     });
 
-    var ajaxFunc = function (url, formdata, message) {
+    var ajaxFunc = function (url, formData, message) {
         $.ajax({
             url: url,
+<<<<<<< Updated upstream
             method: "POST",
             data: formdata,
             dataType: "json",
             success: function () {
                 alert("Sent Successfully")
+=======
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                //$('.show-content').html(response);
+            },
+            failure: function (response) {
+>>>>>>> Stashed changes
             }
         });
     }

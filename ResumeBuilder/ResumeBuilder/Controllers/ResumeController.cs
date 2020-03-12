@@ -4,7 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+<<<<<<< Updated upstream
 using ResumeBuilder.ViewModel;
+=======
+using ResumeBuilder.Models.ViewModel;
+using System.Web.Security;
+>>>>>>> Stashed changes
 
 namespace ResumeBuilder.Controllers
 {
@@ -72,6 +77,7 @@ namespace ResumeBuilder.Controllers
             return View();
         }
 
+<<<<<<< Updated upstream
         public ActionResult Settings()
         {
             //if(User.Identity.IsAuthenticated)
@@ -85,6 +91,8 @@ namespace ResumeBuilder.Controllers
             //}
             
         }
+=======
+>>>>>>> Stashed changes
         public ActionResult SignOut()
         {
             Session.Abandon();
