@@ -13,7 +13,6 @@ namespace ResumeBuilder.Repository
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
 
-        [HttpPost]
         public bool AddBasicInformation(UserInfo userInfo)
         {
             try

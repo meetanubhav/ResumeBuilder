@@ -15,7 +15,7 @@ namespace ResumeBuilder.Models
         public Nullable<DateTime> YearOfPassing { get; set; }
         public bool CGPAorPercentage { get; set; }
         public double Score { get; set; }
-
+        
         public Stream Stream { get; set; }
         public University University { get; set; }
 

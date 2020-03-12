@@ -12,7 +12,7 @@ namespace ResumeBuilder.Models
         [Key]
         public int LanguageID { get; set; }
         public string LanguageName { get; set; }
-
+        
         public int UserID { get; set; }
         [ForeignKey("UserID")]
         public User User { get; set; }

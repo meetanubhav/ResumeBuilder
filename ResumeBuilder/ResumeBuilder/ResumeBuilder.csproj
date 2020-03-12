@@ -144,6 +144,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\ResumeSettings.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -241,6 +242,7 @@
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ResumeBuilderDBContext.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\Stream.cs" />
     <Compile Include="Models\University.cs" />
@@ -248,6 +250,7 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
+    <Compile Include="ViewModel\SettingsVM.cs" />
     <Compile Include="ViewModel\UserResumeVM.cs" />
     <Compile Include="Models\UserSkill.cs" />
     <Compile Include="Models\WorkExperience.cs" />
@@ -263,6 +266,7 @@
     <Content Include="Views\Resume\Edit.cshtml" />
     <Content Include="Views\Resume\Summary.cshtml" />
     <Content Include="Views\Resume\Template.cshtml" />
+    <Content Include="Views\Resume\Settings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

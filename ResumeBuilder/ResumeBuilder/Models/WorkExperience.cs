@@ -15,7 +15,7 @@ namespace ResumeBuilder.Models
         public string Designation { get; set; }
         public Nullable<DateTime> FromYear { get; set; }
         public Nullable<DateTime> ToYear { get; set; }
-
+        
         public int UserID { get; set; }
         [ForeignKey("UserID")]
         public User User { get; set; }
