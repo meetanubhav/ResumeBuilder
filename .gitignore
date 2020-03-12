@@ -84,3 +84,4 @@ ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.c
 *.txt
 *.dll
 *.Cache
+*.pdb
