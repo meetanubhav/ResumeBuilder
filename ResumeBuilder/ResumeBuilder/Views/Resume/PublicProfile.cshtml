@@ -1,21 +1,21 @@
-﻿
+﻿@model ResumeBuilder.Models.UserInfo
 @{
-    ViewBag.Title = "Templete";
+    ViewBag.Title = "PublicProfile";
 }
-<!--Added by Bhabani-->
+@*added by chinmay*@
 <div class="primary-container p-5 w-75 ml-5">
     <div class="wrapper w-100 bg-light h-100">
         <div class="sidebar-wrapper float-right">
             <div class="profile-container p-3 bg-primary align-middle text-center">
-                <img width="100px" height="100px" class="rounded-circle" src="https://images-na.ssl-images-amazon.com/images/I/815dEVoFqIL._SY355_.png" /><br/>
-                <label class="font-weight-bold display-4">John Doe</label><br />
+                <img width="100px" height="100px" class="rounded-circle" src="~/Images/user.jpg" alt="user logo"/><br />
+                <label class="font-weight-bold display-4">@Model.FirstName  @Model.LastName</label><br />
                 <label>Full Stack Developer</label>
             </div>
 
             <div class="contact-container container-block bg-info pt-5 pl-4 pb-5">
-                <ul class="list-unstyled contact-list text-white" >
-                    <li class="email"><i class="fas fa-envelope-open-text mr-3"></i>john.doe@gmail.com</li>
-                    <li class="phone"><i class="fas fa-mobile-alt mr-3"></i>+11-90896755555</li>
+                <ul class="list-unstyled contact-list text-white">
+                    <li class="email"><i class="fas fa-envelope-open-text mr-3"></i>@Model.Email</li>
+                    <li class="phone"><i class="fas fa-mobile-alt mr-3"></i>+91-@Model.PhoneNumber , +91-@Model.AlternatePhoneNumber</li>
                     <li class="location"><i class="fas fa-map-marked-alt mr-3"></i>NewYork, USA</li>
                     <li class="github"><i class="fab fa-github mr-3"></i>Github Link</li>
                 </ul>

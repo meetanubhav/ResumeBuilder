@@ -29,7 +29,7 @@ namespace ResumeBuilder.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Invalid UserName or Password");
+                    ModelState.AddModelError("", "Invalid UserName or Password");
                 }
                 //else
                 //{
@@ -46,11 +46,11 @@ namespace ResumeBuilder.Controllers
 
         //[Authorize]
         public ActionResult Dashboard()
-        { 
+        {
             return View();
         }
 
-        
+
         public ActionResult Edit(int? userId)
         {
             if (userId != null)
@@ -63,9 +63,10 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult Template()
+        public ActionResult PublicProfile()
         {
-            return View();
+            var user = db.UserInfos.Where(x => x.UserID == 1).FirstOrDefault();
+            return View(user);
         }
         public ActionResult SignOut()
         {
