@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using ResumeBuilder.Models.ViewModel;
 using System.Web.Security;
-using ResumeBuilder.ViewModel;
 
 namespace ResumeBuilder.Controllers
 {
@@ -85,6 +84,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Template()
         {
             return View();
