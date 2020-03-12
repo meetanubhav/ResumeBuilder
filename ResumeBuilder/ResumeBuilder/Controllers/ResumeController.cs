@@ -49,28 +49,7 @@ namespace ResumeBuilder.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
-        {
-           var userID = Int32.Parse(User.Identity.Name);
-           //if (ModelState.IsValid)
-           //{
-               var userFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
-               userFromDB.FirstName = userBasicInfo.FirstName;
-               userFromDB.LastName = userBasicInfo.LastName;
-               userFromDB.Email = userBasicInfo.Email;
-               userFromDB.PhoneNumber = userBasicInfo.PhoneNumber);
-               userFromDB.AlternatePhoneNumber = userBasicInfo.AlternatePhoneNumber;
-               db.Entry(usertFromDB).State = System.Data.Entity.EntityState.Modified;
-               db.SaveChanges();
-
-               return Content("Success");
-           //}
-           //else
-           //{
-           //    return Content("Failed");
-           //}
-        }
+        
         [Authorize]
         public ActionResult Edit()
         {
