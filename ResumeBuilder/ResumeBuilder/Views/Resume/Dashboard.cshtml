@@ -1,12 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var userId = Session["userid"];
-    if (userId == null)
-    {
-        Response.Redirect("~/Resume/Login");
-    }
+  
 }
-<input type="hidden" value="@userId" id="userId" />
+<input type="hidden" value="" id="userId" />
 <div class="sidenav col-md-2">
     <div class="text-secondary mt-5">
         <a href="" class="js-edit">

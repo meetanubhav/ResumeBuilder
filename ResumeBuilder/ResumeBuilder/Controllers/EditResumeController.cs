@@ -11,9 +11,9 @@ namespace ResumeBuilder.Controllers
     public class EditResumeController : Controller
     {
         private readonly IResumeBuilderRepository _resumeRepository;
-        public EditResumeController(IResumeBuilderRepository resumeRepository)
+        public EditResumeController()
         {
-            _resumeRepository = resumeRepository;
+            _resumeRepository = new ResumeBuilderRepository();
         }
 
         // GET: Resume
@@ -21,7 +21,6 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
-
 
         [HttpGet]
         public ActionResult BasicInformation(int idUser)
@@ -31,39 +30,51 @@ namespace ResumeBuilder.Controllers
             return Json(userBasicInfo,JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        
         [ActionName("BasicInfo")]
-        public bool AddBasicInformation(UserInfo user)
+        [HttpPost]
+        public ActionResult AddBasicInformation(UserInfo user)
         {
-
+            user.UserID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                //Creating Mapping
-                //Mapper.Initialize(cfg => cfg.CreateMap<PersonVM, Person>());
-
-                //UserInfo personEntity = Mapper.Map<Person>(person);
-
-                //HttpPostedFileBase file = Request.Files["ImageProfil"];
-
+                Int32.Parse(User.Identity.Name);
                 bool result = _resumeRepository.AddBasicInformation(user);
 
                 if (result)
                 {
-                    Session["IdSelected"] = _resumeRepository.GetIdPerson(user.Email);
-                    return result;
+                    
+                    return Json(result);
                 }
                 else
                 {
                     ViewBag.Message = "Something Wrong !";
-                    return result;
+                    return Json(ViewBag.Message);
                 }
+            }
+            ViewBag.MessageForm = "Please Check your form before submit !";
+            return Json(ViewBag.MessageForm);
+
+        }
+
+        [HttpPost]
+        [ActionName("Summary")]
+        public ActionResult AddOrUpdateSummary(UserInfo summary)
+        {
+            string msg = string.Empty;
+
+            if (summary.Summary != null)
+            {
+                ResumeBuilderRepository rbr = new ResumeBuilderRepository();
+                rbr.AddSummary(summary, 1);//Int32.Parse(User.Identity.Name));
 
             }
+            else
+            {
+                Content("Please re try the operation");
+            }
 
-           
-            ViewBag.MessageForm = "Please Check your form before submit !";
-            return true;
-
+            return Json(new { data = msg }, JsonRequestBehavior.AllowGet);
         }
 
         //[HttpGet]

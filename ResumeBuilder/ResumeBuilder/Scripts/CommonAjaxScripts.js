@@ -86,4 +86,18 @@ function doAjax(doAjax_params) {
             }
         }
     });
+
+
+    var ajaxFunc = function (url, formdata, message) {
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: formdata,
+            dataType: "json",
+            success: function () {
+                alert("Sent Successfully")
+            }
+        });
+    }
+
 }

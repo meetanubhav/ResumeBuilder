@@ -22,7 +22,7 @@
         }
     });
     $('input[name = "optradio"]').on("click", function () {
-        if ($(this).attr('value') == "percentage") {
+        if ($(this).attr('value') === "percentage") {
             $('input[name = "gradetype"]').attr('placeholder', "Percentage");
         }
         else {
