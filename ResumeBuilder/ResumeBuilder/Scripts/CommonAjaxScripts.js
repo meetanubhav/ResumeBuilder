@@ -1,16 +1,23 @@
 ﻿function AjaxScripts() {
     //Ajax Script for edit section view
-    $('body').on("click", ".save-basic-info", function (e) {
-        var userData = {};
-        userData.FirstName = $("[name = firstName]").val();
-        userData.LastName = $("[name = lastName]").val();
-        userData.Email = $("[name = email]").val();
-        userData.PrimaryPhoneNumber = $("[name = primaryPhoneNumber]").val();
-        userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
-        ajaxFunct('/EditResume/AddBasicInfo', userData)
+
+    $('body').on("click", '.save-basic-info', function (e) {
+        var userData = new Object();
+        {
+            userData.userID = $("#userId").val();
+            userData.firstName = $("[name = firstName]").val();
+            userData.lastName = $("[name = lastName]").val();
+            userData.email = $("[name = email]").val();
+            userData.PhoneNumber = $("[name = primaryPhoneNumber]").val();
+            userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
+        }
+
+        ajaxFunc('/EditResume/AddBasicInformation', userData, 'success');
+
         return false;
     });
-    var ajaxFunct = function (url, formData) {
+
+    var ajaxFunc = function (url, formData, message) {
         $.ajax({
             url: url,
             type: 'POST',
@@ -19,6 +26,7 @@
                 //$('.show-content').html(response);
             },
             failure: function (response) {
+                
             }
         })
     }

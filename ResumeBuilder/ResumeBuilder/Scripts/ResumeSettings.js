@@ -1,7 +1,6 @@
 ﻿function ResumeSettingsScript() {
     
-    //$('.home-dash').toggle();
-    $('.hide , .home-dash').hide();
+    $('.home-dash').hide();
     $('.show-settings-section').show();
     //$('input[type="checkbox"]').change(function (e) {
 

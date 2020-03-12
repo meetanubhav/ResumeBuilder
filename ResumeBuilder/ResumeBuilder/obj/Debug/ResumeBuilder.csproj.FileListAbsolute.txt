@@ -42,5 +42,10 @@ D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.xml
 D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\bin\EntityFramework.SqlServer.xml
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
+<<<<<<< Updated upstream
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csprojResolveAssemblyReference.cache
+=======
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.added_classes.resources
+D:\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.csproj.GenerateResource.Cache
+>>>>>>> Stashed changes
 D:\Resume Builder\ResumeBuilder\ResumeBuilder\ResumeBuilder\obj\Debug\ResumeBuilder.Migrations.changed_phone_annotation.resources
