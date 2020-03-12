@@ -16,7 +16,7 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                alert("Data Saved Successfully");
+                $(".save-basic-info input").prop("disabled", true);
             }
         });
         $(this).parent().next().next().show(300);
@@ -29,21 +29,10 @@
             method: "POST",
             data: formdata,
             dataType: "json",
-            success: function(){    
+            success: function () {
                 alert("Sent Successfully")
             }
         });
     }
-
-    $('.btn-save').on("click", function () {
-        if ($(this).parent().attr('class') === 'summary-form')
-            url = '/EditResume/Summary';
-
-        var formData = $(this).parent().serialize();
-
-        ajaxFunc(url, formData, "Testing");
-        $(this).parent().parent().next().next().show(300);
-    });
-
 
 }

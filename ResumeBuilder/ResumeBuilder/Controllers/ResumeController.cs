@@ -27,7 +27,7 @@ namespace ResumeBuilder.Controllers
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
-                    Session["userId"] = userData.UserID;
+                    //Session["userId"] = userData.UserID;
                     return RedirectToAction("Dashboard");
                 }
                 else
