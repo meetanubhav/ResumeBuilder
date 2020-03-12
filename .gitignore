@@ -76,3 +76,11 @@ _[Ss]cripts
 *.dbmdl
 /.vs/config
 /.vs
+ResumeBuilder/ResumeBuilder.v12.suo
+ResumeBuilder/ResumeBuilder.v12.suo
+ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.dll
+ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
+ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.txt
+*.dll
+*.Cache
