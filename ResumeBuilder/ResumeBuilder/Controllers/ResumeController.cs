@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ResumeBuilder.Models;
 using ResumeBuilder.ViewModel;
+using ResumeBuilder.Models.ViewModel;
 
 namespace ResumeBuilder.Controllers {
     public class ResumeController : Controller {
