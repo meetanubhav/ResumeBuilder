@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using ResumeBuilder.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ResumeBuilder.Controllers
 {
     public class ResumeController : Controller
     {
-        private ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+        ResumeBuilderDBContext db = new ResumeBuilderDBContext();
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -52,13 +53,24 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public ActionResult AddBasicInfo(UserInfo userBasicInfo)
         {
-            var userId = User.Identity.Name;
-            return Content("..");
+           userBasicInfo.UserID = Int32.Parse(User.Identity.Name);
+           if (ModelState.IsValid)
+           {
+               var usertFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userBasicInfo.UserID);
+               db.Entry(usertFromDB).State = System.Data.Entity.EntityState.Modified;
+               db.SaveChanges();
+
+               return Content("Success");
+           }
+           else
+           {
+               return Content("Failed");
+           }
         }
         [Authorize]
-        public ActionResult Edit(int? userId)
+        public ActionResult Edit()
         {
-            if (userId != null)
+            if (User.Identity.Name != null)
             {
                 return PartialView("~/Views/Resume/Edit.cshtml");
             }
@@ -68,15 +80,16 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult Template()
+        public ActionResult PublicProfile()
         {
-            return View();
+            var user = db.UserInfos.Where(x => x.UserID == 1).FirstOrDefault();
+            return View(user);
         }
 
         public ActionResult Settings()
         {
             var vm = new SettingsVM();
-            return PartialView("~/Views/Resume/Settings.cshtml",vm);
+            return PartialView("~/Views/Resume/Settings.cshtml", vm);
         }
         public ActionResult SignOut()
         {
