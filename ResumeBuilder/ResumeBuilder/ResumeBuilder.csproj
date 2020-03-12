@@ -248,10 +248,11 @@
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
-    <Compile Include="ViewModel\SettingsVM.cs" />
-    <Compile Include="ViewModel\UserResumeVM.cs" />
+    <Compile Include="Models\ViewModel\SettingsVM.cs" />
+    <Compile Include="Models\ViewModel\UserResumeVM.cs" />
     <Compile Include="Models\UserSkill.cs" />
     <Compile Include="Models\WorkExperience.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

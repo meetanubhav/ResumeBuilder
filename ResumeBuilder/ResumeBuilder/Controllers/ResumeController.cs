@@ -1,12 +1,12 @@
-﻿
-using System;
+﻿using System;
 using ResumeBuilder.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ResumeBuilder.ViewModel;
+using ResumeBuilder.Models.ViewModel;
 using System.Web.Security;
+using ResumeBuilder.ViewModel;
 
 namespace ResumeBuilder.Controllers
 {
@@ -51,12 +51,12 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddBasicInfo(UserInfo userBasicInfo)
+        public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
         {
-           userBasicInfo.UserID = Int32.Parse(User.Identity.Name);
+           var userID = Int32.Parse(User.Identity.Name);
            if (ModelState.IsValid)
            {
-               var usertFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userBasicInfo.UserID);
+               var usertFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
                db.Entry(usertFromDB).State = System.Data.Entity.EntityState.Modified;
                db.SaveChanges();
 
