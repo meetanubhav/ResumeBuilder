@@ -1,27 +1,22 @@
-﻿
+﻿@model ResumeBuilder.Models.UserSkill
 @{
     ViewBag.Title = "Templete";
 }
 <!--Added by Bhabani-->
-<div class="primary-container p-5 w-75 ml-5 position-relative bg-dark">
+<div class="primary-container p-5 w-75 h-100 ml-5 position-relative bg-dark">
     <div class="wrapper w-100 bg-light rounded">
-        <div class="sidebar-wrapper float-right">
-            <div class="profile-container p-3 bg-primary align-middle text-center">
-                <img class="rounded-circle" src="https://images-na.ssl-images-amazon.com/images/I/815dEVoFqIL._SY355_.png" /><br/>
-                <label class="font-weight-bold display-4">John Doe</label><br />
-                <label>Full Stack Developer</label>
-            </div>
-
-            <div class="contact-container container-block bg-info pt-5 pl-4 pb-5">
-                <ul class="list-unstyled contact-list text-white" >
-                    <li class="email"><i class="fas fa-envelope-open-text mr-3"></i>john.doe@gmail.com</li>
+        <div class="sidebar-wrapper float-right rounded">
+            <div class="info-container container-block bg-light pt-5 pl-4 pb-3">
+                <ul class="list-unstyled contact-list" >
+                    <li class="name"><i class="fas fa-envelope-open-text mr-3"></i>Bhabani Shankar Maharana</li>
+                    <li class="email"><i class="fas fa-map-marked-alt mr-3"></i>bhabani.maharana99@gmail.com</li>
                     <li class="phone"><i class="fas fa-mobile-alt mr-3"></i>+11-90896755555</li>
-                    <li class="location"><i class="fas fa-map-marked-alt mr-3"></i>NewYork, USA</li>
                     <li class="github"><i class="fab fa-github mr-3"></i>Github Link</li>
                 </ul>
             </div>
+        <hr />
 
-            <div class="education-container container-block bg-info pl-4 pb-5 text-white">
+            <div class="education-container container-block bg-light pl-4 pb-3">
                 <h3 class="container-block-title">Education</h3>
                 <div class="item">
                     <div class="degree">MSc in Computer Science</div>
@@ -35,7 +30,7 @@
                 </div><!--//item-->
             </div><!--//education-container-->
 
-            <div class="languages-container container-block bg-info pl-4 pb-5 text-white">
+            <div class="languages-container container-block bg-light pl-4 pb-2">
                 <h2 class="container-block-title">Languages</h2>
                 <ul class="list-unstyled interests-list">
                     <li>English <span class="lang-desc">(Native)</span></li>
@@ -44,22 +39,13 @@
                 </ul>
             </div><!--//interests-->
 
-            <div class="interests-container container-block bg-info pl-4 pb-5 mb-5 text-white">
-                <h2 class="container-block-title">Interests</h2>
-                <ul class="list-unstyled interests-list">
-                    <li>Climbing</li>
-                    <li>Snowboarding</li>
-                    <li>Cooking</li>
-                </ul>
-            </div><!--//interests-->
-
         </div><!--//sidebar-wrapper-->
 
-        <div class="main-wrapper p-4">
+        <div class="main-wrapper p-4 h-auto">
 
-            <section class="section summary-section">
+            <section class="section pb-xl-5">
                 <h4 class="section-title"><i class="fas fa-user"></i>Summary</h4>
-                <div class="summary pb-5">
+                <div class="summary pb-5 ">
                     Summary Data goes here//
                 </div>
 
@@ -75,7 +61,8 @@
 
                 <h4 class="section-title"><i class="fab fa-superpowers"></i>Skills</h4>
                 <div class="skills pb-5">
-                    skills Data goes here//
+                    <span id="test" ></span>
+                    
                 </div>
 
             </section>
@@ -83,3 +70,7 @@
 
     </div>
 </div>
+
+
+
+ 

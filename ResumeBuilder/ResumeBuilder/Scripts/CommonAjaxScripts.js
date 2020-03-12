@@ -9,6 +9,7 @@
         userData.lastName = $("[name = lastName]").val();
         userData.email = $("[name = email]").val();
         userData.phoneNumber = parseInt($("[name = phoneNumber]").val());
+        userData.altphoneNumber = parseInt($("[name = altphoneNumber]").val());
         $.ajax({
             url: "/EditResume/AddBasicInformation",
             method: "POST",
@@ -16,13 +17,14 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                alert("Data Saved Successfully");
+                //alert("Data Saved Successfully");
+                $(".basic-info-form input").prop("disabled", true);
             }
         });
-        $(this).parent().next().next().show(300);
+        //$(this).parent().next().next().show(300);
     });
 
-
+//------- Universal AJAX Function ----------------------
     var ajaxFunc = function (url, formdata, message) {
         $.ajax({
             url: url,
@@ -34,7 +36,7 @@
             }
         });
     }
-
+//------------------------------------------------------
     $('.btn-save').on("click", function () {
         if ($(this).parent().attr('class') === 'summary-form')
             url = '/EditResume/Summary';
@@ -45,5 +47,31 @@
         $(this).parent().parent().next().next().show(300);
     });
 
+//---------------------------------------------------------------------------------
+    $('#template').on("click", function () {
+        
+        $.ajax({
+            url: "/Resume/GetSkillDetails",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response != null) {
+                    $('.skills #test').text(response.Skill);
+                    //alert(response.Skill);
+                }
+                else {
+                    alert(response.responseText);
+                }
+            }, failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+        $('.show-template-section').show();
 
+        return false;
+    });
 }
