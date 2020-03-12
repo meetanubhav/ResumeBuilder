@@ -47,7 +47,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Dashboard()
         {
             return View();
@@ -59,19 +59,14 @@ namespace ResumeBuilder.Controllers
             var userId = User.Identity.Name;
             return Content("..");
         }
-        //[Authorize]
-        public ActionResult Edit(int? userId)
+
+        [Authorize]
+        public ActionResult Edit()
         {
-            if (userId != null)
-            {
-                return PartialView("~/Views/Resume/Edit.cshtml");
-            }
-            else
-            {
-                return RedirectToAction("Dashboard");
-            }
+            return PartialView("~/Views/Resume/Edit.cshtml");
         }
 
+        [Authorize]
         public ActionResult Template()
         {
             return View();
@@ -79,8 +74,16 @@ namespace ResumeBuilder.Controllers
 
         public ActionResult Settings()
         {
-            var vm = new SettingsVM();
-            return PartialView("~/Views/Resume/Settings.cshtml",vm);
+            //if(User.Identity.IsAuthenticated)
+            //{
+                var vm = new SettingsVM();
+                return PartialView("~/Views/Resume/Settings.cshtml", vm);
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login");
+            //}
+            
         }
         public ActionResult SignOut()
         {
