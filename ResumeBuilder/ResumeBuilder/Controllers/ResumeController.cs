@@ -80,6 +80,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Template()
         {
             return View();
