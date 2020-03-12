@@ -13,7 +13,7 @@ namespace ResumeBuilder.Models
         public int ProjectID { get; set; }
         public int DurationInMonth { get; set; }
         public string ProjectName { get; set; }
-
+        
         public virtual List<Skill> ProjectSkills { get; set; }
 
         public string ProjectDetails { get; set; }
