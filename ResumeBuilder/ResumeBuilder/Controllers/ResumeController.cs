@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ResumeBuilder.ViewModel;
+using System.Web.Security;
 
 namespace ResumeBuilder.Controllers
 {
@@ -27,18 +28,13 @@ namespace ResumeBuilder.Controllers
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
                 if (getUserId.Where(x => x.Password == user.Password).Any())
                 {
-                    //Session["userId"] = userData.UserID;
+                    FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid UserName or Password");
                 }
-                //else
-                //{
-                //    return RedirectToAction("Login");
-
-                //}
                 return View(user);
             }
             else
@@ -47,7 +43,7 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Dashboard()
         {
             return View();
@@ -59,7 +55,7 @@ namespace ResumeBuilder.Controllers
             var userId = User.Identity.Name;
             return Content("..");
         }
-        //[Authorize]
+        [Authorize]
         public ActionResult Edit(int? userId)
         {
             if (userId != null)
@@ -84,6 +80,7 @@ namespace ResumeBuilder.Controllers
         }
         public ActionResult SignOut()
         {
+            FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login");
         }
