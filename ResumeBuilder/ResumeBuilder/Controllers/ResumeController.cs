@@ -68,7 +68,6 @@ namespace ResumeBuilder.Controllers
             return View(user);
         }
 
-        
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();

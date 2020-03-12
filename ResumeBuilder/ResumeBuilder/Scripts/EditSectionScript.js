@@ -18,4 +18,17 @@
             $('input[name = "gradetype"]').attr('placeholder', "CGPA");
         }
     });
+    
+    //Data Fill Contents by Bhabani "/EditResume/BasicInfo"
+    $('.save-basic-info').on("click", function () {
+
+        var formData = $('.basic-info-form').serialize();
+        
+    });
+
+    $('.btn-save').on("click", function () {
+
+        var formData = $(this).parent().serialize();
+        
+    });
 }

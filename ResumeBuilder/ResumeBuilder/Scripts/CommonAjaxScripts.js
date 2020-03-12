@@ -26,7 +26,6 @@
                 //$('.show-content').html(response);
             },
             failure: function (response) {
-                
             }
         })
     }
