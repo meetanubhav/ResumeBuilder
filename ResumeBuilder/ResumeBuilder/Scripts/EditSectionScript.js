@@ -18,4 +18,16 @@
             $('input[name = "gradetype"]').attr('placeholder', "CGPA");
         }
     });
+    $.ajax({
+        url: "/EditResume/GetUserInfo",
+        type: "GET",
+        dataType: "json",
+        success: function (userData) {
+            $("[name = FirstName]").val(userData.FirstName);
+            $("[name = LastName]").val(userData.LastName);
+            $("[name = Email]").val(userData.Email);
+            $("[name = PhoneNumber]").val(userData.PhoneNumber);
+            $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
+        }
+    })
 }

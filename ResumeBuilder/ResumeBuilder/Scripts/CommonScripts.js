@@ -3,7 +3,6 @@
         //var userId = parseInt($("#userId").val());
         $('.render-partial-view').load("/Resume/Edit");
         EditSectionScripts();
-
         return false;
     });
     

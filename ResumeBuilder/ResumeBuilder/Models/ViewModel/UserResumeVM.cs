@@ -14,15 +14,12 @@ namespace ResumeBuilder.ViewModel
         public string LastName { get; set; }
         public string Email { get; set; }
 
-
-        [Required(ErrorMessage = "You must provide a phone number")]
-        [Display(Name = "Primary Contact Number")]
-        [DataType(DataType.PhoneNumber)]
+        [Required]
+        [MaxLength(12)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public int PhoneNumber { get; set; }
 
-        [Display(Name = "Alternative Contact Number")]
-        [DataType(DataType.PhoneNumber)]
+        [MaxLength(12)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public int AlternatePhoneNumber { get; set; }
         public string ResumeName { get; set; }
