@@ -187,3 +187,8 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+ResumeBuilder/ResumeBuilder.v12.suo
+ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.dll
+ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
+ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
+ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
