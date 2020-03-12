@@ -34,6 +34,11 @@
     $('.save-basic-info').on("click", function () {
 
         var formData = $('.basic-info-form').serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = `your url`;
+        params['data'] = `your data`;
+        params['successCallbackFunction'] = `your success callback function`
+        doAjax(params);
         $.ajax({
             url: "",
             method: "POST",
