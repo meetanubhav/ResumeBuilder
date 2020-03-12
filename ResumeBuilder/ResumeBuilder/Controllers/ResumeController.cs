@@ -80,10 +80,10 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        [Authorize]
-        public ActionResult Template()
+        public ActionResult PublicProfile()
         {
-            return View();
+            var user = db.UserInfos.Where(x => x.UserID == 1).FirstOrDefault();
+            return View(user);
         }
 
         public ActionResult Settings()
