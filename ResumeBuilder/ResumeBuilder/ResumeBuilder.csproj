@@ -270,7 +270,6 @@
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
-    <Content Include="Views\Resume\Summary.cshtml" />
     <Content Include="Views\Resume\Template.cshtml" />
     <Content Include="Views\Resume\Settings.cshtml" />
     <Content Include="Views\Resume\PublicProfile.cshtml" />
@@ -284,7 +283,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\EditResume\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
