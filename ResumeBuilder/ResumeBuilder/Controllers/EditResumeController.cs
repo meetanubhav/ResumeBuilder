@@ -21,17 +21,17 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
         {
-            var userID = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                var userFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
-                userFromDB.FirstName = userBasicInfo.FirstName;
-                userFromDB.LastName = userBasicInfo.LastName;
-                userFromDB.Email = userBasicInfo.Email;
-                userFromDB.PhoneNumber = userBasicInfo.PhoneNumber;
-                userFromDB.AlternatePhoneNumber = userBasicInfo.AlternatePhoneNumber;
-                //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+           var userID = Int32.Parse(User.Identity.Name);
+           //if (ModelState.IsValid)
+           //{
+               var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
+               userFromDB.FirstName = userBasicInfo.FirstName;
+               userFromDB.LastName = userBasicInfo.LastName;
+               userFromDB.Email = userBasicInfo.Email;
+               userFromDB.PhoneNumber = userBasicInfo.PhoneNumber;
+               userFromDB.AlternatePhoneNumber = userBasicInfo.AlternatePhoneNumber;
+               //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
+               db.SaveChanges();
 
                 return Content("Success");
             }

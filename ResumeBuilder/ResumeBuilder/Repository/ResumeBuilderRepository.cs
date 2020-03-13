@@ -13,7 +13,7 @@ namespace ResumeBuilder.Repository
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
 
-        public bool AddBasicInformation(UserInfo userInfo)
+        public bool AddBasicInformation(User userInfo)
         {
             try
             {
@@ -21,10 +21,10 @@ namespace ResumeBuilder.Repository
                 
                 if (userInfo != null)
                 {
-                    db.UserInfos.Add(userInfo);
+                    db.Users.Add(userInfo);
                     //userInfo.Summary = string.Empty;
                     //userInfo.ResumeName = string.Empty;
-                    //db.UserInfos.Add(userInfo);
+                    //db.Users.Add(userInfo);
                     db.Entry(userInfo).State = EntityState.Modified;
                     records = db.SaveChanges();
                 }
@@ -50,13 +50,13 @@ namespace ResumeBuilder.Repository
             }
         }
 
-        public bool AddSummary(UserInfo summary, int idUser)
+        public bool AddSummary(User summary, int idUser)
         {
             int records = 0;
                 
             if(summary != null)
             {
-                var user = db.UserInfos.FirstOrDefault(x => x.UserID == idUser);
+                var user = db.Users.FirstOrDefault(x => x.UserID == idUser);
                 user.Summary = summary.Summary;
                 user.ResumeName = summary.ResumeName;
                 records = db.SaveChanges();  
@@ -69,7 +69,7 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
 
-            var personEntity = db.UserInfos.Find(idUser);
+            var personEntity = db.Users.Find(idUser);
 
             if (personEntity != null)
             {
@@ -96,7 +96,7 @@ namespace ResumeBuilder.Repository
 
         public int GetIdPerson(string email)
         {
-            int idSelected = db.UserInfos.Where(p => p.Email.Equals(email))
+            int idSelected = db.Users.Where(p => p.Email.Equals(email))
                                               .Select(p => p.UserID).FirstOrDefault();
 
             return idSelected;
@@ -106,7 +106,7 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
 
-            var personEntity = db.UserInfos.Find(idUser);
+            var personEntity = db.Users.Find(idUser);
 
             if (personEntity != null)
             {
@@ -121,7 +121,7 @@ namespace ResumeBuilder.Repository
                 else
                 {
                     // we will add new education entity
-                    personEntity.WorkExperience.Add(workExperience);
+                    personEntity.WorkExperiences.Add(workExperience);
                     db.SaveChanges();
 
                     msg = "Education entity has been Added successfully";
@@ -131,14 +131,14 @@ namespace ResumeBuilder.Repository
             return msg;
         }
 
-        public bool AddSkill(UserSkill skill, int idUser)
+        public bool AddSkill(Skill skill, int idUser)
         {
             int countRecords = 0;
-            var personEntity = db.UserInfos.Find(idUser);
+            var personEntity = db.Users.Find(idUser);
 
             if(personEntity != null && skill != null)
             {
-                personEntity.UserSkill.Add(skill);
+                personEntity.Skills.Add(skill);
                 countRecords = db.SaveChanges();
             }
 
@@ -149,11 +149,11 @@ namespace ResumeBuilder.Repository
         public bool AddProject(Project project, int idUser)
         {
             int countRecords = 0;
-            var personEntity = db.UserInfos.Find(idUser);
+            var personEntity = db.Users.Find(idUser);
 
             if (personEntity != null && project != null)
             {
-                personEntity.Project.Add(project);
+                personEntity.Projects.Add(project);
                 countRecords = db.SaveChanges();
             }
 
@@ -163,20 +163,20 @@ namespace ResumeBuilder.Repository
         public bool AddLanguage(Language language, int idUser)
         {
             int countRecords = 0;
-            var personEntity = db.UserInfos.Find(idUser);
+            var personEntity = db.Users.Find(idUser);
 
             if (personEntity != null && language != null)
             {
-                personEntity.Language.Add(language);
+                personEntity.Languages.Add(language);
                 countRecords = db.SaveChanges();
             }
 
             return countRecords > 0 ? true : false;
         }
 
-        public UserInfo GetBasicInfo(int idUser)
+        public User GetBasicInfo(int idUser)
         {
-            var user = db.UserInfos.FirstOrDefault(x => x.UserID == idUser);
+            var user = db.Users.FirstOrDefault(x => x.UserID == idUser);
 
             return user;
         }
@@ -196,23 +196,23 @@ namespace ResumeBuilder.Repository
             return workExperience;
         }
 
-        public IQueryable<UserSkill> GetSkillsById(int idUser)
+        public IQueryable<Skill> GetSkillsById(int idUser)
         {
-            var userSkill = db.UserSkills.Where(x => x.UserID == idUser);
+            var userSkill = db.Skills.Where(x => x.Users.Any(y=>y.UserID==idUser));
 
             return userSkill;
         }
 
         public IQueryable<Project> GetProjectById(int idUser)
         {
-            var project = db.Projects.Where(x => x.UserID == idUser);
+            var project = db.Projects.Where(x => x.User.UserID == idUser);
 
             return project;
         }
 
         public IQueryable<Language> GetLanguageById(int idUser)
         {
-            var language = db.Languages.Where(x => x.UserID == idUser);
+            var language = db.Languages.Where(x => x.Users.Any(y => y.UserID == idUser));
 
             return language;
         }
