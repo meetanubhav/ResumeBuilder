@@ -1,16 +1,18 @@
 ﻿function AjaxScripts() {
     //Ajax Script for edit section view
     $('body').on("click", ".save-basic-info", function (e) {
+        e.preventDefault();
         var userData = {};
-        userData.FirstName = $("[name = firstName]").val();
-        userData.LastName = $("[name = lastName]").val();
-        userData.Email = $("[name = email]").val();
-        userData.PrimaryPhoneNumber = $("[name = primaryPhoneNumber]").val();
-        userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
+        userData.FirstName = $("[name = FirstName]").val();
+        userData.LastName = $("[name = LastName]").val();
+        userData.Email = $("[name = Email]").val();
+        userData.PhoneNumber = $("[name = PhoneNumber]").val();
+        userData.AlternatePhoneNumber = $("[name = AlternatePhoneNumber]").val();
         ajaxFunct('/EditResume/AddBasicInfo', userData)
         return false;
     });
-    var ajaxFunct = function (url, formData) {
+
+    var ajaxFunc = function (url, formData, message) {
         $.ajax({
             url: url,
             type: 'POST',

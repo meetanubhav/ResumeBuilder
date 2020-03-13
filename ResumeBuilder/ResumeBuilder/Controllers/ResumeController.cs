@@ -68,11 +68,6 @@ namespace ResumeBuilder.Controllers
             return View(user);
         }
 
-        public ActionResult Settings()
-        {
-            var vm = new SettingsVM();
-            return PartialView("~/Views/Resume/Settings.cshtml", vm);
-        }
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
