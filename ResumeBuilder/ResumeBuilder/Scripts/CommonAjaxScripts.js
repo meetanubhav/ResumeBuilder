@@ -17,6 +17,11 @@
         return false;
     });
 
+    $('body').on('click', '.save-settings', function () {
+        var formDetails = $(this).serialize();
+        ajaxFunc('/EditResume/AddBasicInformation', formDetails, 'success');
+        return false;
+    })
     var ajaxFunc = function (url, formData, message) {
         $.ajax({
             url: url,

@@ -1,4 +1,6 @@
-﻿using ResumeBuilder.Models.ViewModel;
+﻿using AutoMapper;
+using ResumeBuilder.Models;
+using ResumeBuilder.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,16 @@ namespace ResumeBuilder.Controllers
 {
     public class SettingsController : Controller
     {
+        ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+        
         public ActionResult Settings()
         {
-            var vm = new SettingsVM();
-            return PartialView("~/Views/Resume/Settings.cshtml", vm);
+            var settings = db.Users.Include("Settings").Where(x => x.UserID == 1).Select(x => x.Settings);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<Settings, SettingsVM>());
+            //var settingsVM = Mapper.Map<Settings,SettingsVM>(settings);
+
+            return PartialView("~/Views/Resume/Settings.cshtml");
         }
     }
 }

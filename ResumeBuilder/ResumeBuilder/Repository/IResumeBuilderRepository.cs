@@ -9,17 +9,17 @@ namespace ResumeBuilder.Repository
 {
      public interface IResumeBuilderRepository
     {
-        bool AddBasicInformation(UserInfo userInfo);
+        bool AddBasicInformation(User userInfo);
         string AddOrUpdateEducation(Education education, int idUser);
         int GetIdPerson(string email);
         string AddOrUpdateExperience(WorkExperience workExperience, int idUser);
-        bool AddSkill(UserSkill skill, int idUser);
+        bool AddSkill(Skill skill, int idUser);
         bool AddProject(Project project, int idUser);
         bool AddLanguage(Language language, int idUser);
-        UserInfo GetBasicInfo(int idUser);
+        User GetBasicInfo(int idUser);
         IQueryable<Education> GetEducationById(int idUser);
         IQueryable<WorkExperience> GetWorkExperienceById(int idUser);
-        IQueryable<UserSkill> GetSkillsById(int idUser);
+        IQueryable<Skill> GetSkillsById(int idUser);
         IQueryable<Project> GetProjectById(int idUser);
         IQueryable<Language> GetLanguageById(int idUser);
     }

@@ -29,7 +29,7 @@ namespace ResumeBuilder.Models.ViewModel
         public string Summary { get; set; }
         public List<WorkExperience> WorkExperience { get; set; }
         public List<Education> Education { get; set; }
-        public List<UserSkill> UserSkill { get; set; }
+        public List<Skill> Skill { get; set; }
         public List<Project> Project { get; set; }
         public List<Language> Language { get; set; }
     }

@@ -64,7 +64,7 @@ namespace ResumeBuilder.Controllers
 
         public ActionResult PublicProfile()
         {
-            var user = db.UserInfos.Where(x => x.UserID == 1).FirstOrDefault();
+            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return View(user);
         }
 
