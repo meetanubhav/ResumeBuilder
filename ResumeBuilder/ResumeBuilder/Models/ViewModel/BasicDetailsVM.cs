@@ -8,11 +8,21 @@ namespace ResumeBuilder.Models.ViewModel
 {
     public class BasicDetailsVM
     {
+        [Required]
+        [Display(Name = "First Name")]
+        [RegularExpression("([a-zA-Z]+)", ErrorMessage = "Enter only alphabets in First Name")]
         public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        [RegularExpression("([a-zA-Z]+)", ErrorMessage = "Enter only alphabet in Last Name")]
         public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "You must provide a phone number")]
+        [Required]
         [Display(Name = "Primary Contact Number")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
@@ -22,7 +32,6 @@ namespace ResumeBuilder.Models.ViewModel
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string AlternatePhoneNumber { get; set; }
-        //public string ResumeName { get; set; }
-        //public string Summary { get; set; }
+
     }
 }
