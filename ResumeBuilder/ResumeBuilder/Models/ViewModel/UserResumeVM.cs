@@ -17,11 +17,11 @@ namespace ResumeBuilder.Models.ViewModel
         [Required]
         [MaxLength(12)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [MaxLength(12)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        public int AlternatePhoneNumber { get; set; }
+        public string AlternatePhoneNumber { get; set; }
         public string ResumeName { get; set; }
         public string Summary { get; set; }
         public List<WorkExperience> WorkExperience { get; set; }

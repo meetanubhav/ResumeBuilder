@@ -40,5 +40,23 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
+        [HttpPost]
+        public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
+        {
+            var userID = Int32.Parse(User.Identity.Name);
+            if (ModelState.IsValid)
+            {
+                var userFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
+                userFromDB.ResumeName = summaryInfo.ResumeName;
+                userFromDB.Summary = summaryInfo.Summary;
+                //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Content("Success");
+            }
+            else
+            {
+                return Content("Failed");
+            }
+        }
     }
 }
