@@ -1,81 +1,81 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Templete";
+
 }
 <!--Added by Bhabani-->
-<div class="primary-container p-5 w-75 ml-5 position-relative bg-dark">
-    <div class="wrapper w-100 bg-light rounded">
-        <div class="sidebar-wrapper float-right">
-            <div class="profile-container p-3 bg-primary align-middle text-center">
-                <img class="rounded-circle" src="https://images-na.ssl-images-amazon.com/images/I/815dEVoFqIL._SY355_.png" /><br/>
-                <label class="font-weight-bold display-4">John Doe</label><br />
-                <label>Full Stack Developer</label>
+<div class="primary-container mx-5 mt-2 w-100 mh-100 position-relative">
+
+    <div class="container-fluid header-text text-white text-center w-100 px-0 py-0">
+        <div class="col-12 px-0 img-gradient">
+            <img src="https://www.dream-wallpaper.com/free-wallpaper/art-wallpaper/colorful-design-1-wallpaper/1440x900/free-wallpaper-9.jpg" class="img-responsive w-100" height="120px">
+            <div class="carousel-caption">
+                <h1>Your Resume</h1>
             </div>
 
-            <div class="contact-container container-block bg-info pt-5 pl-4 pb-5">
-                <ul class="list-unstyled contact-list text-white" >
-                    <li class="email"><i class="fas fa-envelope-open-text mr-3"></i>john.doe@gmail.com</li>
-                    <li class="phone"><i class="fas fa-mobile-alt mr-3"></i>+11-90896755555</li>
-                    <li class="location"><i class="fas fa-map-marked-alt mr-3"></i>NewYork, USA</li>
-                    <li class="github"><i class="fab fa-github mr-3"></i>Github Link</li>
+        </div>
+    </div>
+
+    <div class="wrapper w-100 bg-light rounded">
+        <div class="sidebar-wrapper bg-light float-right mb-4">
+
+            <div class="contact-container container-block bg-light pt-5 pl-4 pb-2">
+                <ul class="list-unstyled contact-list">
+                    <li><i class="far fa-user"></i> <span class="tName"></span></li>
+                    <li><i class="fas fa-envelope-open-text mr-1"></i><span class="tEmail"></span></li>
+                    <li><i class="fas fa-mobile-alt mr-2"></i><span class="tPhone"></span></li>
+                    <li><i class="fab fa-github mr-1"></i>Github Link</li>
                 </ul>
             </div>
-
-            <div class="education-container container-block bg-info pl-4 pb-5 text-white">
+            <hr />
+            <div class="education-container container-block bg-light pl-4">
                 <h3 class="container-block-title">Education</h3>
-                <div class="item">
-                    <div class="degree">MSc in Computer Science</div>
-                    <div class="meta">University of London</div>
-                    <div class="time">2011 - 2012</div>
-                </div><!--//item-->
                 <div class="item pt-3">
-                    <div class="degree">BSc in Applied Mathematics</div>
-                    <div class="meta">Bristol University</div>
-                    <div class="time">2007 - 2011</div>
+                    <span class="teducation"></span>
                 </div><!--//item-->
-            </div><!--//education-container-->
-
-            <div class="languages-container container-block bg-info pl-4 pb-5 text-white">
-                <h2 class="container-block-title">Languages</h2>
+            </div>
+            <hr />
+            <div class="languages-container container-block bg-light pl-4 pb-3 ">
+                <h3 class="container-block-title">Languages</h3>
                 <ul class="list-unstyled interests-list">
                     <li>English <span class="lang-desc">(Native)</span></li>
                     <li>French <span class="lang-desc">(Professional)</span></li>
                     <li>Spanish <span class="lang-desc">(Professional)</span></li>
                 </ul>
             </div><!--//interests-->
-
-            <div class="interests-container container-block bg-info pl-4 pb-5 mb-5 text-white">
-                <h2 class="container-block-title">Interests</h2>
+            <hr />
+            <div class="interests-container container-block bg-light pl-4">
+                <h3 class="container-block-title">Interests</h3>
                 <ul class="list-unstyled interests-list">
                     <li>Climbing</li>
                     <li>Snowboarding</li>
                     <li>Cooking</li>
                 </ul>
-            </div><!--//interests-->
+            </div>
 
         </div><!--//sidebar-wrapper-->
 
-        <div class="main-wrapper p-4">
+        <div class="main-wrapper row-cols-lg-1 card mh-100 p-4">
 
             <section class="section summary-section">
-                <h4 class="section-title"><i class="fas fa-user"></i>Summary</h4>
+                <h4 class="section-title"><i class="fab fa-stripe-s mr-2" style="color: #e6185e;"></i>Summary</h4>
                 <div class="summary pb-5">
-                    Summary Data goes here//
+                    <h5><span class="tResume"></span></h5>
+                    <span class="tSummary"></span>
                 </div>
 
-                <h4 class="section-title"><i class="fas fa-building"></i>Work Experience</h4>
+                <h4 class="section-title"><i class="fas fa-building mr-2" style="color: #e6185e;"></i>Work Experience</h4>
                 <div class="workExperience pb-5">
-                    Work experience Data goes here//
+                    <span class="tWorkexperience"></span>
                 </div>
 
-                <h4 class="section-title"><i class="fas fa-project-diagram"></i>Projects</h4>
+                <h4 class="section-title"><i class="fas fa-project-diagram mr-2" style="color: #e6185e;"></i>Projects</h4>
                 <div class="projects pb-5">
-                    Projects Data goes here//
+                    <span class="tproject"></span>
                 </div>
 
-                <h4 class="section-title"><i class="fab fa-superpowers"></i>Skills</h4>
+                <h4 class="section-title"><i class="fab fa-superpowers mr-2" style="color: #e6185e;"></i>Skills</h4>
                 <div class="skills pb-5">
-                    skills Data goes here//
+                    <span class="tskill"></span>
                 </div>
 
             </section>
