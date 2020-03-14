@@ -98,7 +98,7 @@ namespace ResumeBuilder.Controllers {
             List<Project> projects = db.Projects.Where(m => m.UserID == userId).ToList();
             List<UserSkill> skills = db.UserSkills.Where(m => m.UserID == userId).ToList();
             List<Education> educations = db.Educations.Where(m => m.UserID == userId).ToList();
- 
+            List<Language> languages = db.Languages.Where(m => m.UserID == userId).ToList();
             var multipleTable = (from u in userInfo 
                                   join p in projects on u.UserID equals p.UserID
                                   join w in work on p.UserID equals w.UserID where w.UserID == userId select new {
@@ -116,7 +116,7 @@ namespace ResumeBuilder.Controllers {
                                 }).ToList();
 
             List<object> test = projects.Cast<object>().Concat(work).Concat(userInfo)
-                                .Concat(skills).Concat(educations).ToList();
+                                .Concat(skills).Concat(educations).Concat(languages).ToList();
             return Json(test, JsonRequestBehavior.AllowGet);
         }
 

@@ -55,7 +55,8 @@
                             var educationDetails = $('.teducation').append($('<div class="font-weight-bold">').text(item.EducationLevel),
                                                                            $('<div class="bg-light rounded">').text("Scored "+item.CGPAorPercentage),
                                                                            $('<div class="bg-light rounded">').text(item.YearOfPassing));
-                        
+                        if (item.LanguageName != null)
+                            var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item.LanguageName));
                     });
 
                     $('.tName').text(response[5].FirstName +" "+ response[5].LastName);
