@@ -27,14 +27,28 @@
             <label for="phoneNumber">Alternate Phone Number</label>
             <input type="number" class="form-control" name="altPhoneNumber" placeholder="Phone Number" />
         </div>
-        <button type="button" class="mt-2 btn btn-sm btn-success save-basic-info">SAVE</button>
+        <div class="tab-content">
+            <button type="button" class="mt-2 btn btn-sm btn-success save-basic-info">SAVE</button>
+            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                <label class="btn btn-secondary">
+                    <input type="checkbox" name="options" id="edit" checked><i class="far fa-edit"></i>
+                </label>
+            </div>
+
+        </div>
     </form>
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".summaryModal">Summary<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <span class="summaryData"></span>
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <span class="educationData"></span>
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <span class="workexpData"></span>
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <span class="projectData"></span>
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".languageModal">Languages<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <span class="languageData"></span>
     <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+    <span class="skillData"></span>
 </div>
 
 
