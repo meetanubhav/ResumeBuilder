@@ -15,7 +15,7 @@ namespace ResumeBuilder.Controllers
         public ActionResult GetUserInfo()
         {
             var userID = Int32.Parse(User.Identity.Name);
-            var userFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
+            var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
             return Json(userFromDB, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -46,7 +46,7 @@ namespace ResumeBuilder.Controllers
             var userID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                var userFromDB = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
+                var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
                 userFromDB.ResumeName = summaryInfo.ResumeName;
                 userFromDB.Summary = summaryInfo.Summary;
                 //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;

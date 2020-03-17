@@ -55,7 +55,7 @@ namespace ResumeBuilder.Controllers
             var userId = Int32.Parse(User.Identity.Name);
             if (User.Identity.Name != null)
             {
-                var user = db.UserInfos.Where(x => x.UserID == userId).FirstOrDefault();
+                var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
                 UserResumeVM vm = new UserResumeVM();
                 {
                     vm.FirstName = user.FirstName;
