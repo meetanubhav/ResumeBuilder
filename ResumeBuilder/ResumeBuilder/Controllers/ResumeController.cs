@@ -54,9 +54,7 @@ namespace ResumeBuilder.Controllers
         {
             if (User.Identity.Name != null)
             {
-<<<<<<< Updated upstream
-                return PartialView("~/Views/Resume/Edit.cshtml");
-=======
+                var userId = Int32.Parse(User.Identity.Name);
                 var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
                 UserResumeVM vm = new UserResumeVM();
                 {
@@ -69,7 +67,6 @@ namespace ResumeBuilder.Controllers
                     vm.Summary = user.Summary;
                 }
                 return PartialView("~/Views/Resume/Edit.cshtml",vm);
->>>>>>> Stashed changes
             }
             else
             {
@@ -79,7 +76,8 @@ namespace ResumeBuilder.Controllers
 
         public ActionResult PublicProfile()
         {
-            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
             return View(user);
         }
 
