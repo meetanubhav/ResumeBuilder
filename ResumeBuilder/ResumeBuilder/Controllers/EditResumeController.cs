@@ -22,8 +22,8 @@ namespace ResumeBuilder.Controllers
         public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
         {
            var userID = Int32.Parse(User.Identity.Name);
-           //if (ModelState.IsValid)
-           //{
+           if (ModelState.IsValid)
+           {
                var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
                userFromDB.FirstName = userBasicInfo.FirstName;
                userFromDB.LastName = userBasicInfo.LastName;

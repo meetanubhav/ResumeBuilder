@@ -21,8 +21,16 @@
     });
 
     $('body').on('click', '.save-settings', function () {
-        var formDetails = $(this).serialize();
-        ajaxFunc('/EditResume/AddBasicInformation', formDetails, 'success');
+        var form = $(this).parent('form');
+        var formDetails = new Object();
+        {
+            formDetails.Education = form.find('#settingFormEducation').is(':checked');
+            formDetails.Language = form.find('#settingFormLanguage').is(':checked');
+            formDetails.Project = form.find('#settingFormProject').is(':checked');
+            formDetails.Skill = form.find('#settingFormSkill').is(':checked');
+            formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
+        }
+        ajaxFunction('/Settings/AddOrUpdateSettings', formDetails, 'success');
         return false;
     })
     var ajaxFunction = function (url, formData) {
