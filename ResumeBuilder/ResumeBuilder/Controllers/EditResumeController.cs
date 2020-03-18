@@ -58,5 +58,16 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
+
+
+        //-------------------------Code by bhabani------------------------------------------
+        [HttpGet]
+        public JsonResult GetData()
+        {
+            var userID = Int32.Parse(User.Identity.Name);
+            var summary = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
+
+            return Json(summary, JsonRequestBehavior.AllowGet);
+        }
     }
 }
