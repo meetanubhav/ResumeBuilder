@@ -1,5 +1,44 @@
 ﻿function AjaxScripts() {
     //Ajax Script for edit section view
+    var ajaxFunction = function (url, type, formData, successFunction) {
+        $.ajax({
+            url: url,
+            type: type,
+            data: formData,
+            success: function (response) {
+                successFunction(response);           
+            },
+            failure: function (response) {
+                alert("Ajax call failed");
+            }
+        })
+    }
+
+    function getUserInfo() {
+        $.ajax({
+            url: "/EditResume/GetUserInfo",
+            type: "GET",
+            dataType: "json",
+            success: function (userData) {
+                $("[name = FirstName]").val(userData.FirstName);
+                $("[name = LastName]").val(userData.LastName);
+                $("[name = Email]").val(userData.Email);
+                $("[name = PhoneNumber]").val(userData.PhoneNumber);
+                $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
+                $("[name = ResumeName]").val(userData.ResumeName);
+                $("[name = Summary]").val(userData.Summary);
+
+                //Adding data in the fields
+                $(".show-name").text(userData.FirstName + " " + userData.LastName);
+                $(".show-email").text(userData.Email);
+                $(".show-phone-number").text(userData.PhoneNumber);
+                $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
+                $(".show-summary-info").text(userData.Summary);
+                $(".show-resume-info").text(userData.ResumeName);
+            }
+        })
+    }
+
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
         var userData = {};
@@ -8,15 +47,27 @@
         userData.Email = $("[name = Email]").val();
         userData.PhoneNumber = $("[name = PhoneNumber]").val();
         userData.AlternatePhoneNumber = $("[name = AlternatePhoneNumber]").val();
-        ajaxFunction('/EditResume/AddBasicInfo', userData)
+        var successFunction = function () {
+            $('.modal').modal('hide');
+            getUserInfo();
+        };
+
+        ajaxFunction('/EditResume/AddBasicInfo', 'POST', userData, successFunction);
         return false;
     });
+
     $('body').on("click", ".save-summary-info", function (e) {
         e.preventDefault();
         var userData = {};
         userData.ResumeName = $("[name = ResumeName]").val();
         userData.Summary = $("[name = Summary]").val();
-        ajaxFunction('/EditResume/AddSummaryInfo', userData)
+
+        var successFunction = function () {
+            $('.modal').modal('hide');
+            getUserInfo();
+        };
+
+        ajaxFunction('/EditResume/AddSummaryInfo', 'POST', userData, successFunction);
         return false;
     });
 
@@ -30,52 +81,15 @@
             formDetails.Skill = form.find('#settingFormSkill').is(':checked');
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
-        ajaxFunction('/Settings/AddOrUpdateSettings', formDetails, 'success');
+        var successFunction = function () {
+            console.log('settings updated');
+        };
+        ajaxFunction('/Settings/AddOrUpdateSettings', 'POST',formDetails, successFunction);
         return false;
     })
-    var ajaxFunction = function (url, formData) {
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                $('.modal').modal('hide');
-                getUserInfo();
-                //$('.show-content').html(response);
-            },
-            failure: function (response) {
-                alert("fail ho gya bhai");
-            }
-        })
-    }
-}
-function getUserInfo() {
-    $.ajax({
-        url: "/EditResume/GetUserInfo",
-        type: "GET",
-        dataType: "json",
-        success: function (userData) {
-            $("[name = FirstName]").val(userData.FirstName);
-            $("[name = LastName]").val(userData.LastName);
-            $("[name = Email]").val(userData.Email);
-            $("[name = PhoneNumber]").val(userData.PhoneNumber);
-            $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
-            $("[name = ResumeName]").val(userData.ResumeName);
-            $("[name = Summary]").val(userData.Summary);
 
-            //Adding data in the fields
-            $(".show-name").text(userData.FirstName + " " + userData.LastName);
-            $(".show-email").text(userData.Email);
-            $(".show-phone-number").text(userData.PhoneNumber);
-            $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
-            $(".show-summary-info").text(userData.Summary);
-            $(".show-resume-info").text(userData.ResumeName);
-        }
-    })
-}
-
-//------------------------ CODE BY BHABANI-------------------------------------
-    $('.js-template').on("click", function () {
+    //------------------------ CODE BY BHABANI-------------------------------------
+    $('body').on("click", '.js-template', function () {
 
         $.ajax({
             url: "/Resume/GetTemplateDetails",
@@ -102,20 +116,20 @@ function getUserInfo() {
                             var skillDetails = $('.tskill').append($('<div class="font-weight-bold">').text(item.Skill),
                                                                      $('<div class="bg-light rounded rate">').text(item.Rating).append($("<i class='fas fa-star' style='color: #e6185e;'></i>")));
                         }
-                        if(item.EducationLevel != null)
+                        if (item.EducationLevel != null)
                             var educationDetails = $('.teducation').append($('<div class="font-weight-bold">').text(item.EducationLevel),
-                                                                           $('<div class="bg-light rounded">').text("Scored "+item.CGPAorPercentage),
+                                                                           $('<div class="bg-light rounded">').text("Scored " + item.CGPAorPercentage),
                                                                            $('<div class="bg-light rounded">').text(item.YearOfPassing));
                         if (item.LanguageName != null)
                             var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item.LanguageName));
                     });
 
-                    $('.tName').text(response[5].FirstName +" "+ response[5].LastName);
+                    $('.tName').text(response[5].FirstName + " " + response[5].LastName);
                     $('.tEmail').text(response[5].Email);
                     $('.tPhone').text(response[5].PhoneNumber);
                     $('.tResume').text(response[5].ResumeName);
                     $('.tSummary').text(response[5].Summary);
-                    $('#test').text(response.Skill + " | Rating: " + response.Rating);   
+                    $('#test').text(response.Skill + " | Rating: " + response.Rating);
                 }
                 else {
                     alert(response.responseText);
@@ -132,7 +146,7 @@ function getUserInfo() {
         return false;
     });
 
-    $('.js-edit').on("click", function () {
+    $('body').on("click", '.js-edit', function () {
         $.ajax({
             url: "/Resume/GetTemplateDetails",
             type: "GET",
@@ -144,7 +158,7 @@ function getUserInfo() {
                                          $('<div>').text(response[5].Summary));
 
                 $.each(response, function (i, item) {
-                    if(item.EducationLevel != null) 
+                    if (item.EducationLevel != null)
                         $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2" data-education-id="' + item.EduID + '"></i><i class="fas fa-trash" data-skill-id="' + item.EduID + '"></i></div>'),
                                            $('<div class="font-weight-bold">').text(item.EducationLevel),
                                            $('<div>').text("Scored: " + item.Score));
@@ -157,7 +171,7 @@ function getUserInfo() {
                                                  $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
                     }
 
-                    if(item.ProjectID != null)
+                    if (item.ProjectID != null)
                         $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2" data-project-id="' + item.ProjectID + '"></i><i class="fas fa-trash" data-skill-id="' + item.ProjectID + '"></i></div>'),
                                                  $('<div class="font-weight-bold">').text(item.ProjectName),
                                                  $('<div class="bg-light rounded">').text(item.ProjectDetails));
@@ -171,12 +185,12 @@ function getUserInfo() {
                                                $('<div class="font-weight-bold">').text(item.Skill),
                                                $('<div class="bg-light rounded rate">').text(item.Rating).append($("<i class='fas fa-star' style='color: #e6185e;'></i>")));
                 });
-                
-                                         
+
+
             }
         });
     });
 
-//------------------------END CODE OF BHABANI---------------------------------------------------
+    //------------------------END CODE OF BHABANI---------------------------------------------------
 
 }
