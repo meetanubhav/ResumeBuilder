@@ -7,13 +7,13 @@ namespace ResumeBuilder.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class added_classes : IMigrationMetadata
+    public sealed partial class made_settingID_nullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(added_classes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(made_settingID_nullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003091134171_added_classes"; }
+            get { return "202003131110418_made_settingID_nullable"; }
         }
         
         string IMigrationMetadata.Source

@@ -39,6 +39,25 @@ namespace ResumeBuilder.Controllers {
         public ActionResult Dashboard () {
             return View ();
         }
+        
+        [Authorize]
+        public ActionResult Edit()
+        {
+            var userId = Int32.Parse(User.Identity.Name);
+            if (User.Identity.Name != null)
+            {
+                var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+                UserResumeVM vm = new UserResumeVM();
+                {
+                    vm.FirstName = user.FirstName;
+                    vm.LastName = user.LastName;
+                    vm.Email = user.Email;
+                    vm.PhoneNumber = user.PhoneNumber;
+                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+                    vm.ResumeName = user.ResumeName;
+                    vm.Summary = user.Summary;
+                }
+                return PartialView("~/Views/Resume/Edit.cshtml",vm);
 
         [HttpPost]
         public ActionResult AddBasicInfo (UserInfo userBasicInfo) {
@@ -72,14 +91,11 @@ namespace ResumeBuilder.Controllers {
         [Authorize]
         public ActionResult PublicProfile()
         {
-            var user = db.UserInfos.Where(x => x.UserID == 1).FirstOrDefault();
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
             return View(user);
         }
 
-        public ActionResult Settings () {
-            var vm = new SettingsVM ();
-            return PartialView ("~/Views/Resume/Settings.cshtml", vm);
-        }
         public ActionResult SignOut () {
             FormsAuthentication.SignOut ();
             Session.Abandon ();

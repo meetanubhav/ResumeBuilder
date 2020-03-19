@@ -11,12 +11,15 @@ namespace ResumeBuilder.Models
     {
         [Key]
         public int ProjectID { get; set; }
-        public int DurationInMonth { get; set; }
+
+        public byte DurationInMonth { get; set; }
+
         public string ProjectName { get; set; }
         
-        public virtual List<Skill> ProjectSkills { get; set; }
+        public string[] ProjectSkills { get; set; }
 
         public string ProjectDetails { get; set; }
+
         public string YourRole { get; set; }
 
         public int UserID { get; set; }
