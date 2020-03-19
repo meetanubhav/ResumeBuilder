@@ -72,7 +72,7 @@ namespace ResumeBuilder.Controllers
             {
                 Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
                 Education edu = Mapper.Map<EducationVM, Education>(education);
-
+                edu.EduID = 1;
                 string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
 
                 return Content(msg);

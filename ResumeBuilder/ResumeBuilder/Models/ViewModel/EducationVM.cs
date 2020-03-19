@@ -10,10 +10,9 @@ namespace ResumeBuilder.Models.ViewModel
     {
         public string EducationLevel { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy}")]
-        public Nullable<DateTime> YearOfPassing { get; set; }
+        public int YearOfPassing { get; set; }
 
-        public bool CGPAorPercentage { get; set; }
+        public string CGPAorPercentage { get; set; }
 
         public double Score { get; set; }
 
