@@ -6,7 +6,7 @@
             type: type,
             data: formData,
             success: function (response) {
-                successFunction(response);           
+                successFunction();           
             },
             failure: function (response) {
                 alert("Ajax call failed");
@@ -42,11 +42,11 @@
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
         var userData = {};
-        userData.FirstName = $("[name = FirstName]").val();
-        userData.LastName = $("[name = LastName]").val();
-        userData.Email = $("[name = Email]").val();
-        userData.PhoneNumber = $("[name = PhoneNumber]").val();
-        userData.AlternatePhoneNumber = $("[name = AlternatePhoneNumber]").val();
+        userData.FirstName = $("[name = firstName]").val();
+        userData.LastName = $("[name = lastName]").val();
+        userData.Email = $("[name = email]").val();
+        userData.PhoneNumber = $("[name = phoneNumber]").val();
+        userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
         var successFunction = function () {
             $('.modal').modal('hide');
             getUserInfo();
@@ -68,6 +68,24 @@
         };
 
         ajaxFunction('/EditResume/AddSummaryInfo', 'POST', userData, successFunction);
+        return false;
+    });
+
+    $('body').on("click", ".save-education", function (e) {
+        e.preventDefault();
+        var userData = {};
+        userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
+        userData.YearOfPassing = $("[name = yop]").val();
+        userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
+        userData.Score = $("[name = gradetype]").val();
+        userData.Stream = $("[name = stream]").val();
+        userData.Institution = $("[name = university]").val();
+
+        var successFunction = function () {
+            alert('edu saved');
+        };
+
+        ajaxFunction('/EditResume/AddOrUpdateEducation', 'POST', userData, successFunction);
         return false;
     });
 

@@ -255,6 +255,7 @@
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
+    <Compile Include="Models\ViewModel\EducationVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="Models\ViewModel\SettingsVM.cs" />
