@@ -65,7 +65,7 @@ namespace ResumeBuilder.Controllers
         public ActionResult UpdateSummary(int id)
         {
             var userID = Int32.Parse(User.Identity.Name);
-            var summary = db.UserInfos.FirstOrDefault(x => x.UserID == userID);
+            var summary = db.Users.FirstOrDefault(x => x.UserID == userID);
 
             return Json(summary, JsonRequestBehavior.AllowGet);
         }

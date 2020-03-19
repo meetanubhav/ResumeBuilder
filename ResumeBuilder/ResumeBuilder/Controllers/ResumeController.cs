@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using ResumeBuilder.Models;
-using ResumeBuilder.ViewModel;
 using ResumeBuilder.Models.ViewModel;
 using System.Collections;
 
@@ -39,7 +38,7 @@ namespace ResumeBuilder.Controllers {
         public ActionResult Dashboard () {
             return View ();
         }
-        
+
         [Authorize]
         public ActionResult Edit()
         {
@@ -57,13 +56,20 @@ namespace ResumeBuilder.Controllers {
                     vm.ResumeName = user.ResumeName;
                     vm.Summary = user.Summary;
                 }
-                return PartialView("~/Views/Resume/Edit.cshtml",vm);
+                return PartialView("~/Views/Resume/Edit.cshtml", vm);
+
+            }
+            else
+            {
+                return RedirectToAction("Dashboard");
+            }
+        }
 
         [HttpPost]
-        public ActionResult AddBasicInfo (UserInfo userBasicInfo) {
+        public ActionResult AddBasicInfo (User userBasicInfo) {
             userBasicInfo.UserID = Int32.Parse (User.Identity.Name);
             if (ModelState.IsValid) {
-                var usertFromDB = db.UserInfos.FirstOrDefault (x => x.UserID == userBasicInfo.UserID);
+                var usertFromDB = db.Users.FirstOrDefault (x => x.UserID == userBasicInfo.UserID);
                 db.Entry (usertFromDB).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges ();
 
@@ -73,18 +79,10 @@ namespace ResumeBuilder.Controllers {
             }
         }
 
-        [Authorize]
-        public ActionResult Edit () {
-            if (User.Identity.Name != null) {
-                return PartialView ("~/Views/Resume/Edit.cshtml");
-            } else {
-                return RedirectToAction ("Dashboard");
-            }
-        }
 
         [Authorize]
         public ActionResult Template () {
-            var user = db.UserInfos.Where (x => x.UserID == 1).FirstOrDefault ();
+            var user = db.Users.Where (x => x.UserID == 1).FirstOrDefault ();
             return View (user);
         }
 
@@ -107,15 +105,15 @@ namespace ResumeBuilder.Controllers {
         [HttpGet]
         public JsonResult GetTemplateDetails()
         {
-            int userId = Int32.Parse(User.Identity.Name);
-            //db.UserInfos.Include("WorkExperiences").FirstOrDefault(m => m.UserID == userId);
-            List<UserInfo> userInfo = db.UserInfos.Where(m => m.UserID == userId).ToList();
+            var userId = Int32.Parse(User.Identity.Name);
+  
+            List<User> user = db.Users.Where(m => m.UserID == userId).ToList();
             List<WorkExperience> work = db.WorkExperiences.Where(m => m.UserID == userId).ToList();
             List<Project> projects = db.Projects.Where(m => m.UserID == userId).ToList();
-            List<UserSkill> skills = db.UserSkills.Where(m => m.UserID == userId).ToList();
+            List<Skill> skills = db.Skills.Where(m => m.SkillID == userId).ToList();
             List<Education> educations = db.Educations.Where(m => m.UserID == userId).ToList();
-            List<Language> languages = db.Languages.Where(m => m.UserID == userId).ToList();
-            //var multipleTable = (from u in userInfo 
+            List<Language> languages = db.Languages.Where(m => m.LanguageID == userId).ToList();
+            //var multipleTable = (from u in User 
             //                      join p in projects on u.UserID equals p.UserID
             //                      join w in work on p.UserID equals w.UserID where w.UserID == userId select new {
             //                         u.FirstName, u.LastName,
@@ -131,7 +129,7 @@ namespace ResumeBuilder.Controllers {
 
             //                    }).ToList();
 
-            List<object> test = projects.Cast<object>().Concat(work).Concat(userInfo)
+            List<object> test = projects.Cast<object>().Concat(work).Concat(user)
                                 .Concat(skills).Concat(educations).Concat(languages).ToList();
             return Json(test, JsonRequestBehavior.AllowGet);
         }

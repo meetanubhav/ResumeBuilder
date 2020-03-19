@@ -5,7 +5,14 @@
         EditSectionScripts();
         return false;
     });
-    
+
+    $('.js-template').on("click", function () {
+        //var userId = parseInt($("#userId").val());
+        $('.render-partial-view').load("/Resume/Template");
+        
+        return false;
+    });
+
     $('.js-settings').on("click", function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Settings/Settings", function () {
@@ -13,5 +20,6 @@
         });
         //return false;
 
-    AjaxScripts();
+        AjaxScripts();
+    });
 });
