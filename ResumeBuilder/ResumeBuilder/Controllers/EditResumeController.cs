@@ -38,7 +38,7 @@ namespace ResumeBuilder.Controllers
 
         //-------------------------Code by bhabani------------------------------------------
         [HttpGet]
-        public JsonResult GetData()
+        public ActionResult DeleteData(int id)
         {
             var userID = Int32.Parse(User.Identity.Name);
             var summary = db.UserInfos.FirstOrDefault(x => x.UserID == userID);

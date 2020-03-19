@@ -13,10 +13,5 @@
         return false;
     });
 
-    $('.js-template').on("click", function () {
-        $('.render-partial-view').load("/Resume/Template");
-        ResumeSettingsScript();
-        return false;
-    });
     AjaxScripts();
 });

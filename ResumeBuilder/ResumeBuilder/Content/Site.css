@@ -78,3 +78,7 @@ Convert HEX to RGBA - http://hex2rgba.devoth.com/
 .img-gradient img{
   display:block;
 }
+
+button, i {
+    cursor: pointer;
+}
