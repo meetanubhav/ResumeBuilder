@@ -1,22 +1,91 @@
 ﻿function AjaxScripts() {
     //Ajax Script for edit section view
+    var ajaxFunction = function (url, type, formData, successFunction) {
+        $.ajax({
+            url: url,
+            type: type,
+            data: formData,
+            success: function (response) {
+                successFunction();           
+            },
+            failure: function (response) {
+                alert("Ajax call failed");
+            }
+        })
+    }
+
+    function getUserInfo() {
+        $.ajax({
+            url: "/EditResume/GetUserInfo",
+            type: "GET",
+            dataType: "json",
+            success: function (userData) {
+                $("[name = FirstName]").val(userData.FirstName);
+                $("[name = LastName]").val(userData.LastName);
+                $("[name = Email]").val(userData.Email);
+                $("[name = PhoneNumber]").val(userData.PhoneNumber);
+                $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
+                $("[name = ResumeName]").val(userData.ResumeName);
+                $("[name = Summary]").val(userData.Summary);
+
+                //Adding data in the fields
+                $(".show-name").text(userData.FirstName + " " + userData.LastName);
+                $(".show-email").text(userData.Email);
+                $(".show-phone-number").text(userData.PhoneNumber);
+                $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
+                $(".show-summary-info").text(userData.Summary);
+                $(".show-resume-info").text(userData.ResumeName);
+            }
+        })
+    }
+
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
         var userData = {};
-        userData.FirstName = $("[name = FirstName]").val();
-        userData.LastName = $("[name = LastName]").val();
-        userData.Email = $("[name = Email]").val();
-        userData.PhoneNumber = $("[name = PhoneNumber]").val();
-        userData.AlternatePhoneNumber = $("[name = AlternatePhoneNumber]").val();
-        ajaxFunction('/EditResume/AddBasicInfo', userData)
+        userData.FirstName = $("[name = firstName]").val();
+        userData.LastName = $("[name = lastName]").val();
+        userData.Email = $("[name = email]").val();
+        userData.PhoneNumber = $("[name = phoneNumber]").val();
+        userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
+        var successFunction = function () {
+            $('.modal').modal('hide');
+            getUserInfo();
+        };
+
+        ajaxFunction('/EditResume/AddBasicInfo', 'POST', userData, successFunction);
         return false;
     });
+
     $('body').on("click", ".save-summary-info", function (e) {
         e.preventDefault();
         var userData = {};
         userData.ResumeName = $("[name = ResumeName]").val();
         userData.Summary = $("[name = Summary]").val();
-        ajaxFunction('/EditResume/AddSummaryInfo', userData)
+
+        var successFunction = function () {
+            $('.modal').modal('hide');
+            getUserInfo();
+        };
+
+        ajaxFunction('/EditResume/AddSummaryInfo', 'POST', userData, successFunction);
+        return false;
+    });
+
+    $('body').on("click", ".save-education", function (e) {
+        e.preventDefault();
+        var userData = {};
+        userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
+        userData.YearOfPassing = $("[name = yop]").val();
+        userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
+        userData.Score = $("[name = gradetype]").val();
+        userData.Stream = $("[name = stream]").val();
+        userData.Institution = $("[name = university]").val();
+
+        var successFunction = function () {
+            alert('edu saved');
+        };
+
+        ajaxFunction('/EditResume/AddOrUpdateEducation', 'POST', userData, successFunction);
         return false;
     });
 
@@ -30,52 +99,15 @@
             formDetails.Skill = form.find('#settingFormSkill').is(':checked');
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
-        ajaxFunction('/Settings/AddOrUpdateSettings', formDetails, 'success');
+        var successFunction = function () {
+            console.log('settings updated');
+        };
+        ajaxFunction('/Settings/AddOrUpdateSettings', 'POST',formDetails, successFunction);
         return false;
     })
-    var ajaxFunction = function (url, formData) {
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                $('.modal').modal('hide');
-                getUserInfo();
-                //$('.show-content').html(response);
-            },
-            failure: function (response) {
-                alert("fail ho gya bhai");
-            }
-        })
-    }
-}
-function getUserInfo() {
-    $.ajax({
-        url: "/EditResume/GetUserInfo",
-        type: "GET",
-        dataType: "json",
-        success: function (userData) {
-            $("[name = FirstName]").val(userData.FirstName);
-            $("[name = LastName]").val(userData.LastName);
-            $("[name = Email]").val(userData.Email);
-            $("[name = PhoneNumber]").val(userData.PhoneNumber);
-            $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
-            $("[name = ResumeName]").val(userData.ResumeName);
-            $("[name = Summary]").val(userData.Summary);
 
-            //Adding data in the fields
-            $(".show-name").text(userData.FirstName + " " + userData.LastName);
-            $(".show-email").text(userData.Email);
-            $(".show-phone-number").text(userData.PhoneNumber);
-            $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
-            $(".show-summary-info").text(userData.Summary);
-            $(".show-resume-info").text(userData.ResumeName);
-        }
-    })
-}
-
-//------------------------ CODE BY BHABANI-------------------------------------
-    $('.js-template').on("click", function () {
+    //------------------------ CODE BY BHABANI-------------------------------------
+    $('body').on("click", '.js-template', function () {
 
         $.ajax({
             url: "/Resume/GetTemplateDetails",
@@ -102,20 +134,20 @@ function getUserInfo() {
                             var skillDetails = $('.tskill').append($('<div class="font-weight-bold">').text(item.Skill),
                                                                      $('<div class="bg-light rounded rate">').text(item.Rating).append($("<i class='fas fa-star' style='color: #e6185e;'></i>")));
                         }
-                        if(item.EducationLevel != null)
+                        if (item.EducationLevel != null)
                             var educationDetails = $('.teducation').append($('<div class="font-weight-bold">').text(item.EducationLevel),
-                                                                           $('<div class="bg-light rounded">').text("Scored "+item.CGPAorPercentage),
+                                                                           $('<div class="bg-light rounded">').text("Scored " + item.CGPAorPercentage),
                                                                            $('<div class="bg-light rounded">').text(item.YearOfPassing));
                         if (item.LanguageName != null)
                             var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item.LanguageName));
                     });
 
-                    $('.tName').text(response[5].FirstName +" "+ response[5].LastName);
+                    $('.tName').text(response[5].FirstName + " " + response[5].LastName);
                     $('.tEmail').text(response[5].Email);
                     $('.tPhone').text(response[5].PhoneNumber);
                     $('.tResume').text(response[5].ResumeName);
                     $('.tSummary').text(response[5].Summary);
-                    $('#test').text(response.Skill + " | Rating: " + response.Rating);   
+                    $('#test').text(response.Skill + " | Rating: " + response.Rating);
                 }
                 else {
                     alert(response.responseText);
@@ -130,7 +162,7 @@ function getUserInfo() {
         return false;
     });
 
-    $('.js-edit').on("click", function () {
+    $('body').on("click", '.js-edit', function () {
         $.ajax({
             url: "/Resume/GetTemplateDetails",
             type: "GET",
@@ -169,8 +201,8 @@ function getUserInfo() {
                                                $('<div class="font-weight-bold">').text(item.Skill),
                                                $('<div class="bg-light rounded rate">').text(item.Rating).append($("<i class='fas fa-star' style='color: #e6185e;'></i>")));
                 });
-                
-                                         
+
+
             }
         });
     });

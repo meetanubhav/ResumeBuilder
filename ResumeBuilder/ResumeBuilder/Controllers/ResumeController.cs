@@ -7,36 +7,49 @@ using System.Web.Security;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using System.Collections;
+using AutoMapper;
 
-namespace ResumeBuilder.Controllers {
-    public class ResumeController : Controller {
-        ResumeBuilderDBContext db = new ResumeBuilderDBContext ();
-        public ActionResult Login () {
+namespace ResumeBuilder.Controllers
+{
+    public class ResumeController : Controller
+    {
+        ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+
+        public ActionResult Login()
+        {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction ("Dashboard");
-            return View ();
+                return RedirectToAction("Dashboard");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Login (User user) {
-            if (ModelState.IsValid) {
-                var getUserId = db.Users.Where (x => x.Username == user.Username);
-                var userData = db.Users.SingleOrDefault (x => x.Username == user.Username);
-                if (getUserId.Where (x => x.Password == user.Password).Any ()) {
-                    FormsAuthentication.SetAuthCookie (userData.UserID.ToString (), false);
-                    return RedirectToAction ("Dashboard");
-                } else {
-                    ModelState.AddModelError ("", "Invalid UserName or Password");
+        public ActionResult Login(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var getUserId = db.Users.Where(x => x.Username == user.Username);
+                var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
+                if (getUserId.Where(x => x.Password == user.Password).Any())
+                {
+                    FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
+                    return RedirectToAction("Dashboard");
                 }
-                return View (user);
-            } else {
-                return RedirectToAction ("Login");
+                else
+                {
+                    ModelState.AddModelError("", "Invalid UserName or Password");
+                }
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Login");
             }
         }
 
         [Authorize]
-        public ActionResult Dashboard () {
-            return View ();
+        public ActionResult Dashboard()
+        {
+            return View();
         }
 
         [Authorize]
@@ -80,10 +93,12 @@ namespace ResumeBuilder.Controllers {
         }
 
 
+
         [Authorize]
-        public ActionResult Template () {
-            var user = db.Users.Where (x => x.UserID == 1).FirstOrDefault ();
-            return View (user);
+        public ActionResult Template()
+        {
+            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
+            return View(user);
         }
 
         [Authorize]
@@ -94,10 +109,11 @@ namespace ResumeBuilder.Controllers {
             return View(user);
         }
 
-        public ActionResult SignOut () {
-            FormsAuthentication.SignOut ();
-            Session.Abandon ();
-            return RedirectToAction ("Login");
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Login");
         }
 
         //-------------------------Code by bhabani---------------------------------

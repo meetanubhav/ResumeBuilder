@@ -1,16 +1,16 @@
 ﻿$(document).ready(function () {
-    $('.js-edit').on("click", function () {
-        //var userId = parseInt($("#userId").val());
+    $('.js-edit-resume').on("click", function () {
         $('.render-partial-view').load("/Resume/Edit");
         EditSectionScripts();
         return false;
     });
-
+    
     $('.js-template').on("click", function () {
-        //var userId = parseInt($("#userId").val());
         $('.render-partial-view').load("/Resume/Template");
-        
-        return false;
+    });
+
+    $('.js-public-profile').on("click", function () {
+        window.open('/Resume/PublicProfile', '_blank');
     });
 
     $('.js-settings').on("click", function (e) {
@@ -18,8 +18,7 @@
         $('.render-partial-view').load("/Settings/Settings", function () {
             ResumeSettingsScript();
         });
-        //return false;
-
-        AjaxScripts();
     });
+
+    AjaxScripts();
 });
