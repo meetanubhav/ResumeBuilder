@@ -37,8 +37,8 @@ namespace ResumeBuilder.Controllers
 
 
         //-------------------------Code by bhabani------------------------------------------
-        [HttpGet]
-        public ActionResult DeleteData(int id)
+        
+        public ActionResult UpdateSummary(int id)
         {
             var userID = Int32.Parse(User.Identity.Name);
             var summary = db.UserInfos.FirstOrDefault(x => x.UserID == userID);

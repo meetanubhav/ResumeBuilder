@@ -86,7 +86,7 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                $('.summaryData').append($('<button class="far fa-edit float-right su-edit clickable" data-summary-id="' + response[5].UserID + '"></button>'),
+                $('.summaryData').append($('<button class="far fa-edit float-right su-edit" data-summary-id="' + response[5].UserID + '"></button>'),
                                          $('<div class="font-weight-bold">').text(response[5].ResumeName),
                                          $('<div>').text(response[5].Summary));
 
@@ -124,8 +124,25 @@
         });
     });
 
-    $('body').on("click", ".su-edit", function () {
-        $('a')[5].click();
+    $('body').on("click", ".su-edit", function (e) {
+        e.preventDefault();
+        var $button = $(this);
+        var summaryId = $button.data('summary-id');
+        $.ajax({
+            url: "/EditResume/UpdateSummary/" + summaryId,
+            method: "GET",
+            success: function (result) {
+                console.log(result);
+                $('input[name="resumeName"]').val(result.ResumeName);
+                $('textarea[name="summary"]').val(result.Summary);
+                $('a')[5].click();
+            },
+            error: function (error) {
+                console.log(error);
+                alert("Sorry ! Unable to edit employee");
+            }
+        });
+        
 
     });
 

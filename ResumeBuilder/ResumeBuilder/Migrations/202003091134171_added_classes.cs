@@ -2,7 +2,7 @@
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class added_classes : DbMigration
     {
         public override void Up()
@@ -10,16 +10,16 @@
             CreateTable(
                 "dbo.Educations",
                 c => new
-                    {
-                        EduID = c.Int(nullable: false, identity: true),
-                        EducationLevel = c.String(),
-                        YearOfPassing = c.DateTime(),
-                        CGPAorPercentage = c.Boolean(nullable: false),
-                        Score = c.Double(nullable: false),
-                        UserID = c.Int(nullable: false),
-                        Stream_StreamID = c.Int(),
-                        University_UniversityID = c.Int(),
-                    })
+                {
+                    EduID = c.Int(nullable: false, identity: true),
+                    EducationLevel = c.String(),
+                    YearOfPassing = c.DateTime(),
+                    CGPAorPercentage = c.Boolean(nullable: false),
+                    Score = c.Double(nullable: false),
+                    UserID = c.Int(nullable: false),
+                    Stream_StreamID = c.Int(),
+                    University_UniversityID = c.Int(),
+                })
                 .PrimaryKey(t => t.EduID)
                 .ForeignKey("dbo.Streams", t => t.Stream_StreamID)
                 .ForeignKey("dbo.Universities", t => t.University_UniversityID)
@@ -28,123 +28,123 @@
                 .Index(t => t.UserID)
                 .Index(t => t.Stream_StreamID)
                 .Index(t => t.University_UniversityID);
-            
+
             CreateTable(
                 "dbo.Streams",
                 c => new
-                    {
-                        StreamID = c.Int(nullable: false, identity: true),
-                        StreamName = c.String(),
-                    })
+                {
+                    StreamID = c.Int(nullable: false, identity: true),
+                    StreamName = c.String(),
+                })
                 .PrimaryKey(t => t.StreamID);
-            
+
             CreateTable(
                 "dbo.Universities",
                 c => new
-                    {
-                        UniversityID = c.Int(nullable: false, identity: true),
-                        UniversityName = c.String(),
-                    })
+                {
+                    UniversityID = c.Int(nullable: false, identity: true),
+                    UniversityName = c.String(),
+                })
                 .PrimaryKey(t => t.UniversityID);
-            
+
             CreateTable(
                 "dbo.Users",
                 c => new
-                    {
-                        UserID = c.Int(nullable: false, identity: true),
-                        Username = c.String(nullable: false),
-                        Password = c.String(nullable: false, maxLength: 100),
-                    })
+                {
+                    UserID = c.Int(nullable: false, identity: true),
+                    Username = c.String(nullable: false),
+                    Password = c.String(nullable: false, maxLength: 100),
+                })
                 .PrimaryKey(t => t.UserID);
-            
+
             CreateTable(
                 "dbo.Languages",
                 c => new
-                    {
-                        LanguageID = c.Int(nullable: false, identity: true),
-                        LanguageName = c.String(),
-                        UserID = c.Int(nullable: false),
-                    })
+                {
+                    LanguageID = c.Int(nullable: false, identity: true),
+                    LanguageName = c.String(),
+                    UserID = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.LanguageID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .ForeignKey("dbo.UserInfoes", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
-            
+
             CreateTable(
                 "dbo.Projects",
                 c => new
-                    {
-                        ProjectID = c.Int(nullable: false, identity: true),
-                        DurationInMonth = c.Int(nullable: false),
-                        ProjectName = c.String(),
-                        ProjectDetails = c.String(),
-                        YourRole = c.String(),
-                        UserID = c.Int(nullable: false),
-                    })
+                {
+                    ProjectID = c.Int(nullable: false, identity: true),
+                    DurationInMonth = c.Int(nullable: false),
+                    ProjectName = c.String(),
+                    ProjectDetails = c.String(),
+                    YourRole = c.String(),
+                    UserID = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.ProjectID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .ForeignKey("dbo.UserInfoes", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
-            
+
             CreateTable(
                 "dbo.Skills",
                 c => new
-                    {
-                        SkillID = c.Int(nullable: false, identity: true),
-                        SkillName = c.String(),
-                        Project_ProjectID = c.Int(),
-                    })
+                {
+                    SkillID = c.Int(nullable: false, identity: true),
+                    SkillName = c.String(),
+                    Project_ProjectID = c.Int(),
+                })
                 .PrimaryKey(t => t.SkillID)
                 .ForeignKey("dbo.Projects", t => t.Project_ProjectID)
                 .Index(t => t.Project_ProjectID);
-            
+
             CreateTable(
                 "dbo.UserInfoes",
                 c => new
-                    {
-                        UserID = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(),
-                        LastName = c.String(),
-                        Email = c.String(),
-                        PhoneNumber = c.Int(nullable: false),
-                        AlternatePhoneNumber = c.Int(nullable: false),
-                        ResumeName = c.String(),
-                        Summary = c.String(),
-                    })
+                {
+                    UserID = c.Int(nullable: false, identity: true),
+                    FirstName = c.String(),
+                    LastName = c.String(),
+                    Email = c.String(),
+                    PhoneNumber = c.Int(nullable: false),
+                    AlternatePhoneNumber = c.Int(nullable: false),
+                    ResumeName = c.String(),
+                    Summary = c.String(),
+                })
                 .PrimaryKey(t => t.UserID);
-            
+
             CreateTable(
                 "dbo.UserSkills",
                 c => new
-                    {
-                        UserSkillID = c.Int(nullable: false, identity: true),
-                        Skill = c.String(),
-                        Rating = c.Int(nullable: false),
-                        UserID = c.Int(nullable: false),
-                    })
+                {
+                    UserSkillID = c.Int(nullable: false, identity: true),
+                    Skill = c.String(),
+                    Rating = c.Int(nullable: false),
+                    UserID = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.UserSkillID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .ForeignKey("dbo.UserInfoes", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
-            
+
             CreateTable(
                 "dbo.WorkExperiences",
                 c => new
-                    {
-                        ExpId = c.Int(nullable: false, identity: true),
-                        Organization = c.String(),
-                        Designation = c.String(),
-                        FromYear = c.DateTime(),
-                        ToYear = c.DateTime(),
-                        UserID = c.Int(nullable: false),
-                    })
+                {
+                    ExpId = c.Int(nullable: false, identity: true),
+                    Organization = c.String(),
+                    Designation = c.String(),
+                    FromYear = c.DateTime(),
+                    ToYear = c.DateTime(),
+                    UserID = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.ExpId)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .ForeignKey("dbo.UserInfoes", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
-            
+
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.WorkExperiences", "UserID", "dbo.UserInfoes");
