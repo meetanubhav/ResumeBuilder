@@ -108,7 +108,7 @@
 
     //------------------------ CODE BY BHABANI-------------------------------------
     $('body').on("click", '.js-template', function () {
-
+        $('.render-partial-view').load("/Resume/Template");
         $.ajax({
             url: "/Resume/GetTemplateDetails",
             type: "GET",

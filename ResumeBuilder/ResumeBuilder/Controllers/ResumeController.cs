@@ -119,35 +119,29 @@ namespace ResumeBuilder.Controllers
         //-------------------------Code by bhabani---------------------------------
 
         [HttpGet]
-        public JsonResult GetTemplateDetails()
+        public ActionResult GetTemplateDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
-  
-            List<User> user = db.Users.Where(m => m.UserID == userId).ToList();
+            User user = db.Users.Include("Skills").FirstOrDefault(x => x.UserID == userId);
+            //List<User> user = db.Users.Include("Projects").Include("Settings").Where(m => m.UserID == userId).ToList();
             List<WorkExperience> work = db.WorkExperiences.Where(m => m.UserID == userId).ToList();
             List<Project> projects = db.Projects.Where(m => m.UserID == userId).ToList();
-            List<Skill> skills = db.Skills.Where(m => m.SkillID == userId).ToList();
+            var skills = user.Skills;
+                //db.Skills.Where(x => user.Skills.Contains(x))
+                //                            .Select(
+                //                                p => new Skill 
+                //                                { 
+                //                                    SkillID = p.SkillID,
+                //                                    SkillName = p.SkillName
+                //                                }
+                //                            ).ToList();//Include("SkillUsers").Where(m => m.SkillID == userId).ToList();
             List<Education> educations = db.Educations.Where(m => m.UserID == userId).ToList();
             List<Language> languages = db.Languages.Where(m => m.LanguageID == userId).ToList();
-            //var multipleTable = (from u in User 
-            //                      join p in projects on u.UserID equals p.UserID
-            //                      join w in work on p.UserID equals w.UserID where w.UserID == userId select new {
-            //                         u.FirstName, u.LastName,
-            //                         u.Email, u.PhoneNumber,
-            //                         u.Summary, u.ResumeName,
-            //                         w.Organization,
-            //                         w.Designation,
-            //                         w.FromYear.Value,
-            //                         w.ToYear,
-            //                         p.ProjectName,
-            //                         p.ProjectDetails,
-            //                         p.YourRole
 
-            //                    }).ToList();
-
-            List<object> test = projects.Cast<object>().Concat(work).Concat(user)
+            List<object> test = projects.Cast<object>().Concat(work)
                                 .Concat(skills).Concat(educations).Concat(languages).ToList();
             return Json(test, JsonRequestBehavior.AllowGet);
+
         }
 
 
