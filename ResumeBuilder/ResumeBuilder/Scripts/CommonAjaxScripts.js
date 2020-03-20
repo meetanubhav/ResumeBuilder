@@ -73,13 +73,16 @@
 
     $('body').on("click", ".save-education", function (e) {
         e.preventDefault();
-        var userData = {};
-        userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
-        userData.YearOfPassing = $("[name = yop]").val();
-        userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
-        userData.Score = $("[name = gradetype]").val();
-        userData.Stream = $("[name = stream]").val();
-        userData.Institution = $("[name = university]").val();
+        var userData = new Object();
+        {
+            userData.EduID = $('.education-form-id').val();
+            userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
+            userData.YearOfPassing = $("[name = yop]").val();
+            userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
+            userData.Score = $("[name = gradetype]").val();
+            userData.Stream = $("[name = stream]").val();
+            userData.Institution = $("[name = university]").val();
+        }
 
         var successFunction = function () {
             alert('edu saved');
@@ -208,6 +211,16 @@
             }
         });
     });
+
+    $('body').on("click", ".su-edit", function (e) {
+        e.preventDefault();        var $button = $(this);        var summaryId = $button.data('summary-id');        $.ajax({
+            url: "/EditResume/UpdateSummary/" + summaryId,            method: "GET",            success: function (result) {
+                console.log(result);                $('input[name="resumeName"]').val(result.ResumeName);                $('textarea[name="summary"]').val(result.Summary);                $('a')[5].click();
+            },            error: function (error) {
+                console.log(error);                alert("Sorry ! Unable to edit employee");
+            }
+        });
+    });
 
     //------------------------END CODE OF BHABANI---------------------------------------------------
 
