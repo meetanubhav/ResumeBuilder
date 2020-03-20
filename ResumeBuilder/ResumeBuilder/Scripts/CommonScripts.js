@@ -7,9 +7,9 @@
     //    return false;
     //});
     
-    //$('.js-template').on("click", function () {
-    //    $('.render-partial-view').load("/Resume/Template");
-    //});
+    $('.js-template').on("click", function () {
+        $('.render-partial-view').load("/Resume/Template");
+    });
 
     $('.js-public-profile').on("click", function () {
         window.open('/Resume/PublicProfile', '_blank');

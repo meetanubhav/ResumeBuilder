@@ -97,8 +97,8 @@ namespace ResumeBuilder.Controllers
         [Authorize]
         public ActionResult Template()
         {
-            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
-            return View(user);
+            //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
+            return PartialView();
         }
 
         [Authorize]
@@ -122,7 +122,15 @@ namespace ResumeBuilder.Controllers
         public ActionResult GetTemplateDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Include("Skills").FirstOrDefault(x => x.UserID == userId);
+            var user = db.Users.FirstOrDefault(x => x.UserID == userId);
+            foreach (var t in user.Skills)
+            {
+                t.Users = null;
+            }
+            foreach (var t in user.Projects)
+            {
+                t.User = null;
+            }
 
             UserResumeVM vm = new UserResumeVM();
          
@@ -133,31 +141,7 @@ namespace ResumeBuilder.Controllers
             vm.Education = user.Education;
             vm.WorkExperience = user.WorkExperiences;
             vm.Language = user.Languages;
-            foreach (var t in user.Skills)
-            {
-                t.Users = null;
-            }
-            foreach (var t in user.Projects)
-            {
-                t.User = null;
-            }
-            //List<User> user = db.Users.Include("Projects").Include("Settings").Where(m => m.UserID == userId).ToList();
-            //List<WorkExperience> work = db.WorkExperiences.Where(m => m.UserID == userId).ToList();
-            //List<Project> projects = db.Projects.Where(m => m.UserID == userId).ToList();
-            //var skills = user.Skills;
-                //db.Skills.Where(x => user.Skills.Contains(x))
-                //                            .Select(
-                //                                p => new Skill 
-                //                                { 
-                //                                    SkillID = p.SkillID,
-                //                                    SkillName = p.SkillName
-                //                                }
-                //                            ).ToList();//Include("SkillUsers").Where(m => m.SkillID == userId).ToList();
-            //List<Education> educations = db.Educations.Where(m => m.UserID == userId).ToList();
-            //List<Language> languages = db.Languages.Where(m => m.LanguageID == userId).ToList();
-
-            //List<object> test = projects.Cast<object>().Concat(work)
-            //                    .Concat(skills).Concat(educations).Concat(languages).ToList();
+            
             return Json(vm, JsonRequestBehavior.AllowGet);
 
         }

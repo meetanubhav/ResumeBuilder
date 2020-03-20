@@ -277,8 +277,8 @@
     <Content Include="Views\Resume\Edit.cshtml" />
     <Content Include="Views\Resume\Summary.cshtml" />
     <Content Include="Views\Resume\PublicProfile.cshtml" />
-    <Content Include="Views\Resume\Template.cshtml" />
     <Content Include="Views\Resume\Settings.cshtml" />
+    <Content Include="Views\Resume\Template.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

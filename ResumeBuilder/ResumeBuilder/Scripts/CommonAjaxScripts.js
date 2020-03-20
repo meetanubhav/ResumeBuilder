@@ -109,15 +109,7 @@
     //------------------------ CODE BY BHABANI-------------------------------------
     $('.js-template, .js-edit-resume').on('click',  function () {
         var $button = $(this);
-        if ($button.attr('class') == "js-template") {
-            $('.render-partial-view').load("/Resume/Template");
-            $('.js-template').show();
-        }
-        else if ($button.attr('class') == "js-edit-resume")
-            $('.render-partial-view').load("/Resume/Edit", function () {
-                EditSectionScripts();
-            });
- 
+
         $.ajax({
             url: "/Resume/GetTemplateDetails",
             type: "GET",
@@ -132,7 +124,7 @@
                             toDate = new Date(parseInt(item['ToYear'].substr(6)));
                             var workDetails = $('.tWorkexperience').append($('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
-                           
+
                             $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" data-skill-id="' + item['ExpId'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
@@ -177,8 +169,6 @@
                         }
                     });
 
-                    
-
                     $('.tName').text(response['FirstName'] + " " + response['LastName']);
                     $('.tEmail').text(response['Email']);
                     $('.tPhone').text(response['PhoneNumber']);
@@ -188,17 +178,26 @@
                     $('.summaryData').append($('<button class="far fa-edit float-right su-edit" data-summary-id="' + response['UserID'] + '"></button>'),
                                          $('<div class="font-weight-bold">').text(response['ResumeName']),
                                          $('<div>').text(response['Summary']));
-     
+
                 }
+
                 else {
                     alert(response.responseText);
                 }
-            }, 
+            },
             error: function (response) {
                 alert(response.responseText);
             }
         });
-        
+            
+        if ($button.attr('class') == "js-template") {
+
+            $('.render-partial-view').load("/Resume/Template");
+        }
+        else if ($button.attr('class') == "js-edit-resume")
+            $('.render-partial-view').load("/Resume/Edit", function () {
+                EditSectionScripts();
+            });
 
         return false;
     });
