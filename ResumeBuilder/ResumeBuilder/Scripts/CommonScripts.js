@@ -1,9 +1,11 @@
 ﻿$(document).ready(function () {
-    $('.js-edit-resume').on("click", function () {
-        $('.render-partial-view').load("/Resume/Edit");
-        EditSectionScripts();
-        return false;
-    });
+    //$('.js-edit-resume').on("click", function () {
+    //    $('.render-partial-view').load("/Resume/Edit", function ()
+    //    {
+    //        EditSectionScripts();
+    //    });
+    //    return false;
+    //});
     
     //$('.js-template').on("click", function () {
     //    $('.render-partial-view').load("/Resume/Template");
