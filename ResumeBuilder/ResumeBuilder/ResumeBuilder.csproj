@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -246,6 +247,10 @@
     <Compile Include="Migrations\202003131110418_made_settingID_nullable.designer.cs">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.cs" />
+    <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.designer.cs">
+      <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -294,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003131110418_made_settingID_nullable.resx">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131221194_changed string lenghth of summary section.resx">
+      <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

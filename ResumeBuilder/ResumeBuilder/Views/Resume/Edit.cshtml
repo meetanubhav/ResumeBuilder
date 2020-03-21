@@ -26,6 +26,17 @@
     <hr />
     <div>
         <h3>Education</h3>
+            @foreach(var userEducation in Model.Education){
+               <p>
+                   <b>@userEducation.Score in @userEducation.EducationLevel </b>
+                   <br />
+                   <b>Stream : @userEducation.Stream </b>
+                   <br />
+                   <b>Board :@userEducation.Board </b>
+                   <br />
+                   <b> University/School : @userEducation.Institution </b>
+               </p>
+            }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
@@ -48,7 +59,7 @@
         <h3>Skills</h3>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
-   </div>
+</div>
 
 
 <!-- Modals -->
@@ -82,12 +93,12 @@
                     </div>
                     <div class="mb-2">
                         @Html.LabelFor(x => x.PhoneNumber)
-                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })
+                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number", @maxlength = 12, @autocomplete = "off" })
                         @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
                     </div>
                     <div class="mb-4">
                         @Html.LabelFor(x => x.AlternatePhoneNumber)
-                        @Html.TextBoxFor(x => x.AlternatePhoneNumber, new { @class = "form-control", @placeholder = "Alternate Phone Number" })
+                        @Html.TextBoxFor(x => x.AlternatePhoneNumber, new { @class = "form-control", @placeholder = "Alternate Phone Number", @maxlength = 12, @autocomplete = "off", @required = "required" })
                         @Html.ValidationMessageFor(x => x.AlternatePhoneNumber, "", new { @class = "text-danger" })
                     </div>
                     <button type="submit" class="mt-2 btn btn-sm btn-success ajax-change save-basic-info">SAVE</button>
@@ -134,52 +145,44 @@
                 <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="/" method="post" class="education-form">
+                <form method="post" class="education-form">
                     <div class="form-group mt-2">
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="secondary" />10th
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="10th" />10th
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="seniorSecondary" />12th
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="12th" />12th
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="graduation" />Graduation
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="Graduation" />Graduation
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="postGraduation" />Post Graduation
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="Post Graduation" />Post Graduation
                                 </label>
                             </div>
                         </div>
                         <div class="mt-3 mb-3">
-                            <input type="text" class="form-control" name="yop" placeholder="Year of Passing" />
+                            <input type="date" class="form-control" name="YearOfPassing" placeholder="Year of Passing" />
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="form-check-label ml-5">
-                                    <input type="radio" class="form-check-input" name="optradio" value="cgpa" />CGPA
-                                </label>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="optradio" value="percentage" />Percentage
-                                </label>
-                            </div>
-                        </div>
+                        
                         <div class="input-group">
-                            <input type="text" class="form-control" name="gradetype" placeholder="CGPA" />
-                            <input type="text" class="form-control" name="stream" placeholder="STREAM" />
-                            <input type="text" class="form-control" name="university" placeholder="UNIVERSITY" />
+                            <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
+                            <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
+                        </div>
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control" name="Board" placeholder="BOARD" />
+                            <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
                         </div>
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-education btn-save">SAVE</button>
+                    <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
                 </form>
             </div>
         </div>

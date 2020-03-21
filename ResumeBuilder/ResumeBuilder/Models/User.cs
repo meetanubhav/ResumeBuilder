@@ -37,7 +37,7 @@ namespace ResumeBuilder.Models {
 
         public string ResumeName { get; set; }
 
-        [StringLength(100)]
+        //[StringLength(100)]
         public string Summary { get; set; }
 
         public virtual List<WorkExperience> WorkExperiences { get; set; }

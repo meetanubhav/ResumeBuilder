@@ -24,8 +24,10 @@ namespace ResumeBuilder.Models.ViewModel
         public string AlternatePhoneNumber { get; set; }
         public string ResumeName { get; set; }
         public string Summary { get; set; }
+
         public List<WorkExperience> WorkExperience { get; set; }
         public List<Education> Education { get; set; }
+
         public List<Skill> Skill { get; set; }
         public List<Project> Project { get; set; }
         public List<Language> Language { get; set; }
