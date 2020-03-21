@@ -6,9 +6,13 @@
         return false;
     });
     
-    $('.js-settings').on("click", function () {
-        $('.render-partial-view').load("/Settings/Settings");
-        return false;
+    $('.js-settings').on("click", function (e) {
+        e.preventDefault();
+        $('.render-partial-view').load("/Settings/Settings", function () {
+            ResumeSettingsScript();
+        });
+        //return false;
+
     });
     AjaxScripts();
 });
