@@ -1,38 +1,40 @@
 ﻿@model ResumeBuilder.Models.ViewModel.SettingsVM
 @{
     Layout = null;
-    bool edu = Model.Education;
-    bool lan = Model.Language;
-    bool proj = Model.Project;
-    bool skill = Model.Skill;
-    bool wExp = Model.WorkExperience;
+   
+    bool edu = Model == null ? false : Model.Education;
+    bool lan = Model == null ? false : Model.Language;
+    bool proj = Model == null ? false : Model.Project;
+    bool skill = Model == null ? false : Model.Skill;
+    bool wExp = Model == null ? false : Model.WorkExperience;
+   
 }
 
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3 align-items-center">
     <p class="text-center">The Public Profile contains checked entries</p>
     <form class="setting-form">
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="settingFormEducation" data-val="true"
+            <input type="checkbox" class="custom-control-input" id="settingFormEducation" data-val="@edu"
                    data-bind="checked: @edu)">
             <label class="custom-control-label" for="settingFormEducation">Education</label>
         </div>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="settingFormLanguage" data-val="true"
+            <input type="checkbox" class="custom-control-input" id="settingFormLanguage" data-val="@lan"
                    data-bind="checked: @lan)">
             <label class="custom-control-label" for="settingFormLanguage">Language</label>
         </div>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="settingFormProject" data-val="true"
+            <input type="checkbox" class="custom-control-input" id="settingFormProject" data-val="@proj"
                    data-bind="checked: @proj)">
             <label class="custom-control-label" for="settingFormProject">Project</label>
         </div>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="settingFormSkill" data-val="true"
+            <input type="checkbox" class="custom-control-input" id="settingFormSkill" data-val="@skill"
                    data-bind="checked: @skill)">
             <label class="custom-control-label" for="settingFormSkill">Skill</label>
         </div>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="settingFormWorkExperience" data-val="true"
+            <input type="checkbox" class="custom-control-input" id="settingFormWorkExperience" data-val="@wExp"
                    data-bind="checked: @wExp)">
             <label class="custom-control-label" for="settingFormWorkExperience">Work Experience</label>
         </div>

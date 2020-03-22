@@ -32,6 +32,5 @@ namespace ResumeBuilder.Models.ViewModel
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string AlternatePhoneNumber { get; set; }
-
     }
 }

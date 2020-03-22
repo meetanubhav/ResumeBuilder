@@ -1,4 +1,4 @@
-﻿@model ResumeBuilder.ViewModel.UserResumeVM
+﻿@model ResumeBuilder.Models.ViewModel.UserResumeVM
 @{
     Layout = null;
 }
@@ -19,163 +19,176 @@
             <label for="email">Email</label>
             <input type="text" class="form-control" name="email" placeholder="Email" />
         </div>
-        <div class="mb-2">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="number" class="form-control" name="primaryPhoneNumber" placeholder="Phone Number" />
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 ajax-basicInfomodal" data-toggle="modal" data-target=".basicInfomodal">Basic Info<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
+    <hr />
+    <div>
+        <h3>Summary</h3>
+        <div>
+            <p class="text-secondary show-summary-info">@Model.Summary</p>
         </div>
-        <div class="mb-4">
-            <label for="phoneNumber">Alternate Phone Number</label>
-            <input type="number" class="form-control" name="altPhoneNumber" placeholder="Phone Number" />
-        </div>
-        <button type="button" class="mt-2 btn btn-sm btn-success save-basic-info">SAVE</button>
-    </form>
-    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".summaryModal">Summary<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".languageModal">Languages<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
-    <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fas fa-plus-circle pl-3 float-right mt-1"></i></a>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".summaryModal">Summary<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
+    <hr />
+    <div>
+        <h3>Education</h3>
+            @foreach(var userEducation in Model.Education){
+               <p>
+                   <b>@userEducation.Score in @userEducation.EducationLevel </b>
+                   <br />
+                   <b>Stream : @userEducation.Stream </b>
+                   <br />
+                   <b>Board :@userEducation.Board </b>
+                   <br />
+                   <b> University/School : @userEducation.Institution </b>
+               </p>
+            }
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
+    <hr />
+    <div>
+        <h3>Work Experience</h3>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
+    <hr />
+    <div>
+        <h3>Projects</h3>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
+    <hr />
+    <div>
+        <h3>Language</h3>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".languageModal">Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
+    <hr />
+    <div>
+        <h3>Skills</h3>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+    </div>
 </div>
 
 
 <!-- Modals -->
 
+<div class="modal fade basicInfomodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Basic Information</h4>
+                <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm())
+                {
+                    <div class="row">
+                        <div class="col">
+                            @Html.LabelFor(x => x.FirstName)
+                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                            @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col">
+                            @Html.LabelFor(x => x.LastName)
+                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        @Html.LabelFor(x => x.Email)
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-2">
+                        @Html.LabelFor(x => x.PhoneNumber)
+                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number", @maxlength = 12, @autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-4">
+                        @Html.LabelFor(x => x.AlternatePhoneNumber)
+                        @Html.TextBoxFor(x => x.AlternatePhoneNumber, new { @class = "form-control", @placeholder = "Alternate Phone Number", @maxlength = 12, @autocomplete = "off", @required = "required" })
+                        @Html.ValidationMessageFor(x => x.AlternatePhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit" class="mt-2 btn btn-sm btn-success ajax-change save-basic-info">SAVE</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade summaryModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title">Summary</h4>
                 <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <h2>Summary</h2>
-                <form class="summary-form">
+                @using (Html.BeginForm())
+                {
                     <div class="form-group">
-                        <label>Resume Name</label>
-                        <input type="text" class="form-control" name="resumeName" />
+                        @Html.LabelFor(x => x.ResumeName)
+                        @Html.TextBoxFor(x => x.ResumeName, new { @class = "form-control", @placeholder = "Resume Name" })
+                        @Html.ValidationMessageFor(x => x.ResumeName, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        <label>Summary</label>
-                        <textarea class="form-control" name="summary" rows="3"></textarea>
+                        @Html.LabelFor(x => x.Summary)
+                        @Html.TextAreaFor(x => x.Summary, new { @class = "form-control", @placeholder = "Summary" })
+                        @Html.ValidationMessageFor(x => x.Summary, "", new { @class = "text-danger" })
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-summary btn-save">SAVE</button>
-                </form>
+                    <button type="button" class="mt-2 btn btn-sm btn-success ajax-change save-summary-info btn-save">SAVE</button>
+                }
             </div>
         </div>
     </div>
 </div>
 
-<!--Education Modal-->
 
+<!--Education Modal-->
 <div class="modal fade educationModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <h2>Education</h2>
-                <form action="/" method="post" class="education-form">
-                    <div class="form-group mt-2">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="secondary" />10th
-                                </label>
-                            </div>
-                            <div class="col-md-3">
-
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="seniorSecondary" />12th
-                                </label>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="graduation" />Graduation
-                                </label>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="postGraduation" />Post Graduation
-                                </label>
-                            </div>
-                        </div>
-                        <div class="mt-3 mb-3">
-                            <input type="text" class="form-control" name="yop" placeholder="Year of Passing" />
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="form-check-label ml-5">
-                                    <input type="radio" class="form-check-input" name="optradio" value="cgpa" />CGPA
-                                </label>
-                            </div>
-                            <div class="col-md-6">
-
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="optradio" value="percentage" />Percentage
-                                </label>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="gradetype" placeholder="CGPA" />
-                            <input type="text" class="form-control" name="stream" placeholder="STREAM" />
-                            <input type="text" class="form-control" name="university" placeholder="UNIVERSITY" />
-                        </div>
-                    </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-education btn-save">SAVE</button>
-                </form>
+            <div class="modal-header">
+                <h4 class="modal-title">Education</h4>
+                <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
             </div>
-        </div>
-    </div>
-</div>
-<!--Education Modal-->
-<div class="modal fade educationModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
             <div class="modal-body">
-                <h2>Education</h2>
-                <form action="/" method="post" class="education-form">
+                <form method="post" class="education-form">
                     <div class="form-group mt-2">
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="secondary" />10th
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="10th" />10th
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="seniorSecondary" />12th
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="12th" />12th
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="graduation" />Graduation
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="Graduation" />Graduation
                                 </label>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="educationLevel" value="postGraduation" />Post Graduation
+                                    <input type="radio" class="form-check-input" name="EducationLevel" value="Post Graduation" />Post Graduation
                                 </label>
                             </div>
                         </div>
                         <div class="mt-3 mb-3">
-                            <input type="text" class="form-control" name="yop" placeholder="Year of Passing" />
+                            <input type="date" class="form-control" name="YearOfPassing" placeholder="Year of Passing" />
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="form-check-label ml-5">
-                                    <input type="radio" class="form-check-input" name="optradio" value="cgpa" />CGPA
-                                </label>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-check-label ml-4">
-                                    <input type="radio" class="form-check-input" name="optradio" value="percentage" />Percentage
-                                </label>
-                            </div>
-                        </div>
+                        
                         <div class="input-group">
-                            <input type="text" class="form-control" name="gradetype" placeholder="CGPA" />
-                            <input type="text" class="form-control" name="stream" placeholder="STREAM" />
-                            <input type="text" class="form-control" name="university" placeholder="UNIVERSITY" />
+                            <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
+                            <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
+                        </div>
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control" name="Board" placeholder="BOARD" />
+                            <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
                         </div>
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-education btn-save">SAVE</button>
+                    <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
                 </form>
             </div>
         </div>
@@ -185,8 +198,11 @@
 <div class="modal fade workexperienceModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Work Experience</h4>
+                <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
             <div class="modal-body">
-                <h2>Work Experience</h2>
                 <form class="workExp-form">
                     <div class="form-group">
                         <input type="text" class="form-control mb-4" placeholder="Organization" />
@@ -212,8 +228,11 @@
 <div class="modal fade projectModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Project</h4>
+                <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
             <div class="modal-body">
-                <h2>Projects</h2>
                 <form class="projects-form">
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control mt-3" name="projectName" placeholder="Project Name" />
@@ -236,8 +255,11 @@
 <div class="modal fade skillModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Skills</h4>
+                <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
             <div class="modal-body">
-                <h2>Skills</h2>
                 <form class="skills-form">
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control" name="skill" placeholder="Add Skills" />
@@ -252,8 +274,11 @@
 <div class="modal fade languageModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Languages</h4>
+                <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
             <div class="modal-body">
-                <h2>Language</h2>
                 <form class="language-form">
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control" name="language" placeholder="Add Language" />

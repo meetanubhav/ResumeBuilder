@@ -52,9 +52,23 @@ namespace ResumeBuilder.Controllers
         [Authorize]
         public ActionResult Edit()
         {
+            var userId = Int32.Parse(User.Identity.Name);
             if (User.Identity.Name != null)
             {
-                return PartialView("~/Views/Resume/Edit.cshtml");
+                var user = db.Users.Include("Education").Where(x => x.UserID == userId).FirstOrDefault();
+                
+                UserResumeVM vm = new UserResumeVM();
+                {
+                    vm.FirstName = user.FirstName;
+                    vm.LastName = user.LastName;
+                    vm.Email = user.Email;
+                    vm.PhoneNumber = user.PhoneNumber;
+                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+                    vm.ResumeName = user.ResumeName;
+                    vm.Summary = user.Summary;
+                    vm.Education = user.Education;
+                }
+                return PartialView("~/Views/Resume/Edit.cshtml",vm);
             }
             else
             {
@@ -64,7 +78,8 @@ namespace ResumeBuilder.Controllers
 
         public ActionResult PublicProfile()
         {
-            var user = db.UserInfos.Where(x => x.UserID == 1).FirstOrDefault();
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
             return View(user);
         }
 
