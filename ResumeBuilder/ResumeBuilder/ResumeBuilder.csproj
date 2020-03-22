@@ -98,6 +98,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\index.css" />
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -208,6 +209,7 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\umd\Index.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -255,6 +257,7 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
     <Compile Include="Models\ViewModel\EducationVM.cs" />
+    <Compile Include="Models\ViewModel\SignupVM.cs" />
     <Compile Include="Models\ViewModel\SkillsVM.cs" />
     <Compile Include="Models\ViewModel\SummaryVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />

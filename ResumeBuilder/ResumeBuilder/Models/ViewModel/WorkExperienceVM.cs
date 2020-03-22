@@ -16,7 +16,7 @@ namespace ResumeBuilder.Models.ViewModel
 
         [Required]
         [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
-        public DateTime From { get; set; }
+        public Nullable<DateTime> From { get; set; }
 
 
         [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
