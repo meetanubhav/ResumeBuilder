@@ -7,6 +7,7 @@ namespace ResumeBuilder.Models.ViewModel
 {
     public class SettingsVM
     {
+        public int UserID { get; set; }
         public bool Education { get; set; }
         public bool Language { get; set; }
         public bool Project { get; set; }

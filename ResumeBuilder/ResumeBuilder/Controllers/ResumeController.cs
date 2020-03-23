@@ -109,8 +109,7 @@ namespace ResumeBuilder.Controllers
         [Authorize]
         public ActionResult PublicProfile()
         {
-            var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return View(user);
         }
 

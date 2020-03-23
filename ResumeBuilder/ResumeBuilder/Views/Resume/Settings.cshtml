@@ -1,13 +1,11 @@
 ﻿@model ResumeBuilder.Models.ViewModel.SettingsVM
 @{
     Layout = null;
-   
-    bool edu = Model == null ? false : Model.Education;
-    bool lan = Model == null ? false : Model.Language;
-    bool proj = Model == null ? false : Model.Project;
-    bool skill = Model == null ? false : Model.Skill;
-    bool wExp = Model == null ? false : Model.WorkExperience;
-   
+    bool edu = Model.Education;
+    bool lan = Model.Language;
+    bool proj = Model.Project;
+    bool skill = Model.Skill;
+    bool wExp = Model.WorkExperience;
 }
 
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3 align-items-center">

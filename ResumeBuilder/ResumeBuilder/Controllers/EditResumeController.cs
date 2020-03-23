@@ -36,6 +36,7 @@ namespace ResumeBuilder.Controllers
                 userFromDB.AlternatePhoneNumber = userBasicInfo.AlternatePhoneNumber;
                 //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+
                 return Content("Success");
             }
             else
