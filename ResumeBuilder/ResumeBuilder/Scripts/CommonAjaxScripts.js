@@ -46,6 +46,8 @@
         ajaxFunction('/Settings/AddOrUpdateSettings', formDetails, 'success');
         return false;
     })
+
+    // COMMON FUNCTION FOR AJAX POST CALLS
     var ajaxFunction = function (url, formData) {
         $.ajax({
             url: url,
@@ -62,6 +64,8 @@
         })
     }
 }
+
+// COMMON FUNCTION FOR AJAX GET CALLS
 function getUserInfo() {
     $.ajax({
         url: "/EditResume/GetUserInfo",
