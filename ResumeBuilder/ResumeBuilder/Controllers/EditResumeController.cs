@@ -67,22 +67,8 @@ namespace ResumeBuilder.Controllers
         [HttpPost]
         public ActionResult AddOrUpdateEducation(EducationVM education)
         {
-            var userID = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                var userFromDB = new Education();
-                userFromDB.EducationLevel = educationInfo.EducationLevel;
-                userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
-                userFromDB.Stream = educationInfo.Stream;
-                userFromDB.Institution = educationInfo.Institution;
-                userFromDB.Board = educationInfo.Board;
-                userFromDB.YearOfPassing = educationInfo.YearOfPassing;
-                userFromDB.UserID = userID;
-                db.Educations.Add(userFromDB);
-                db.SaveChanges();
-                return Content("Success");
-            }
-            else
+            int userId = Int32.Parse(User.Identity.Name);
+            if(ModelState.IsValid)
             {
                 Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
                 Education edu = Mapper.Map<EducationVM, Education>(education);
