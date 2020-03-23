@@ -102,5 +102,23 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
+        [HttpPost]
+        public ActionResult AddWorkExperience(WorkExperience workExperienceInfo)
+        {
+            var userID = Int32.Parse(User.Identity.Name);
+            if (ModelState.IsValid)
+            {
+                var userFromDB = new WorkExperience();
+                userFromDB.UserID = userID;
+                userFromDB.Organization = workExperienceInfo.Organization;
+                userFromDB.Designation = workExperienceInfo.Designation;
+                userFromDB.FromYear = workExperienceInfo.FromYear;
+                userFromDB.ToYear = workExperienceInfo.ToYear;
+                db.WorkExperiences.Add(userFromDB);
+                db.SaveChanges();
+                return Content("Success");
+            }
+            return Content("Failure");
+        }
     }
 }

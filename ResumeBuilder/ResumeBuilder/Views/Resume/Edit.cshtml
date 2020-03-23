@@ -54,6 +54,22 @@
     <hr />
     <div>
         <h3>Work Experience</h3>
+        @if (Model.WorkExperience != null) { 
+        @foreach(var userWorkExperience in Model.WorkExperience){
+            <div class="row container">
+                <div class="col-md-8 text-secondary">
+                    <p>
+                        <b> @userWorkExperience.Designation </b> at 
+                        <br />
+                        <b> @userWorkExperience.Organization </b>
+                        <br />
+                        <b> @userWorkExperience.FromYear </b> - 
+                        <br />
+                        <b> @userWorkExperience.ToYear </b>
+                    </p>
+                </div>
+            </div>
+        } }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
@@ -193,25 +209,25 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="CGPAorPercentage" value="%" />Percentage
+                                        <input type="radio" class="form-check-input" name="CGPAorPercentage" value="Percent" />Percentage
                                     </label>
                                 </div>
                             </div>
                         </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
-                        <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
+                            <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
+                        </div>
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control" name="Board" placeholder="BOARD" />
+                            <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
+                        </div>
                     </div>
-                    <div class="input-group mt-3">
-                        <input type="text" class="form-control" name="Board" placeholder="BOARD" />
-                        <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
-                    </div>
+                    <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
+                </form>
             </div>
-            <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
-            </form>
         </div>
     </div>
-</div>
 </div>
 <!--Work Experience Modal-->
 <div class="modal fade workexperienceModal" tabindex="-1" role="dialog">
@@ -224,20 +240,23 @@
             <div class="modal-body">
                 <form class="workExp-form">
                     <div class="form-group">
-                        <input type="text" class="form-control mb-4" placeholder="Organization" />
-                        <input type="text" class="form-control" placeholder="Designation" />
+                        <input type="text" class="form-control mb-4" name="Organization" placeholder="Organization" required/>
+                        <input type="text" class="form-control" name="Designation" placeholder="Designation" required />
                     </div>
                     <div class="row form-group">
                         <div class="col-md-6">
                             <label class="form-label">From</label>
-                            <input class="form-control" type="text" placeholder="From Year" />
+                            <input class="form-control" type="text" name="FromYear" placeholder="From Year" maxlength="4" required />
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="toYear">
                             <label class="form-label">To</label>
-                            <input class="form-control" type="text" placeholder="To Year" />
+                            <input class="form-control" type="text" name="ToYear" placeholder="To Year" />
                         </div>
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+                    <div class="row form-group">
+                        <label class="checkbox-inline">Current <input type="checkbox" id="currentWork" value="Current"></label>
+                    </div>
+                    <button type="button" class="mt-2 btn btn-sm btn-success save-work-experience btn-save">SAVE</button>
                 </form>
             </div>
         </div>

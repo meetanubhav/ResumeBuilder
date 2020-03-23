@@ -58,6 +58,9 @@ nav{
     height: 100vh;
     background-color : black;
   }
+  .css-signout{
+      margin-top : 15em;
+  }
   #sideNav .navbar-brand {
     display: -webkit-box;
     display: -ms-flexbox;

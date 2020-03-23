@@ -35,16 +35,27 @@
     });
 
     $('body').on('click', '.js-delete-education', function () {
+        $(this).parent().parent().remove();
         $.ajax({
             url: "/EditResume/DeleteEducation/" + $(this).attr("data-user-id"),
             contentType: 'application/json',
             method: "DELETE",
             success: function () {
-                $(this).parent().remove();
+                
             }
         });
     });
-
+    $('body').on("click", ".save-work-experience", function (e) {
+        e.preventDefault();
+        var userData = {};
+        userData.Organization = $("[name = Organization]").val();
+        userData.Designation = $("[name = Designation]").val();
+        userData.FromYear = $("[name = FromYear]").val();
+        userData.ToYear = $("[name = ToYear]").val();
+        ajaxFunction('/EditResume/AddWorkExperience', userData)
+        return false;
+    });
+    
     $('body').on('click', '.save-settings', function () {
         var form = $(this).parent('form');
         var formDetails = new Object();
@@ -59,6 +70,7 @@
         return false;
     })
 
+
     // COMMON FUNCTION FOR AJAX POST CALLS
     var ajaxFunction = function (url, formData) {
         $.ajax({
@@ -66,8 +78,9 @@
             type: 'POST',
             data: formData,
             success: function (response) {
-                $('.modal').modal('hide');
                 getUserInfo();
+                $('.render-partial-view').load("/Resume/Edit");
+                $('.modal').modal('hide');
                 //$('.show-content').html(response);
             },
             failure: function (response) {
