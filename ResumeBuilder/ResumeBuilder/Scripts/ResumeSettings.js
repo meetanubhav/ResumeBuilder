@@ -1,11 +1,14 @@
 ﻿function ResumeSettingsScript() {
     
+<<<<<<< HEAD
     $('.setting-form input').each(function (i, e) {
 
         if ($(e).data().val == 'True') {
             $(e)[0].checked = true;
         }
     });
+=======
+>>>>>>> parent of 471080a... Merge branch 'master' of https://github.com/meetanubhav/ResumeBuilder
     $('.home-dash').hide();
     $('.show-settings-section').show();
     //$('input[type="checkbox"]').change(function (e) {
