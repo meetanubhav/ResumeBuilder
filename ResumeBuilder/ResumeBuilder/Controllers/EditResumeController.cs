@@ -5,15 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ResumeBuilder.Repository;
-using AutoMapper;
 
 namespace ResumeBuilder.Controllers
 {
     public class EditResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilder.Models.ResumeBuilderDBContext();
-        private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
 
         public ActionResult GetUserInfo()
         {
@@ -21,21 +18,20 @@ namespace ResumeBuilder.Controllers
             var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
             return Json(userFromDB, JsonRequestBehavior.AllowGet);
         }
-        
         [HttpPost]
         public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
         {
-           var userID = Int32.Parse(User.Identity.Name);
-           if (ModelState.IsValid)
-           {
-               var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
-               userFromDB.FirstName = userBasicInfo.FirstName;
-               userFromDB.LastName = userBasicInfo.LastName;
-               userFromDB.Email = userBasicInfo.Email;
-               userFromDB.PhoneNumber = userBasicInfo.PhoneNumber;
-               userFromDB.AlternatePhoneNumber = userBasicInfo.AlternatePhoneNumber;
-               //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
-               db.SaveChanges();
+            var userID = Int32.Parse(User.Identity.Name);
+            if (ModelState.IsValid)
+            {
+                var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
+                userFromDB.FirstName = userBasicInfo.FirstName;
+                userFromDB.LastName = userBasicInfo.LastName;
+                userFromDB.Email = userBasicInfo.Email;
+                userFromDB.PhoneNumber = userBasicInfo.PhoneNumber;
+                userFromDB.AlternatePhoneNumber = userBasicInfo.AlternatePhoneNumber;
+                //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
 
                 return Content("Success");
             }
@@ -44,7 +40,6 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
-        
         [HttpPost]
         public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
         {
@@ -63,21 +58,30 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
-
         [HttpPost]
-        public ActionResult AddOrUpdateEducation(EducationVM education)
+        public ActionResult AddEducationInfo(Education educationInfo)
         {
-            int userId = Int32.Parse(User.Identity.Name);
-            if(ModelState.IsValid)
+            var userID = Int32.Parse(User.Identity.Name);
+            if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
-                Education edu = Mapper.Map<EducationVM, Education>(education);
-                string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
-
-                return Content(msg);
+                var userFromDB = new Education();
+                userFromDB.EducationLevel = educationInfo.EducationLevel;
+                userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
+                userFromDB.Stream = educationInfo.Stream;
+                userFromDB.Score = educationInfo.Score;
+                userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
+                userFromDB.Institution = educationInfo.Institution;
+                userFromDB.Board = educationInfo.Board;
+                userFromDB.YearOfPassing = educationInfo.YearOfPassing;
+                userFromDB.UserID = userID;
+                db.Educations.Add(userFromDB);
+                db.SaveChanges();
+                return Content("Success");
             }
-
-            return Content("Failed");
+            else
+            {
+                return Content("Failed");
+            }
         }
 
         [HttpPost]
@@ -96,14 +100,24 @@ namespace ResumeBuilder.Controllers
             return Content("Failed");
         }
 
-        //-------------------------Code by bhabani------------------------------------------
-        [HttpGet]
-        public JsonResult GetData()
+        
+        [HttpDelete]
+        public ActionResult DeleteEducation(int? id)
         {
-            var userID = Int32.Parse(User.Identity.Name);
-            var summary = db.Users.FirstOrDefault(x => x.UserID == userID);
-
-            return Json(summary, JsonRequestBehavior.AllowGet);
+            if (id == null)
+            {
+                return HttpNotFound("404 not found. Better luck Next time");
+            }
+            try
+            {
+                db.Educations.Remove(db.Educations.Single(m => m.EduID == id));
+                db.SaveChanges();
+                return Content("Success");
+            }
+            catch
+            {
+                return Content("Failed");
+            }
         }
     }
 }

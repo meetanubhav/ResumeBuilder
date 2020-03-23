@@ -19,7 +19,7 @@ namespace ResumeBuilder.Models
         public string CGPAorPercentage { get; set; }
 
         public double Score { get; set; }
-        
+
         public string Stream { get; set; }
 
         public string Institution { get; set; }

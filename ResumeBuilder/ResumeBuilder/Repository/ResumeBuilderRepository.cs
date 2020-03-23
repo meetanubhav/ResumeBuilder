@@ -22,6 +22,9 @@ namespace ResumeBuilder.Repository
                 if (userInfo != null)
                 {
                     db.Users.Add(userInfo);
+                    //userInfo.Summary = string.Empty;
+                    //userInfo.ResumeName = string.Empty;
+                    //db.Users.Add(userInfo);
                     db.Entry(userInfo).State = EntityState.Modified;
                     records = db.SaveChanges();
                 }
@@ -73,7 +76,6 @@ namespace ResumeBuilder.Repository
                 if (education.EduID > 0)
                 {
                     //we will update education entity
-                    education.UserID = idUser;
                     db.Entry(education).State = EntityState.Modified;
                     db.SaveChanges();
 

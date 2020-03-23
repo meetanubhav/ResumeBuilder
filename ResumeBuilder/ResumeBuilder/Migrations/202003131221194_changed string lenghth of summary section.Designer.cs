@@ -7,13 +7,13 @@ namespace ResumeBuilder.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class education_yearofpassing_to_string : IMigrationMetadata
+    public sealed partial class changedstringlenghthofsummarysection : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(education_yearofpassing_to_string));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(changedstringlenghthofsummarysection));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003191707070_education_yearofpassing_to_string"; }
+            get { return "202003131221194_changed string lenghth of summary section"; }
         }
         
         string IMigrationMetadata.Source

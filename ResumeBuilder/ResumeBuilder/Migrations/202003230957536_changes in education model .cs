@@ -2,8 +2,8 @@
 {
     using System;
     using System.Data.Entity.Migrations;
-
-    public partial class education_yearofpassing_to_string : DbMigration
+    
+    public partial class changesineducationmodel : DbMigration
     {
         public override void Up()
         {
