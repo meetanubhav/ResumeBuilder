@@ -18,7 +18,5 @@
             $('input[name = "gradetype"]').attr('placeholder', "CGPA");
         }
     });
-    $('body').on('click','.js-delete-education', function () {
-       $(this).parent().parent().remove();
-    });
+    
 }

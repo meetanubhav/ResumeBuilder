@@ -31,7 +31,7 @@
             <div class="row container">
                 <div class="col-md-8 text-secondary">
                     <p>
-                        <b>@userEducation.Score in @userEducation.EducationLevel </b>
+                        <b>@userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </b>
                         <br />
                         <b>Year of Passing : @userEducation.YearOfPassing     </b>
                         <br />
@@ -43,7 +43,9 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-danger float-right js-delete-education"> x </button>
+                    <button class="btn btn-danger float-right js-delete-education" data-user-id="@userEducation.EduID">
+                        <i class="fa fa-trash-alt"></i>
+                    </button>
                 </div>
             </div>
         }
@@ -180,23 +182,36 @@
                             </div>
                         </div>
                         <div class="mt-3 mb-3">
-                            <input type="date" class="form-control" name="YearOfPassing" placeholder="Year of Passing" />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="YearOfPassing" placeholder="Year of Passing" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="CGPAorPercentage" value="CGPA" />CGPA
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="CGPAorPercentage" value="%" />Percentage
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
-                            <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
-                        </div>
-                        <div class="input-group mt-3">
-                            <input type="text" class="form-control" name="Board" placeholder="BOARD" />
-                            <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
-                        </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
+                        <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
                     </div>
-                    <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
-                </form>
+                    <div class="input-group mt-3">
+                        <input type="text" class="form-control" name="Board" placeholder="BOARD" />
+                        <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
+                    </div>
             </div>
+            <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
+            </form>
         </div>
     </div>
+</div>
 </div>
 <!--Work Experience Modal-->
 <div class="modal fade workexperienceModal" tabindex="-1" role="dialog">

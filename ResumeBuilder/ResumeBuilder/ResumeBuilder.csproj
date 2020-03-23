@@ -250,6 +250,10 @@
     <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.designer.cs">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003230957536_changes in education model .cs" />
+    <Compile Include="Migrations\202003230957536_changes in education model .designer.cs">
+      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -301,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003131221194_changed string lenghth of summary section.resx">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
+      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

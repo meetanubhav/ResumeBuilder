@@ -14,12 +14,12 @@ namespace ResumeBuilder.Models
 
         public string EducationLevel { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]        public Nullable<DateTime> YearOfPassing { get; set; }
+        public int? YearOfPassing { get; set; }
 
-        public bool CGPAorPercentage { get; set; }
+        public string CGPAorPercentage { get; set; }
 
         public double Score { get; set; }
-        
+
         public string Stream { get; set; }
 
         public string Institution { get; set; }
@@ -30,6 +30,6 @@ namespace ResumeBuilder.Models
         public int UserID { get; set; }
 
         [ForeignKey("UserID")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

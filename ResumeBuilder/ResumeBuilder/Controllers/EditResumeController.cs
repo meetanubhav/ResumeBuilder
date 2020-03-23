@@ -69,6 +69,7 @@ namespace ResumeBuilder.Controllers
                 userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
                 userFromDB.Stream = educationInfo.Stream;
                 userFromDB.Score = educationInfo.Score;
+                userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
                 userFromDB.Institution = educationInfo.Institution;
                 userFromDB.Board = educationInfo.Board;
                 userFromDB.YearOfPassing = educationInfo.YearOfPassing;
@@ -78,6 +79,25 @@ namespace ResumeBuilder.Controllers
                 return Content("Success");
             }
             else
+            {
+                return Content("Failed");
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteEducation(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound("404 not found. Better luck Next time");
+            }
+            try
+            {
+                db.Educations.Remove(db.Educations.Single(m => m.EduID == id));
+                db.SaveChanges();
+                return Content("Success");
+            }
+            catch
             {
                 return Content("Failed");
             }

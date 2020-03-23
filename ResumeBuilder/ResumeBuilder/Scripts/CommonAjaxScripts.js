@@ -23,7 +23,8 @@
     $('body').on("click", ".save-education-info", function (e) {
         e.preventDefault();
         var userData = {};
-        userData.EducationLevel = $("[name = EducationLevel]").val();
+        userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
+        userData.cgpaOrPercentage = ($('.form-check-input').serializeArray())[1]['value'];
         userData.YearOfPassing = $("[name = YearOfPassing]").val();
         userData.Score = $("[name = Score]").val();
         userData.Board = $("[name = Board]").val();
@@ -31,6 +32,17 @@
         userData.Institution = $("[name = Institution]").val();
         ajaxFunction('/EditResume/AddEducationInfo', userData)
         return false;
+    });
+
+    $('body').on('click', '.js-delete-education', function () {
+        $.ajax({
+            url: "/EditResume/DeleteEducation/" + $(this).attr("data-user-id"),
+            contentType: 'application/json',
+            method: "DELETE",
+            success: function () {
+                $(this).parent().remove();
+            }
+        });
     });
 
     $('body').on('click', '.save-settings', function () {
