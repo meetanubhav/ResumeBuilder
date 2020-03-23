@@ -8,6 +8,8 @@ namespace ResumeBuilder.Models.ViewModel
 {
     public class EducationVM
     {
+        public int? EduID { get; set; }
+
         public string EducationLevel { get; set; }
 
         public int YearOfPassing { get; set; }
