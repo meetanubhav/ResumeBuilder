@@ -67,12 +67,13 @@ namespace ResumeBuilder.Repository
             string msg = string.Empty;
 
             var personEntity = db.Users.Find(idUser);
-            education.UserID = idUser;
+
             if (personEntity != null)
             {
                 if (education.EduID > 0)
                 {
                     //we will update education entity
+                    education.UserID = idUser;
                     db.Entry(education).State = EntityState.Modified;
                     db.SaveChanges();
 
@@ -99,85 +100,62 @@ namespace ResumeBuilder.Repository
             return idSelected;
         }
 
-        public string AddorUpdateSkill(Skill skill, int idUser)
+        public string AddOrUpdateExperience(WorkExperience workExperience, int idUser)
         {
             string msg = string.Empty;
+
+            var personEntity = db.Users.Find(idUser);
+
+            if (personEntity != null)
+            {
+                if (workExperience.ExpId > 0)
+                {
+                    //we will update education entity
+                    db.Entry(workExperience).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    msg = "Work Experience entity has been updated successfully";
+                }
+                else
+                {
+                    // we will add new education entity
+                    personEntity.WorkExperiences.Add(workExperience);
+                    db.SaveChanges();
+
+                    msg = "Education entity has been Added successfully";
+                }
+            }
+
+            return msg;
+        }
+
+        public bool AddSkill(Skill skill, int idUser)
+        {
             int countRecords = 0;
             var personEntity = db.Users.Find(idUser);
 
             if(personEntity != null && skill != null)
             {
-                if (skill.SkillID > 0)
-                {
-                    db.Entry(skill).State = EntityState.Modified;
-                    db.SaveChanges();
-                    msg = "Skill has been updated successfully";
-                    
-                }
-                else
-                {
-                    
-                    personEntity.Skills.Add(skill);
-                    countRecords = db.SaveChanges();
-                    msg = "Skill has been Added successfully";
-                }
+                personEntity.Skills.Add(skill);
+                countRecords = db.SaveChanges();
             }
-            
 
-            return countRecords > 0 ? msg : "Falied to Add";
+            return countRecords > 0 ? true : false;
             
         }
 
-        public string AddorUpdateProject(Project project, int idUser)
+        public bool AddProject(Project project, int idUser)
         {
-            string msg = string.Empty;
             int countRecords = 0;
             var personEntity = db.Users.Find(idUser);
-            project.UserID = idUser;
+
             if (personEntity != null && project != null)
             {
-                if (project.ProjectID > 0)
-                {
-                    project.UserID = idUser;
-                    db.Entry(project).State = EntityState.Modified;
-                    db.SaveChanges();
-                    msg = "Project has been updated successfully";
-                }
-
-                else
-                {
-                    personEntity.Projects.Add(project);
-                    countRecords = db.SaveChanges();
-                    msg = "Project has been Added successfully";
-                }
+                personEntity.Projects.Add(project);
+                countRecords = db.SaveChanges();
             }
-            return countRecords > 0 ? msg : "Failed to Add";
-        }
 
-        public string AddOrUpdateExperience(WorkExperience work, int idUser)
-        {
-            string msg = string.Empty;
-            int countRecords = 0;
-            var personEntity = db.Users.Find(idUser);
-            work.UserID = idUser;
-            if (personEntity != null && work != null)
-            {
-                if (work.ExpId > 0)
-                {
-                    work.UserID = idUser;
-                    db.Entry(work).State = EntityState.Modified;
-                    db.SaveChanges();
-                    msg = "Work Experience has been updated successfully";
-                }
-
-                else
-                {
-                    personEntity.WorkExperiences.Add(work);
-                    countRecords = db.SaveChanges();
-                    msg = "Work Experience has been Added successfully";
-                }
-            }
-            return countRecords > 0 ? msg : "Failed to Add";
+            return countRecords > 0 ? true : false;
         }
 
         public bool AddLanguage(Language language, int idUser)

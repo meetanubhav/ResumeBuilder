@@ -131,18 +131,7 @@ namespace ResumeBuilder.Controllers
             {
                 t.User = null;
             }
-            foreach (var t in user.WorkExperiences)
-            {
-                t.User = null;
-            }
-            foreach (var t in user.Education)
-            {
-                t.User = null;
-            }
-            foreach (var t in user.Languages)
-            {
-                t.Users = null;
-            }
+
             UserResumeVM vm = new UserResumeVM();
          
             Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());

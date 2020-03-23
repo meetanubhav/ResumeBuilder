@@ -16,7 +16,7 @@ namespace ResumeBuilder.Models
 
         public string ProjectName { get; set; }
         
-        //public string[] ProjectSkills { get; set; }
+        public string[] ProjectSkills { get; set; }
 
         public string ProjectDetails { get; set; }
 
