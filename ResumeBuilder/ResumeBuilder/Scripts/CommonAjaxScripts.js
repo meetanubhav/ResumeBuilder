@@ -1,12 +1,16 @@
 ﻿function AjaxScripts() {
+
+    
     //Ajax Script for edit section view
     var ajaxFunction = function (url, type, formData, successFunction) {
         $.ajax({
             url: url,
             type: type,
             data: formData,
+            datatype: 'json',
             success: function (response) {
-                successFunction();           
+                $('.modal').modal('hide');
+                //successFunction();           
             },
             failure: function (response) {
                 alert("Ajax call failed");
@@ -48,7 +52,7 @@
         userData.PhoneNumber = $("[name = phoneNumber]").val();
         userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
         var successFunction = function () {
-            $('.modal').modal('hide');
+            $('.basic-info-form').disabled();
             getUserInfo();
         };
 
@@ -56,14 +60,14 @@
         return false;
     });
 
-    $('body').on("click", ".save-summary-info", function (e) {
+    $('body').on("click", ".save-summary", function (e) {
         e.preventDefault();
         var userData = {};
-        userData.ResumeName = $("[name = ResumeName]").val();
-        userData.Summary = $("[name = Summary]").val();
+        userData.ResumeName = $("[name = resumeName]").val();
+        userData.Summary = $("[name = summary]").val();
 
         var successFunction = function () {
-            $('.modal').modal('hide');
+            //$('.modal').modal('hide');
             getUserInfo();
         };
 
@@ -72,22 +76,67 @@
     });
 
     $('body').on("click", ".save-education", function (e) {
-        e.preventDefault();
-        var userData = {};
-        userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
-        userData.YearOfPassing = $("[name = yop]").val();
-        userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
-        userData.Score = $("[name = gradetype]").val();
-        userData.Stream = $("[name = stream]").val();
-        userData.Institution = $("[name = university]").val();
+        e.preventDefault();        var userData = new Object();        {
+            userData.EduID = $('.education-form-id').val();            userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];            userData.YearOfPassing = $("[name = yop]").val();            userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];            userData.Score = $("[name = gradetype]").val();            userData.Stream = $("[name = stream]").val();            userData.Institution = $("[name = university]").val();
+        }
 
         var successFunction = function () {
-            alert('edu saved');
+            console.log("Education Added");
         };
 
-        ajaxFunction('/EditResume/AddOrUpdateEducation', 'POST', userData, successFunction);
+        ajaxFunction('/EditResume/AddEducation', 'POST', userData, successFunction);
         return false;
     });
+
+    //---------------------- CODE BY BHABANI -------------------------------------------------------
+    $('body').on("click", ".save-skill", function (e) {
+        e.preventDefault();        var userData = new Object();        {
+            userData.SkillID = $('.skill-form-id').val();            userData.SkillName = $("[name = skill]").val();
+        }
+
+        var successFunction = function () {
+            alert('skill saved');
+        };
+
+        ajaxFunction('/EditResume/AddSkill', 'POST', userData, successFunction);
+        return false;
+    });
+
+    $('body').on("click", ".save-project", function (e) {
+        e.preventDefault();        var userData = new Object();        {
+            userData.ProjectID = $('.project-form-id').val();            userData.DurationInMonth = $("[name = projectDuration]").val();
+            userData.ProjectName = $("[name = projectName]").val();
+            userData.ProjectDetails = $("[name = projectDetails]").val();
+            userData.YourRole = $("[name = projectRole]").val();
+        }
+
+        var successFunction = function () {
+            //$('.modal').modal('hide');
+            console.log("Action Called");
+        };
+
+        ajaxFunction('/EditResume/AddProject', 'POST', userData, successFunction);
+        return false;
+    });
+
+    $('body').on("click", ".save-workExp", function (e) {
+        e.preventDefault();        var userData = new Object();        {
+            userData.ExpId = $('.workExp-form-id').val();            userData.Organization = $("[name = organization]").val();
+            userData.Designation = $("[name = designation]").val();
+            userData.FromYear = $("[name = fromDate]").val();
+            userData.ToYear = $("[name = toDate]").val();
+        }
+
+        var successFunction = function () {
+            
+            console.log("Action Called");
+        };
+
+        ajaxFunction('/EditResume/AddWorkExp', 'POST', userData, successFunction);
+        return false;
+    });
+
+    //------------------------------------------------------------------------------------------------
 
     $('body').on('click', '.save-settings', function () {
         var form = $(this).parent('form');
@@ -107,6 +156,7 @@
     })
 
     //------------------------ CODE BY BHABANI-------------------------------------
+    var currentData;
     $('.js-template, .js-edit-resume').on('click',  function () {
         var $button = $(this);
 
@@ -117,7 +167,7 @@
             dataType: "json",
             success: function (response) {
                 if (response != null) {
-
+                    currentData = response;
                     $.each(response.WorkExperience, function (i, item) {
                         if (item['ExpId'] != null) {
                             fromDate = new Date(parseInt(item['FromYear'].substr(6)));
@@ -125,7 +175,7 @@
                             var workDetails = $('.tWorkexperience').append($('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
 
-                            $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" data-skill-id="' + item['ExpId'] + '"></i></div>'),
+                            $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" data-workexp-id="' + item['ExpId'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
                         }
@@ -135,7 +185,7 @@
                     $.each(response.Project, function (i, item) {
                         var projectDetails = $('.tproject').append($('<div class="font-weight-bold">').text(item['ProjectName']),
                                                                  $('<div class="bg-light rounded">').text(item['ProjectDetails']));
-                        $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" data-skill-id="' + item['ProjectID'] + '"></i></div>'),
+                        $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" data-project-id="' + item['ProjectID'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['ProjectName']),
                                                      $('<div class="bg-light rounded">').text(item['ProjectDetails']));
                     });
@@ -151,10 +201,10 @@
                     $.each(response.Education, function (i, item) {
                         if (item['EducationLevel'] != null) {
                             var educationDetails = $('.teducation').append($('<div class="font-weight-bold">').text(item['EducationLevel']),
-                                                                           $('<div class="bg-light rounded">').text("Scored " + item['CGPAorPercentage']),
-                                                                           $('<div class="bg-light rounded">').text(item['YearOfPassing']));
+                                                                           $('<div class="bg-light rounded">').text("Scored: " + item['Score']),
+                                                                           $('<div class="bg-light rounded">').text("Y.O.P: " + item['YearOfPassing']));
                             //-------Data Visible in Edit Page-------
-                            $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" data-skill-id="' + item['EduID'] + '"></i></div>'),
+                            $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" data-education-id="' + item['EduID'] + '"></i></div>'),
                                            $('<div class="font-weight-bold">').text(item['EducationLevel']),
                                            $('<div>').text("Scored: " + item['Score']));
                         }
@@ -164,7 +214,7 @@
                         if (item['LanguageName'] != null) {
                             var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item['LanguageName']));
                             //-----Data Visible in Edit Page------------
-                            $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lan-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lan-delete" data-skill-id="' + item['LanguageID'] + '"></i></div>'),
+                            $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lan-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lan-delete" data-language-id="' + item['LanguageID'] + '"></i></div>'),
                                                          $('<div class="bg-light rounded">').text(item['LanguageName']));
                         }
                     });
@@ -201,7 +251,7 @@
 
         return false;
     });
-
+//-----------------------------------------------------------------------------------
 
     $('body').on("click", ".su-edit", function (e) {
         e.preventDefault();
@@ -225,36 +275,60 @@
 
     });
 
-    $('body').on("click", ".edu-edit", function () {
-
-        $('a')[6].click();
+    $('body').on("click", ".edu-edit, .edu-delete", function () {
+        $button = $(this);
+        if ($button.hasClass('edu-edit')) {
+            $('.education-form-id').val($(this).data('education-id'));
+            //$('input[name=educationLevel]').val(currentData.EducationLevel[$(this).data('education-id')+1]);
+            $('a')[6].click();
+        }
+        else if ($button.hasClass('edu-delete')) {
+            
+            var successFunction = function () {
+                $button.parent().fadeOut();
+                $button.parent().next().fadeOut();
+                $button.parent().next().next().fadeOut();
+            };
+            if (confirmDelete(successFunction) == true) {
+                ajaxFunction('/EditResume/DeleteEducation', 'POST', { "eduId": $(this).data('education-id') }, "");
+            }
+        }
+        
 
     });
 
     $('body').on("click", ".we-edit", function () {
-
+        $('.workExp-form-id').val($(this).data('workexp-id'));
         $('a')[7].click();
 
     });
 
     $('body').on("click", ".pr-edit", function () {
-
+        $('.project-form-id').val($(this).data('project-id'));
         $('a')[8].click();
 
     });
 
     $('body').on("click", ".lang-edit", function () {
-
+        $('.language-form-id').val($(this).data('language-id'));
         $('a')[9].click();
 
     });
 
     $('body').on("click", ".sk-edit", function () {
-
+        $('.skill-form-id').val($(this).data('skill-id'));
         $('a')[10].click();
 
     });
 
 //------------------------END CODE OF BHABANI---------------------------------------------------
 
+
+    function confirmDelete(style) {
+        bootbox.confirm("Confirm Delete!", function (result) {
+            style();
+            return result;
+        });
+    };
+    
 }
