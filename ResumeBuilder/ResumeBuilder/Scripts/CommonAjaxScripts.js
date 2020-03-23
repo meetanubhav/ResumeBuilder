@@ -10,7 +10,7 @@
             datatype: 'json',
             success: function (response) {
                 $('.modal').modal('hide');
-                //successFunction();           
+                successFunction();           
             },
             failure: function (response) {
                 alert("Ajax call failed");
@@ -153,6 +153,22 @@
         return false;
     });
 
+    $('body').on("click", ".save-language", function (e) {
+        e.preventDefault();
+        var userData = new Object();
+        {
+            userData.LanguageID = $('.language-form-id').val();
+            userData.LanguageName = $("[name = language]").val();
+        }
+
+        var successFunction = function () {
+            console.log('Language saved');
+        };
+
+        ajaxFunction('/EditResume/AddLanguage', 'POST', userData, successFunction);
+        return false;
+    });
+
     //------------------------------------------------------------------------------------------------
 
     $('body').on('click', '.save-settings', function () {
@@ -192,7 +208,7 @@
                             var workDetails = $('.tWorkexperience').append($('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
 
-                            $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" data-workexp-id="' + item['ExpId'] + '"></i></div>'),
+                            $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" style="color: red;" data-workexp-id="' + item['ExpId'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
                         }
@@ -202,7 +218,7 @@
                     $.each(response.Project, function (i, item) {
                         var projectDetails = $('.tproject').append($('<div class="font-weight-bold">').text(item['ProjectName']),
                                                                  $('<div class="bg-light rounded">').text(item['ProjectDetails']));
-                        $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" data-project-id="' + item['ProjectID'] + '"></i></div>'),
+                        $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" style="color: red;" data-project-id="' + item['ProjectID'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['ProjectName']),
                                                      $('<div class="bg-light rounded">').text(item['ProjectDetails']));
                     });
@@ -210,7 +226,7 @@
                     $.each(response.Skill, function (i, item) {
                         if (item['SkillID'] != null) {
                             var skillDetails = $('.tskill').append($('<div class="font-weight-bold">').text(item['SkillName']));
-                            $('.skillData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 sk-edit" data-skill-id="' + item['UserSkillID'] + '"></i><i class="fas fa-trash sk-delete" data-skill-id="' + item['UserSkillID'] + '"></i></div>'),
+                            $('.skillData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 sk-edit" data-skill-id="' + item['SkillID'] + '"></i><i class="fas fa-trash sk-delete" style="color: red;" data-skill-id="' + item['SkillID'] + '"></i></div>'),
                                                    $('<div class="font-weight-bold">').text(item['SkillName']));
                         }
                     });
@@ -221,7 +237,7 @@
                                                                            $('<div class="bg-light rounded">').text("Scored: " + item['Score']),
                                                                            $('<div class="bg-light rounded">').text("Y.O.P: " + item['YearOfPassing']));
                             //-------Data Visible in Edit Page-------
-                            $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" data-education-id="' + item['EduID'] + '"></i></div>'),
+                            $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" style="color: red;" data-education-id="' + item['EduID'] + '"></i></div>'),
                                            $('<div class="font-weight-bold">').text(item['EducationLevel']),
                                            $('<div>').text("Scored: " + item['Score']));
                         }
@@ -231,8 +247,8 @@
                         if (item['LanguageName'] != null) {
                             var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item['LanguageName']));
                             //-----Data Visible in Edit Page------------
-                            $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lan-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lan-delete" data-language-id="' + item['LanguageID'] + '"></i></div>'),
-                                                         $('<div class="bg-light rounded">').text(item['LanguageName']));
+                            $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lang-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lang-delete" style="color: red;" data-language-id="' + item['LanguageID'] + '"></i></div>'),
+                                                         $('<div class="bg-light font-weight-bold rounded">').text(item['LanguageName']));
                         }
                     });
 
@@ -261,10 +277,11 @@
 
             $('.render-partial-view').load("/Resume/Template");
         }
-        else if ($button.attr('class') == "js-edit-resume")
+        else if ($button.attr('class') == "js-edit-resume") {
             $('.render-partial-view').load("/Resume/Edit", function () {
                 EditSectionScripts();
             });
+        }
 
         return false;
     });
@@ -296,7 +313,6 @@
         $button = $(this);
         if ($button.hasClass('edu-edit')) {
             $('.education-form-id').val($(this).data('education-id'));
-            //$('input[name=educationLevel]').val(currentData.EducationLevel[$(this).data('education-id')+1]);
             $('a')[6].click();
         }
         else if ($button.hasClass('edu-delete')) {
@@ -306,17 +322,34 @@
                 $button.parent().next().fadeOut();
                 $button.parent().next().next().fadeOut();
             };
-            if (confirmDelete(successFunction) == true) {
-                ajaxFunction('/EditResume/DeleteEducation', 'POST', { "eduId": $(this).data('education-id') }, "");
-            }
+            confirmDelete(function (r) {
+                if(r)
+                    ajaxFunction('/EditResume/DeleteEducation', 'POST', { "eduId": $button.data('education-id') }, successFunction);
+            })
         }
         
 
     });
 
-    $('body').on("click", ".we-edit", function () {
-        $('.workExp-form-id').val($(this).data('workexp-id'));
-        $('a')[7].click();
+    $('body').on("click", ".we-edit, .we-delete", function () {
+        $button = $(this);
+        if ($button.hasClass('we-edit')) {
+            $('.workExp-form-id').val($(this).data('workexp-id'));
+            $('a')[7].click();
+        }
+        else if ($button.hasClass('we-delete')) {
+
+            var successFunction = function () {
+                $button.parent().fadeOut();
+                $button.parent().next().fadeOut();
+                $button.parent().next().next().fadeOut();
+            };
+            confirmDelete(function (r) {
+                if (r)
+                    ajaxFunction('/EditResume/DeleteWorkExperience', 'POST', { "expId": $button.data('workexp-id') }, successFunction);
+            })
+        }
+        
 
     });
 
@@ -341,11 +374,24 @@
 //------------------------END CODE OF BHABANI---------------------------------------------------
 
 
-    function confirmDelete(style) {
-        bootbox.confirm("Confirm Delete!", function (result) {
-            style();
-            return result;
+    function confirmDelete(callback) {
+        bootbox.confirm({
+            title: "Delete Data",
+            message: "Do you really want to delete ? This cannot be undone.",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancel'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirm'
+                   
+                }
+            },
+            callback: function (result) {
+                console.log('This was logged in the callback: ' + result);
+                callback(result);
+            }
         });
-    };
+    }
     
 }

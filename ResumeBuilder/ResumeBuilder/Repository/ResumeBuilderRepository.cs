@@ -109,6 +109,7 @@ namespace ResumeBuilder.Repository
             {
                 if (skill.SkillID > 0)
                 {
+                    
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                     msg = "Skill has been updated successfully";
@@ -122,8 +123,6 @@ namespace ResumeBuilder.Repository
                     msg = "Skill has been Added successfully";
                 }
             }
-            
-
             return countRecords > 0 ? msg : "Falied to Add";
             
         }
@@ -180,18 +179,27 @@ namespace ResumeBuilder.Repository
             return countRecords > 0 ? msg : "Failed to Add";
         }
 
-        public bool AddLanguage(Language language, int idUser)
+        public string AddorUpdateLanguage(Language language, int idUser)
         {
+            string msg = string.Empty;
             int countRecords = 0;
             var personEntity = db.Users.Find(idUser);
 
-            if (personEntity != null && language != null)
+            if (language.LanguageID > 0)
+            {
+                db.Entry(language).State = EntityState.Modified;
+                db.SaveChanges();
+                msg = "Languages has been updated successfully";
+            }
+
+            else
             {
                 personEntity.Languages.Add(language);
                 countRecords = db.SaveChanges();
+                msg = "Languages has been Added successfully";
             }
 
-            return countRecords > 0 ? true : false;
+            return countRecords > 0 ? msg : "Failed to add";
         }
 
         public User GetBasicInfo(int idUser)

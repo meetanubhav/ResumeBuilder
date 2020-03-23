@@ -129,14 +129,14 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLanguage(WorkExperienceVM work)
+        public ActionResult AddLanguage(LanguageVM lang)
         {
             int userId = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
-                WorkExperience pr = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
-                string msg = _resumeRepository.AddOrUpdateExperience(pr, userId);
+                Mapper.Initialize(cfg => cfg.CreateMap<LanguageVM, Language>());
+                Language l = Mapper.Map<LanguageVM, Language>(lang);
+                string msg = _resumeRepository.AddorUpdateLanguage(l, userId);
 
                 return Content(msg);
             }
@@ -151,6 +151,23 @@ namespace ResumeBuilder.Controllers
             if (eduDetails != null)
             {
                 db.Educations.Remove(eduDetails);
+                db.SaveChanges();
+                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult DeleteWorkExperience(int expId)
+        {
+            var workDetails = db.WorkExperiences.FirstOrDefault(x => x.ExpId == expId);
+            if (workDetails != null)
+            {
+                db.WorkExperiences.Remove(workDetails);
                 db.SaveChanges();
                 return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
             }

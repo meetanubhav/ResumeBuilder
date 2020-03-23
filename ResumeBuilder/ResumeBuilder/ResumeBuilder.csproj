@@ -238,10 +238,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003131102140_new_model.cs" />
-    <Compile Include="Migrations\202003131102140_new_model.designer.cs">
-      <DependentUpon>202003131102140_new_model.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202003131110418_made_settingID_nullable.cs" />
     <Compile Include="Migrations\202003131110418_made_settingID_nullable.designer.cs">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
@@ -249,6 +245,10 @@
     <Compile Include="Migrations\202003191707070_education_yearofpassing_to_string.cs" />
     <Compile Include="Migrations\202003191707070_education_yearofpassing_to_string.designer.cs">
       <DependentUpon>202003191707070_education_yearofpassing_to_string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003230611502_test.cs" />
+    <Compile Include="Migrations\202003230611502_test.designer.cs">
+      <DependentUpon>202003230611502_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
@@ -260,6 +260,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
     <Compile Include="Models\ViewModel\EducationVM.cs" />
+    <Compile Include="Models\ViewModel\LanguageVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
@@ -298,14 +299,14 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003131102140_new_model.resx">
-      <DependentUpon>202003131102140_new_model.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003131110418_made_settingID_nullable.resx">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003191707070_education_yearofpassing_to_string.resx">
       <DependentUpon>202003191707070_education_yearofpassing_to_string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003230611502_test.resx">
+      <DependentUpon>202003230611502_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
