@@ -76,8 +76,16 @@
     });
 
     $('body').on("click", ".save-education", function (e) {
-        e.preventDefault();        var userData = new Object();        {
-            userData.EduID = $('.education-form-id').val();            userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];            userData.YearOfPassing = $("[name = yop]").val();            userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];            userData.Score = $("[name = gradetype]").val();            userData.Stream = $("[name = stream]").val();            userData.Institution = $("[name = university]").val();
+        e.preventDefault();
+        var userData = new Object();
+        {
+            userData.EduID = $('.education-form-id').val();
+            userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
+            userData.YearOfPassing = $("[name = yop]").val();
+            userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
+            userData.Score = $("[name = gradetype]").val();
+            userData.Stream = $("[name = stream]").val();
+            userData.Institution = $("[name = university]").val();
         }
 
         var successFunction = function () {
@@ -90,8 +98,11 @@
 
     //---------------------- CODE BY BHABANI -------------------------------------------------------
     $('body').on("click", ".save-skill", function (e) {
-        e.preventDefault();        var userData = new Object();        {
-            userData.SkillID = $('.skill-form-id').val();            userData.SkillName = $("[name = skill]").val();
+        e.preventDefault();
+        var userData = new Object();
+        {
+            userData.SkillID = $('.skill-form-id').val();
+            userData.SkillName = $("[name = skill]").val();
         }
 
         var successFunction = function () {
@@ -103,8 +114,11 @@
     });
 
     $('body').on("click", ".save-project", function (e) {
-        e.preventDefault();        var userData = new Object();        {
-            userData.ProjectID = $('.project-form-id').val();            userData.DurationInMonth = $("[name = projectDuration]").val();
+        e.preventDefault();
+        var userData = new Object();
+        {
+            userData.ProjectID = $('.project-form-id').val();
+            userData.DurationInMonth = $("[name = projectDuration]").val();
             userData.ProjectName = $("[name = projectName]").val();
             userData.ProjectDetails = $("[name = projectDetails]").val();
             userData.YourRole = $("[name = projectRole]").val();
@@ -120,8 +134,11 @@
     });
 
     $('body').on("click", ".save-workExp", function (e) {
-        e.preventDefault();        var userData = new Object();        {
-            userData.ExpId = $('.workExp-form-id').val();            userData.Organization = $("[name = organization]").val();
+        e.preventDefault();
+        var userData = new Object();
+        {
+            userData.ExpId = $('.workExp-form-id').val();
+            userData.Organization = $("[name = organization]").val();
             userData.Designation = $("[name = designation]").val();
             userData.FromYear = $("[name = fromDate]").val();
             userData.ToYear = $("[name = toDate]").val();

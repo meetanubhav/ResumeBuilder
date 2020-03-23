@@ -116,7 +116,7 @@ namespace ResumeBuilder.Repository
                 }
                 else
                 {
-                    
+                    db.Skills.Add(skill);
                     personEntity.Skills.Add(skill);
                     countRecords = db.SaveChanges();
                     msg = "Skill has been Added successfully";
