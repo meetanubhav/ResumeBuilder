@@ -250,6 +250,9 @@
     <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.cs" />
     <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.designer.cs">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
+    <Compile Include="Migrations\202003191707070_education_yearofpassing_to_string.cs" />
+    <Compile Include="Migrations\202003191707070_education_yearofpassing_to_string.designer.cs">
+      <DependentUpon>202003191707070_education_yearofpassing_to_string.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
@@ -260,6 +263,7 @@
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
+    <Compile Include="Models\ViewModel\EducationVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="Models\ViewModel\SettingsVM.cs" />
@@ -275,9 +279,10 @@
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
+    <Content Include="Views\Resume\Summary.cshtml" />
+    <Content Include="Views\Resume\PublicProfile.cshtml" />
     <Content Include="Views\Resume\Template.cshtml" />
     <Content Include="Views\Resume\Settings.cshtml" />
-    <Content Include="Views\Resume\PublicProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -302,6 +307,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003131221194_changed string lenghth of summary section.resx">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003191707070_education_yearofpassing_to_string.resx">
+      <DependentUpon>202003191707070_education_yearofpassing_to_string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

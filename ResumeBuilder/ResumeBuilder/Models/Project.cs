@@ -24,6 +24,6 @@ namespace ResumeBuilder.Models
 
         public int UserID { get; set; }
         [ForeignKey("UserID")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ResumeBuilder.Repository;
+using AutoMapper;
 
 namespace ResumeBuilder.Controllers
 {
     public class EditResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilder.Models.ResumeBuilderDBContext();
+        private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
 
         public ActionResult GetUserInfo()
         {
@@ -18,6 +21,7 @@ namespace ResumeBuilder.Controllers
             var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
             return Json(userFromDB, JsonRequestBehavior.AllowGet);
         }
+        
         [HttpPost]
         public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
         {
@@ -39,6 +43,7 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
+        
         [HttpPost]
         public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
         {
@@ -57,29 +62,31 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
+
         [HttpPost]
-        public ActionResult AddEducationInfo(Education educationInfo)
+        public ActionResult AddOrUpdateEducation(EducationVM education)
+        {
+            int userId = Int32.Parse(User.Identity.Name);
+            if(ModelState.IsValid)
+            {
+                Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
+                Education edu = Mapper.Map<EducationVM, Education>(education);
+                string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
+
+                return Content(msg);
+            }
+
+            return Content("Failed");
+        }
+
+        //-------------------------Code by bhabani------------------------------------------
+        [HttpGet]
+        public JsonResult GetData()
         {
             var userID = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                var userFromDB = new Education();
-                userFromDB.EducationLevel = educationInfo.EducationLevel;
-                userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
-                userFromDB.Stream = educationInfo.Stream;
-                userFromDB.Score = educationInfo.Score;
-                userFromDB.Institution = educationInfo.Institution;
-                userFromDB.Board = educationInfo.Board;
-                userFromDB.YearOfPassing = educationInfo.YearOfPassing;
-                userFromDB.UserID = userID;
-                db.Educations.Add(userFromDB);
-                db.SaveChanges();
-                return Content("Success");
-            }
-            else
-            {
-                return Content("Failed");
-            }
+            var summary = db.Users.FirstOrDefault(x => x.UserID == userID);
+
+            return Json(summary, JsonRequestBehavior.AllowGet);
         }
     }
 }
