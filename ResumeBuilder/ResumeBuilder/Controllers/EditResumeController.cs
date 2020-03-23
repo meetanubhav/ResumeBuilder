@@ -67,6 +67,7 @@ namespace ResumeBuilder.Controllers
                 userFromDB.EducationLevel = educationInfo.EducationLevel;
                 userFromDB.CGPAorPercentage = educationInfo.CGPAorPercentage;
                 userFromDB.Stream = educationInfo.Stream;
+                userFromDB.Score = educationInfo.Score;
                 userFromDB.Institution = educationInfo.Institution;
                 userFromDB.Board = educationInfo.Board;
                 userFromDB.YearOfPassing = educationInfo.YearOfPassing;
