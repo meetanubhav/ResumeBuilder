@@ -15,8 +15,8 @@
 
     });
     AjaxScripts();
-    $('body').on("click",'.js-public-profile', function (e) {
-        e.preventDefault();
-        window.open('/Resume/PublicProfile/' + $('#userId').val());
-    });
+    //$('body').on("click",'.js-public-profile', function (e) {
+    //    e.preventDefault();
+    //    window.open('/Resume/PublicProfile/' + $('#userId').val());
+    //});
 });    

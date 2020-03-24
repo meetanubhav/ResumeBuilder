@@ -130,8 +130,3 @@ ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
 *.suo
 *.csproj
-*.suo
-*.dll
-*.pdb
-*.Cache
-*.csproj
