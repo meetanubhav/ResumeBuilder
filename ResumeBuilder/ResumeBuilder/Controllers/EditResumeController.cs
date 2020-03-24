@@ -84,21 +84,21 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult AddOrUpdateWorkExperience(WorkExperienceVM workExperience)
-        {
-            int userId = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
-                WorkExperience workExp = Mapper.Map<WorkExperienceVM, WorkExperience>(workExperience);
-                string msg = _resumeRepository.AddOrUpdateExperience(workExp, userId);
+        //[HttpPost]
+        //public ActionResult AddOrUpdateWorkExperience(WorkExperienceVM workExperience)
+        //{
+        //    int userId = Int32.Parse(User.Identity.Name);
+        //    if (ModelState.IsValid)
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
+        //        WorkExperience workExp = Mapper.Map<WorkExperienceVM, WorkExperience>(workExperience);
+        //        string msg = _resumeRepository.AddOrUpdateExperience(workExp, userId);
 
-                return Content(msg);
-            }
+        //        return Content(msg);
+        //    }
 
-            return Content("Failed");
-        }
+        //    return Content("Failed");
+        //}
 
         
         [HttpDelete]

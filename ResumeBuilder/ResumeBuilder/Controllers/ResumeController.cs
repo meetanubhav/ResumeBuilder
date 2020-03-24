@@ -78,8 +78,13 @@ namespace ResumeBuilder.Controllers
 
         public ActionResult PublicProfile()
         {
-            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
-            return View(user);
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+            var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+
+            return View(userVM);
         }
 
         public ActionResult SignOut()

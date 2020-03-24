@@ -26,49 +26,170 @@
     <hr />
     <div>
         <h3>Education</h3>
-        @foreach (var userEducation in Model.Education)
-        {
-            <div class="row container">
-                <div class="col-md-8 text-secondary">
-                    <p>
-                        <b>@userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </b>
-                        <br />
-                        <b>Year of Passing : @userEducation.YearOfPassing     </b>
-                        <br />
-                        <b>Stream : @userEducation.Stream </b>
-                        <br />
-                        <b>Board :@userEducation.Board </b>
-                        <br />
-                        <b> University/School : @userEducation.Institution </b>
-                    </p>
+        <div class="">
+            @foreach (var userEducation in Model.Education)
+            {
+                <div class="row container">
+                    <div class="col-md-8 text-secondary">
+                        <p>
+                            <b>@userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </b>
+                            <br />
+                            <b>Year of Passing : @userEducation.YearOfPassing     </b>
+                            <br />
+                            <b>Stream : @userEducation.Stream </b>
+                            <br />
+                            <b>Board :@userEducation.Board </b>
+                            <br />
+                            <b> University/School : @userEducation.Institution </b>
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button class="btn btn-info js-edit-education" data-user-id="@userEducation.EduID">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger js-delete-education" data-user-id="@userEducation.EduID">
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <button class="btn btn-danger float-right js-delete-education" data-user-id="@userEducation.EduID">
-                        <i class="fa fa-trash-alt"></i>
-                    </button>
-                </div>
-            </div>
-        }
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Work Experience</h3>
+        <div>
+            @{
+                if (Model.WorkExperience != null)
+                {
+                    foreach (var workExp in Model.WorkExperience)
+                    {
+                        <div class="row container">
+                            <div class="col-md-8 text-secondary">
+                                <p>
+                                    <b>Organization : @workExp.Organization</b>
+                                    <br />
+                                    <b>Designation : @workExp.Designation</b>
+                                    <br />
+                                    <b>Duration : @workExp.FromYear - @workExp.ToYear </b>
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <button class="btn btn-info  js-edit-work-experience" data-user-id="@workExp.ExpId">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger  js-delete-work-experience" data-user-id="@workExp.ExpId">
+                                    <i class="fa fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Projects</h3>
+        <div>
+            @{
+                if (Model.Project != null)
+                {
+                    foreach (var project in Model.Project)
+                    {
+                        <div class="row container">
+                            <div class="col-md-8 text-secondary">
+                                <p>
+                                    <b>@project.ProjectName</b>
+                                    <br />
+                                    <b>@project.ProjectDetails</b>
+                                    <br />
+                                    <b>Your Role : @project.YourRole</b>
+                                    <br />
+                                    <b>Duration : @project.DurationInMonth</b>
+                                    <br />
+                                    <b>Skills :</b>
+                                    @foreach (var skill in project.ProjectSkills)
+                                    {
+                                        <span>skill </span>
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <button class="btn btn-info  js-edit-project" data-user-id="@project.ProjectID">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger  js-delete-project" data-user-id="@project.ProjectID">
+                                    <i class="fa fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Language</h3>
+        <div>
+            @{
+                if (Model.Language != null)
+                {
+                    foreach (var lan in Model.Language)
+                    {
+                        <div class="row container">
+                            <div class="col-md-8 text-secondary">
+                                <p>
+                                    <b>@lan.LanguageName</b>
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <button class="btn btn-info  js-edit-language" data-user-id="@lan.LanguageID">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger  js-delete-language" data-user-id="@lan.LanguageID">
+                                    <i class="fa fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".languageModal">Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Skills</h3>
+        <div>
+            @{
+                if (Model.Skill != null)
+                {
+                    foreach (var skill in Model.Skill)
+                    {
+                        <div class="row container">
+                            <div class="col-md-8 text-secondary">
+                                <p>
+                                    <b>@skill.SkillName</b>
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <button class="btn btn-info  js-edit-skill" data-user-id="@skill.SkillID">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger  js-delete-skill" data-user-id="@skill.SkillID">
+                                    <i class="fa fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
 </div>

@@ -5,14 +5,21 @@
         EditSectionScripts();
         return false;
     });
+
+    $('.js-template').on('click', function () {
+        $('.render-partial-view').load("");
+    });
+
+    $('.js-public-profile').on('click', function () {
+        window.open('/Resume/PublicProfile', '_blank');
+    });
     
-    $('.js-settings').on("click", function (e) {
+    $('.js-settings').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Settings/Settings", function () {
             ResumeSettingsScript();
         });
-        //return false;
-
     });
+
     AjaxScripts();
 });

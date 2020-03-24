@@ -11,6 +11,7 @@
         ajaxFunction('/EditResume/AddBasicInfo', userData)
         return false;
     });
+
     $('body').on("click", ".save-summary-info", function (e) {
         e.preventDefault();
         var userData = {};
@@ -24,7 +25,7 @@
         e.preventDefault();
         var userData = {};
         userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
-        userData.cgpaOrPercentage = ($('.form-check-input').serializeArray())[1]['value'];
+        userData.CgpaOrPercentage = ($('.form-check-input').serializeArray())[1]['value'];
         userData.YearOfPassing = $("[name = YearOfPassing]").val();
         userData.Score = $("[name = Score]").val();
         userData.Board = $("[name = Board]").val();
@@ -57,7 +58,7 @@
         }
         ajaxFunction('/Settings/AddOrUpdateSettings', formDetails, 'success');
         return false;
-    })
+    });
 
     // COMMON FUNCTION FOR AJAX POST CALLS
     var ajaxFunction = function (url, formData) {
