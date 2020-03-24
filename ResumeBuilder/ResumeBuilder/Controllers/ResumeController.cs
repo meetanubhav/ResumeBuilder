@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ResumeBuilder.Models.ViewModel;
 using System.Web.Security;
+using AutoMapper;
 
 namespace ResumeBuilder.Controllers
 {
@@ -74,6 +75,33 @@ namespace ResumeBuilder.Controllers
             {
                 return RedirectToAction("Dashboard");
             }
+        }
+
+        [HttpGet]
+        public ActionResult GetTemplateDetails()
+        {
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.FirstOrDefault(x => x.UserID == userId);
+            
+            UserResumeVM vm = new UserResumeVM();
+
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
+            vm = Mapper.Map<User, UserResumeVM>(user);
+            vm.Project = user.Projects;
+            vm.Skill = user.Skills;
+            vm.Education = user.Education;
+            vm.WorkExperience = user.WorkExperiences;
+            vm.Language = user.Languages;
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [Authorize]
+        public ActionResult Template()
+        {
+            //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
+            return PartialView();
         }
 
         public ActionResult PublicProfile()

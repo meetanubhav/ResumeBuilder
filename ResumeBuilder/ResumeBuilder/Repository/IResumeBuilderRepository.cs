@@ -13,9 +13,9 @@ namespace ResumeBuilder.Repository
         string AddOrUpdateEducation(Education education, int idUser);
         int GetIdPerson(string email);
         string AddOrUpdateExperience(WorkExperience workExperience, int idUser);
-        bool AddSkill(Skill skill, int idUser);
-        bool AddProject(Project project, int idUser);
-        bool AddLanguage(Language language, int idUser);
+        string AddorUpdateSkill(Skill skill, int idUser);
+        string AddorUpdateProject(Project project, int idUser);
+        string AddorUpdateLanguage(Language language, int idUser);
         User GetBasicInfo(int idUser);
         IQueryable<Education> GetEducationById(int idUser);
         IQueryable<WorkExperience> GetWorkExperienceById(int idUser);

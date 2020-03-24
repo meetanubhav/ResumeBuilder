@@ -263,6 +263,11 @@
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
+    <Compile Include="Models\ViewModel\EducationVM.cs" />
+    <Compile Include="Models\ViewModel\LanguageVM.cs" />
+    <Compile Include="Models\ViewModel\ProjectVM.cs" />
+    <Compile Include="Models\ViewModel\SkillVM.cs" />
+    <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="Models\ViewModel\SettingsVM.cs" />
@@ -278,9 +283,9 @@
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
-    <Content Include="Views\Resume\Template.cshtml" />
     <Content Include="Views\Resume\Settings.cshtml" />
     <Content Include="Views\Resume\PublicProfile.cshtml" />
+    <Content Include="Views\Resume\Template.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
