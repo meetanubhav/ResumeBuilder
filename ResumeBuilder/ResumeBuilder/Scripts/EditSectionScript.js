@@ -10,7 +10,7 @@
     //        $('input[name = "university"]').show();
     //    }
     //});
-    $('body').on("click",'input[name = "optradio"]', function () {
+    $('body').on("click", 'input[name = "optradio"]', function () {
         if ($(this).attr('value') == "percentage") {
             $('input[name = "gradetype"]').attr('placeholder', "Percentage");
         }
@@ -26,7 +26,7 @@
             $("#toYear").show();
             $("#toYear").val('');
         }
-        
+
     });
-    
+
 }
