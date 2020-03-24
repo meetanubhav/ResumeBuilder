@@ -69,7 +69,7 @@
         };        ajaxFunction('/EditResume/AddSkill', userData);        return false;
     });    $('body').on("click", ".save-project", function (e) {
         e.preventDefault();        var userData = new Object();        {
-            userData.ProjectID = $('.js-project-id').val();            userData.DurationInMonth = $("[name = projectDuration]").val();            userData.ProjectName = $("[name = projectName]").val();            userData.ProjectDetails = $("[name = projectDetails]").val();            userData.YourRole = $("[name = projectRole]").val();
+            userData.ProjectID = $('.js-project-id').val();            userData.DurationInMonth = $("#projectDuration option:selected").val();            userData.ProjectName = $("[name = projectName]").val();            userData.ProjectDetails = $("[name = projectDetails]").val();            userData.YourRole = $("[name = projectRole]").val();
         }        var successFunction = function () {            //$('.modal').modal('hide');            console.log("Action Called");
         };        ajaxFunction('/EditResume/AddProject',userData);        return false;
     });    $('body').on("click", ".save-workExp", function (e) {

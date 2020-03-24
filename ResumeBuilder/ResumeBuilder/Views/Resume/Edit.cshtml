@@ -247,7 +247,14 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="projectDuration">Project Duration ( Months )</label>
                             </div>
-                            <select class="custom-select project-duration" id="projectDuration"></select>
+                            <select class="custom-select project-duration" id="projectDuration">
+                                @{
+                                    for(int i=0;i<=100;i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            </select>
                         </div>
                     </div>
                     <button type="button" class="mt-2 btn btn-sm btn-success save-work save-project">SAVE</button>
