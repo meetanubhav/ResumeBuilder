@@ -11,16 +11,25 @@ namespace ResumeBuilder.Models
     {
         [Key]
         public int EduID { get; set; }
+
         public string EducationLevel { get; set; }
-        public Nullable<DateTime> YearOfPassing { get; set; }
-        public bool CGPAorPercentage { get; set; }
+
+        public int? YearOfPassing { get; set; }
+
+        public string CGPAorPercentage { get; set; }
+
         public double Score { get; set; }
-        
-        public Stream Stream { get; set; }
-        public University University { get; set; }
+
+        public string Stream { get; set; }
+
+        public string Institution { get; set; }
+
+        public string Board { get; set; }
+
 
         public int UserID { get; set; }
+
         [ForeignKey("UserID")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

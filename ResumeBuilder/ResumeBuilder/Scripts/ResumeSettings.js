@@ -1,8 +1,14 @@
 ﻿function ResumeSettingsScript() {
     
-    //$('.home-dash').toggle();
-    $('.hide , .home-dash').hide();
+    $('.home-dash').hide();
     $('.show-settings-section').show();
+    $('.setting-form input').each(function (i, e) {
+
+        if ($(e).data().val == 'True') {
+            //$(e).setPosition(true);
+            $(e)[0].checked = true;
+        }
+    });
     //$('input[type="checkbox"]').change(function (e) {
 
     //    var checked = $(this).prop("checked"),
