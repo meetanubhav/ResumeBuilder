@@ -67,6 +67,8 @@ namespace ResumeBuilder.Controllers
                     vm.ResumeName = user.ResumeName;
                     vm.Summary = user.Summary;
                     vm.Education = user.Education;
+                    vm.Project = user.Projects;
+                    vm.WorkExperience = user.WorkExperiences;
                 }
                 return PartialView("~/Views/Resume/Edit.cshtml", vm);
             }
@@ -76,10 +78,25 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult PublicProfile(int id)
+        public ActionResult PublicProfile()
         {
-            var user = db.Users.Where(x => x.UserID == id).FirstOrDefault();
-            return View(user);
+            var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
+            UserResumeVM vm = new UserResumeVM();
+            {
+                vm.FirstName = user.FirstName;
+                vm.LastName = user.LastName;
+                vm.Email = user.Email;
+                vm.PhoneNumber = user.PhoneNumber;
+                vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+                vm.ResumeName = user.ResumeName;
+                vm.Summary = user.Summary;
+                vm.Education = user.Education;
+                vm.WorkExperience = user.WorkExperiences;
+                vm.Language = user.Languages;
+                vm.Skill = user.Skills;
+                vm.Project = user.Projects;
+            }
+            return View(vm);
         }
 
         public ActionResult SignOut()
