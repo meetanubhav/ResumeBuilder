@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Login";
 }
-@*<link rel="stylesheet" href="~/Content/Login.css" />*@
+@section loginStylesheet {
+    <link rel="stylesheet" href="~/Content/Login.css" />
+}
 <div class="login-page">
     <div class="form">
         @Html.ValidationSummary()
