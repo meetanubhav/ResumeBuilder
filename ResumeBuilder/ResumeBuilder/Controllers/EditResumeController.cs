@@ -21,6 +21,9 @@ namespace ResumeBuilder.Controllers
             var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
             return Json(userFromDB, JsonRequestBehavior.AllowGet);
         }
+        
+        // Add and Update Actions 
+
         [HttpPost]
         public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
         {
@@ -43,6 +46,7 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
+        
         [HttpPost]
         public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
         {
@@ -142,6 +146,8 @@ namespace ResumeBuilder.Controllers
             return Content("Failed");
         }
 
+        // Delete Actions
+
         [HttpPost]
         public ActionResult DeleteProject(int projectId)
         {
@@ -160,15 +166,11 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteEducation(int? id)
+        public ActionResult DeleteEducation(int id)
         {
-            if (id == null)
-            {
-                return HttpNotFound("404 not found. Better luck Next time");
-            }
             try
             {
-                db.Educations.Remove(db.Educations.Single(m => m.EduID == id));
+                db.Educations.Remove(db.Educations.FirstOrDefault(m => m.EduID == id));
                 db.SaveChanges();
                 return Content("Success");
             }
@@ -177,24 +179,7 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
-        [HttpPost]
-        public ActionResult AddWorkExperience(WorkExperience workExperienceInfo)
-        {
-            var userID = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                var userFromDB = new WorkExperience();
-                userFromDB.UserID = userID;
-                userFromDB.Organization = workExperienceInfo.Organization;
-                userFromDB.Designation = workExperienceInfo.Designation;
-                userFromDB.FromYear = workExperienceInfo.FromYear;
-                userFromDB.ToYear = workExperienceInfo.ToYear;
-                db.WorkExperiences.Add(userFromDB);
-                db.SaveChanges();
-                return Content("Success");
-            }
-            return Content("Failure");
-        }
+        
         [HttpPost]
         public ActionResult DeleteLanguage(int languageId)
         {
@@ -227,6 +212,22 @@ namespace ResumeBuilder.Controllers
                 return HttpNotFound();
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult DeleteWorkExperience(int workExperienceId)
+        {
+            var workExperience = db.WorkExperiences.FirstOrDefault(x => x.ExpId == workExperienceId);
+            if (workExperience != null)
+            {
+                db.WorkExperiences.Remove(workExperience);
+                db.SaveChanges();
+                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
     }
 }
