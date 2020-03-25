@@ -3,14 +3,21 @@
     Layout = null;
 }
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
-    <h2 class="text-center show-resume-info">@Model.ResumeName</h2>
-    <div>
-        <h3 class="mb-2">Basic Information</h3>
-        <div class="ml-3">
-            <p>Name : <span class="show-name">@Model.FirstName  @Model.LastName</span> </p>
-            <p>Email : <span class="show-email">@Model.Email</span></p>
-            <p>Phone Number : <span class="show-phone-number">@Model.PhoneNumber</span> </p>
-            <p>Alternate Phone Number : <span class="show-alt-phone-number">@Model.AlternatePhoneNumber</span> </p>
+    <h3>Basic Information</h3>
+    <form class="p-4 basic-info-form" method="post" action="">
+        <div class="row">
+            <div class="col">
+                <label class="" for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" placeholder="First name"/>
+            </div>
+            <div class="col">
+                <label class="" for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" placeholder="Last name" />
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Email" />
         </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 ajax-basicInfomodal" data-toggle="modal" data-target=".basicInfomodal">Basic Info<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
