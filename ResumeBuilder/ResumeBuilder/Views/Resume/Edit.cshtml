@@ -26,42 +26,67 @@
     <hr />
     <div>
         <h3>Education</h3>
+        @foreach (var userEducation in Model.Education)
+        {
+            <hr />
+                <div class=" text-secondary">
+                    <p> @userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </p>
+                    <p>@userEducation.YearOfPassing</p>
+                    <p> @userEducation.Stream </p>
+                    <p>@userEducation.Institution</p>
+                </div>
+        }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Work Experience</h3>
-        @*@foreach(var userWorkExperience in Model.WorkExperience){
+        @foreach (var userWorkExperience in Model.WorkExperience)
+        {
+            <hr />
             <div class="row container">
                 <div class="col-md-8 text-secondary">
                     <p>
-                        <b> @userWorkExperience.Designation </b> at 
+                        <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
                         <br />
-                        <b> @userWorkExperience.Organization </b>
-                        <br />
-                        <b> @userWorkExperience.FromYear </b> - 
-                        <br />
-                        <b> @userWorkExperience.ToYear </b>
+                        <b> @userWorkExperience.FromYear </b> - <b> @userWorkExperience.ToYear </b>
                     </p>
                 </div>
             </div>
-        }*@
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        }
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Add Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Projects</h3>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        @foreach (var userProject in Model.Project)
+        {
+            <hr />
+            <div class="border-dark">
+                <h5>@userProject.ProjectName</h5>
+                <small>Duration @userProject.DurationInMonth months</small>
+                <p>@userProject.ProjectDetails</p>
+            </div>
+        }
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Add Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Language</h3>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".languageModal">Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        @foreach (var userlanguages in Model.Language)
+        {
+            <span class="btn btn-primary">@userlanguages.LanguageName <i class="fa fa-times text-danger"> </i> </span>
+        }
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2" data-toggle="modal" data-target=".languageModal">Add Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Skills</h3>
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        @foreach (var userSkills in Model.Skill)
+        {
+            <span class="btn btn-primary">@userSkills.SkillName <i class="fa fa-times text-danger"> </i> </span>
+        }
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2 " data-toggle="modal" data-target=".skillModal">Add Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
 </div>
 
@@ -261,7 +286,7 @@
                             </div>
                             <select class="custom-select project-duration" id="projectDuration">
                                 @{
-                                    for(int i=0;i<=100;i++)
+                                    for (int i = 0; i <= 100; i++)
                                     {
                                         <option value="@i">@i</option>
                                     }
