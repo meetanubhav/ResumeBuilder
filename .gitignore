@@ -140,3 +140,11 @@ ResumeBuilder/ResumeBuilder.v12.suo
 *.csproj
 *.user
 *.Cache
+ResumeBuilder/ResumeBuilder.v12.suo
+*.dll
+*.pdb
+*.txt
+*.resx
+*.pdb
+*.Cache
+*.user
