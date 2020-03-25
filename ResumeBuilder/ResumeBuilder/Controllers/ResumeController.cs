@@ -81,33 +81,6 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult PublicProfile(int? id)
-        {
-            var user = db.Users.Where(x => x.UserID == id).FirstOrDefault();
-            if (user != null)
-            {
-                UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Language = user.Languages;
-                    vm.Skill = user.Skills;
-                    vm.Project = user.Projects;
-                }
-                return View(vm);
-            }
-            else
-            {
-                return RedirectToAction("Dashboard");
-            }
-        }
         [HttpGet]
         public ActionResult GetTemplateDetails()
         {
