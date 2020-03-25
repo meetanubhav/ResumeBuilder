@@ -150,3 +150,7 @@ ResumeBuilder/ResumeBuilder.v12.suo
 *.user
 *.suo
 *.csproj
+*.Cache
+*.cache
+*.csproj
+*.suo

@@ -1,240 +1,64 @@
-<<<<<<< Updated upstream
-﻿@model ResumeBuilder.Models.ViewModel.SignupVM
+@model ResumeBuilder.Models.ViewModel.IndexVM
 @{
     ViewBag.Title = "Login";
 }
-<<<<<<< Updated upstream
-@section IndexStyleSheet{
-    <link rel="stylesheet" href="~/Content/index.css" />
-}
-<div class="container-fluid content-panel">
-    <div class="login-reg-panel bg-primary text-white">
-        <div class="login-info-box">
-            <h2>Have an account?</h2>
-            <p>Lorem ipsum dolor sit amet</p>
-            <label id="label-register" for="log-reg-show">Login</label>
-            <input type="radio" name="active-log-panel" id="log-reg-show" checked="checked">
-        </div>
-
-        <div class="register-info-box">
-            <h2>Don't have an account?</h2>
-            <p>Lorem ipsum dolor sit amet</p>
-            <label id="label-login" for="log-login-show">Register</label>
-            <input type="radio" name="active-log-panel" id="log-login-show">
-=======
-<link rel="stylesheet" type="text/css" href="~/Content/Login.css" />
+@*<link rel="stylesheet" href="~/Content/Login.css" />*@
 <div class="login-page">
     <div class="form">
-        <form class="register-form">
-            <input type="text" placeholder="name" />
-            <input type="password" placeholder="password" />
-            <input type="text" placeholder="email address" />
-            <button>create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
-        </form>
-        <form class="login-form">
+        @Html.ValidationSummary()
+        <form class="register-form" action="/Resume/Register" method="post" novalidate="novalidate">
+
+
             <div class="form-horizontal">
                 <div class="form-group">
                     <i class="fa fa-user"></i>
-                    @Html.LabelFor(x => x.Username)
-                    @Html.TextBoxFor(x => x.Username, "LoginUsername", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-white" })
+                    @Html.LabelFor(x => x.RegisterModel.RegisterUsername)
+                    @Html.TextBoxFor(x => x.RegisterModel.RegisterUsername, "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.RegisterModel.RegisterUsername, "", new { @class = "text-red" })
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock"></i>
-                    @Html.LabelFor(x => x.Password)
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-white" })
+                    @Html.LabelFor(x => x.RegisterModel.RegisterPassword)
+                    @Html.PasswordFor(x => x.RegisterModel.RegisterPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.RegisterModel.RegisterPassword, "", new { @class = "text-red" })
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> LOGIN</button>
+                    <i class="fa fa-lock"></i>
+                    @Html.LabelFor(x => x.RegisterModel.RegisterConfirmPassword)
+                    @Html.PasswordFor(x => x.RegisterModel.RegisterConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.RegisterModel.RegisterConfirmPassword, "", new { @class = "text-red" })
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> Register</button>
                 </div>
             </div>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
-</form>
-    </div>
-</div><div class="login-page">
-    <div class="form">
-        <form class="register-form">
-            <input type="text" placeholder="name" />
-            <input type="password" placeholder="password" />
-            <input type="text" placeholder="email address" />
-            <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
-        <form class="login-form">
-            <input type="text" placeholder="username" />
-            <input type="password" placeholder="password" />
-            <button>login</button>
+
+        <form class="login-form" action="/Resume/Login" method="post" novalidate="novalidate">
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <i class="fa fa-user"></i>
+                    @Html.LabelFor(x => x.LoginModel.Username)
+                    @Html.TextBoxFor(x => x.LoginModel.Username, "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.LoginModel.Username, "", new { @class = "text-red" })
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock"></i>
+                    @Html.LabelFor(x => x.LoginModel.Password)
+                    @Html.PasswordFor(x => x.LoginModel.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.LoginModel.Password, "", new { @class = "text-red" })
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> Login</button>
+                </div>
+            </div>
+
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>
     </div>
 </div>
-<div class="row w-100">
-    <section class="bg-dark text-white text-center w-50 min-vh-100">
-        <div class="container pt-5 my-auto w-50 ">
-            <div>
-                <h2 class="text-center">Welcome</h2>
-                <h2 class="text-center">To</h2>
-                <h2 class="text-center">Resume Builder</h2>
-            </div>
->>>>>>> Stashed changes
-        </div>
-
-        <div class="white-panel">
-            <div class="login-show">
-                <h2>LOGIN</h2>
-                <div class="form-horizontal">
-                    @*<div class="form-group">
-                        <i class="fa fa-user"></i>
-                        @Html.LabelFor(x => x.Username)
-                        @Html.TextBoxFor(x => x.Username, "LoginUsername", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-white" })
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-lock"></i>
-                        @Html.LabelFor(x => x.Password)
-                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-white" })
-                    </div>*@
-                </div>
-                @*<button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> LOGIN</button>*@
-            </div>
-            <div class="register-show">
-                <h2>REGISTER</h2>
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <i class="fa fa-user"></i>
-                        @Html.LabelFor(x => x.Username)
-                        @Html.TextBoxFor(x => x.Username, "LoginUsername", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-black" })
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-lock"></i>
-                        @Html.LabelFor(x => x.Password)
-                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-black" })
-                    </div>
-
-                    <div class="form-group">
-                        <i class="fa fa-lock"></i>
-                        @Html.LabelFor(x => x.ConfirmPassword)
-                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-black" })
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> Register</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="~/Scripts/login.js"></script>
-=======
-﻿@model ResumeBuilder.Models.ViewModel.IndexVM
-@{
-    ViewBag.Title = "Login";
-}
-<link rel="stylesheet" href="~/Content/Login.css" />
-<div class="login-page">
-        <div class="form">
-            @Html.ValidationSummary()
-            <form class="register-form" action="/Resume/Register" method="post" novalidate="novalidate">
-           
-                
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <i class="fa fa-user"></i>
-                            @Html.LabelFor(x => x.RegisterModel.RegisterUsername)
-                            @Html.TextBoxFor(x => x.RegisterModel.RegisterUsername, "", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.RegisterModel.RegisterUsername, "", new { @class = "text-red" })
-                        </div>
-                        <div class="form-group">
-                            <i class="fa fa-lock"></i>
-                            @Html.LabelFor(x => x.RegisterModel.RegisterPassword)
-                            @Html.PasswordFor(x => x.RegisterModel.RegisterPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.RegisterModel.RegisterPassword, "", new { @class = "text-red" })
-                        </div>
-                        <div class="form-group">
-                            <i class="fa fa-lock"></i>
-                            @Html.LabelFor(x => x.RegisterModel.RegisterConfirmPassword)
-                            @Html.PasswordFor(x => x.RegisterModel.RegisterConfirmPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.RegisterModel.RegisterConfirmPassword, "", new { @class = "text-red" })
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> Register</button>
-                        </div>
-                    </div>
-                    <p class="message">Already registered? <a href="#">Sign In</a></p>
-                </form>
-               
-                <form class="login-form" action="/Resume/Login" method="post" novalidate="novalidate">
-
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <i class="fa fa-user"></i>
-                            @Html.LabelFor(x => x.LoginModel.Username)
-                            @Html.TextBoxFor(x => x.LoginModel.Username, "", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.LoginModel.Username, "", new { @class = "text-red" })
-                        </div>
-                        <div class="form-group">
-                            <i class="fa fa-lock"></i>
-                            @Html.LabelFor(x => x.LoginModel.Password)
-                            @Html.PasswordFor(x => x.LoginModel.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.LoginModel.Password, "", new { @class = "text-red" })
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> Login</button>
-                        </div>
-                    </div>
-
-                    <p class="message">Not registered? <a href="#">Create an account</a></p>
-                </form>
-</div>
-    </div>
-@*
-    <div class="row w-100">
-        <section class="bg-dark text-white text-center w-50 min-vh-100">
-            <div class="container pt-5 my-auto w-50 ">
-                <div>
-                    <h2 class="text-center">Welcome</h2>
-                    <h2 class="text-center">To</h2>
-                    <h2 class="text-center">Resume Builder</h2>
-                </div>
-            </div>
-        </section>
-        <section class="bg-danger text-white w-50 min-vh-100">
-            <div class="container  p-5 w-50">
-                @using (Html.BeginForm())
-                {
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <i class="fa fa-user"></i>
-                            @Html.LabelFor(x => x.Username)
-                            @Html.TextBoxFor(x => x.Username, "LoginUsername", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-white" })
-                        </div>
-                        <div class="form-group">
-                            <i class="fa fa-lock"></i>
-                            @Html.LabelFor(x => x.Password)
-                            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-white" })
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> LOGIN</button>
-                        </div>
-                    </div>
-                }
-            </div>
-        </section>
-    </div>
-    *@
->>>>>>> Stashed changes
 <footer class="fixed-bottom text-center text-white">
     Make RESUMES With <i class="fa fa-heart text-red"></i>
 </footer>
-
-@section scripts{
-    <script src="~/Scripts/umd/Index.js"></script>
-}
