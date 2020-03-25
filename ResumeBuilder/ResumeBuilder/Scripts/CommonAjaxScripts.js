@@ -226,7 +226,7 @@
                     $('.tResume').text(response['ResumeName']);
                     $('.tSummary').text(response['Summary']);
                     //---Data visible in Edit Page
-                    $('.summaryData').append($('<button class="far fa-edit float-right su-edit" data-summary-id="' + response['UserID'] + '"></button>'),
+                    $('.summaryData').append($('<button class="far fa-edit float-right su-edit" data-toggle="modal" data-target=".summaryModal" data-summary-id="' + response['UserID'] + '"></button>'),
                                          $('<div class="font-weight-bold">').text(response['ResumeName']),
                                          $('<div>').text(response['Summary']));
 
