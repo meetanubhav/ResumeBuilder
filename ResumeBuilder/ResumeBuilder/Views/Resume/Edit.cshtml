@@ -54,7 +54,6 @@
     <hr />
     <div>
         <h3>Work Experience</h3>
-        @if (Model.WorkExperience != null) { 
         @foreach(var userWorkExperience in Model.WorkExperience){
             <div class="row container">
                 <div class="col-md-8 text-secondary">
@@ -69,7 +68,7 @@
                     </p>
                 </div>
             </div>
-        } }
+        }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />

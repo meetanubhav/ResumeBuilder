@@ -1,13 +1,14 @@
-﻿@model ResumeBuilder.Models.User
+﻿@model ResumeBuilder.Models.ViewModel.UserResumeVM
 
 @{
-    ViewBag.Title = "PublicProfile";
+    Layout = null;
 }
-@*added by chinmay*@
-
+<html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @*<link rel="Icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d" type="image/x-icon" />*@
-    <title>Profile</title>
+    <title>@Model.FirstName @Model.LastName</title>
 
     <!-- Global stylesheets -->
     <link href="~/Scripts/css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -20,12 +21,8 @@
 
 <body id="page-top">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none  mx-0 px-0"><img src="~/Images/logo-white.png" alt="" class="img-fluid"></span>
-            <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="~/Images/profile.jpg" alt="profile">
-            </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -57,19 +54,13 @@
     <div class="container-fluid p-0">
 
         <!--About-->
-        <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <section class="resume-section p-3 p-lg-5 d-flex d-column bg-dark" id="about">
             <div class="my-auto">
-                <img src="~/Images/head-logo.jpeg" class="img-fluid header-img mb-3" alt="head-logo">
-                <h1 class="mb-0">
+                <h1 class="mb-0 text-white">
                     @Model.FirstName
                     <span class="text-primary">@Model.LastName</span>
                 </h1>
-                <div class="subheading mb-5">
-                    THE NEXT BIG IDEA IS WAITING FOR ITS NEXT BIG CHANGER WITH
-                    <a href="#">THEMSBIT</a>
-                </div>
-                <p class="mb-5" style="max-width: 500px;">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-
+                <p class="mb-5"> @Model.Summary </p>
             </div>
         </section>
 
@@ -81,36 +72,21 @@
                     <div class="mb-5 heading-border"></div>
                 </div>
                 <div class="main-educations" id="educations-box">
-                    <div class="educations">
-                        <div class="educations-icon"></div>
-                        <div class="educations-content">
-                            <span class="date">Apr 2017 - Mar 2018</span>
-                            <h5 class="title">Google Analytics Certified Developer</h5>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            </p>
+                    @foreach (var userEducations in Model.Education)
+                    {
+                        <div class="educations">
+                            <div class="educations-icon"></div>
+                            <div class="educations-content">
+                                <span class="date"> @userEducations.YearOfPassing </span>
+                                <h5 class="title">
+                                    @userEducations.Score @userEducations.CGPAorPercentage in @userEducations.EducationLevel
+                                </h5>
+                                <p class="description">
+                                    @userEducations.Institution
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="educations">
-                        <div class="educations-icon"></div>
-                        <div class="educations-content">
-                            <span class="date">Apr 2017 - Mar 2018</span>
-                            <h5 class="title">Google Analytics</h5>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="educations">
-                        <div class="educations-icon"></div>
-                        <div class="educations-content">
-                            <span class="date">Apr 2018 - Mar 2019</span>
-                            <h5 class="title">Mobile Web Specialist - Google Certification</h5>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            </p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </section>
@@ -122,104 +98,22 @@
                     <h2 class="  text-center">Experience</h2>
                     <div class="mb-5 heading-border"></div>
                 </div>
-                <div class="resume-item col-md-6 col-sm-12 ">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class=" resume-content mr-auto">
-                            <h4 class="mb-3"> Senior Web Developer</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">March 2019 - Present</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="resume-item col-md-6 col-sm-12 ">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class=" resume-content mr-auto">
-                            <h4 class="mb-3"> Senior Web Developer</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">March 2019 - Present</span>
+                @foreach (var userWorkExperience in Model.WorkExperience)
+                {
+                    <div class="resume-item col-md-6 col-sm-12 ">
+                        <div class="card mx-0 p-4 mb-5">
+                            <div class=" resume-content mr-auto">
+                                <h4 class="mb-3">@userWorkExperience.Designation</h4>
+                                <p>
+                                    @userWorkExperience.Organization
+                                </p>
+                            </div>
+                            <div class="resume-date text-md-right">
+                                <span class="text-primary">@userWorkExperience.FromYear - @userWorkExperience.ToYear</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="resume-item col-md-6 col-sm-12 ">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class=" resume-content mr-auto">
-                            <h4 class="mb-3"> Senior Web Developer</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">March 2019 - Present</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="resume-item col-md-6 col-sm-12">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class="resume-content mr-auto">
-                            <h4 class="mb-3"> Web Developer</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">December 2018 - March 2019</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="resume-item col-md-6 col-sm-12">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class="resume-content mr-auto">
-                            <h4 class="mb-3"> Web Developer</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">December 2018 - March 2019</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="resume-item col-md-6 col-sm-12">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class="resume-content mr-auto">
-                            <h4 class="mb-3"> Junior Web Designer</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">July 2017 - December 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="resume-item col-md-6 col-sm-12">
-                    <div class="card mx-0 p-4 mb-5">
-                        <div class="resume-content mr-auto">
-                            <h4 class="mb-3"> Web Design Intern</h4>
-                            <p>
-                                Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close
-                                the loop on focusing solely on the bottom line.
-                            </p>
-                        </div>
-                        <div class="resume-date text-md-right">
-                            <span class="text-primary">September 2018 - June 2019</span>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </section>
 
@@ -231,36 +125,23 @@
                     <div class="mb-5 heading-border"></div>
                 </div>
                 <div class="main-projects" id="projects-box">
-                    <div class="projects">
-                        <div class="projects-icon"></div>
-                        <div class="projects-content">
-                            <span class="date">Apr 2017 - Mar 2018</span>
-                            <h5 class="title">Google Analytics Certified Developer</h5>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            </p>
+                    @foreach (var userProject in Model.Project)
+                    {
+                        <div class="projects">
+                            <div class="projects-icon"></div>
+                            <div class="projects-content">
+                                <span class="date">@userProject.DurationInMonth Months</span>
+                                <h5 class="title">@userProject.ProjectName</h5>
+                                <p class="description">
+                                    Role - @userProject.YourRole
+                                    @userProject.ProjectDetails
+                                </p>
+                                <p class="description">
+                                    @userProject.ProjectSkills
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="projects">
-                        <div class="projects-icon"></div>
-                        <div class="projects-content">
-                            <span class="date">Apr 2017 - Mar 2018</span>
-                            <h5 class="title">Google Analytics Certified Developer</h5>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="projects">
-                        <div class="projects-icon"></div>
-                        <div class="projects-content">
-                            <span class="date">Apr 2018 - Mar 2019</span>
-                            <h5 class="title">Mobile Web Specialist - Google Certification</h5>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            </p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </section>
@@ -270,31 +151,14 @@
             <div class="p-lg-5 p-3 skill-cover">
                 <h3 class="text-center text-white">Coding Skills</h3>
                 <div class="row text-center my-auto ">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="skill-item">
-                            <p>HTML5</p>
+                    @foreach (var userSkill in Model.Skill)
+                    {
+                        <div class="col-md-3 col-sm-6">
+                            <div class="skill-item">
+                                <p>@userSkill.SkillName</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="skill-item">
-                            <p>CSS3</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="skill-item">
-                            <p>JQuery</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="skill-item">
-                            <p>PHP</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="skill-item">
-                            <p>ASP.NET MVC</p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </section>
@@ -308,10 +172,10 @@
                 </div>
                 <div class="col-md-4 col-sm-12 mt-5">
                     <div class="contact-cont2">
-                        <div class="contact-add contact-box-desc">
-                            <h3><i class="fa fa-map-marker cl-atlantis fa-2x"></i> Address</h3>
-                            <p>25, Dist town Street, Logn <br> California, US <br></p>
-                        </div>
+                        @*<div class="contact-add contact-box-desc">
+                                <h3><i class="fa fa-map-marker cl-atlantis fa-2x"></i> Address</h3>
+                                <p>25, Dist town Street, Logn <br> California, US <br></p>
+                            </div>*@
                         <div class="contact-phone contact-side-desc contact-box-desc">
                             <h3><i class="fa fa-phone cl-atlantis fa-2x"></i> Phone</h3>
                             <p>@Model.PhoneNumber <br>@Model.AlternatePhoneNumber</p>
@@ -319,7 +183,7 @@
                         <div class="contact-mail contact-side-desc contact-box-desc">
                             <h3><i class="fa fa-envelope-o cl-atlantis fa-2x"></i> Email</h3>
                             <address class="address-details-f">
-                                Email: <a href="mailto:info@themsbit.com" class="">@Model.Email</a>
+                                Email: <a href="mailto:@Model.Email" class="">@Model.Email</a>
                             </address>
                         </div>
                     </div>
@@ -335,3 +199,4 @@
     <script src="~/Scripts/js/jquery-easing/jquery.easing.min.js"></script>
     <script src="~/Scripts/js/custom.js"></script>
 </body>
+</html>

@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-<input type="hidden" value="" id="userId" />
+<input type="hidden" value="@User.Identity.Name" id="userId" />
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger text-left" href="~/Resume/PublicProfile">
+                <a class="nav-link js-scroll-trigger text-left js-public-profile" href="/Resume/PublicProfile/@User.Identity.Name">
                     <i class="fa fa-user mr-4"> </i>
                     Public Profile
                 </a>
