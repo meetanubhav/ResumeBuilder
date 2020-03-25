@@ -102,8 +102,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\index.css" />
     <Content Include="Content\Login.css" />
-
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -254,13 +254,10 @@
     <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.designer.cs">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Migrations\202003230957536_changes in education model .cs" />
     <Compile Include="Migrations\202003230957536_changes in education model .designer.cs">
       <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
     </Compile>
-
-
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -270,9 +267,7 @@
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
-
     <Compile Include="Models\ViewModel\EducationVM.cs" />
-
     <Compile Include="Models\ViewModel\SignupVM.cs" />
     <Compile Include="Models\ViewModel\SkillsVM.cs" />
     <Compile Include="Models\ViewModel\SummaryVM.cs" />
@@ -281,14 +276,6 @@
     <Compile Include="Models\ViewModel\LoginVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
-    <Compile Include="Models\ViewModel\SkillVM.cs" />
-
-    <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
-    <Compile Include="Models\ViewModel\LoginVM.cs" />
-
-    <Compile Include="Models\ViewModel\EducationVM.cs" />
-    <Compile Include="Models\ViewModel\LanguageVM.cs" />
-    <Compile Include="Models\ViewModel\ProjectVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
@@ -335,15 +322,9 @@
     <EmbeddedResource Include="Migrations\202003131221194_changed string lenghth of summary section.resx">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
       <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
     </EmbeddedResource>
-
-    <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
-      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
-    </EmbeddedResource>
-
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
