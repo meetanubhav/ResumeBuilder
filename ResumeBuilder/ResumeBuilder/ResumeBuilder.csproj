@@ -103,7 +103,11 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+<<<<<<< Updated upstream
     <Content Include="Content\index.css" />
+=======
+    <Content Include="Content\Login.css" />
+>>>>>>> Stashed changes
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -145,6 +149,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -253,6 +258,13 @@
     <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.designer.cs">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
+=======
+    <Compile Include="Migrations\202003230957536_changes in education model .cs" />
+    <Compile Include="Migrations\202003230957536_changes in education model .designer.cs">
+      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
+    </Compile>
+>>>>>>> Stashed changes
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -262,11 +274,15 @@
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Models\ViewModel\EducationVM.cs" />
     <Compile Include="Models\ViewModel\SignupVM.cs" />
     <Compile Include="Models\ViewModel\SkillsVM.cs" />
     <Compile Include="Models\ViewModel\SummaryVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
+=======
+    <Compile Include="Models\ViewModel\LoginVM.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="Models\ViewModel\SettingsVM.cs" />
@@ -310,6 +326,12 @@
     <EmbeddedResource Include="Migrations\202003131221194_changed string lenghth of summary section.resx">
       <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< Updated upstream
+=======
+    <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
+      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> Stashed changes
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

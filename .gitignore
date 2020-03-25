@@ -129,3 +129,7 @@ ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
 *.suo
+<<<<<<< Updated upstream
+=======
+*.csproj
+>>>>>>> Stashed changes
