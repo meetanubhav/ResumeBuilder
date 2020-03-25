@@ -194,7 +194,7 @@ namespace ResumeBuilder.Controllers
                 return Content("Success");
             }
             return Content("Failure");
-
+        }
         [HttpPost]
         public ActionResult DeleteLanguage(int languageId)
         {

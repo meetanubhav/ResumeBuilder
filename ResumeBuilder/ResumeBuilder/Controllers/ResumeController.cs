@@ -105,6 +105,7 @@ namespace ResumeBuilder.Controllers
             {
                 return RedirectToAction("Dashboard");
             }
+        }
         [HttpGet]
         public ActionResult GetTemplateDetails()
         {
