@@ -121,15 +121,16 @@ ModelManifest.xml
 ResumeBuilder/ResumeBuilder.v12.suo
 ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
-ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
-ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
-ResumeBuilder/ResumeBuilder.v12.suo
-ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.dll
-ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
-ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
-ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
 *.suo
-<<<<<<< Updated upstream
-=======
 *.csproj
->>>>>>> Stashed changes
+ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj
+ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.suo
+*.dll
+*.resx
+*.pdb
+*.csproj
+*.user
+*.Cache
+
+

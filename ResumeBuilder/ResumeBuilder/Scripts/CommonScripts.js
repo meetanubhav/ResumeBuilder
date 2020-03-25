@@ -1,18 +1,34 @@
 ﻿$(document).ready(function () {
-    $('.js-edit').on("click", function () {
+    $('.js-edit-resume').on("click", function () {
         //var userId = parseInt($("#userId").val());
         $('.render-partial-view').load("/Resume/Edit");
         EditSectionScripts();
         return false;
     });
+
+    $('.js-template').on('click', function () {
+        $('.render-partial-view').load("");
+    });
+
+    $('.js-public-profile').on('click', function () {
+        window.open('/Resume/PublicProfile', '_blank');
+    });
     
-    $('.js-settings').on("click", function (e) {
+    $('.js-settings').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Settings/Settings", function () {
             ResumeSettingsScript();
         });
-        //return false;
-
     });
+    $('.js-search').on('click', function (e) {
+        e.preventDefault();
+        $('.render-partial-view').load("/Resume/Search", function () {
+        });
+    });
+
     AjaxScripts();
-});
+    //$('body').on("click",'.js-public-profile', function (e) {
+    //    e.preventDefault();
+    //    window.open('/Resume/PublicProfile/' + $('#userId').val());
+    //});
+});    

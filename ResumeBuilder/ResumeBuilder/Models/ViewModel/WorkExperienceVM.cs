@@ -8,19 +8,14 @@ namespace ResumeBuilder.Models.ViewModel
 {
     public class WorkExperienceVM
     {
-        [Required]
+        public int? ExpId { get; set; }
         public string Organization { get; set; }
-
-        [Required]
         public string Designation { get; set; }
 
-        [Required]
         [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
-        public Nullable<DateTime> From { get; set; }
-
+        public Nullable<DateTime> FromYear { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
-        public Nullable<DateTime> To { get; set; }
-        
+        public Nullable<DateTime> ToYear { get; set; }
     }
 }
