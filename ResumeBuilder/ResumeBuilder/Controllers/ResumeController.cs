@@ -172,6 +172,12 @@ namespace ResumeBuilder.Controllers
             return View(userVM);
         }
 
+        [Authorize]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
