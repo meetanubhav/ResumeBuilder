@@ -33,21 +33,6 @@
     <hr />
     <div>
         <h3>Work Experience</h3>
-        @foreach(var userWorkExperience in Model.WorkExperience){
-            <div class="row container">
-                <div class="col-md-8 text-secondary">
-                    <p>
-                        <b> @userWorkExperience.Designation </b> at 
-                        <br />
-                        <b> @userWorkExperience.Organization </b>
-                        <br />
-                        <b> @userWorkExperience.FromYear </b> - 
-                        <br />
-                        <b> @userWorkExperience.ToYear </b>
-                    </p>
-                </div>
-            </div>
-        }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
         <span class="workexpData"></span>
     </div>

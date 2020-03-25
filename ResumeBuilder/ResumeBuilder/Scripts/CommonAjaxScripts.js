@@ -398,8 +398,10 @@
             type: 'POST',
             data: formData,
             success: function (response) {
-                $('.modal').modal('hide');
                 getUserInfo();
+                $('.modal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
                 $('modal input[type="text"]').val('');
                 $('modal input[type ="checkbox"]').prop('checked', false);
                 //$('.show-content').html(response);
