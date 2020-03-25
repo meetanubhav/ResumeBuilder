@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
+using AutoMapper;
 
 namespace ResumeBuilder.Controllers {
     public class ResumeController : Controller {
@@ -83,6 +84,69 @@ namespace ResumeBuilder.Controllers {
             } else {
                 return RedirectToAction ("Dashboard");
             }
+        }
+        [HttpGet]
+        public ActionResult GetTemplateDetails()
+        {
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Include("Projects")
+                .Include("Skills")
+                .Include("Education")
+                .Include("WorkExperiences")
+                .Include("Languages")
+            .FirstOrDefault(x => x.UserID == userId);
+            
+            foreach(var i in user.Projects)
+            {
+                i.User = null;
+            }
+            foreach(var i in user.Skills)
+            {
+                i.Users = null;
+            }
+            foreach(var i in user.Education)
+            {
+                i.User = null;
+            }
+            foreach(var i in user.WorkExperiences)
+            {
+                i.User = null;
+            }
+            foreach(var i in user.Languages)
+            {
+                i.Users = null;
+            }
+
+            UserResumeVM vm = new UserResumeVM();
+
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
+            vm = Mapper.Map<User, UserResumeVM>(user);
+            vm.Project = user.Projects;
+            vm.Skill = user.Skills;
+            vm.Education = user.Education;
+            vm.WorkExperience = user.WorkExperiences;
+            vm.Language = user.Languages;
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [Authorize]
+        public ActionResult Template()
+        {
+            //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
+            return PartialView();
+        }
+
+        public ActionResult PublicProfile()
+        {
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+            var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+
+            return View(userVM);
         }
 
         public ActionResult SignOut () {
