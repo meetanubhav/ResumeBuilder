@@ -79,12 +79,16 @@
             data: formData,
             success: function (response) {
                 getUserInfo();
+                $('.toast').toast('show');
                 $('.render-partial-view').load("/Resume/Edit");
                 $('.modal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
                 //$('.show-content').html(response);
             },
             failure: function (response) {
-                alert("fail ho gya bhai");
+                
+
             }
         })
     }
