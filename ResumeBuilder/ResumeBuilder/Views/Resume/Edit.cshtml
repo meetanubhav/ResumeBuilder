@@ -22,34 +22,13 @@
             <p class="text-secondary show-summary-info">@Model.Summary</p>
         </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".summaryModal">Summary<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="summaryData"></span>
     </div>
     <hr />
     <div>
         <h3>Education</h3>
-        @foreach (var userEducation in Model.Education)
-        {
-            <div class="row container">
-                <div class="col-md-8 text-secondary">
-                    <p>
-                        <b>@userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </b>
-                        <br />
-                        <b>Year of Passing : @userEducation.YearOfPassing     </b>
-                        <br />
-                        <b>Stream : @userEducation.Stream </b>
-                        <br />
-                        <b>Board :@userEducation.Board </b>
-                        <br />
-                        <b> University/School : @userEducation.Institution </b>
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-danger float-right js-delete-education" data-user-id="@userEducation.EduID">
-                        <i class="fa fa-trash-alt"></i>
-                    </button>
-                </div>
-            </div>
-        }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="educationData"></span>
     </div>
     <hr />
     <div>
@@ -70,21 +49,25 @@
             </div>
         }
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="workexpData"></span>
     </div>
     <hr />
     <div>
         <h3>Projects</h3>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="projectData"></span>
     </div>
     <hr />
     <div>
         <h3>Language</h3>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".languageModal">Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="languageData"></span>
     </div>
     <hr />
     <div>
         <h3>Skills</h3>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="skillData"></span>
     </div>
 </div>
 
@@ -174,6 +157,7 @@
             <div class="modal-body">
                 <form method="post" class="education-form">
                     <div class="form-group mt-2">
+                        <div class="js-education-id" hidden value=""></div>
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-check-label ml-4">
@@ -238,24 +222,25 @@
             </div>
             <div class="modal-body">
                 <form class="workExp-form">
+                    <input class="js-work-experience-id" hidden value="" />
                     <div class="form-group">
-                        <input type="text" class="form-control mb-4" name="Organization" placeholder="Organization" required/>
-                        <input type="text" class="form-control" name="Designation" placeholder="Designation" required />
+                        <input type="text" class="form-control mb-4" name="organization" placeholder="Organization" />
+                        <input type="text" class="form-control" name="designation" placeholder="Designation" />
                     </div>
                     <div class="row form-group">
                         <div class="col-md-6">
                             <label class="form-label">From</label>
-                            <input class="form-control" type="text" name="FromYear" placeholder="From Year" maxlength="4" required />
+                            <input class="form-control" type="date" name="fromDate" placeholder="From Year" />
                         </div>
                         <div class="col-md-6" id="toYear">
                             <label class="form-label">To</label>
-                            <input class="form-control" type="text" name="ToYear" placeholder="To Year" />
+                            <input class="form-control" type="date" name="toDate" placeholder="To Year" />
                         </div>
                     </div>
                     <div class="row form-group">
                         <label class="checkbox-inline">Current <input type="checkbox" id="currentWork" value="Current"></label>
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-work-experience btn-save">SAVE</button>
+                    <button type="button" class="mt-2 btn btn-sm btn-success save-work save-workExp">SAVE</button>
                 </form>
             </div>
         </div>
@@ -271,6 +256,7 @@
             </div>
             <div class="modal-body">
                 <form class="projects-form">
+                    <input class="js-project-id" hidden value="" />
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control mt-3" name="projectName" placeholder="Project Name" />
                         <textarea class="form-control mt-3" name="projectDetails" rows="3" cols="50" placeholder="Project Details"></textarea>
@@ -279,10 +265,17 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="projectDuration">Project Duration ( Months )</label>
                             </div>
-                            <select class="custom-select project-duration" id="projectDuration"></select>
+                            <select class="custom-select project-duration" id="projectDuration">
+                                @{
+                                    for(int i=0;i<=100;i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            </select>
                         </div>
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+                    <button type="button" class="mt-2 btn btn-sm btn-success save-work save-project">SAVE</button>
                 </form>
             </div>
         </div>
@@ -298,10 +291,11 @@
             </div>
             <div class="modal-body">
                 <form class="skills-form">
+                    <div class="js-skill-id" hidden value=""></div>
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control" name="skill" placeholder="Add Skills" />
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+                    <button type="button" class="mt-2 btn btn-sm btn-success save-work save-skill">SAVE</button>
                 </form>
             </div>
         </div>
@@ -317,10 +311,11 @@
             </div>
             <div class="modal-body">
                 <form class="language-form">
+                    <div class="js-language-id" hidden value=""></div>
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control" name="language" placeholder="Add Language" />
                     </div>
-                    <button type="button" class="mt-2 btn btn-sm btn-success save-work btn-save">SAVE</button>
+                    <button type="button" class="mt-2 btn btn-sm btn-success save-work save-language">SAVE</button>
                 </form>
             </div>
         </div>

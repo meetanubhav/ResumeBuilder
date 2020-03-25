@@ -14,9 +14,11 @@ namespace ResumeBuilder.Models
         public string Organization { get; set; }
         public string Designation { get; set; }
 
-        public string FromYear { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
+        public Nullable<DateTime> FromYear { get; set; }
 
-        public string ToYear { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
+        public Nullable<DateTime> ToYear { get; set; }
         
         public int UserID { get; set; }
         [ForeignKey("UserID")]
