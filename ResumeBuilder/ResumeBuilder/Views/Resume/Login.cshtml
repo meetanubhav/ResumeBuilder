@@ -1,7 +1,9 @@
 ﻿@model ResumeBuilder.Models.Login
 @{
+    
     ViewBag.Title = "Login";
 }
+<<<<<<< Updated upstream
 @*<nav class="navbar navbar-light bg-primary">
     <i class="fa fa-book text-white">
         @Html.ActionLink("Resume Builder", "Login", "Resume", new { @class = "navbar-brand text-white" })
@@ -42,10 +44,150 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">LOGIN</button>
                         <button type="reset" class="btn btn-warning text-white">RESET</button>
-                    </div>
-                </div>
-            }
-        </div>
+=======
+<link rel="stylesheet" href="~/Content/index.css" />
+@section IndexJS
+{
+    <script type="text/javascript" src="~/Scripts/umd/login.js"></script>
+}
+<div class="login-page">
+    <div class="form">
+        <form class="register-form">
+            @Html.LabelFor(x=>x.Username)
+            <input type="text" placeholder="name" />
+            @Html.LabelFor(x=>x.Password)
+            <input type="password" placeholder="password" />
+            <input type="password" placeholder="confirm password" />
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form class="login-form">
+            @Html.LabelFor(x => x.Username)
+
+
+            <input type="text" placeholder="username" />
+            @Html.LabelFor(x => x.Password)
+            <input type="password" placeholder="password" />
+            <button>login</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
     </div>
 </div>
 
+@*<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel with-nav-tabs panel-info">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                            <li><a href="#signup" data-toggle="tab"> Signup </a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div id="login" class="tab-pane fade in active register">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <h2 class="text-center" style="color: #5cb85c;"> <strong> Login  </strong></h2><hr />
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-user"></span>
+                                                        </div>
+                                                        <input type="text" placeholder="User Name" name="uname" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-lock"></span>
+                                                        </div>
+                                                        <input type="password" placeholder="Password" name="pass" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <button type="submit" class="btn btn-success btn-block btn-lg"> Login </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="signup" class="tab-pane fade">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <h2 class="text-center" style="color: #f0ad4e;"> <strong> Register </strong></h2> <hr />
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon iga1">
+                                                            <span class="glyphicon glyphicon-user"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Enter User Name" name="name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon iga1">
+                                                            <span class="glyphicon glyphicon-envelope"></span>
+                                                        </div>
+                                                        <input type="email" class="form-control" placeholder="Enter E-Mail" name="mail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon iga1">
+                                                            <span class="glyphicon glyphicon-lock"></span>
+                                                        </div>
+                                                        <input type="password" class="form-control" placeholder="Enter Password" name="pass">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-lg btn-block btn-warning"> Register</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+>>>>>>> Stashed changes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<<<<<<< Updated upstream
+</div>
+
+=======
+*@
+<footer class="fixed-bottom text-center text-white">
+    Make RESUMES With <i class="fa fa-heart text-white"></i>
+</footer>
+>>>>>>> Stashed changes
