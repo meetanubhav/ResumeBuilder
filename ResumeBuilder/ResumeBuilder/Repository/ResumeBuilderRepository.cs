@@ -162,7 +162,6 @@ namespace ResumeBuilder.Repository
             string msg = string.Empty;
             int countRecords = 0;
             var personEntity = db.Users.Include("WorkExperiences").FirstOrDefault(x => x.UserID == idUser);
-            work.UserID = idUser;
             if (personEntity != null && work != null)
             {
                 if (work.ExpId > 0)

@@ -81,8 +81,34 @@ namespace ResumeBuilder.Controllers
         public ActionResult GetTemplateDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.FirstOrDefault(x => x.UserID == userId);
+            var user = db.Users.Include("Projects")
+                .Include("Skills")
+                .Include("Education")
+                .Include("WorkExperiences")
+                .Include("Languages")
+            .FirstOrDefault(x => x.UserID == userId);
             
+            foreach(var i in user.Projects)
+            {
+                i.User = null;
+            }
+            foreach(var i in user.Skills)
+            {
+                i.Users = null;
+            }
+            foreach(var i in user.Education)
+            {
+                i.User = null;
+            }
+            foreach(var i in user.WorkExperiences)
+            {
+                i.User = null;
+            }
+            foreach(var i in user.Languages)
+            {
+                i.Users = null;
+            }
+
             UserResumeVM vm = new UserResumeVM();
 
             Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());

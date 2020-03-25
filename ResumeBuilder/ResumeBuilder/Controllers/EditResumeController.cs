@@ -142,8 +142,24 @@ namespace ResumeBuilder.Controllers
             return Content("Failed");
         }
 
-        
-        [HttpDelete]
+        [HttpPost]
+        public ActionResult DeleteProject(int projectId)
+        {
+            var projectDetails = db.Projects.FirstOrDefault(x => x.ProjectID == projectId);
+            if (projectDetails != null)
+            {
+                db.Projects.Remove(projectDetails);
+                db.SaveChanges();
+                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
+        }
+
+        [HttpPost]
         public ActionResult DeleteEducation(int? id)
         {
             if (id == null)
@@ -160,6 +176,40 @@ namespace ResumeBuilder.Controllers
             {
                 return Content("Failed");
             }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteLanguage(int languageId)
+        {
+            var languageDetails = db.Languages.FirstOrDefault(x => x.LanguageID == languageId);
+            if (languageDetails != null)
+            {
+                db.Languages.Remove(languageDetails);
+                db.SaveChanges();
+                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult DeleteSkill(int skillId)
+        {
+            var skillDetails = db.Skills.FirstOrDefault(x => x.SkillID == skillId);
+            if (skillDetails != null)
+            {
+                db.Skills.Remove(skillDetails);
+                db.SaveChanges();
+                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
         }
     }
 }
