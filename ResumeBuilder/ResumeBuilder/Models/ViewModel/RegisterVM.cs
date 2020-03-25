@@ -6,34 +6,23 @@ using System.Web;
 
 namespace ResumeBuilder.Models.ViewModel
 {
-    public class LoginVM
+    public class RegisterVM
     {
         [Required]
-        public string Username { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-<<<<<<< Updated upstream
-        [Required]
-        [Display(Name="Username")]
+        [Display(Name = "Username")]
         public string RegisterUsername { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string RegisterPassword { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [Compare("RegisterPassword")]
         [Display(Name = "Confirm Password")]
         public string RegisterConfirmPassword { get; set; }
-
-=======
->>>>>>> Stashed changes
     }
 }

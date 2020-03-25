@@ -104,7 +104,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <Content Include="Content\index.css" />
+=======
+    <Content Include="Content\Login.css" />
+>>>>>>> Stashed changes
 =======
     <Content Include="Content\Login.css" />
 >>>>>>> Stashed changes
@@ -149,7 +153,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+<<<<<<< Updated upstream
     <Content Include="Scripts\login.js" />
+=======
+    <Content Include="Scripts\Login.js" />
+>>>>>>> Stashed changes
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -276,9 +284,18 @@
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
 <<<<<<< Updated upstream
     <Compile Include="Models\ViewModel\EducationVM.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Models\ViewModel\SignupVM.cs" />
     <Compile Include="Models\ViewModel\SkillsVM.cs" />
     <Compile Include="Models\ViewModel\SummaryVM.cs" />
+=======
+    <Compile Include="Models\ViewModel\IndexVM.cs" />
+    <Compile Include="Models\ViewModel\LanguageVM.cs" />
+    <Compile Include="Models\ViewModel\LoginVM.cs" />
+    <Compile Include="Models\ViewModel\ProjectVM.cs" />
+    <Compile Include="Models\ViewModel\RegisterVM.cs" />
+    <Compile Include="Models\ViewModel\SkillVM.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
 =======
     <Compile Include="Models\ViewModel\LoginVM.cs" />
