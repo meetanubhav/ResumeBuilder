@@ -10,7 +10,7 @@ namespace ResumeBuilder.Repository
      public interface IResumeBuilderRepository
     {
         bool AddBasicInformation(User userInfo);
-        string AddOrUpdateEducation(Education education, int idUser);
+        int AddOrUpdateEducation(Education education, int idUser);
         int GetIdPerson(string email);
         string AddOrUpdateExperience(WorkExperience workExperience, int idUser);
         string AddorUpdateSkill(Skill skill, int idUser);

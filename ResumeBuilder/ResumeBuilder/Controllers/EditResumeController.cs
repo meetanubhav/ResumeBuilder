@@ -15,11 +15,45 @@ namespace ResumeBuilder.Controllers
         ResumeBuilderDBContext db = new ResumeBuilder.Models.ResumeBuilderDBContext();
         private readonly IResumeBuilderRepository _resumeRepository= new ResumeBuilderRepository();
 
+        // Get Actions
         public ActionResult GetUserInfo()
         {
             var userID = Int32.Parse(User.Identity.Name);
-            var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
+            var userFromDB = db.Users.AsNoTracking().FirstOrDefault(x => x.UserID == userID);
             return Json(userFromDB, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetEducation(int educationId)
+        {
+            var education = db.Educations.AsNoTracking().FirstOrDefault(x => x.EduID == educationId);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<Education, EducationVM>());
+            EducationVM educationVM = Mapper.Map<Education, EducationVM>(education);
+
+            return Json(educationVM, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetProject(int projectId)
+        {
+            var project = db.Projects.FirstOrDefault(x => x.ProjectID == projectId);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<Project, ProjectVM>());
+            ProjectVM projectVM = Mapper.Map<Project, ProjectVM>(project);
+
+            return Json(projectVM, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetWorkExperience(int workExperienceId)
+        {
+            var workExperience = db.WorkExperiences.FirstOrDefault(x => x.ExpId == workExperienceId);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<WorkExperience, WorkExperienceVM>());
+            WorkExperienceVM workExperienceVM = Mapper.Map<WorkExperience, WorkExperienceVM>(workExperience);
+
+            return Json(workExperienceVM, JsonRequestBehavior.AllowGet);
         }
         
         // Add and Update Actions 
@@ -39,7 +73,7 @@ namespace ResumeBuilder.Controllers
                 //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return Content("Success");
+                return Json(userFromDB, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -58,7 +92,8 @@ namespace ResumeBuilder.Controllers
                 userFromDB.Summary = summaryInfo.Summary;
                 //db.Entry(userFromDB).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return Content("Success");
+
+                return Json(userFromDB, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -74,9 +109,10 @@ namespace ResumeBuilder.Controllers
             {
                 Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
                 Education edu = Mapper.Map<EducationVM, Education>(education);
-                string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
+                int id = _resumeRepository.AddOrUpdateEducation(edu, userId);
+                education.EduID = id;
 
-                return Content(msg);
+                return Json(education, JsonRequestBehavior.AllowGet);
             }
 
             return Content("Failed");
@@ -92,7 +128,8 @@ namespace ResumeBuilder.Controllers
                 Skill sk = Mapper.Map<SkillVM, Skill>(skill);
                 string msg = _resumeRepository.AddorUpdateSkill(sk, userId);
 
-                return Content(msg);
+                skill.SkillID = sk.SkillID;
+                return Json(skill, JsonRequestBehavior.AllowGet);
             }
 
             return Content("Failed");
@@ -108,7 +145,8 @@ namespace ResumeBuilder.Controllers
                 Project pr = Mapper.Map<ProjectVM, Project>(project);
                 string msg = _resumeRepository.AddorUpdateProject(pr, userId);
 
-                return Content(msg);
+                project.ProjectID = pr.ProjectID;
+                return Json(project, JsonRequestBehavior.AllowGet);
             }
 
             return Content("Failed");
@@ -121,10 +159,11 @@ namespace ResumeBuilder.Controllers
             if (ModelState.IsValid)
             {
                 Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
-                WorkExperience pr = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
-                string msg = _resumeRepository.AddOrUpdateExperience(pr, userId);
+                WorkExperience workExperience = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
+                string msg = _resumeRepository.AddOrUpdateExperience(workExperience, userId);
 
-                return Content(msg);
+                work.ExpId = workExperience.ExpId;
+                return Json(work, JsonRequestBehavior.AllowGet);
             }
 
             return Content("Failed");
@@ -137,10 +176,11 @@ namespace ResumeBuilder.Controllers
             if (ModelState.IsValid)
             {
                 Mapper.Initialize(cfg => cfg.CreateMap<LanguageVM, Language>());
-                Language l = Mapper.Map<LanguageVM, Language>(lang);
-                string msg = _resumeRepository.AddorUpdateLanguage(l, userId);
+                Language language = Mapper.Map<LanguageVM, Language>(lang);
+                string msg = _resumeRepository.AddorUpdateLanguage(language, userId);
 
-                return Content(msg);
+                lang.LanguageID = language.LanguageID;
+                return Json(lang, JsonRequestBehavior.AllowGet);
             }
 
             return Content("Failed");
@@ -165,7 +205,7 @@ namespace ResumeBuilder.Controllers
 
         }
 
-        [HttpPost]
+        [HttpDelete]
         public ActionResult DeleteEducation(int id)
         {
             try
