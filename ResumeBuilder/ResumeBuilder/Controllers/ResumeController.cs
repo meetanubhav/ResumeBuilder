@@ -56,7 +56,7 @@ namespace ResumeBuilder.Controllers
             var userId = Int32.Parse(User.Identity.Name);
             if (User.Identity.Name != null)
             {
-                var user = db.Users.Include("Education").Where(x => x.UserID == userId).FirstOrDefault();
+                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
 
                 UserResumeVM vm = new UserResumeVM();
                 {
@@ -70,6 +70,8 @@ namespace ResumeBuilder.Controllers
                     vm.Education = user.Education;
                     vm.Project = user.Projects;
                     vm.WorkExperience = user.WorkExperiences;
+                    vm.Skill = user.Skills;
+                    vm.Language = user.Languages;
                 }
                 return PartialView("~/Views/Resume/Edit.cshtml", vm);
             }
