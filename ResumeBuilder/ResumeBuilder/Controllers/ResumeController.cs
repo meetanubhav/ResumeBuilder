@@ -106,10 +106,9 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
-
         public ActionResult PublicProfile(int? id)
         {
-            var user = db.Users.Where(x => x.UserID == id).FirstOrDefault();
+            var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == id).FirstOrDefault();
             if (user != null)
             {
                 UserResumeVM vm = new UserResumeVM();
@@ -187,16 +186,16 @@ namespace ResumeBuilder.Controllers
             return PartialView();
         }
 
-        public ActionResult PublicProfile()
-        {
-            var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+        //public ActionResult PublicProfile(int? id)
+        //{
+        //    var userId = Int32.Parse(User.Identity.Name);
+        //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-            var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
 
-            return View(userVM);
-        }
+        //    return View(userVM);
+        //}
 
         [Authorize]
         public ActionResult Search()

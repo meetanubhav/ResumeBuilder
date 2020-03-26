@@ -10,8 +10,9 @@
         $('.render-partial-view').load("");
     });
 
-    $('.js-public-profile').on('click', function () {
-        window.open('/Resume/PublicProfile', '_blank');
+    $('.js-public-profile').on('click', function (e) {
+        e.preventDefault();
+        window.open('/Resume/PublicProfile/'+ $('#userId').val(), '_blank');
     });
     
     $('.js-settings').on('click', function (e) {
