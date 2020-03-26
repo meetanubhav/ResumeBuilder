@@ -129,8 +129,8 @@ ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
 *.suo
-*.csproj
-ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj
+*.dll
+*.pdb
 ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ResumeBuilder/ResumeBuilder.v12.suo
 ResumeBuilder/ResumeBuilder.v12.suo
@@ -141,5 +141,3 @@ ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.csproj.FileListAbsolute.txt
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.csproj.GenerateResource.Cache
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
-ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj
-ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj.user
