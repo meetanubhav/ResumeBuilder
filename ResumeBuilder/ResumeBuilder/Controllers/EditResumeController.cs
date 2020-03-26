@@ -37,7 +37,7 @@ namespace ResumeBuilder.Controllers
         [HttpGet]
         public JsonResult GetProject(int projectId)
         {
-            var project = db.Projects.FirstOrDefault(x => x.ProjectID == projectId);
+            var project = db.Projects.AsNoTracking().FirstOrDefault(x => x.ProjectID == projectId);
 
             Mapper.Initialize(cfg => cfg.CreateMap<Project, ProjectVM>());
             ProjectVM projectVM = Mapper.Map<Project, ProjectVM>(project);
@@ -48,7 +48,7 @@ namespace ResumeBuilder.Controllers
         [HttpGet]
         public JsonResult GetWorkExperience(int workExperienceId)
         {
-            var workExperience = db.WorkExperiences.FirstOrDefault(x => x.ExpId == workExperienceId);
+            var workExperience = db.WorkExperiences.AsNoTracking().FirstOrDefault(x => x.ExpId == workExperienceId);
 
             Mapper.Initialize(cfg => cfg.CreateMap<WorkExperience, WorkExperienceVM>());
             WorkExperienceVM workExperienceVM = Mapper.Map<WorkExperience, WorkExperienceVM>(workExperience);
@@ -188,15 +188,15 @@ namespace ResumeBuilder.Controllers
 
         // Delete Actions
 
-        [HttpPost]
-        public ActionResult DeleteProject(int projectId)
+        [HttpDelete]
+        public ActionResult DeleteProject(int id)
         {
-            var projectDetails = db.Projects.FirstOrDefault(x => x.ProjectID == projectId);
+            var projectDetails = db.Projects.FirstOrDefault(x => x.ProjectID == id);
             if (projectDetails != null)
             {
                 db.Projects.Remove(projectDetails);
                 db.SaveChanges();
-                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+                return Content("Success");
             }
             else
             {
@@ -220,15 +220,15 @@ namespace ResumeBuilder.Controllers
             }
         }
         
-        [HttpPost]
-        public ActionResult DeleteLanguage(int languageId)
+        [HttpDelete]
+        public ActionResult DeleteLanguage(int id)
         {
-            var languageDetails = db.Languages.FirstOrDefault(x => x.LanguageID == languageId);
+            var languageDetails = db.Languages.FirstOrDefault(x => x.LanguageID == id);
             if (languageDetails != null)
             {
                 db.Languages.Remove(languageDetails);
                 db.SaveChanges();
-                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+                return Content("Success");
             }
             else
             {
@@ -237,15 +237,15 @@ namespace ResumeBuilder.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult DeleteSkill(int skillId)
+        [HttpDelete]
+        public ActionResult DeleteSkill(int id)
         {
-            var skillDetails = db.Skills.FirstOrDefault(x => x.SkillID == skillId);
+            var skillDetails = db.Skills.FirstOrDefault(x => x.SkillID == id);
             if (skillDetails != null)
             {
                 db.Skills.Remove(skillDetails);
                 db.SaveChanges();
-                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+                return Content("Success");
             }
             else
             {
@@ -254,15 +254,15 @@ namespace ResumeBuilder.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult DeleteWorkExperience(int workExperienceId)
+        [HttpDelete]
+        public ActionResult DeleteWorkExperience(int id)
         {
-            var workExperience = db.WorkExperiences.FirstOrDefault(x => x.ExpId == workExperienceId);
+            var workExperience = db.WorkExperiences.FirstOrDefault(x => x.ExpId == id);
             if (workExperience != null)
             {
                 db.WorkExperiences.Remove(workExperience);
                 db.SaveChanges();
-                return Json("Successfully Deleted", JsonRequestBehavior.AllowGet);
+                return Content("Success");
             }
             else
             {

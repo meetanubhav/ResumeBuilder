@@ -170,7 +170,7 @@
                     </div>';
 
             if (!(userData.ProjectID > 0)) {
-                $('.js-project-details').append('<div class="row" '+ $html + '</div>');
+                $('.js-project-details').append('<div class="row" >'+ $html + '</div>');
             }
             else {
                 $button.parents('.row').html($html);
@@ -214,7 +214,7 @@
                         <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="'+data.ExpId+'"></i></button> \
                     </div>';
             if (!(userData.ExpId > 0)) {
-                $('.js-work-experience-details').append('<div class="row" '+ $html + '</div>');
+                $('.js-work-experience-details').append('<div class="row" >'+ $html + '</div>');
             }
             else {
                 $button.parents('.row').html($html);
@@ -243,7 +243,7 @@
         params['successCallbackFunction'] = function (data) {
             $('.js-language-details').append('<span class="btn btn-primary"> \
                     ' + data.LanguageName +' \
-                    <i class="fa fa-times js-delete-language text-danger" data-skill-id="'+data.LanguageID+'"> </i> \
+                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+data.LanguageID+'"> </i> \
                     </span>');
         };
         doAjax(params);
@@ -324,8 +324,12 @@
         var params = $.extend({}, doAjax_params_default);
         params['url'] = '/EditResume/GetWorkExperience?workExperienceId=' + workExperienceId;
         params['successCallbackFunction'] = function (data) {
-            var $fromDate = data.FromYear.getFullYear() + '-' + data.FromYear.getMonth() + '-' + data.FromYear.getDate();
-            var $toDate = data.ToYear.getFullYear() + '-' + data.ToYear.getMonth() + '-' + data.ToYear.getDate();
+            var $date = new Date(parseInt((data.FromYear).substr(6)));
+            var $fromDate = $date.getFullYear() + '-' + $date.getMonth() + '-' + $date.getDate();
+
+            $date = new Date(parseInt((data.ToYear).substr(6)));
+            var $toDate = $date.getFullYear() + '-' + $date.getMonth() + '-' + $date.getDate();
+
             var $form = $('.workExp-form');
             $form.find('.js-work-experience-id').val(data.ExpId);
             $form.find('[name = organization]').val(data.Organization);
@@ -459,86 +463,80 @@
         })
     });
 
-    $('body').on("click", ".we-edit, .we-delete", function () {
-        $button = $(this);
-        if ($button.hasClass('we-edit')) {
-            $('.workExp-form-id').val($(this).data('workexp-id'));
-            $('a')[7].click();
-        }
-        else if ($button.hasClass('we-delete')) {
+    $('body').on("click", ".js-delete-workexp", function () {
+        var $button = $(this);
+        var id = $button.data('workexp-id');
 
-            var successFunction = function () {
-                $button.parent().fadeOut();
-                $button.parent().next().fadeOut();
-                $button.parent().next().next().fadeOut();
-            };
-            confirmDelete(function (r) {
-                if (r)
-                    ajaxFunction('/EditResume/DeleteWorkExperience', 'POST', { "expId": $button.data('workexp-id') }, successFunction);
-            })
-        }
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteWorkExperience?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('.row').remove();
+        };
 
-
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
     });
 
-    $('body').on("click", ".pr-edit, .pr-delete", function () {
-        $button = $(this);
-        if ($button.hasClass('pr-edit')) {
-            $('.project-form-id').val($(this).data('project-id'));
-            $('a')[8].click();
-        }
-        else if ($button.hasClass('pr-delete')) {
+    $('body').on("click", ".js-delete-project", function () {
+        var $button = $(this);
+        var id = $button.data('project-id');
 
-            var successFunction = function () {
-                $button.parent().fadeOut();
-                $button.parent().next().fadeOut();
-                $button.parent().next().next().fadeOut();
-            };
-            confirmDelete(function (r) {
-                if (r)
-                    ajaxFunction('/EditResume/DeleteProject', 'POST', { "projectId": $button.data('project-id') }, successFunction);
-            })
-        }
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteProject?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('.row').remove();
+        };
+
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
     });
 
-    $('body').on("click", ".lang-edit, .lang-delete", function () {
-        $button = $(this);
-        if ($button.hasClass('lang-edit')) {
-            $('.language-form-id').val($(this).data('language-id'));
-            $('a')[9].click();
-        }
-        else if ($button.hasClass('lang-delete')) {
+    $('body').on("click", ".js-delete-language", function () {
+        var $button = $(this);
+        var id = $button.data('language-id');
 
-            var successFunction = function () {
-                $button.parent().fadeOut();
-                $button.parent().next().fadeOut();
-            };
-            confirmDelete(function (r) {
-                if (r)
-                    ajaxFunction('/EditResume/DeleteLanguage', 'POST', { "languageId": $button.data('language-id') }, successFunction);
-            })
-        }
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteLanguage?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('span').remove();
+        };
 
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
     });
 
-    $('body').on("click", ".sk-edit, .sk-delete", function () {
-        $button = $(this);
-        if ($button.hasClass('sk-edit')) {
-            $('.skill-form-id').val($(this).data('skill-id'));
-            $('a')[10].click();
-        }
-        else if ($button.hasClass('sk-delete')) {
+    $('body').on("click", ".js-delete-skill", function () {
+        var $button = $(this);
+        var id = $button.data('skill-id');
 
-            var successFunction = function () {
-                $button.parent().fadeOut();
-                $button.parent().next().fadeOut();
-            };
-            confirmDelete(function (r) {
-                if (r)
-                    ajaxFunction('/EditResume/DeleteSkill', 'POST', { "skillId": $button.data('skill-id') }, successFunction);
-            })
-        }
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteSkill?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('span').remove();
+        };
 
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
     });
 
     function confirmDelete(callback) {

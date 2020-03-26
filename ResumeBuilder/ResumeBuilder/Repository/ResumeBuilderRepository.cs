@@ -68,7 +68,7 @@ namespace ResumeBuilder.Repository
         public int AddOrUpdateEducation(Education education, int idUser)
         {
 
-            var personEntity = db.Users.AsNoTracking().Include("Education").FirstOrDefault(x => x.UserID == idUser);
+            var personEntity = db.Users.Include("Education").FirstOrDefault(x => x.UserID == idUser);
 
             if (personEntity != null)
             {
@@ -132,7 +132,7 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.AsNoTracking().Include("Projects").FirstOrDefault(x => x.UserID == idUser);
+            var personEntity = db.Users.Include("Projects").FirstOrDefault(x => x.UserID == idUser);
             project.UserID = idUser;
             if (personEntity != null && project != null)
             {

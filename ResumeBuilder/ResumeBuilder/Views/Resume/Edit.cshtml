@@ -98,7 +98,7 @@
         <div class="js-language-details">
             @foreach (var userlanguages in Model.Language)
             {
-                <span class="btn btn-primary">@userlanguages.LanguageName <i class="fa fa-times js-delete-language text-danger" data-skill-id="@userlanguages.LanguageID"> </i> </span>
+                <span class="btn btn-primary">@userlanguages.LanguageName <i class="fa fa-times js-delete-language text-danger" data-language-id="@userlanguages.LanguageID"> </i> </span>
             }
         </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2" data-toggle="modal" data-target=".languageModal">Add Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
