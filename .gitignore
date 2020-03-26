@@ -148,3 +148,4 @@ ResumeBuilder/ResumeBuilder.v12.suo
 *.csproj
 *.suo
 >>>>>>> parent of 5875fe9... Added Toast notification for success of Jquery
+*.suo

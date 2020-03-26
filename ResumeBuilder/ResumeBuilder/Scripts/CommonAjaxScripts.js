@@ -78,20 +78,17 @@
             type: 'POST',
             data: formData,
             success: function (response) {
-<<<<<<< HEAD
-                $('.modal').modal('hide');
                 getUserInfo();
-                $('modal input[type="text"]').val('');
-                $('modal input[type ="checkbox"]').prop('checked', false);
-=======
-                getUserInfo();
+                $('.toast').toast('show');
                 $('.render-partial-view').load("/Resume/Edit");
                 $('.modal').modal('hide');
->>>>>>> parent of 5875fe9... Added Toast notification for success of Jquery
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
                 //$('.show-content').html(response);
             },
             failure: function (response) {
-                alert("fail ho gya bhai");
+
+
             }
         })
     }
