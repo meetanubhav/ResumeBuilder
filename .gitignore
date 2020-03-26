@@ -134,6 +134,16 @@ ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj
 ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ResumeBuilder/ResumeBuilder.v12.suo
 *.suo
+<<<<<<< HEAD
+=======
+*.dll
+*.resx
+*.pdb
+*.csproj
+*.user
+*.Cache
+ResumeBuilder/ResumeBuilder.v12.suo
+>>>>>>> parent of 1f88040... Merge branch 'master' of https://github.com/meetanubhav/ResumeBuilder
 *.dll
 *.resx
 *.pdb

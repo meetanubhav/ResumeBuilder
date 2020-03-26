@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using ResumeBuilder.Repository;
@@ -14,7 +13,7 @@ namespace ResumeBuilder.Controllers
     public class EditResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilder.Models.ResumeBuilderDBContext();
-        private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
+        private readonly IResumeBuilderRepository _resumeRepository= new ResumeBuilderRepository();
 
         public ActionResult GetUserInfo()
         {
