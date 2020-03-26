@@ -254,10 +254,6 @@
     <Compile Include="Migrations\202003230957536_changes in education model .designer.cs">
       <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003231408005_changed to and from year data type in WorkExperience model.cs" />
-    <Compile Include="Migrations\202003231408005_changed to and from year data type in WorkExperience model.designer.cs">
-      <DependentUpon>202003231408005_changed to and from year data type in WorkExperience model.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -267,6 +263,11 @@
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
+    <Compile Include="Models\ViewModel\EducationVM.cs" />
+    <Compile Include="Models\ViewModel\LanguageVM.cs" />
+    <Compile Include="Models\ViewModel\ProjectVM.cs" />
+    <Compile Include="Models\ViewModel\SkillVM.cs" />
+    <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="Models\ViewModel\SettingsVM.cs" />
@@ -312,9 +313,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
       <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003231408005_changed to and from year data type in WorkExperience model.resx">
-      <DependentUpon>202003231408005_changed to and from year data type in WorkExperience model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
