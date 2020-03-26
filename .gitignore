@@ -133,14 +133,6 @@ ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
 ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj
 ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ResumeBuilder/ResumeBuilder.v12.suo
-*.suo
-*.dll
-*.resx
-*.pdb
-*.csproj
-*.user
-*.Cache
-ResumeBuilder/ResumeBuilder.v12.suo
 *.dll
 *.pdb
 *.txt

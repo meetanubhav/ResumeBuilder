@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @*<link rel="Icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d" type="image/x-icon" />*@
+    <link rel="shortcut icon" href="~/Images/icon.jpg">
     <title>@Model.FirstName @Model.LastName</title>
 
     <!-- Global stylesheets -->
@@ -70,18 +70,19 @@
                     <h2 class="  text-center">Educations</h2>
                     <div class="mb-5 heading-border"></div>
                 </div>
+               
                 <div class="main-educations" id="educations-box">
-                    @foreach (var userEducations in Model.Education)
+                @foreach (var userEducations in Model.Education)
                     {
                         <div class="educations">
                             <div class="educations-icon"></div>
                             <div class="educations-content">
                                 <span class="date"> @userEducations.YearOfPassing </span>
                                 <h5 class="title">
-                                    @userEducations.Score @userEducations.CGPAorPercentage in @userEducations.EducationLevel
+                                    @userEducations.EducationLevel,@userEducations.Institution
                                 </h5>
                                 <p class="description">
-                                    @userEducations.Institution
+                                    @userEducations.Score @userEducations.CGPAorPercentage in @userEducations.EducationLevel
                                 </p>
                             </div>
                         </div>
