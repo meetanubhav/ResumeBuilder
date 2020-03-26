@@ -172,7 +172,7 @@ namespace ResumeBuilder.Controllers
         public ActionResult Search()
         {
             return View();
-        }
+        }*/
 
         public ActionResult SignOut()
         {
