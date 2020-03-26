@@ -5,7 +5,9 @@
         EditSectionScripts();
         return false;
     });
-
+    $('.message a').click(function () {
+        $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    });
     $('.js-template').on('click', function () {
         $('.render-partial-view').load("");
     });

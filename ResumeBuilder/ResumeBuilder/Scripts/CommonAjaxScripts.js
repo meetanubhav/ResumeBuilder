@@ -20,14 +20,13 @@
             $("[name = Email]").val(userData.Email);
             $("[name = PhoneNumber]").val(userData.PhoneNumber);
             $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
-            
+
             //Adding data in the fields
             $(".show-name").text(userData.FirstName + " " + userData.LastName);
             $(".show-email").text(userData.Email);
             $(".show-phone-number").text(userData.PhoneNumber);
             $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
 
-            $('.toast').toast('show');
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -55,7 +54,6 @@
             $(".show-summary-info").text(userData.Summary);
             $(".show-resume-info").text(userData.ResumeName);
 
-            $('.toast').toast('show');
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -68,7 +66,7 @@
     $('body').on("click", ".save-education-info", function (e) {
         e.preventDefault();
         var id = $('.js-education-id').val();
-        var $button = $('button [data-education-id="'+id+'"]');
+        var $button = $('button [data-education-id="' + id + '"]');
 
         var userData = {};
         {
@@ -87,8 +85,7 @@
         params['data'] = userData;
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
-            if (!(userData.EduID > 0))
-            {
+            if (!(userData.EduID > 0)) {
                 $('.js-education-details').append('<div class="row text-secondary"> \
                      <hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
@@ -103,8 +100,7 @@
                         </div> \
                     </div>');
             }
-            else
-            {
+            else {
                 $button.parents('.text-secondary').html('<hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
                             <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
@@ -118,7 +114,6 @@
                         </div>');
             }
 
-            $('.toast').toast('show');
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -145,15 +140,14 @@
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
             $('.js-skill-details').append('<span class="btn btn-primary"> \
-                    '+data.SkillName+' \
-                <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+data.SkillID+'"> </i> \
+                    '+ data.SkillName + ' \
+                <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
-            
-            $('.toast').toast('show');
+
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-       };
+        };
         doAjax(params);
 
         return false;
@@ -190,13 +184,12 @@
                     </div>';
 
             if (!(userData.ProjectID > 0)) {
-                $('.js-project-details').append('<div class="row" >'+ $html + '</div>');
+                $('.js-project-details').append('<div class="row" >' + $html + '</div>');
             }
             else {
                 $button.parents('.row').html($html);
             }
 
-            $('.toast').toast('show');
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -234,23 +227,22 @@
             var $html = '<hr width="90%" /> \
                     <div class="col-md-10 col-sm-8"> \
                         <p> \
-                            <b> '+data.Designation +'</b> at <b> '+data.Organization +'</b> \
+                            <b> '+ data.Designation + '</b> at <b> ' + data.Organization + '</b> \
                             <br /> \
-                            <b> '+ $fromDate +'</b> - <b> '+ $toDate +'</b> \
+                            <b> '+ $fromDate + '</b> - <b> ' + $toDate + '</b> \
                         </p> \
                     </div> \
                     <div class="col-md-2 col-sm-4"> \
-                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="'+data.ExpId+'"></i></button> \
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="'+data.ExpId+'"></i></button> \
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="'+ data.ExpId + '"></i></button> \
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="'+ data.ExpId + '"></i></button> \
                     </div>';
             if (!(userData.ExpId > 0)) {
-                $('.js-work-experience-details').append('<div class="row" >'+ $html + '</div>');
+                $('.js-work-experience-details').append('<div class="row" >' + $html + '</div>');
             }
             else {
                 $button.parents('.row').html($html);
             }
 
-            $('.toast').toast('show');
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -277,11 +269,10 @@
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
             $('.js-language-details').append('<span class="btn btn-primary"> \
-                    ' + data.LanguageName +' \
-                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+data.LanguageID+'"> </i> \
+                    ' + data.LanguageName + ' \
+                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
 
-            $('.toast').toast('show');
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -307,7 +298,7 @@
         params['data'] = formDetails;
         params['requestType'] = 'POST';
         params['dataType'] = null;
-        
+
         doAjax(params);
 
         return false;
@@ -320,7 +311,7 @@
         var educationId = $button.data('education-id');
 
         var params = $.extend({}, doAjax_params_default);
-        params['url'] = '/EditResume/GetEducation?educationId='+educationId;
+        params['url'] = '/EditResume/GetEducation?educationId=' + educationId;
         params['successCallbackFunction'] = function (data) {
             var $form = $('.education-form');
             $form.find('.js-education-id').val(data.EduID);
@@ -488,7 +479,7 @@
         var id = $button.data('education-id');
 
         var params = $.extend({}, doAjax_params_default);
-        params['url'] = '/EditResume/DeleteEducation?id='+id;
+        params['url'] = '/EditResume/DeleteEducation?id=' + id;
         params['requestType'] = 'DELETE';
         params['dataType'] = 'text';
         params['successCallbackFunction'] = function (data) {
@@ -496,8 +487,7 @@
         };
 
         confirmDelete(function (result) {
-            if(result)
-            {
+            if (result) {
                 doAjax(params);
             }
         })
@@ -597,7 +587,7 @@
                 callback(result);
             }
         });
-    }   
+    }
 }
 
 String.prototype.endsWith = function (suffix) {
