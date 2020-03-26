@@ -26,6 +26,10 @@
             $(".show-email").text(userData.Email);
             $(".show-phone-number").text(userData.PhoneNumber);
             $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         };
         doAjax(params);
 
@@ -49,6 +53,10 @@
 
             $(".show-summary-info").text(userData.Summary);
             $(".show-resume-info").text(userData.ResumeName);
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         };
         doAjax(params);
 
@@ -108,6 +116,10 @@
                         </div>');
             }
 
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
         };
         doAjax(params);
 
@@ -133,6 +145,10 @@
                     '+data.SkillName+' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+data.SkillID+'"> </i> \
                     </span>');
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
        };
         doAjax(params);
 
@@ -176,6 +192,10 @@
                 $button.parents('.row').html($html);
             }
 
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
         };
         doAjax(params);
 
@@ -201,12 +221,17 @@
         params['data'] = userData;
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
+            var $date = new Date(parseInt((data.FromYear).substr(6)));
+            var $fromDate = $date.getMonth() + '/' + $date.getDate() + '/' + $date.getFullYear();
+
+            $date = new Date(parseInt((data.ToYear).substr(6)));
+            var $toDate = $date.getMonth() + '/' + $date.getDate() + '/' + $date.getFullYear();
             var $html = '<hr width="90%" /> \
                     <div class="col-md-10 col-sm-8"> \
                         <p> \
                             <b> '+data.Designation +'</b> at <b> '+data.Organization +'</b> \
                             <br /> \
-                            <b> '+data.FromYear +'</b> - <b> '+data.ToYear +'</b> \
+                            <b> '+ $fromDate +'</b> - <b> '+ $toDate +'</b> \
                         </p> \
                     </div> \
                     <div class="col-md-2 col-sm-4"> \
@@ -219,6 +244,10 @@
             else {
                 $button.parents('.row').html($html);
             }
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
 
         };
         doAjax(params);
@@ -245,6 +274,10 @@
                     ' + data.LanguageName +' \
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+data.LanguageID+'"> </i> \
                     </span>');
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         };
         doAjax(params);
 
