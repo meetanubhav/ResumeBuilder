@@ -184,16 +184,13 @@ namespace ResumeBuilder.Controllers
             return PartialView();
         }
 
-        //public ActionResult PublicProfile(int? id)
-        //{
-        //    var userId = Int32.Parse(User.Identity.Name);
-        //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+        /* public ActionResult PublicProfile()
+         {
+             var userId = Int32.Parse(User.Identity.Name);
+             var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
-
-        //    return View(userVM);
-        //}
+             AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
+             var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
 
              return View(userVM);
          }*/
