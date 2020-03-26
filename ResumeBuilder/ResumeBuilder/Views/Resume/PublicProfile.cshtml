@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="~/Images/icon.jpg">
+    <link rel="shortcut icon" href="~/Images/user.jpg">
     <title>@Model.FirstName @Model.LastName</title>
 
     <!-- Global stylesheets -->
@@ -109,7 +109,7 @@
                                 </p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@userWorkExperience.FromYear - @userWorkExperience.ToYear</span>
+                                <span class="text-primary">@String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) - @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear)</span>
                             </div>
                         </div>
                     </div>
