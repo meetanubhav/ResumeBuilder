@@ -21,13 +21,13 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login(IndexVM user)
         {
             if (ModelState.IsValid)
             {
-                var getUserId = db.Users.Where(x => x.Username == user.Username);
-                var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
-                if (getUserId.Where(x => x.Password == user.Password).Any())
+                var getUserId = db.Users.Where(x => x.Username == user.LoginModel.Username);
+                var userData = db.Users.SingleOrDefault(x => x.Username == user.LoginModel.Username);
+                if (getUserId.Where(x => x.Password == user.LoginModel.Password).Any())
                 {
                     FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
@@ -43,6 +43,39 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Login");
             }
         }
+
+        public ActionResult Register(IndexVM newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if(!db.Users.Any(x=>x.Username == newUser.RegisterModel.RegisterUsername))
+                {
+                    db.Users.Add(new Models.User
+                    {
+                        Username = newUser.RegisterModel.RegisterUsername,
+                        Password = newUser.RegisterModel.RegisterPassword
+                    });
+                    db.SaveChanges();
+                    
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Registered UserName, Please try with other username.");               
+                }
+                return View("Login");
+                
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+private void alert(string p)
+{
+ 	throw new NotImplementedException();
+}
+
 
         [Authorize]
         public ActionResult Dashboard()
@@ -80,33 +113,34 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
-        public ActionResult PublicProfile(int? id)
-        {
-            var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == id).FirstOrDefault();
-            if (user != null)
-            {
-                UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Language = user.Languages;
-                    vm.Skill = user.Skills;
-                    vm.Project = user.Projects;
-                }
-                return View(vm);
-            }
-            else
-            {
-                return RedirectToAction("Dashboard");
-            }
-        }
+
+        // public ActionResult PublicProfile(int? id)
+        // {
+        //     var user = db.Users.Where(x => x.UserID == id).FirstOrDefault();
+        //     if (user != null)
+        //     {
+        //         UserResumeVM vm = new UserResumeVM();
+        //         {
+        //             vm.FirstName = user.FirstName;
+        //             vm.LastName = user.LastName;
+        //             vm.Email = user.Email;
+        //             vm.PhoneNumber = user.PhoneNumber;
+        //             vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+        //             vm.ResumeName = user.ResumeName;
+        //             vm.Summary = user.Summary;
+        //             vm.Education = user.Education;
+        //             vm.WorkExperience = user.WorkExperiences;
+        //             vm.Language = user.Languages;
+        //             vm.Skill = user.Skills;
+        //             vm.Project = user.Projects;
+        //         }
+        //         return View(vm);
+        //     }
+        //     else
+        //     {
+        //         return RedirectToAction("Dashboard");
+        //     }
+        // }
         [HttpGet]
         public ActionResult GetTemplateDetails()
         {
@@ -160,19 +194,22 @@ namespace ResumeBuilder.Controllers
             return PartialView();
         }
 
-        /* public ActionResult PublicProfile()
-         {
-             var userId = Int32.Parse(User.Identity.Name);
-             var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+        public ActionResult PublicProfile(int? userId)
+        {
+            // var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-             AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
-             var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+            var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+
+            return View(userVM);
+        }
 
         [Authorize]
         public ActionResult Search()
         {
             return View();
-        }*/
+        }
 
         public ActionResult SignOut()
         {
