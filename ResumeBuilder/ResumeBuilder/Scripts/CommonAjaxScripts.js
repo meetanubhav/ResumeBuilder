@@ -78,10 +78,16 @@
             type: 'POST',
             data: formData,
             success: function (response) {
+<<<<<<< HEAD
                 $('.modal').modal('hide');
                 getUserInfo();
                 $('modal input[type="text"]').val('');
                 $('modal input[type ="checkbox"]').prop('checked', false);
+=======
+                getUserInfo();
+                $('.render-partial-view').load("/Resume/Edit");
+                $('.modal').modal('hide');
+>>>>>>> parent of 5875fe9... Added Toast notification for success of Jquery
                 //$('.show-content').html(response);
             },
             failure: function (response) {
