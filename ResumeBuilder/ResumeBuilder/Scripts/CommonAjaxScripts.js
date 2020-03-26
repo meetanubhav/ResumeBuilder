@@ -398,17 +398,14 @@
             type: 'POST',
             data: formData,
             success: function (response) {
-                getUserInfo();
-                $('.toast').toast('show');
-                $('.render-partial-view').load("/Resume/Edit");
                 $('.modal').modal('hide');
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
+                getUserInfo();
+                $('modal input[type="text"]').val('');
+                $('modal input[type ="checkbox"]').prop('checked', false);
                 //$('.show-content').html(response);
             },
             failure: function (response) {
-                
-
+                alert("fail ho gya bhai");
             }
         })
     }

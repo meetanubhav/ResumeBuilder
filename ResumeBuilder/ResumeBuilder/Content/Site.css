@@ -10,9 +10,7 @@
     padding-left: 17rem;
   }
 }
-.toast{
-    position: fixed; bottom: 0; right: 0;
-}
+
 .social-icons a {
   display: inline-block;
   height: 3.5rem;

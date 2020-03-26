@@ -3,18 +3,7 @@
 @{
     Layout = null;
 }
-<!-- Toast -->
-<div class="toast" data-delay="3000">
-    <div class="toast-header">
-        <div class="toast-body text-success">
-            <b><i class="fa fa-check"></i> Successfully Added</b>
-        </div>
-        <button type="button" class="close" data-dismiss="toast">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</div>
-<div class="container-fluid bg-light mt-5 mb-5 w-100">
+<div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
     <h2 class="text-center show-resume-info">@Model.ResumeName</h2>
     <div>
         <h3 class="mb-2">Basic Information</h3>
@@ -65,22 +54,8 @@
     <hr />
     <div>
         <h3>Projects</h3>
-        @foreach (var userProject in Model.Project)
-        {
-            <hr />
-            <div class="row">
-                <div class="col-md-10 col-sm-8 ">
-                    <h5>@userProject.ProjectName</h5>
-                    <p>@userProject.ProjectDetails</p>
-                </div>
-                <div class="col-md-2 col-sm-4">
-                    <p class="">Duration @userProject.DurationInMonth months</p>
-                    <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-project-id="@userProject.ProjectID"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-project-id="@userProject.ProjectID"></i></button>
-                </div>
-            </div>
-        }
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mt-1 mb-2 " data-toggle="modal" data-target=".projectModal">Add Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="projectData"></span>
     </div>
     <hr />
     <div>
@@ -91,11 +66,8 @@
     <hr />
     <div>
         <h3>Skills</h3>
-        @foreach (var userSkills in Model.Skill)
-        {
-            <span class="btn btn-primary">@userSkills.SkillName <i class="fa fa-times js-delete-skill text-danger" data-skill-id="@userSkills.SkillID"> </i> </span>
-        }
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2 " data-toggle="modal" data-target=".skillModal">Add Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".skillModal">Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <span class="skillData"></span>
     </div>
 </div>
 
@@ -295,7 +267,7 @@
                             </div>
                             <select class="custom-select project-duration" id="projectDuration">
                                 @{
-                                    for (int i = 0; i <= 100; i++)
+                                    for(int i=0;i<=100;i++)
                                     {
                                         <option value="@i">@i</option>
                                     }

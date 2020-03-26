@@ -17,6 +17,5 @@ namespace ResumeBuilder.Models.ViewModel
 
         [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
         public Nullable<DateTime> ToYear { get; set; }
-
     }
 }
