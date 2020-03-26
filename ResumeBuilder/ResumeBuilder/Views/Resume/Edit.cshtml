@@ -1,5 +1,4 @@
 ﻿@model ResumeBuilder.Models.ViewModel.UserResumeVM
-
 @{
     Layout = null;
 }
@@ -55,7 +54,7 @@
                     <p>
                         <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
                         <br />
-                        <b> @userWorkExperience.FromYear </b> - <b> @userWorkExperience.ToYear </b>
+                        <b>@String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) </b> - <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) </b>
                     </p>
                 </div>
                 <div class="col-md-2 col-sm-4">
@@ -75,16 +74,16 @@
             <div class="row">
                 <div class="col-md-10 col-sm-8 ">
                     <h5>@userProject.ProjectName</h5>
-                    <p>Duration @userProject.DurationInMonth months</p>
                     <p>@userProject.ProjectDetails</p>
                 </div>
             <div class="col-md-2 col-sm-4">
+                <p class="">Duration @userProject.DurationInMonth months</p>
                 <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-project-id="@userProject.ProjectID"></i></button>
                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-project-id="@userProject.ProjectID"></i></button>
             </div>
         </div>
         }
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Add Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mt-1 mb-2 " data-toggle="modal" data-target=".projectModal">Add Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>

@@ -20,6 +20,11 @@
             ResumeSettingsScript();
         });
     });
+    $('.js-search').on('click', function (e) {
+        e.preventDefault();
+        $('.render-partial-view').load("/Resume/Search", function () {
+        });
+    });
 
     AjaxScripts();
     //$('body').on("click",'.js-public-profile', function (e) {
