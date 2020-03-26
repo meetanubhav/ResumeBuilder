@@ -82,7 +82,7 @@ namespace ResumeBuilder.Controllers
             var userId = Int32.Parse(User.Identity.Name);
             if (User.Identity.Name != null)
             {
-                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+                var user = db.Users.Include("Education").Where(x => x.UserID == userId).FirstOrDefault();
 
                 UserResumeVM vm = new UserResumeVM();
                 {
@@ -96,8 +96,6 @@ namespace ResumeBuilder.Controllers
                     vm.Education = user.Education;
                     vm.Project = user.Projects;
                     vm.WorkExperience = user.WorkExperiences;
-                    vm.Skill = user.Skills;
-                    vm.Language = user.Languages;
                 }
                 return PartialView("~/Views/Resume/Edit.cshtml", vm);
             }
@@ -121,10 +119,10 @@ namespace ResumeBuilder.Controllers
                     vm.ResumeName = user.ResumeName;
                     vm.Summary = user.Summary;
                     vm.Education = user.Education;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Language = user.Languages;
-                    vm.Skill = user.Skills;
                     vm.Project = user.Projects;
+                    vm.WorkExperience = user.WorkExperiences;
+                    vm.Skill = user.Skills;
+                    vm.Language = user.Languages;
                 }
                 return View(vm);
             }
@@ -143,24 +141,24 @@ namespace ResumeBuilder.Controllers
                 .Include("WorkExperiences")
                 .Include("Languages")
             .FirstOrDefault(x => x.UserID == userId);
-            
-            foreach(var i in user.Projects)
+
+            foreach (var i in user.Projects)
             {
                 i.User = null;
             }
-            foreach(var i in user.Skills)
+            foreach (var i in user.Skills)
             {
                 i.Users = null;
             }
-            foreach(var i in user.Education)
+            foreach (var i in user.Education)
             {
                 i.User = null;
             }
-            foreach(var i in user.WorkExperiences)
+            foreach (var i in user.WorkExperiences)
             {
                 i.User = null;
             }
-            foreach(var i in user.Languages)
+            foreach (var i in user.Languages)
             {
                 i.Users = null;
             }
@@ -197,11 +195,8 @@ namespace ResumeBuilder.Controllers
         //    return View(userVM);
         //}
 
-        [Authorize]
-        public ActionResult Search()
-        {
-            return View();
-        }
+             return View(userVM);
+         }*/
 
         public ActionResult SignOut()
         {
