@@ -21,13 +21,13 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login(IndexVM user)
         {
             if (ModelState.IsValid)
             {
-                var getUserId = db.Users.Where(x => x.Username == user.Username);
-                var userData = db.Users.SingleOrDefault(x => x.Username == user.Username);
-                if (getUserId.Where(x => x.Password == user.Password).Any())
+                var getUserId = db.Users.Where(x => x.Username == user.LoginModel.Username);
+                var userData = db.Users.SingleOrDefault(x => x.Username == user.LoginModel.Username);
+                if (getUserId.Where(x => x.Password == user.LoginModel.Password).Any())
                 {
                     FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
@@ -43,6 +43,32 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Login");
             }
         }
+
+        public ActionResult Register(IndexVM newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if(!db.Users.Any(x=>x.Username == newUser.RegisterModel.RegisterUsername))
+                {
+                    db.Users.Add(new Models.User
+                    {
+                        Username = newUser.RegisterModel.RegisterUsername,
+                        Password = newUser.RegisterModel.RegisterPassword
+                    });
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Registered UserName, Please try with other username.");
+                }
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
 
         [Authorize]
         public ActionResult Dashboard()
