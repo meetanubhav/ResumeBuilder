@@ -56,18 +56,25 @@ namespace ResumeBuilder.Controllers
                         Password = newUser.RegisterModel.RegisterPassword
                     });
                     db.SaveChanges();
+                    
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Registered UserName, Please try with other username.");
+                    ModelState.AddModelError("", "Registered UserName, Please try with other username.");               
                 }
-                return RedirectToAction("Login");
+                return View("Login");
+                
             }
             else
             {
                 return RedirectToAction("Login");
             }
         }
+
+private void alert(string p)
+{
+ 	throw new NotImplementedException();
+}
 
 
         [Authorize]

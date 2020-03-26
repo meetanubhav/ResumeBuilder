@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="~/Content/Login.css" />
 }
 <div class="login-page">
+    
     <div class="form">
+        <h3>Resume Builder</h3>
+        <hr />
+
         @Html.ValidationSummary()
         <form class="register-form" action="/Resume/Register" method="post" novalidate="novalidate">
 
@@ -52,6 +56,7 @@
                     @Html.PasswordFor(x => x.LoginModel.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.LoginModel.Password, "", new { @class = "text-red" })
                 </div>
+                <br />
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary"> <i class="fa fa-sign-in-alt pr-2"></i> Login</button>
                 </div>
