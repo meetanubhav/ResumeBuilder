@@ -1,4 +1,5 @@
 ﻿@{
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -27,7 +28,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger js-public-profile  text-left" href="/Resume/PublicProfile/@User.Identity.Name">
+                <a class="nav-link js-scroll-trigger js-public-profile  text-left" href="">
                     <i class="fa fa-user mr-4"> </i>
                     Public Profile
                 </a>
@@ -39,54 +40,25 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="SignOut" type="button" class="btn btn-danger nav-link js-scroll-trigger text-white css-signout">Sign Out</a>
+                <a class="nav-link js-scroll-trigger js-search text-left" href="">
+                    <i class="fa fa-search mr-3"> </i>
+                    Search
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="SignOut" type="button" class="btn btn-danger nav-link js-scroll-trigger text-white css-signout"><i class="fa fa-sign-out"> </i>Sign Out</a>
             </li>
         </ul>
     </div>
 </nav>
 <!--  -->
-@*<div class="sidenav col-md-2">
-        <div class="text-secondary mt-5">
-            <a href="" class="js-edit">
-                <i class="fa fa-edit mr-3"> </i>
-                Edit
-            </a>
-        </div>
-        <div class="text-primary mt-3">
-            <a href="~/Resume/Login">
-                <i class="fa fa-file-contract mr-4"> </i>
-                Template
-            </a>
-        </div>
-        <div class="text-primary mt-3">
-            <a href="~/Resume/PublicProfile">
-                <i class="fa fa-file-contract mr-4"> </i>
-                Public Profile
-            </a>
-        </div>
-        <div class="text-primary mt-3">
-            <a href="" class="js-settings">
-                <i class="fa fa-cogs mr-3"> </i>
-                Settings
-            </a>
-        </div>
-        <div class="text-primary mt-3">
-            <a href="SignOut" type="button" class="btn btn-danger text-white mt-5">Sign Out</a>
-        </div>
-    </div>*@
-
+     
 <!-- Dynamic goes here -->
-<div class="container-fluid p-2 render-partial-view">
+<div class="container-fluid p-0 render-partial-view">
     <div class="m-5 home-dash">
         <img src="https://ak7.picdn.net/shutterstock/videos/20490997/thumb/10.jpg" class="img-fluid" alt="background-resume-image" />
         <h2 class="text-center">
             Build Resumes With <i class="fa fa-heart text-danger"></i>
         </h2>
     </div>
-    @*<div class="w-auto ml-lg-5 show-edit-section hide">
-            @Html.Partial("Edit")
-        </div>
-        <div class="w-auto ml-lg-5 show-settings-section hide">
-            @Html.Partial("Settings")
-        </div>*@
 </div>

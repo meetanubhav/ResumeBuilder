@@ -70,19 +70,18 @@
                     <h2 class="  text-center">Educations</h2>
                     <div class="mb-5 heading-border"></div>
                 </div>
-               
                 <div class="main-educations" id="educations-box">
-                @foreach (var userEducations in Model.Education)
+                    @foreach (var userEducations in Model.Education)
                     {
                         <div class="educations">
                             <div class="educations-icon"></div>
                             <div class="educations-content">
                                 <span class="date"> @userEducations.YearOfPassing </span>
                                 <h5 class="title">
-                                    @userEducations.EducationLevel,@userEducations.Institution
+                                    @userEducations.Score @userEducations.CGPAorPercentage in @userEducations.EducationLevel
                                 </h5>
                                 <p class="description">
-                                    @userEducations.Score @userEducations.CGPAorPercentage in @userEducations.EducationLevel
+                                    @userEducations.Institution
                                 </p>
                             </div>
                         </div>

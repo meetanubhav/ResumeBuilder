@@ -32,7 +32,7 @@ namespace ResumeBuilder.Controllers
             Settings userSettings = Mapper.Map<SettingsVM, Settings>(settings);
 
             var userId = Int32.Parse(User.Identity.Name);
-            var personEntity = db.Users.Find(userId);
+            var personEntity = db.Users.Include("Settings").FirstOrDefault(x => x.UserID == userId);
 
             if (personEntity != null)
             {
