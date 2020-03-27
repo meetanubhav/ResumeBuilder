@@ -112,9 +112,9 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult PublicProfile(int? id)
+        public ActionResult PublicProfile(int? userId)
         {
-            var user = db.Users.Where(x => x.UserID == id).FirstOrDefault();
+            var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
             if (user != null)
             {
                 UserResumeVM vm = new UserResumeVM();
@@ -191,7 +191,36 @@ namespace ResumeBuilder.Controllers
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView();
         }
+        //This action method is triggered in search
+        public ActionResult GetAllUsersData()
+        {
+            //var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").OrderBy(x => x.FirstName).ToList();
+            //var data = (from user in db.Users.Include("Skills")
+            //            select new SearchUserDataVM
+            //            {
+            //                FirstName = user.FirstName,
+            //                LastName = user.LastName,
+            //            }).Where(x => x.FirstName !=null && x.LastName !=null).OrderBy(x => x.FirstName).ToList();
+            //var data = db.Users
+            //                .Where(x => x.FirstName !=null && x.LastName !=null)
+            //                .Select(user => new
+            //                {
+            //                    Name = user.FirstName,
+            //                    TeamNames = user.Skills
+            //                        .Select(skill => skill.SkillName )
+            //                        .ToList(),
+            //                });
+            var data = (from e in db.Users.Include("Skills")
+                                                    .Where(x => x.Skills.Any()).ToList()
+                        select new SearchUserDataVM
+                        {
+                            FirstName = e.FirstName,
+                            LastName = e.LastName,
+                            Skills = e.Skills.Select(x => x.SkillName).ToArray()
+                        });
+            return Json(data, JsonRequestBehavior.AllowGet);
 
+        }
         //public ActionResult PublicProfile(int? userId)
         //{
         //    // var userId = Int32.Parse(User.Identity.Name);
