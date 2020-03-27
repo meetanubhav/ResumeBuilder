@@ -3,7 +3,6 @@ using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,10 +16,10 @@ namespace ResumeBuilder.Controllers
         public ActionResult Settings()
         {
             var userId = Int32.Parse(User.Identity.Name);
-            var settings = db.Users.Include("Settings").Where(x => x.UserID == userId).Select(x => x.Settings).FirstOrDefault();
+            var settings = db.Users.Include("Settings").Where(x => x.UserID == userId).Select(x => x.Settings).FirstOrDefault(); 
 
-           // Mapper.Initialize(cfg => cfg.CreateMap<Settings, SettingsVM>());
-           // SettingsVM settingsVM = Mapper.Map<Settings,SettingsVM>(settings);
+            Mapper.Initialize(cfg => cfg.CreateMap<Settings, SettingsVM>());
+            SettingsVM settingsVM = Mapper.Map<Settings, SettingsVM>(settings);
 
             return PartialView("~/Views/Resume/Settings.cshtml");
         }
@@ -32,7 +31,8 @@ namespace ResumeBuilder.Controllers
             //Mapper.Initialize(cfg => cfg.CreateMap<SettingsVM, Settings>());
            // Settings userSettings = Mapper.Map<SettingsVM, Settings>(settings);
 
-            var personEntity = db.Users.Find(Int32.Parse(User.Identity.Name));
+            var userId = Int32.Parse(User.Identity.Name);
+            var personEntity = db.Users.Include("Settings").FirstOrDefault(x => x.UserID == userId);
 
             //if (personEntity != null)
             //{

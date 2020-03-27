@@ -116,6 +116,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\template2style.css" />
@@ -258,6 +259,14 @@
     <Compile Include="Migrations\202003131110418_made_settingID_nullable.designer.cs">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.cs" />
+    <Compile Include="Migrations\202003131221194_changed string lenghth of summary section.designer.cs">
+      <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003230957536_changes in education model .cs" />
+    <Compile Include="Migrations\202003230957536_changes in education model .designer.cs">
+      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -268,8 +277,11 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModel\BasicDetailsVM.cs" />
     <Compile Include="Models\ViewModel\EducationVM.cs" />
+    <Compile Include="Models\ViewModel\IndexVM.cs" />
     <Compile Include="Models\ViewModel\LanguageVM.cs" />
+    <Compile Include="Models\ViewModel\LoginVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
+    <Compile Include="Models\ViewModel\RegisterVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
@@ -292,6 +304,7 @@
     <Content Include="Views\Resume\Settings.cshtml" />
     <Content Include="Views\Resume\Template.cshtml" />
     <Content Include="Views\Resume\Template2.cshtml" />
+        <Content Include="Views\Resume\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -307,6 +320,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003131110418_made_settingID_nullable.resx">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131221194_changed string lenghth of summary section.resx">
+      <DependentUpon>202003131221194_changed string lenghth of summary section.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
+      <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

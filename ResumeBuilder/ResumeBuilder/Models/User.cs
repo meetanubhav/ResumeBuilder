@@ -37,17 +37,14 @@ namespace ResumeBuilder.Models {
 
         public string ResumeName { get; set; }
 
-        [StringLength(100)]
+        //[StringLength(100)]
         public string Summary { get; set; }
 
         public virtual List<WorkExperience> WorkExperiences { get; set; }
-
         public virtual List<Education> Education { get; set; }
-
         public virtual List<Project> Projects { get; set; }
 
         public virtual List<Skill> Skills { get; set; }
-
         public virtual List<Language> Languages { get; set; }
 
         public int? SettingsID { get; set; }

@@ -1,26 +1,37 @@
 ﻿$(document).ready(function () {
-    //$('.js-edit-resume').on("click", function () {
-    //    $('.render-partial-view').load("/Resume/Edit", function ()
-    //    {
-    //        EditSectionScripts();
-    //    });
-    //    return false;
-    //});
+    $('.js-edit-resume').on("click", function () {
+        //var userId = parseInt($("#userId").val());
+        $('.render-partial-view').load("/Resume/Edit");
+        EditSectionScripts();
+        return false;
+    });
+    $('.message a').click(function () {
+        $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    });
+    $('.js-template').on('click', function () {
+        $('.render-partial-view').load("");
+    });
+
+    $('.js-public-profile').on('click', function (e) {
+        e.preventDefault();
+        window.open('/Resume/PublicProfile/'+ $('#userId').val(), '_blank');
+    });
     
-    $('.js-template').on("click", function () {
-        $('.render-partial-view').load("/Resume/Template");
-    });
-
-    $('.js-public-profile').on("click", function () {
-        window.open('/Resume/PublicProfile', '_blank');
-    });
-
-    $('.js-settings').on("click", function (e) {
+    $('.js-settings').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Settings/Settings", function () {
             ResumeSettingsScript();
         });
     });
+    $('.js-search').on('click', function (e) {
+        e.preventDefault();
+        $('.render-partial-view').load("/Resume/Search", function () {
+        });
+    });
 
     AjaxScripts();
-});
+    //$('body').on("click",'.js-public-profile', function (e) {
+    //    e.preventDefault();
+    //    window.open('/Resume/PublicProfile/' + $('#userId').val());
+    //});
+});    

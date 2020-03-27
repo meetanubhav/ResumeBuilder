@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,7 +11,7 @@ namespace ResumeBuilder.Models.ViewModel
 
         public string EducationLevel { get; set; }
 
-        public int YearOfPassing { get; set; }
+        public int? YearOfPassing { get; set; }
 
         public string CGPAorPercentage { get; set; }
 

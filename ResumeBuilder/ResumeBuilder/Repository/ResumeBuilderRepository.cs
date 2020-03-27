@@ -22,6 +22,9 @@ namespace ResumeBuilder.Repository
                 if (userInfo != null)
                 {
                     db.Users.Add(userInfo);
+                    //userInfo.Summary = string.Empty;
+                    //userInfo.ResumeName = string.Empty;
+                    //db.Users.Add(userInfo);
                     db.Entry(userInfo).State = EntityState.Modified;
                     records = db.SaveChanges();
                 }
@@ -62,12 +65,11 @@ namespace ResumeBuilder.Repository
             return records > 0 ? true : false;
         }
 
-        public string AddOrUpdateEducation(Education education, int idUser)
+        public int AddOrUpdateEducation(Education education, int idUser)
         {
-            string msg = string.Empty;
 
-            var personEntity = db.Users.Find(idUser);
-            education.UserID = idUser;
+            var personEntity = db.Users.Include("Education").FirstOrDefault(x => x.UserID == idUser);
+
             if (personEntity != null)
             {
                 if (education.EduID > 0)
@@ -76,7 +78,6 @@ namespace ResumeBuilder.Repository
                     db.Entry(education).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    msg = "Education entity has been updated successfully";
                 }
                 else
                 {
@@ -84,11 +85,10 @@ namespace ResumeBuilder.Repository
                     personEntity.Education.Add(education);
                     db.SaveChanges();
 
-                    msg = "Education entity has been Added successfully";
                 }
             }
 
-            return msg;
+            return education.EduID;
         }
 
         public int GetIdPerson(string email)
@@ -103,16 +103,17 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Find(idUser);
+            var personEntity = db.Users.Include("Skills").FirstOrDefault(x => x.UserID == idUser);
 
-            if(personEntity != null && skill != null)
+            if (personEntity != null && skill != null)
             {
                 if (skill.SkillID > 0)
                 {
+
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                     msg = "Skill has been updated successfully";
-                    
+
                 }
                 else
                 {
@@ -122,17 +123,15 @@ namespace ResumeBuilder.Repository
                     msg = "Skill has been Added successfully";
                 }
             }
-            
-
             return countRecords > 0 ? msg : "Falied to Add";
-            
+
         }
 
         public string AddorUpdateProject(Project project, int idUser)
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Find(idUser);
+            var personEntity = db.Users.Include("Projects").FirstOrDefault(x => x.UserID == idUser);
             project.UserID = idUser;
             if (personEntity != null && project != null)
             {
@@ -158,8 +157,7 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Find(idUser);
-            work.UserID = idUser;
+            var personEntity = db.Users.Include("WorkExperiences").FirstOrDefault(x => x.UserID == idUser);
             if (personEntity != null && work != null)
             {
                 if (work.ExpId > 0)
@@ -180,18 +178,27 @@ namespace ResumeBuilder.Repository
             return countRecords > 0 ? msg : "Failed to Add";
         }
 
-        public bool AddLanguage(Language language, int idUser)
+        public string AddorUpdateLanguage(Language language, int idUser)
         {
+            string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Find(idUser);
+            var personEntity = db.Users.Include("Languages").FirstOrDefault(x => x.UserID == idUser);
 
-            if (personEntity != null && language != null)
+            if (language.LanguageID > 0)
+            {
+                db.Entry(language).State = EntityState.Modified;
+                db.SaveChanges();
+                msg = "Languages has been updated successfully";
+            }
+
+            else
             {
                 personEntity.Languages.Add(language);
                 countRecords = db.SaveChanges();
+                msg = "Languages has been Added successfully";
             }
 
-            return countRecords > 0 ? true : false;
+            return countRecords > 0 ? msg : "Failed to add";
         }
 
         public User GetBasicInfo(int idUser)

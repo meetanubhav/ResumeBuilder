@@ -10,7 +10,7 @@ namespace ResumeBuilder.Models
     {
         public ResumeBuilderDBContext() : base()
         {
-
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }

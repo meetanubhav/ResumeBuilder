@@ -1,155 +1,284 @@
 ﻿function AjaxScripts() {
-
-    
-    //Ajax Script for edit section view
-    var ajaxFunction = function (url, type, formData, successFunction) {
-        $.ajax({
-            url: url,
-            type: type,
-            data: formData,
-            datatype: 'json',
-            success: function (response) {
-                $('.modal').modal('hide');
-                //successFunction();           
-            },
-            failure: function (response) {
-                alert("Ajax call failed");
-            }
-        })
-    }
-
-    function getUserInfo() {
-        $.ajax({
-            url: "/EditResume/GetUserInfo",
-            type: "GET",
-            dataType: "json",
-            success: function (userData) {
-                $("[name = FirstName]").val(userData.FirstName);
-                $("[name = LastName]").val(userData.LastName);
-                $("[name = Email]").val(userData.Email);
-                $("[name = PhoneNumber]").val(userData.PhoneNumber);
-                $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
-                $("[name = ResumeName]").val(userData.ResumeName);
-                $("[name = Summary]").val(userData.Summary);
-
-                //Adding data in the fields
-                $(".show-name").text(userData.FirstName + " " + userData.LastName);
-                $(".show-email").text(userData.Email);
-                $(".show-phone-number").text(userData.PhoneNumber);
-                $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
-                $(".show-summary-info").text(userData.Summary);
-                $(".show-resume-info").text(userData.ResumeName);
-            }
-        })
-    }
-
+    /*              Save Buttons            */
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
-        var userData = {};
-        userData.FirstName = $("[name = firstName]").val();
-        userData.LastName = $("[name = lastName]").val();
-        userData.Email = $("[name = email]").val();
-        userData.PhoneNumber = $("[name = phoneNumber]").val();
-        userData.AlternatePhoneNumber = $("[name = altPhoneNumber]").val();
-        var successFunction = function () {
-            $('.basic-info-form').disabled();
-            getUserInfo();
-        };
 
-        ajaxFunction('/EditResume/AddBasicInfo', 'POST', userData, successFunction);
+        var userData = {};
+        userData.FirstName = $("[name = FirstName]").val();
+        userData.LastName = $("[name = LastName]").val();
+        userData.Email = $("[name = Email]").val();
+        userData.PhoneNumber = $("[name = PhoneNumber]").val();
+        userData.AlternatePhoneNumber = $("[name = AlternatePhoneNumber]").val();
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddBasicInfo';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (userData) {
+            $("[name = FirstName]").val(userData.FirstName);
+            $("[name = LastName]").val(userData.LastName);
+            $("[name = Email]").val(userData.Email);
+            $("[name = PhoneNumber]").val(userData.PhoneNumber);
+            $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
+
+            //Adding data in the fields
+            $(".show-name").text(userData.FirstName + " " + userData.LastName);
+            $(".show-email").text(userData.Email);
+            $(".show-phone-number").text(userData.PhoneNumber);
+            $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+        doAjax(params);
+
         return false;
     });
 
     $('body').on("click", ".save-summary", function (e) {
         e.preventDefault();
+
         var userData = {};
         userData.ResumeName = $("[name = resumeName]").val();
         userData.Summary = $("[name = summary]").val();
 
-        var successFunction = function () {
-            //$('.modal').modal('hide');
-            getUserInfo();
-        };
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddSummaryInfo';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (userData) {
+            $("[name = ResumeName]").val(userData.ResumeName);
+            $("[name = Summary]").val(userData.Summary);
 
-        ajaxFunction('/EditResume/AddSummaryInfo', 'POST', userData, successFunction);
+            $(".show-summary-info").text(userData.Summary);
+            $(".show-resume-info").text(userData.ResumeName);
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+        doAjax(params);
+
         return false;
     });
 
-    $('body').on("click", ".save-education", function (e) {
+    $('body').on("click", ".save-education-info", function (e) {
         e.preventDefault();
-        var userData = new Object();
+        var id = $('.js-education-id').val();
+        var $button = $('button [data-education-id="' + id + '"]');
+
+        var userData = {};
         {
-            userData.EduID = $('.education-form-id').val();
+            userData.EduID = $('.js-education-id').val();
             userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
-            userData.YearOfPassing = $("[name = yop]").val();
-            userData.CGPAorPercentage = ($('.form-check-input').serializeArray())[1]['value'];
-            userData.Score = $("[name = gradetype]").val();
-            userData.Stream = $("[name = stream]").val();
-            userData.Institution = $("[name = university]").val();
+            userData.CgpaOrPercentage = ($('.form-check-input').serializeArray())[1]['value'];
+            userData.YearOfPassing = $("[name = YearOfPassing]").val();
+            userData.Score = $("[name = Score]").val();
+            userData.Board = $("[name = Board]").val();
+            userData.Stream = $("[name = Stream]").val();
+            userData.Institution = $("[name = Institution]").val();
         }
 
-        var successFunction = function () {
-            console.log("Education Added");
-        };
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddEducationInfo';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (data) {
+            if (!(userData.EduID > 0)) {
+                $('.js-education-details').append('<div class="row text-secondary"> \
+                     <hr width="90%">\
+                        <div class="col-md-10 col-sm-8"> \
+                            <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
+                            <p> ' + data.YearOfPassing + '</p> \
+                            <p>' + data.Stream + '</p> \
+                            <p> ' + data.Institution + '</p> \
+                        </div> \
+                        <div class="col-md-2 col-sm-4"> \
+                            <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-education" data-education-id="' + data.EduID + '"></i></button> \
+                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="' + data.EduID + '"></i></button> \
+                        </div> \
+                    </div>');
+            }
+            else {
+                $button.parents('.text-secondary').html('<hr width="90%">\
+                        <div class="col-md-10 col-sm-8"> \
+                            <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
+                            <p> ' + data.YearOfPassing + '</p> \
+                            <p>' + data.Stream + '</p> \
+                            <p> ' + data.Institution + '</p> \
+                        </div> \
+                        <div class="col-md-2 col-sm-4"> \
+                            <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-education" data-education-id="' + data.EduID + '"></i></button> \
+                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="' + data.EduID + '"></i></button> \
+                        </div>');
+            }
 
-        ajaxFunction('/EditResume/AddEducation', 'POST', userData, successFunction);
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+        doAjax(params);
+
         return false;
     });
 
-    //---------------------- CODE BY BHABANI -------------------------------------------------------
     $('body').on("click", ".save-skill", function (e) {
         e.preventDefault();
+        var $button = $(this);
+
         var userData = new Object();
         {
-            userData.SkillID = $('.skill-form-id').val();
+            userData.SkillID = $('.js-skill-id').val();
             userData.SkillName = $("[name = skill]").val();
         }
 
-        var successFunction = function () {
-            alert('skill saved');
-        };
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddSkill';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (data) {
+            $('.js-skill-details').append('<span class="btn btn-primary"> \
+                    '+ data.SkillName + ' \
+                <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
+                    </span>');
 
-        ajaxFunction('/EditResume/AddSkill', 'POST', userData, successFunction);
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+        doAjax(params);
+
         return false;
     });
 
     $('body').on("click", ".save-project", function (e) {
         e.preventDefault();
+        var id = $('.js-project-id').val();
+        var $button = $('button [data-project-id="' + id + '"]');
+
         var userData = new Object();
         {
-            userData.ProjectID = $('.project-form-id').val();
-            userData.DurationInMonth = $("[name = projectDuration]").val();
+            userData.ProjectID = $('.js-project-id').val();
+            userData.DurationInMonth = $("#projectDuration option:selected").val();
             userData.ProjectName = $("[name = projectName]").val();
             userData.ProjectDetails = $("[name = projectDetails]").val();
             userData.YourRole = $("[name = projectRole]").val();
         }
 
-        var successFunction = function () {
-            //$('.modal').modal('hide');
-            console.log("Action Called");
-        };
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddProject';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (data) {
+            var $html = '<hr width="90%" /> \
+                    <div class="col-md-10 col-sm-8 "> \
+                        <h5>'+ data.ProjectName + '</h5> \
+                        <p>Duration '+ data.DurationInMonth + 'months</p> \
+                        <p>'+ data.ProjectDetails + '</p> \
+                    </div> \
+                    <div class="col-md-2 col-sm-4"> \
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-project" data-project-id="'+ data.ProjectID + '"></i></button> \
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-project" data-project-id="' + data.ProjectID + '"></i></button> \
+                    </div>';
 
-        ajaxFunction('/EditResume/AddProject', 'POST', userData, successFunction);
+            if (!(userData.ProjectID > 0)) {
+                $('.js-project-details').append('<div class="row" >' + $html + '</div>');
+            }
+            else {
+                $button.parents('.row').html($html);
+            }
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+        doAjax(params);
+
         return false;
     });
 
     $('body').on("click", ".save-workExp", function (e) {
         e.preventDefault();
+        var id = $('.js-work-experience-id').val();
+        var $button = $('button [data-workexp-id="' + id + '"]');
+
         var userData = new Object();
         {
-            userData.ExpId = $('.workExp-form-id').val();
+            userData.ExpId = $('.js-work-experience-id').val();
             userData.Organization = $("[name = organization]").val();
             userData.Designation = $("[name = designation]").val();
             userData.FromYear = $("[name = fromDate]").val();
             userData.ToYear = $("[name = toDate]").val();
         }
 
-        var successFunction = function () {
-            
-            console.log("Action Called");
-        };
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddWorkExp';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (data) {
+            var $date = new Date(parseInt((data.FromYear).substr(6)));
+            var $fromDate = $date.getMonth() + '/' + $date.getDate() + '/' + $date.getFullYear();
 
-        ajaxFunction('/EditResume/AddWorkExp', 'POST', userData, successFunction);
+            $date = new Date(parseInt((data.ToYear).substr(6)));
+            var $toDate = $date.getMonth() + '/' + $date.getDate() + '/' + $date.getFullYear();
+            var $html = '<hr width="90%" /> \
+                    <div class="col-md-10 col-sm-8"> \
+                        <p> \
+                            <b> '+ data.Designation + '</b> at <b> ' + data.Organization + '</b> \
+                            <br /> \
+                            <b> '+ $fromDate + '</b> - <b> ' + $toDate + '</b> \
+                        </p> \
+                    </div> \
+                    <div class="col-md-2 col-sm-4"> \
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="'+ data.ExpId + '"></i></button> \
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="'+ data.ExpId + '"></i></button> \
+                    </div>';
+            if (!(userData.ExpId > 0)) {
+                $('.js-work-experience-details').append('<div class="row" >' + $html + '</div>');
+            }
+            else {
+                $button.parents('.row').html($html);
+            }
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+        doAjax(params);
+
+        return false;
+    });
+
+    $('body').on("click", ".save-language", function (e) {
+        e.preventDefault();
+        var $button = $(this);
+
+        var userData = new Object();
+        {
+            userData.LanguageID = $('.js-language-id').val();
+            userData.LanguageName = $("[name = language]").val();
+        }
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/AddLanguage';
+        params['data'] = userData;
+        params['requestType'] = 'POST';
+        params['successCallbackFunction'] = function (data) {
+            $('.js-language-details').append('<span class="btn btn-primary"> \
+                    ' + data.LanguageName + ' \
+                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
+                    </span>');
+
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+        doAjax(params);
+
         return false;
     });
 
@@ -165,16 +294,89 @@
             formDetails.Skill = form.find('#settingFormSkill').is(':checked');
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
-        var successFunction = function () {
-            console.log('settings updated');
-        };
-        ajaxFunction('/Settings/AddOrUpdateSettings', 'POST',formDetails, successFunction);
-        return false;
-    })
 
-    //------------------------ CODE BY BHABANI-------------------------------------
-    var currentData;
-    $('.js-template, .js-edit-resume').on('click',  function () {
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/Settings/AddOrUpdateSettings';
+        params['data'] = formDetails;
+        params['requestType'] = 'POST';
+        params['dataType'] = null;
+
+        doAjax(params);
+
+        return false;
+    });
+
+    /*              Edit Buttons        */
+
+    $('body').on('click', '.js-edit-education', function () {
+        var $button = $(this);
+        var educationId = $button.data('education-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/GetEducation?educationId=' + educationId;
+        params['successCallbackFunction'] = function (data) {
+            var $form = $('.education-form');
+            $form.find('.js-education-id').val(data.EduID);
+            $form.find('input[value="' + data.EducationLevel + '"]').prop('checked', true);
+            $form.find('input[value="' + data.CGPAorPercentage + '"]').prop('checked', true);
+            $form.find("[name = YearOfPassing]").val(data.YearOfPassing);
+            $form.find("[name = Score]").val(data.Score);
+            $form.find("[name = Board]").val(data.Board);
+            $form.find("[name = Stream]").val(data.Stream);
+            $form.find("[name = Institution]").val(data.Institution);
+            $('a[data-target=".educationModal"]').click()
+        };
+
+        doAjax(params);
+    });
+
+    $('body').on("click", ".js-edit-project", function () {
+        var $button = $(this);
+        var projectId = $button.data('project-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/GetProject?projectId=' + projectId;
+        params['successCallbackFunction'] = function (data) {
+            var $form = $('.project-form');
+            $form.find('.js-project-id').val(data.ProjectID);
+            $form.find('[name = projectName]').val(data.ProjectName);
+            $form.find('[name = projectDetails]').val(data.projectDetails);
+            $form.find("[name = projectRole]").val(data.YourRole);
+            $form.find("#projectDuration").val(data.DurationInMonth);
+            $('a[data-target=".projectModal"]').click()
+        };
+
+        doAjax(params);
+
+    });
+
+    $('body').on("click", ".js-edit-workexp", function () {
+        var $button = $(this);
+        var workExperienceId = $button.data('workexp-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/GetWorkExperience?workExperienceId=' + workExperienceId;
+        params['successCallbackFunction'] = function (data) {
+            var $date = new Date(parseInt((data.FromYear).substr(6)));
+            var $fromDate = $date.getFullYear() + '-' + $date.getMonth() + '-' + $date.getDate();
+
+            $date = new Date(parseInt((data.ToYear).substr(6)));
+            var $toDate = $date.getFullYear() + '-' + $date.getMonth() + '-' + $date.getDate();
+
+            var $form = $('.workExp-form');
+            $form.find('.js-work-experience-id').val(data.ExpId);
+            $form.find('[name = organization]').val(data.Organization);
+            $form.find('[name = designation]').val(data.Designation);
+            $form.find("[name = fromDate]").val($fromDate);
+            $form.find("[name = toDate]").val($toDate);
+            $('a[data-target=".workExperienceModal"]').click()
+        };
+
+        doAjax(params);
+
+    });
+
+    $('.js-template, .js-edit-resume').on('click', function () {
         var $button = $(this);
 
         $.ajax({
@@ -192,7 +394,7 @@
                             var workDetails = $('.tWorkexperience').append($('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
 
-                            $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" data-workexp-id="' + item['ExpId'] + '"></i></div>'),
+                            $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" style="color: red;" data-workexp-id="' + item['ExpId'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
                                                      $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
                         }
@@ -202,7 +404,7 @@
                     $.each(response.Project, function (i, item) {
                         var projectDetails = $('.tproject').append($('<div class="font-weight-bold">').text(item['ProjectName']),
                                                                  $('<div class="bg-light rounded">').text(item['ProjectDetails']));
-                        $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" data-project-id="' + item['ProjectID'] + '"></i></div>'),
+                        $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" style="color: red;" data-project-id="' + item['ProjectID'] + '"></i></div>'),
                                                      $('<div class="font-weight-bold">').text(item['ProjectName']),
                                                      $('<div class="bg-light rounded">').text(item['ProjectDetails']));
                     });
@@ -210,7 +412,7 @@
                     $.each(response.Skill, function (i, item) {
                         if (item['SkillID'] != null) {
                             var skillDetails = $('.tskill').append($('<div class="font-weight-bold">').text(item['SkillName']));
-                            $('.skillData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 sk-edit" data-skill-id="' + item['UserSkillID'] + '"></i><i class="fas fa-trash sk-delete" data-skill-id="' + item['UserSkillID'] + '"></i></div>'),
+                            $('.skillData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 sk-edit" data-skill-id="' + item['SkillID'] + '"></i><i class="fas fa-trash sk-delete" style="color: red;" data-skill-id="' + item['SkillID'] + '"></i></div>'),
                                                    $('<div class="font-weight-bold">').text(item['SkillName']));
                         }
                     });
@@ -221,9 +423,11 @@
                                                                            $('<div class="bg-light rounded">').text("Scored: " + item['Score']),
                                                                            $('<div class="bg-light rounded">').text("Y.O.P: " + item['YearOfPassing']));
                             //-------Data Visible in Edit Page-------
-                            $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" data-education-id="' + item['EduID'] + '"></i></div>'),
+                            $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" style="color: red;" data-education-id="' + item['EduID'] + '"></i></div>'),
                                            $('<div class="font-weight-bold">').text(item['EducationLevel']),
-                                           $('<div>').text("Scored: " + item['Score']));
+                                           $('<div>').text("Scored: " + item['Score']),
+                                           $('<div>').text("Year of Passing: " + item['YearOfPassing']),
+                                           $('<div>').text("Stream: " + item['Stream']));
                         }
                     });
 
@@ -231,8 +435,8 @@
                         if (item['LanguageName'] != null) {
                             var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item['LanguageName']));
                             //-----Data Visible in Edit Page------------
-                            $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lan-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lan-delete" data-language-id="' + item['LanguageID'] + '"></i></div>'),
-                                                         $('<div class="bg-light rounded">').text(item['LanguageName']));
+                            $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lang-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lang-delete" style="color: red;" data-language-id="' + item['LanguageID'] + '"></i></div>'),
+                                                         $('<div class="bg-light font-weight-bold rounded">').text(item['LanguageName']));
                         }
                     });
 
@@ -256,119 +460,200 @@
                 alert(response.responseText);
             }
         });
-            
-        if ($button.attr('class') == "js-template") {
+
+        if ($button.hasClass('js-template')) {
 
             $('.render-partial-view').load("/Resume/Template");
         }
-        else if ($button.attr('class') == "js-edit-resume")
+        else if ($button.hasClass("js-edit-resume")) {
             $('.render-partial-view').load("/Resume/Edit", function () {
                 EditSectionScripts();
             });
+        }
 
         return false;
     });
 //-----------------------------------------------------------------------------------
 
-    $('body').on("click", ".su-edit", function (e) {
-        e.preventDefault();
+    /*              Delete Buttons        */
+
+    $('body').on('click', '.js-delete-education', function () {
         var $button = $(this);
-        var summaryId = $button.data('summary-id');
-        $.ajax({
-            url: "/EditResume/UpdateSummary/" + summaryId,
-            method: "GET",
-            success: function (result) {
-                console.log(result);
-                $('input[name="resumeName"]').val(result.ResumeName);
-                $('textarea[name="summary"]').val(result.Summary);
-                $('a')[5].click();
-            },
-            error: function (error) {
-                console.log(error);
-                alert("Sorry ! Unable to edit employee");
-            }
-        });
-        
+        var id = $button.data('education-id');
 
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteEducation?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('.text-secondary').remove();
+        };
+
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
     });
 
-    $('body').on("click", ".edu-edit, .edu-delete", function () {
-        $button = $(this);
-        if ($button.hasClass('edu-edit')) {
-            $('.education-form-id').val($(this).data('education-id'));
-            //$('input[name=educationLevel]').val(currentData.EducationLevel[$(this).data('education-id')+1]);
-            $('a')[6].click();
+    $('body').on("click", ".js-delete-workexp", function () {
+        var $button = $(this);
+        var id = $button.data('workexp-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteWorkExperience?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('.row').remove();
+        };
+
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
+    });
+
+    $('body').on("click", ".js-delete-project", function () {
+        var $button = $(this);
+        var id = $button.data('project-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteProject?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('.row').remove();
+        };
+
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
+    });
+
+    $('body').on("click", ".js-delete-language", function () {
+        var $button = $(this);
+        var id = $button.data('language-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteLanguage?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('span').remove();
+        };
+
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
+    });
+
+    $('body').on("click", ".js-delete-skill", function () {
+        var $button = $(this);
+        var id = $button.data('skill-id');
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/EditResume/DeleteSkill?id=' + id;
+        params['requestType'] = 'DELETE';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            $button.parents('span').remove();
+        };
+
+        confirmDelete(function (result) {
+            if (result) {
+                doAjax(params);
+            }
+        })
+    });
+
+    function confirmDelete(callback) {
+        bootbox.confirm({
+            title: "Delete Data",
+            message: "Do you really want to delete ? This cannot be undone.",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancel'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirm'
+
+                }
+            },
+            callback: function (result) {
+                console.log('This was logged in the callback: ' + result);
+                callback(result);
+            }
+        });
+    }
+}
+
+String.prototype.endsWith = function (suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
+var doAjax_params_default = {
+    'url': null,
+    'requestType': "GET",
+    'contentType': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'dataType': 'json',
+    'data': {},
+    'beforeSendCallbackFunction': null,
+    'successCallbackFunction': null,
+    'completeCallbackFunction': null,
+    'errorCallBackFunction': null,
+};
+
+
+function doAjax(doAjax_params) {
+
+    var url = doAjax_params['url'];
+    var requestType = doAjax_params['requestType'];
+    var contentType = doAjax_params['contentType'];
+    var dataType = doAjax_params['dataType'];
+    var data = doAjax_params['data'];
+    var beforeSendCallbackFunction = doAjax_params['beforeSendCallbackFunction'];
+    var successCallbackFunction = doAjax_params['successCallbackFunction'];
+    var completeCallbackFunction = doAjax_params['completeCallbackFunction'];
+    var errorCallBackFunction = doAjax_params['errorCallBackFunction'];
+
+    //make sure that url ends with '/'
+    /*if(!url.endsWith("/")){
+     url = url + "/";
+    }*/
+
+    $.ajax({
+        url: url,
+        crossDomain: true,
+        type: requestType,
+        contentType: contentType,
+        dataType: dataType,
+        data: data,
+        beforeSend: function (jqXHR, settings) {
+            if (typeof beforeSendCallbackFunction === "function") {
+                beforeSendCallbackFunction();
+            }
+        },
+        success: function (data, textStatus, jqXHR) {
+            if (typeof successCallbackFunction === "function") {
+                successCallbackFunction(data);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (typeof errorCallBackFunction === "function") {
+                errorCallBackFunction(errorThrown);
+            }
+
+        },
+        complete: function (jqXHR, textStatus) {
+            if (typeof completeCallbackFunction === "function") {
+                completeCallbackFunction();
+            }
         }
-        else if ($button.hasClass('edu-delete')) {
-            
-            var successFunction = function () {
-                $button.parent().fadeOut();
-                $button.parent().next().fadeOut();
-                $button.parent().next().next().fadeOut();
-            };
-            if (confirmDelete(successFunction) == true) {
-                ajaxFunction('/EditResume/DeleteEducation', 'POST', { "eduId": $(this).data('education-id') }, "");
-            }
-        }
-        
-
     });
-
-    $('body').on("click", ".we-edit", function () {
-        $('.workExp-form-id').val($(this).data('workexp-id'));
-        $('a')[7].click();
-
-    });
-
-    $('body').on("click", ".pr-edit", function () {
-        $('.project-form-id').val($(this).data('project-id'));
-        $('a')[8].click();
-
-    });
-
-    $('body').on("click", ".lang-edit", function () {
-        $('.language-form-id').val($(this).data('language-id'));
-        $('a')[9].click();
-
-    });
-
-    $('body').on("click", ".sk-edit", function () {
-        $('.skill-form-id').val($(this).data('skill-id'));
-        $('a')[10].click();
-
-    });
-
-//------------------------END CODE OF BHABANI---------------------------------------------------
-
-
-    function confirmDelete(style) {
-        bootbox.confirm("Confirm Delete!", function (result) {
-            style();
-            return result;
-        });
-    };
-
-    $('body').on('click', '.download-template', function () {
-        // Create a PDF from an existing HTML using C#
-        $.ajax({
-            type: "POST",
-            url: "/Resume/download",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                alert("Hello: " );
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
-        });
-
-    });
-
-
-
-    
 }

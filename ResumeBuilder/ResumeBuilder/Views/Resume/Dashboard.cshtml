@@ -1,40 +1,60 @@
 ﻿@{
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-<input type="hidden" value="" id="userId" />
-<div class="sidenav col-md-2">
-    <div class="text-secondary mt-5">
-        <a href="" class="js-edit-resume">
-            <i class="fa fa-edit mr-3"> </i>
-            Edit
-        </a>
+<input type="hidden" value="@User.Identity.Name" id="userId" />
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">RESUME BUILDER</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger js-edit-resume text-left" href="">
+                    <i class="fa fa-edit mr-3"> </i>
+                    Edit
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger js-template text-left" href="">
+                    <i class="fa fa-file-contract mr-4"> </i>
+                    Template
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger js-public-profile  text-left" href="">
+                    <i class="fa fa-user mr-4"> </i>
+                    Public Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger js-settings text-left" href="">
+                    <i class="fa fa-cogs mr-3"> </i>
+                    Settings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger js-search text-left" href="">
+                    <i class="fa fa-search mr-3"> </i>
+                    Search
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="SignOut" type="button" class="btn btn-danger nav-link js-scroll-trigger text-white css-signout"><i class="fa fa-sign-out"> </i>Sign Out</a>
+            </li>
+        </ul>
     </div>
-    <div class="text-primary mt-3">
-        <a href="" class="js-template">
-            <i class="fa fa-file-contract mr-4"> </i>
-            Template
-        </a>
-    </div>
-    <div class="text-primary mt-3">
-        <a href="" class="js-public-profile">
-            <i class="fa fa-file-contract mr-4"> </i>
-            Public Profile
-        </a>
-    </div>
-    <div class="text-primary mt-3">
-        <a href="" class="js-settings">
-            <i class="fa fa-cogs mr-3"> </i>
-            Settings
-        </a>
-    </div>
-    <div class="text-primary mt-3">
-        <a href="SignOut" type="button" class="btn btn-danger text-white mt-5">Sign Out</a>
-    </div>
-</div>
-
+</nav>
+<!--  -->
+     
 <!-- Dynamic goes here -->
-<div class="main col-md-8 render-partial-view">
+<div class="container-fluid p-0 render-partial-view">
     <div class="m-5 home-dash">
         <img src="https://ak7.picdn.net/shutterstock/videos/20490997/thumb/10.jpg" class="img-fluid" alt="background-resume-image" />
         <h2 class="text-center">
