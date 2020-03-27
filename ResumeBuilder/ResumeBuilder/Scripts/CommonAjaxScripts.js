@@ -347,5 +347,28 @@
             return result;
         });
     };
+
+    $('body').on('click', '.download-template', function () {
+        // Create a PDF from an existing HTML using C#
+        $.ajax({
+            type: "POST",
+            url: "/Resume/download",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                alert("Hello: " );
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+    });
+
+
+
     
 }

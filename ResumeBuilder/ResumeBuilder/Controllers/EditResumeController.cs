@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ResumeBuilder.Repository;
-using AutoMapper;
+
 
 namespace ResumeBuilder.Controllers
 {
@@ -64,85 +64,85 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult AddEducation(EducationVM education)
-        {
-            int userId = Int32.Parse(User.Identity.Name);
-            if(ModelState.IsValid)
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
-                Education edu = Mapper.Map<EducationVM, Education>(education);
-                string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
+        //[HttpPost]
+        //public ActionResult AddEducation(EducationVM education)
+        //{
+        //    int userId = Int32.Parse(User.Identity.Name);
+        //    if(ModelState.IsValid)
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
+        //        Education edu = Mapper.Map<EducationVM, Education>(education);
+        //        string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
 
-                return Content(msg);
-            }
+        //        return Content(msg);
+        //    }
 
-            return Content("Failed");
-        }
+        //    return Content("Failed");
+        //}
 
-        [HttpPost]
-        public ActionResult AddSkill(SkillVM skill)
-        {
-            int userId = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<SkillVM, Skill>());
-                Skill sk = Mapper.Map<SkillVM, Skill>(skill);
-                string msg = _resumeRepository.AddorUpdateSkill(sk, userId);
+        //[HttpPost]
+        //public ActionResult AddSkill(SkillVM skill)
+        //{
+        //    int userId = Int32.Parse(User.Identity.Name);
+        //    if (ModelState.IsValid)
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<SkillVM, Skill>());
+        //        Skill sk = Mapper.Map<SkillVM, Skill>(skill);
+        //        string msg = _resumeRepository.AddorUpdateSkill(sk, userId);
 
-                return Content(msg);
-            }
+        //        return Content(msg);
+        //    }
 
-            return Content("Failed");
-        }
+        //    return Content("Failed");
+        //}
 
-        [HttpPost]
-        public ActionResult AddProject(ProjectVM project)
-        {
-            int userId = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<ProjectVM, Project>());
-                Project pr = Mapper.Map<ProjectVM, Project>(project);
-                string msg = _resumeRepository.AddorUpdateProject(pr, userId);
+        //[HttpPost]
+        //public ActionResult AddProject(ProjectVM project)
+        //{
+        //    int userId = Int32.Parse(User.Identity.Name);
+        //    if (ModelState.IsValid)
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<ProjectVM, Project>());
+        //        Project pr = Mapper.Map<ProjectVM, Project>(project);
+        //        string msg = _resumeRepository.AddorUpdateProject(pr, userId);
 
-                return Content(msg);
-            }
+        //        return Content(msg);
+        //    }
 
-            return Content("Failed");
-        }
+        //    return Content("Failed");
+        //}
 
-        [HttpPost]
-        public ActionResult AddWorkExp(WorkExperienceVM work)
-        {
-            int userId = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
-                WorkExperience pr = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
-                string msg = _resumeRepository.AddOrUpdateExperience(pr, userId);
+        //[HttpPost]
+        //public ActionResult AddWorkExp(WorkExperienceVM work)
+        //{
+        //    int userId = Int32.Parse(User.Identity.Name);
+        //    if (ModelState.IsValid)
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
+        //        WorkExperience pr = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
+        //        string msg = _resumeRepository.AddOrUpdateExperience(pr, userId);
 
-                return Content(msg);
-            }
+        //        return Content(msg);
+        //    }
 
-            return Content("Failed");
-        }
+        //    return Content("Failed");
+        //}
 
-        [HttpPost]
-        public ActionResult AddLanguage(WorkExperienceVM work)
-        {
-            int userId = Int32.Parse(User.Identity.Name);
-            if (ModelState.IsValid)
-            {
-                Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
-                WorkExperience pr = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
-                string msg = _resumeRepository.AddOrUpdateExperience(pr, userId);
+        //[HttpPost]
+        //public ActionResult AddLanguage(WorkExperienceVM work)
+        //{
+        //    int userId = Int32.Parse(User.Identity.Name);
+        //    if (ModelState.IsValid)
+        //    {
+        //        Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
+        //        WorkExperience pr = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
+        //        string msg = _resumeRepository.AddOrUpdateExperience(pr, userId);
 
-                return Content(msg);
-            }
+        //        return Content(msg);
+        //    }
 
-            return Content("Failed");
-        }
+        //    return Content("Failed");
+        //}
 
         [HttpPost]
         public ActionResult DeleteEducation(int eduId)

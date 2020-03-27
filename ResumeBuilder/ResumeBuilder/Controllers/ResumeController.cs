@@ -7,7 +7,7 @@ using System.Web.Security;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using System.Collections;
-using AutoMapper;
+using IronPdf;
 
 namespace ResumeBuilder.Controllers
 {
@@ -97,8 +97,44 @@ namespace ResumeBuilder.Controllers
         [Authorize]
         public ActionResult Template()
         {
-            //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
-            return PartialView();
+            var userId = Int32.Parse(User.Identity.Name);
+            if (User.Identity.Name != null)
+            {
+                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+
+                UserResumeVM vm = new UserResumeVM();
+                {
+                    vm.FirstName = user.FirstName;
+                    vm.LastName = user.LastName;
+                    vm.Email = user.Email;
+                    vm.PhoneNumber = user.PhoneNumber;
+                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+                    vm.ResumeName = user.ResumeName;
+                    vm.Summary = user.Summary;
+                    vm.Education = user.Education;
+                    vm.Project = user.Projects;
+                    vm.WorkExperience = user.WorkExperiences;
+                    vm.Skill = user.Skills;
+                    vm.Language = user.Languages;
+                    
+
+                }
+                return PartialView("~/Views/Resume/Template2.cshtml", vm);
+            }
+            else
+            {
+                return RedirectToAction("Dashboard");
+            }
+            
+        }
+
+        public void download()
+        {
+            var Renderer = new IronPdf.HtmlToPdf();
+            var PDF = Renderer.RenderHTMLFileAsPdf("C:/Users/mindfire/Desktop/ResumeBuilder.mhtml");
+            var OutputPath = "D:/Invoice.pdf";
+            PDF.SaveAs(OutputPath);
+            System.Diagnostics.Process.Start(OutputPath);
         }
 
         [Authorize]
@@ -145,13 +181,13 @@ namespace ResumeBuilder.Controllers
             }
             UserResumeVM vm = new UserResumeVM();
          
-            Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
-            vm = Mapper.Map<User, UserResumeVM>(user);
-            vm.Project = user.Projects;
-            vm.Skill = user.Skills;
-            vm.Education = user.Education;
-            vm.WorkExperience = user.WorkExperiences;
-            vm.Language = user.Languages;
+            //Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
+            //vm = Mapper.Map<User, UserResumeVM>(user);
+            //vm.Project = user.Projects;
+            //vm.Skill = user.Skills;
+            //vm.Education = user.Education;
+            //vm.WorkExperience = user.WorkExperiences;
+            //vm.Language = user.Languages;
             
             return Json(vm, JsonRequestBehavior.AllowGet);
 
