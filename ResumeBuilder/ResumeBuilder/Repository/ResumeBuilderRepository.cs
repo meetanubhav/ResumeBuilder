@@ -18,7 +18,7 @@ namespace ResumeBuilder.Repository
             try
             {
                 int records = 0;
-                
+
                 if (userInfo != null)
                 {
                     db.Users.Add(userInfo);
@@ -53,13 +53,13 @@ namespace ResumeBuilder.Repository
         public bool AddSummary(User summary, int idUser)
         {
             int records = 0;
-                
-            if(summary != null)
+
+            if (summary != null)
             {
                 var user = db.Users.FirstOrDefault(x => x.UserID == idUser);
                 user.Summary = summary.Summary;
                 user.ResumeName = summary.ResumeName;
-                records = db.SaveChanges();  
+                records = db.SaveChanges();
             }
 
             return records > 0 ? true : false;
@@ -226,7 +226,7 @@ namespace ResumeBuilder.Repository
 
         public IQueryable<Skill> GetSkillsById(int idUser)
         {
-            var userSkill = db.Skills.Where(x => x.Users.Any(y=>y.UserID==idUser));
+            var userSkill = db.Skills.Where(x => x.Users.Any(y => y.UserID == idUser));
 
             return userSkill;
         }
