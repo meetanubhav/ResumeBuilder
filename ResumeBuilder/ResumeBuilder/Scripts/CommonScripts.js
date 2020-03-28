@@ -26,12 +26,25 @@
     $('.js-search').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Resume/Search", function () {
+            //Search section Scripts
+            var myDataTable = $('#searchTable').DataTable({
+                "ajax": {
+                    "url": "/Resume/GetAllUsersData",
+                    "type": "GET",
+                    "dataSrc": function (d) {
+                        return d;
+                    }
+                },
+                "columns": [
+                    { "data": "FirstName" },
+                    { "data": "LastName" },
+                    { "data": "Skills" },
+                ]
+            });
         });
     });
 
     AjaxScripts();
-    //$('body').on("click",'.js-public-profile', function (e) {
-    //    e.preventDefault();
-    //    window.open('/Resume/PublicProfile/' + $('#userId').val());
-    //});
+
+    
 });    

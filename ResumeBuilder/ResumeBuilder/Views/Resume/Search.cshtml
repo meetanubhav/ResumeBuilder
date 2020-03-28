@@ -1,10 +1,16 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 <div class="container mt-3">
-    <h3 class="text-center">Search Anyone's Resume</h3>
-    <table>
-        <thead></thead>
+    <h3 class="text-center">Search Anyone and Their Skills with <i class="fa fa-heart text-danger"></i></h3>
+    <table class="table table-bordered table-striped table-hover" id="searchTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Skills</th>
+            </tr>
+        </thead>
         <tbody></tbody>
     </table>
 </div>
