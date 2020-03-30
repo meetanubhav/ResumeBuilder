@@ -13,7 +13,7 @@ namespace ResumeBuilder.Controllers
     public class EditResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilder.Models.ResumeBuilderDBContext();
-        private readonly IResumeBuilderRepository _resumeRepository= new ResumeBuilderRepository();
+        private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
 
         // Get Actions
         public ActionResult GetUserInfo()
@@ -55,8 +55,8 @@ namespace ResumeBuilder.Controllers
 
             return Json(workExperienceVM, JsonRequestBehavior.AllowGet);
         }
-        
-        // Add and Update Actions 
+
+        // Add and Update Actions
 
         [HttpPost]
         public ActionResult AddBasicInfo(BasicDetailsVM userBasicInfo)
@@ -80,7 +80,7 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
-        
+
         [HttpPost]
         public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
         {
@@ -219,7 +219,7 @@ namespace ResumeBuilder.Controllers
                 return Content("Failed");
             }
         }
-        
+
         [HttpDelete]
         public ActionResult DeleteLanguage(int id)
         {
@@ -269,5 +269,6 @@ namespace ResumeBuilder.Controllers
                 return HttpNotFound();
             }
         }
+        
     }
 }

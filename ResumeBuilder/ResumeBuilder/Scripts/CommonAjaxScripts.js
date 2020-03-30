@@ -4,23 +4,23 @@
         e.preventDefault();
 
         var userData = {};
-        userData.FirstName = $("[name = FirstName]").val();
-        userData.LastName = $("[name = LastName]").val();
-        userData.Email = $("[name = Email]").val();
-        userData.PhoneNumber = $("[name = PhoneNumber]").val();
-        userData.AlternatePhoneNumber = $("[name = AlternatePhoneNumber]").val();
+        userData.FirstName = $("input[name = FirstName]").val();
+        userData.LastName = $("input[name = LastName]").val();
+        userData.Email = $("input[name = Email]").val();
+        userData.PhoneNumber = $("input[name = PhoneNumber]").val();
+        userData.AlternatePhoneNumber = $("input[name = AlternatePhoneNumber]").val();
 
         var params = $.extend({}, doAjax_params_default);
         params['url'] = '/EditResume/AddBasicInfo';
         params['data'] = userData;
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (userData) {
-            $("[name = FirstName]").val(userData.FirstName);
-            $("[name = LastName]").val(userData.LastName);
-            $("[name = Email]").val(userData.Email);
-            $("[name = PhoneNumber]").val(userData.PhoneNumber);
-            $("[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
-            
+            $("input[name = FirstName]").val(userData.FirstName);
+            $("input[name = LastName]").val(userData.LastName);
+            $("input[name = Email]").val(userData.Email);
+            $("input[name = PhoneNumber]").val(userData.PhoneNumber);
+            $("input[name = AlternatePhoneNumber]").val(userData.AlternatePhoneNumber);
+
             //Adding data in the fields
             $(".show-name").text(userData.FirstName + " " + userData.LastName);
             $(".show-email").text(userData.Email);
@@ -40,16 +40,16 @@
         e.preventDefault();
 
         var userData = {};
-        userData.ResumeName = $("[name = ResumeName]").val();
-        userData.Summary = $("[name = Summary]").val();
+        userData.ResumeName = $("input[name = ResumeName]").val();
+        userData.Summary = $("input[name = Summary]").val();
 
         var params = $.extend({}, doAjax_params_default);
         params['url'] = '/EditResume/AddSummaryInfo';
         params['data'] = userData;
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (userData) {
-            $("[name = ResumeName]").val(userData.ResumeName);
-            $("[name = Summary]").val(userData.Summary);
+            $("input[name = ResumeName]").val(userData.ResumeName);
+            $("input[name = Summary]").val(userData.Summary);
 
             $(".show-summary-info").text(userData.Summary);
             $(".show-resume-info").text(userData.ResumeName);
@@ -66,18 +66,18 @@
     $('body').on("click", ".save-education-info", function (e) {
         e.preventDefault();
         var id = $('.js-education-id').val();
-        var $button = $('button [data-education-id="'+id+'"]');
+        var $button = $('button [data-education-id="' + id + '"]');
 
         var userData = {};
         {
             userData.EduID = $('.js-education-id').val();
             userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
             userData.CgpaOrPercentage = ($('.form-check-input').serializeArray())[1]['value'];
-            userData.YearOfPassing = $("[name = YearOfPassing]").val();
-            userData.Score = $("[name = Score]").val();
-            userData.Board = $("[name = Board]").val();
-            userData.Stream = $("[name = Stream]").val();
-            userData.Institution = $("[name = Institution]").val();
+            userData.YearOfPassing = $("input[name = YearOfPassing]").val();
+            userData.Score = $("input[name = Score]").val();
+            userData.Board = $("input[name = Board]").val();
+            userData.Stream = $("input[name = Stream]").val();
+            userData.Institution = $("input[name = Institution]").val();
         }
 
         var params = $.extend({}, doAjax_params_default);
@@ -85,8 +85,7 @@
         params['data'] = userData;
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
-            if (!(userData.EduID > 0))
-            {
+            if (!(userData.EduID > 0)) {
                 $('.js-education-details').append('<div class="row text-secondary"> \
                      <hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
@@ -101,8 +100,7 @@
                         </div> \
                     </div>');
             }
-            else
-            {
+            else {
                 $button.parents('.text-secondary').html('<hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
                             <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
@@ -133,7 +131,7 @@
         var userData = new Object();
         {
             userData.SkillID = $('.js-skill-id').val();
-            userData.SkillName = $("[name = skill]").val();
+            userData.SkillName = $("input[name = skill]").val();
         }
 
         var params = $.extend({}, doAjax_params_default);
@@ -142,14 +140,14 @@
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
             $('.js-skill-details').append('<span class="btn btn-primary"> \
-                    '+data.SkillName+' \
-                <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+data.SkillID+'"> </i> \
+                    '+ data.SkillName + ' \
+                <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
 
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-       };
+        };
         doAjax(params);
 
         return false;
@@ -164,9 +162,9 @@
         {
             userData.ProjectID = $('.js-project-id').val();
             userData.DurationInMonth = $("#projectDuration option:selected").val();
-            userData.ProjectName = $("[name = projectName]").val();
-            userData.ProjectDetails = $("[name = projectDetails]").val();
-            userData.YourRole = $("[name = projectRole]").val();
+            userData.ProjectName = $("input[name = projectName]").val();
+            userData.ProjectDetails = $("input[name = projectDetails]").val();
+            userData.YourRole = $("input[name = projectRole]").val();
         }
 
         var params = $.extend({}, doAjax_params_default);
@@ -186,7 +184,7 @@
                     </div>';
 
             if (!(userData.ProjectID > 0)) {
-                $('.js-project-details').append('<div class="row" >'+ $html + '</div>');
+                $('.js-project-details').append('<div class="row" >' + $html + '</div>');
             }
             else {
                 $button.parents('.row').html($html);
@@ -210,10 +208,10 @@
         var userData = new Object();
         {
             userData.ExpId = $('.js-work-experience-id').val();
-            userData.Organization = $("[name = organization]").val();
-            userData.Designation = $("[name = designation]").val();
-            userData.FromYear = $("[name = fromDate]").val();
-            userData.ToYear = $("[name = toDate]").val();
+            userData.Organization = $("input[name = organization]").val();
+            userData.Designation = $("input[name = designation]").val();
+            userData.FromYear = $("input[name = fromDate]").val();
+            userData.ToYear = $("input[name = toDate]").val();
         }
 
         var params = $.extend({}, doAjax_params_default);
@@ -229,17 +227,17 @@
             var $html = '<hr width="90%" /> \
                     <div class="col-md-10 col-sm-8"> \
                         <p> \
-                            <b> '+data.Designation +'</b> at <b> '+data.Organization +'</b> \
+                            <b> '+ data.Designation + '</b> at <b> ' + data.Organization + '</b> \
                             <br /> \
-                            <b> '+ $fromDate +'</b> - <b> '+ $toDate +'</b> \
+                            <b> '+ $fromDate + '</b> - <b> ' + $toDate + '</b> \
                         </p> \
                     </div> \
                     <div class="col-md-2 col-sm-4"> \
-                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="'+data.ExpId+'"></i></button> \
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="'+data.ExpId+'"></i></button> \
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="'+ data.ExpId + '"></i></button> \
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="'+ data.ExpId + '"></i></button> \
                     </div>';
             if (!(userData.ExpId > 0)) {
-                $('.js-work-experience-details').append('<div class="row" >'+ $html + '</div>');
+                $('.js-work-experience-details').append('<div class="row" >' + $html + '</div>');
             }
             else {
                 $button.parents('.row').html($html);
@@ -262,7 +260,7 @@
         var userData = new Object();
         {
             userData.LanguageID = $('.js-language-id').val();
-            userData.LanguageName = $("[name = language]").val();
+            userData.LanguageName = $("input[name = language]").val();
         }
 
         var params = $.extend({}, doAjax_params_default);
@@ -271,8 +269,8 @@
         params['requestType'] = 'POST';
         params['successCallbackFunction'] = function (data) {
             $('.js-language-details').append('<span class="btn btn-primary"> \
-                    ' + data.LanguageName +' \
-                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+data.LanguageID+'"> </i> \
+                    ' + data.LanguageName + ' \
+                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
 
             $('.modal').modal('hide');
@@ -300,7 +298,7 @@
         params['data'] = formDetails;
         params['requestType'] = 'POST';
         params['dataType'] = null;
-        
+
         doAjax(params);
 
         return false;
@@ -313,17 +311,17 @@
         var educationId = $button.data('education-id');
 
         var params = $.extend({}, doAjax_params_default);
-        params['url'] = '/EditResume/GetEducation?educationId='+educationId;
+        params['url'] = '/EditResume/GetEducation?educationId=' + educationId;
         params['successCallbackFunction'] = function (data) {
             var $form = $('.education-form');
             $form.find('.js-education-id').val(data.EduID);
             $form.find('input[value="' + data.EducationLevel + '"]').prop('checked', true);
             $form.find('input[value="' + data.CGPAorPercentage + '"]').prop('checked', true);
-            $form.find("[name = YearOfPassing]").val(data.YearOfPassing);
-            $form.find("[name = Score]").val(data.Score);
-            $form.find("[name = Board]").val(data.Board);
-            $form.find("[name = Stream]").val(data.Stream);
-            $form.find("[name = Institution]").val(data.Institution);
+            $form.find("input[name = YearOfPassing]").val(data.YearOfPassing);
+            $form.find("input[name = Score]").val(data.Score);
+            $form.find("input[name = Board]").val(data.Board);
+            $form.find("input[name = Stream]").val(data.Stream);
+            $form.find("input[name = Institution]").val(data.Institution);
             $('a[data-target=".educationModal"]').click()
         };
 
@@ -339,9 +337,9 @@
         params['successCallbackFunction'] = function (data) {
             var $form = $('.project-form');
             $form.find('.js-project-id').val(data.ProjectID);
-            $form.find('[name = projectName]').val(data.ProjectName);
-            $form.find('[name = projectDetails]').val(data.projectDetails);
-            $form.find("[name = projectRole]").val(data.YourRole);
+            $form.find('input[name = projectName]').val(data.ProjectName);
+            $form.find('input[name = projectDetails]').val(data.projectDetails);
+            $form.find("input[name = projectRole]").val(data.YourRole);
             $form.find("#projectDuration").val(data.DurationInMonth);
             $('a[data-target=".projectModal"]').click()
         };
@@ -365,10 +363,10 @@
 
             var $form = $('.workExp-form');
             $form.find('.js-work-experience-id').val(data.ExpId);
-            $form.find('[name = organization]').val(data.Organization);
-            $form.find('[name = designation]').val(data.Designation);
-            $form.find("[name = fromDate]").val($fromDate);
-            $form.find("[name = toDate]").val($toDate);
+            $form.find('input[name = organization]').val(data.Organization);
+            $form.find('input[name = designation]').val(data.Designation);
+            $form.find("input[name = fromDate]").val($fromDate);
+            $form.find("input[name = toDate]").val($toDate);
             $('a[data-target=".workExperienceModal"]').click()
         };
 
@@ -481,7 +479,7 @@
         var id = $button.data('education-id');
 
         var params = $.extend({}, doAjax_params_default);
-        params['url'] = '/EditResume/DeleteEducation?id='+id;
+        params['url'] = '/EditResume/DeleteEducation?id=' + id;
         params['requestType'] = 'DELETE';
         params['dataType'] = 'text';
         params['successCallbackFunction'] = function (data) {
@@ -489,8 +487,7 @@
         };
 
         confirmDelete(function (result) {
-            if(result)
-            {
+            if (result) {
                 doAjax(params);
             }
         })
@@ -586,11 +583,10 @@
                 }
             },
             callback: function (result) {
-                console.log('This was logged in the callback: ' + result);
                 callback(result);
             }
         });
-    }   
+    }
 }
 
 String.prototype.endsWith = function (suffix) {

@@ -5,13 +5,16 @@
         EditSectionScripts();
         return false;
     });
-
+    $('.message a').click(function () {
+        $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    });
     $('.js-template').on('click', function () {
         $('.render-partial-view').load("");
     });
 
-    $('.js-public-profile').on('click', function () {
-        window.open('/Resume/PublicProfile', '_blank');
+    $('.js-public-profile').on('click', function (e) {
+        e.preventDefault();
+        window.open('/Resume/PublicProfile?userId='+ $('#userId').val(), '_blank');
     });
     
     $('.js-settings').on('click', function (e) {
@@ -20,10 +23,28 @@
             ResumeSettingsScript();
         });
     });
+    $('.js-search').on('click', function (e) {
+        e.preventDefault();
+        $('.render-partial-view').load("/Resume/Search", function () {
+            //Search section Scripts
+            var myDataTable = $('#searchTable').DataTable({
+                "ajax": {
+                    "url": "/Resume/GetAllUsersData",
+                    "type": "GET",
+                    "dataSrc": function (d) {
+                        return d;
+                    }
+                },
+                "columns": [
+                    { "data": "FirstName" },
+                    { "data": "LastName" },
+                    { "data": "Skills" },
+                ]
+            });
+        });
+    });
 
     AjaxScripts();
-    //$('body').on("click",'.js-public-profile', function (e) {
-    //    e.preventDefault();
-    //    window.open('/Resume/PublicProfile/' + $('#userId').val());
-    //});
+
+    
 });    
