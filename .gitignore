@@ -33,7 +33,7 @@ TestResults/
 # Resharper #
 #############
 /_ReSharper.*
-.ReSharper.
+*.ReSharper.*
 ############
 # Packages #
 ############
@@ -64,7 +64,7 @@ Thumbs.db
 *.suo
 *.user
 *.[Cc]ache
-[Rr]esharper
+*[Rr]esharper*
 packages
 NuGet.exe
 _[Ss]cripts
@@ -121,11 +121,15 @@ ModelManifest.xml
 ResumeBuilder/ResumeBuilder.v12.suo
 ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/bin/ResumeBuilder.pdb
+ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
+ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
+ResumeBuilder/ResumeBuilder.v12.suo
+*.suo
+*.dll
+*.pdb
+ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ResumeBuilder/ResumeBuilder/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.csproj.FileListAbsolute.txt
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.csproj.GenerateResource.Cache
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
-*.suo
-*.dll
-*.pdb

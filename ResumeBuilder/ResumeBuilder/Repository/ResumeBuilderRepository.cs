@@ -75,6 +75,7 @@ namespace ResumeBuilder.Repository
                 if (education.EduID > 0)
                 {
                     //we will update education entity
+                    education.UserID = idUser;
                     db.Entry(education).State = EntityState.Modified;
                     db.SaveChanges();
 
