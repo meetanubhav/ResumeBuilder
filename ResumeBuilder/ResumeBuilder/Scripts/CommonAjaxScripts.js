@@ -254,6 +254,7 @@
     });
 
     $('body').on("click", ".save-language", function (e) {
+        CheckNull();
         e.preventDefault();
         var $button = $(this);
 
@@ -571,11 +572,10 @@
 
     function confirmDelete(callback) {
         bootbox.confirm({
-            title: "Delete Data",
             message: "Do you really want to delete ? This cannot be undone.",
             buttons: {
                 cancel: {
-                    label: '<i class="fa fa-times"></i> Cancel'
+                    label: '<i class="fa fa-times text-danger"></i> Cancel'
                 },
                 confirm: {
                     label: '<i class="fa fa-check"></i> Confirm'
