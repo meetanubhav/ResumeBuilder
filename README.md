@@ -10,11 +10,11 @@ Web based editor to create Resume in a customizable template with the facility t
 - Options provided in the left panel to modify the template and formatting.
 - Download the PDF option available.
 
-###### Technologies: 
-FrontEnd - HTML 5, CSS 3, JavaScript 
-BackEnd - .NET MVC , C#
-DataBase - Microsoft MySQL Server
-Frameworks - Bootstrap 4 , JQUERY , DataTables , BootBox , Entity (EF6)
+#### Technologies: 
+- FrontEnd - HTML 5, CSS 3, JavaScript 
+- BackEnd - .NET MVC , C#
+- DataBase - Microsoft MySQL Server
+- Frameworks - Bootstrap 4 , JQUERY , DataTables , BootBox , Entity (EF6)
 
 ----------------------------------------------------------------------------------------------------------------
 To setup the project on your local machine:
