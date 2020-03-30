@@ -48,7 +48,7 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(!db.Users.Any(x=>x.Username == newUser.RegisterModel.RegisterUsername))
+                if (!db.Users.Any(x => x.Username == newUser.RegisterModel.RegisterUsername))
                 {
                     db.Users.Add(new Models.User
                     {
@@ -56,14 +56,14 @@ namespace ResumeBuilder.Controllers
                         Password = newUser.RegisterModel.RegisterPassword
                     });
                     db.SaveChanges();
-                    
+
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Registered UserName, Please try with other username.");               
+                    ModelState.AddModelError("", "Registered UserName, Please try with other username.");
                 }
                 return View("Login");
-                
+
             }
             else
             {
@@ -71,12 +71,10 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-private void alert(string p)
-{
- 	throw new NotImplementedException();
-}
-
-
+        private void alert(string p)
+        {
+            throw new NotImplementedException();
+        }
         [Authorize]
         public ActionResult Dashboard()
         {
@@ -114,9 +112,9 @@ private void alert(string p)
             }
         }
 
-        public ActionResult PublicProfile(int? id)
+        public ActionResult PublicProfile(int? userId)
         {
-            var user = db.Users.Where(x => x.UserID == id).FirstOrDefault();
+            var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
             if (user != null)
             {
                 UserResumeVM vm = new UserResumeVM();
@@ -151,24 +149,24 @@ private void alert(string p)
                 .Include("WorkExperiences")
                 .Include("Languages")
             .FirstOrDefault(x => x.UserID == userId);
-            
-            foreach(var i in user.Projects)
+
+            foreach (var i in user.Projects)
             {
                 i.User = null;
             }
-            foreach(var i in user.Skills)
+            foreach (var i in user.Skills)
             {
                 i.Users = null;
             }
-            foreach(var i in user.Education)
+            foreach (var i in user.Education)
             {
                 i.User = null;
             }
-            foreach(var i in user.WorkExperiences)
+            foreach (var i in user.WorkExperiences)
             {
                 i.User = null;
             }
-            foreach(var i in user.Languages)
+            foreach (var i in user.Languages)
             {
                 i.Users = null;
             }
@@ -193,17 +191,46 @@ private void alert(string p)
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView();
         }
-
-        public ActionResult PublicProfile()
+        //This action method is triggered in search
+        public ActionResult GetAllUsersData()
         {
-            var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+            //var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").OrderBy(x => x.FirstName).ToList();
+            //var data = (from user in db.Users.Include("Skills")
+            //            select new SearchUserDataVM
+            //            {
+            //                FirstName = user.FirstName,
+            //                LastName = user.LastName,
+            //            }).Where(x => x.FirstName !=null && x.LastName !=null).OrderBy(x => x.FirstName).ToList();
+            //var data = db.Users
+            //                .Where(x => x.FirstName !=null && x.LastName !=null)
+            //                .Select(user => new
+            //                {
+            //                    Name = user.FirstName,
+            //                    TeamNames = user.Skills
+            //                        .Select(skill => skill.SkillName )
+            //                        .ToList(),
+            //                });
+            var data = (from e in db.Users.Include("Skills")
+                                                    .Where(x => x.Skills.Any()).ToList()
+                        select new SearchUserDataVM
+                        {
+                            FirstName = e.FirstName,
+                            LastName = e.LastName,
+                            Skills = e.Skills.Select(x => x.SkillName).ToArray()
+                        });
+            return Json(data, JsonRequestBehavior.AllowGet);
 
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-            var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
-
-            return View(userVM);
         }
+        //public ActionResult PublicProfile(int? userId)
+        //{
+        //    // var userId = Int32.Parse(User.Identity.Name);
+        //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+
+        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+
+        //    return View(userVM);
+        //}
 
         [Authorize]
         public ActionResult Search()

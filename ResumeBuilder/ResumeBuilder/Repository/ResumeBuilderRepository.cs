@@ -65,9 +65,8 @@ namespace ResumeBuilder.Repository
             return records > 0 ? true : false;
         }
 
-        public string AddOrUpdateEducation(Education education, int idUser)
+        public int AddOrUpdateEducation(Education education, int idUser)
         {
-            string msg = string.Empty;
 
             var personEntity = db.Users.Include("Education").FirstOrDefault(x => x.UserID == idUser);
 
@@ -80,7 +79,6 @@ namespace ResumeBuilder.Repository
                     db.Entry(education).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    msg = "Education entity has been updated successfully";
                 }
                 else
                 {
@@ -88,11 +86,10 @@ namespace ResumeBuilder.Repository
                     personEntity.Education.Add(education);
                     db.SaveChanges();
 
-                    msg = "Education entity has been Added successfully";
                 }
             }
 
-            return msg;
+            return education.EduID;
         }
 
         public int GetIdPerson(string email)

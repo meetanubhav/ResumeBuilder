@@ -1,19 +1,9 @@
 ﻿@model ResumeBuilder.Models.ViewModel.UserResumeVM
+
 @{
     Layout = null;
 }
-<!-- Toast -->
-<div class="toast" data-delay="3000">
-    <div class="toast-header">
-        <div class="toast-body text-success">
-            <b><i class="fa fa-check"></i> Successfully Added</b>
-        </div>
-        <button type="button" class="close" data-dismiss="toast">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</div>
-<div class="container-fluid bg-light mt-5 mb-5 w-100">
+<div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
     <h2 class="text-center show-resume-info">@Model.ResumeName</h2>
     <div>
         <h3 class="mb-2">Basic Information</h3>
@@ -36,82 +26,92 @@
     <hr />
     <div>
         <h3>Education</h3>
-        @foreach (var userEducation in Model.Education)
-        {
-            <hr />
-            <div class="row text-secondary">
-                <div class="col-md-10 col-sm-8">
-                    <p> @userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </p>
-                    <p>@userEducation.YearOfPassing</p>
-                    <p> @userEducation.Stream </p>
-                    <p>@userEducation.Institution</p>
+        <div class="js-education-details">
+            @foreach (var userEducation in Model.Education)
+            {
+                <div class="row text-secondary">
+                    <hr width="90%" />
+                    <div class="col-md-10 col-sm-8">
+                        <p> @userEducation.Score @userEducation.CGPAorPercentage in @userEducation.EducationLevel </p>
+                        <p>@userEducation.YearOfPassing</p>
+                        <p> @userEducation.Stream </p>
+                        <p>@userEducation.Institution</p>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-education" data-education-id="@userEducation.EduID"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="@userEducation.EduID"></i></button>
+                    </div>
                 </div>
-                <div class="col-md-2 col-sm-4">
-                    <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-education" data-education-id="@userEducation.EduID"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="@userEducation.EduID"></i></button>
-                </div>
-            </div>
-        }
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".educationModal">Education<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Work Experience</h3>
-        @foreach (var userWorkExperience in Model.WorkExperience)
-        {
-            <hr />
-            <div class="row">
-                <div class="col-md-10 col-sm-8">
-                    <p>
-                        <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
-                        <br />
-                        <b>@String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) </b> - <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) </b>
-                    </p>
+        <div class="js-work-experience-details">
+            @foreach (var userWorkExperience in Model.WorkExperience)
+            {
+                <div class="row">
+                    <hr width="90%" />
+                    <div class="col-md-10 col-sm-8">
+                        <p>
+                            <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
+                            <br />
+                            <b> @userWorkExperience.FromYear </b> - <b> @userWorkExperience.ToYear </b>
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="@userWorkExperience.ExpId"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="@userWorkExperience.ExpId"></i></button>
+                    </div>
                 </div>
-                <div class="col-md-2 col-sm-4">
-                    <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-workexp-id="@userWorkExperience.ExpId"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-workexp-id="@userWorkExperience.ExpId"></i></button>
-                </div>
-            </div>
-        }
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workexperienceModal">Add Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+            }
+        </div>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".workExperienceModal">Add Work Experience<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Projects</h3>
-        @foreach (var userProject in Model.Project)
-        {
-            <hr />
-            <div class="row">
-                <div class="col-md-10 col-sm-8 ">
-                    <h5>@userProject.ProjectName</h5>
-                    <p>@userProject.ProjectDetails</p>
+        <div class="js-project-details">
+            @foreach (var userProject in Model.Project)
+            {
+                <div class="row">
+                    <hr width="90%" />
+                    <div class="col-md-10 col-sm-8 ">
+                        <h5>@userProject.ProjectName</h5>
+                        <p>Duration @userProject.DurationInMonth months</p>
+                        <p>@userProject.ProjectDetails</p>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-project" data-project-id="@userProject.ProjectID"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-project" data-project-id="@userProject.ProjectID"></i></button>
+                    </div>
                 </div>
-                <div class="col-md-2 col-sm-4">
-                    <p class="">Duration @userProject.DurationInMonth months</p>
-                    <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-workexp" data-project-id="@userProject.ProjectID"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-workexp" data-project-id="@userProject.ProjectID"></i></button>
-                </div>
-            </div>
-        }
-        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mt-1 mb-2 " data-toggle="modal" data-target=".projectModal">Add Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
+            }
+        </div>
+        <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 " data-toggle="modal" data-target=".projectModal">Add Projects<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Language</h3>
-        @foreach (var userlanguages in Model.Language)
-        {
-            <span class="btn btn-primary">@userlanguages.LanguageName <i class="fa fa-times js-delete-language text-danger" data-skill-id="@userlanguages.LanguageID"> </i> </span>
-        }
+        <div class="js-language-details">
+            @foreach (var userlanguages in Model.Language)
+            {
+                <span class="btn btn-primary">@userlanguages.LanguageName <i class="fa fa-times js-delete-language text-danger" data-language-id="@userlanguages.LanguageID"> </i> </span>
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2" data-toggle="modal" data-target=".languageModal">Add Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
     <hr />
     <div>
         <h3>Skills</h3>
-        @foreach (var userSkills in Model.Skill)
-        {
-            <span class="btn btn-primary">@userSkills.SkillName <i class="fa fa-times js-delete-skill text-danger" data-skill-id="@userSkills.SkillID"> </i> </span>
-        }
+        <div class="js-skill-details">
+            @foreach (var userSkills in Model.Skill)
+            {
+                <span class="btn btn-primary">@userSkills.SkillName <i class="fa fa-times js-delete-skill text-danger" data-skill-id="@userSkills.SkillID"> </i> </span>
+            }
+        </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2 " data-toggle="modal" data-target=".skillModal">Add Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
     </div>
 </div>
@@ -228,7 +228,7 @@
                         <div class="mt-3 mb-3">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="YearOfPassing" placeholder="Year of Passing" />
+                                    <input type="text" class="form-control" name="YearOfPassing" placeholder="Year of Passing" required />
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-check-label">
@@ -243,12 +243,12 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" />
-                            <input type="text" class="form-control" name="Stream" placeholder="STREAM" />
+                            <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" required />
+                            <input type="text" class="form-control" name="Stream" placeholder="STREAM" required />
                         </div>
                         <div class="input-group mt-3">
-                            <input type="text" class="form-control" name="Board" placeholder="BOARD" />
-                            <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" />
+                            <input type="text" class="form-control" name="Board" placeholder="BOARD" required />
+                            <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" required />
                         </div>
                     </div>
                     <button type="submit" class="mt-2 btn btn-sm btn-success save-education-info btn-save">SAVE</button>
@@ -258,7 +258,7 @@
     </div>
 </div>
 <!--Work Experience Modal-->
-<div class="modal fade workexperienceModal" tabindex="-1" role="dialog">
+<div class="modal fade workExperienceModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -269,8 +269,8 @@
                 <form class="workExp-form">
                     <input class="js-work-experience-id" hidden value="" />
                     <div class="form-group">
-                        <input type="text" class="form-control mb-4" name="organization" placeholder="Organization" />
-                        <input type="text" class="form-control" name="designation" placeholder="Designation" />
+                        <input type="text" class="form-control mb-4" name="organization" placeholder="Organization" required />
+                        <input type="text" class="form-control" name="designation" placeholder="Designation" required />
                     </div>
                     <div class="row form-group">
                         <div class="col-md-6">
@@ -300,12 +300,12 @@
                 <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form class="projects-form">
+                <form class="project-form">
                     <input class="js-project-id" hidden value="" />
                     <div class="mt-3 mb-3">
-                        <input type="text" class="form-control mt-3" name="projectName" placeholder="Project Name" />
+                        <input type="text" class="form-control mt-3" name="projectName" placeholder="Project Name" required />
                         <textarea class="form-control mt-3" name="projectDetails" rows="3" cols="50" placeholder="Project Details"></textarea>
-                        <input type="text" class="form-control mt-3" name="projectRole" placeholder="Project Role" />
+                        <input type="text" class="form-control mt-3" name="projectRole" placeholder="Project Role" required />
                         <div class="input-group mt-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="projectDuration">Project Duration ( Months )</label>
@@ -338,7 +338,7 @@
                 <form class="skills-form">
                     <div class="js-skill-id" hidden value=""></div>
                     <div class="mt-3 mb-3">
-                        <input type="text" class="form-control" name="skill" placeholder="Add Skills" />
+                        <input type="text" class="form-control" name="skill" placeholder="Add Skills" required />
                     </div>
                     <button type="button" class="mt-2 btn btn-sm btn-success save-work save-skill">SAVE</button>
                 </form>
@@ -358,7 +358,8 @@
                 <form class="language-form">
                     <div class="js-language-id" hidden value=""></div>
                     <div class="mt-3 mb-3">
-                        <input type="text" class="form-control" name="language" placeholder="Add Language" />
+                        <
+                         class="form-control" name="language" placeholder="Add Language" required />
                     </div>
                     <button type="button" class="mt-2 btn btn-sm btn-success save-work save-language">SAVE</button>
                 </form>
