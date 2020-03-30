@@ -36,7 +36,7 @@
         return false;
     });
 
-    $('body').on("click", ".save-summary-info", function (e) {
+    $('body').on("click", ".save-summary", function (e) {
         e.preventDefault();
 
         var userData = {};
@@ -282,6 +282,8 @@
         return false;
     });
 
+    //------------------------------------------------------------------------------------------------
+
     $('body').on('click', '.save-settings', function () {
         var form = $(this).parent('form');
         var formDetails = new Object();
@@ -471,6 +473,7 @@
 
         return false;
     });
+//-----------------------------------------------------------------------------------
 
     /*              Delete Buttons        */
 

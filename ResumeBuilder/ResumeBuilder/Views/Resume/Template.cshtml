@@ -1,72 +1,121 @@
-﻿@{
+@model ResumeBuilder.Models.ViewModel.UserResumeVM
+@{
     Layout = null;
-
 }
-<!--Added by Bhabani-->
-<div class="container mx-5 mt-2 w-100 mh-100 position-relative">
-    <div class="container-fluid header-text text-white text-center w-100 px-0 py-0">
-        <div class="col-12 px-0 img-gradient">
-            <img src="https://www.dream-wallpaper.com/free-wallpaper/art-wallpaper/colorful-design-1-wallpaper/1440x900/free-wallpaper-9.jpg" class="img-responsive w-100" height="120px">
-            <div class="carousel-caption">
-                <h1>Your Resume</h1>
-            </div>
-        </div>
-    </div>a
 
-    <div class="wrapper w-100 bg-light rounded">
-        <div class="sidebar-wrapper bg-light float-right mb-4">
-            <div class="contact-container container-block bg-light pt-5 pl-4 pb-2">
-                <ul class="list-unstyled contact-list">
-                    <li><i class="far fa-user"></i> <span class="tName"></span></li>
-                    <li><i class="fas fa-envelope-open-text mr-1"></i><span class="tEmail"></span></li>
-                    <li><i class="fas fa-mobile-alt mr-2"></i><span class="tPhone"></span></li>
-                    <li><i class="fab fa-github mr-1"></i>Github Link</li>
+<div class="bg-primary float-right p-2 rounded position-fixed download-template"><i class="fas fa-download"></i><label>Download</label> </div>
+<div class="top">
+    <div id="cv" class="instaFade">
+        <div class="mainDetails">
+            <div id="headshot" class="quickFade">
+
+            </div>
+
+            <div id="name">
+                <h1 class="quickFade delayTwo">@Model.FirstName @Model.LastName</h1>
+                <h2 class="quickFade delayThree">Software Developer</h2>
+            </div>
+
+            <div id="contactDetails" class="quickFade delayFour">
+                <ul>
+                    <li>e: <a href=@Model.Email +"" target="_blank">@Model.Email</a></li>
+                    <li>m: @Model.PhoneNumber</li>
                 </ul>
             </div>
-            <hr />
-            <div class="education-container container-block bg-light pl-4">
-                <h3 class="container-block-title">Education</h3>
-                <div class="item pt-3">
-                    <span class="teducation"></span>
-                </div><!--//item-->
-            </div>
-            <hr />
-            <div class="languages-container container-block bg-light pl-4 pb-3 ">
-                <h3 class="container-block-title">Languages</h3>
-                <div class="languages">
-                    <span class="tlanguage"></span>
-                </div>
-            </div><!--//interests-->
-            <hr />
-            <div class="interests-container container-block bg-light pl-4">
-                <h3 class="container-block-title">Interests</h3>
-                <ul class="list-unstyled interests-list">
-                    <li>Climbing</li>
-                    <li>Snowboarding</li>
-                    <li>Cooking</li>
-                </ul>
-            </div>
-        </div><!--//sidebar-wrapper-->
-        <div class="main-wrapper row-cols-lg-1 card mh-100 p-4">
-            <section class="section summary-section">
-                <h4 class="section-title"><i class="fab fa-stripe-s mr-2" style="color: #e6185e;"></i>Summary</h4>
-                <div class="summary pb-5">
-                    <h5><span class="tResume"></span></h5>
-                    <span class="tSummary"></span>
-                </div>
-                <h4 class="section-title"><i class="fas fa-building mr-2" style="color: #e6185e;"></i>Work Experience</h4>
-                <div class="workExperience pb-5">
-                    <span class="tWorkexperience"></span>
-                </div>
-                <h4 class="section-title"><i class="fas fa-project-diagram mr-2" style="color: #e6185e;"></i>Projects</h4>
-                <div class="projects pb-5">
-                    <span class="tproject"></span>
-                </div>
-                <h4 class="section-title"><i class="fab fa-superpowers mr-2" style="color: #e6185e;"></i>Skills</h4>
-                <div class="skills pb-5">
-                    <span class="tskill"></span>
-                </div>
+            <div class="clear"></div>
+        </div>
+
+        <div id="mainArea" class="quickFade delayFive">
+            <section>
+                <article>
+                    <div class="sectionTitle">
+                        <h1>@Model.ResumeName</h1>
+                    </div>
+
+                    <div class="sectionContent">
+                        <p>@Model.Summary</p>
+                    </div>
+                </article>
+                <div class="clear"></div>
             </section>
+
+            <section>
+                <div class="sectionTitle">
+                    <h1>Education</h1>
+                </div>
+
+                <div class="sectionContent">
+                    @foreach (var item in @Model.Education)
+                    {
+                        <article>
+                            <h2>@item.Institution</h2>
+                            <h1 class="subDetails">@item.EducationLevel ( @item.Board )</h1>
+                            <p>@item.Stream</p>
+                            <p>Secured: @item.Score</p>
+                        </article>
+                    }
+
+
+                </div>
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                <div class="sectionTitle">
+                    <h1>Projects</h1>
+                </div>
+
+                <div class="sectionContent">
+                    @foreach (var item in @Model.Project)
+                    {
+                        <article>
+                            <h2>@item.ProjectName</h2>
+                            <h1>@item.YourRole</h1>
+                            <p>@item.ProjectDetails</p>
+                        </article>
+                    }
+
+                </div>
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                <div class="sectionTitle">
+                    <h1>Work Experience</h1>
+                </div>
+
+                <div class="sectionContent">
+                    @foreach (var item in @Model.WorkExperience)
+                    {
+                        <article>
+                            <h2>@item.Organization</h2>
+                            <p class="subDetails">@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</p>
+                            <p>@item.Designation</p>
+                        </article>
+                    }
+
+                </div>
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                <div class="sectionTitle">
+                    <h1>Key Skills</h1>
+                </div>
+
+                <div class="sectionContent">
+                    <ul class="keySkills">
+                        @foreach (var item in @Model.Skill)
+                        {
+                            <li>@item.SkillName</li>
+                        }
+                    </ul>
+
+                </div>
+                <div class="clear"></div>
+            </section>
+
         </div>
     </div>
+
 </div>
