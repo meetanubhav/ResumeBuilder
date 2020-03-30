@@ -68,7 +68,7 @@
                 .PrimaryKey(t => t.ProjectID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
-
+            
             CreateTable(
                 "dbo.Settings",
                 c => new
@@ -94,14 +94,14 @@
             CreateTable(
                 "dbo.WorkExperiences",
                 c => new
-                {
-                    ExpId = c.Int(nullable: false, identity: true),
-                    Organization = c.String(),
-                    Designation = c.String(),
-                    FromYear = c.DateTime(),
-                    ToYear = c.DateTime(),
-                    UserID = c.Int(nullable: false),
-                })
+                    {
+                        ExpId = c.Int(nullable: false, identity: true),
+                        Organization = c.String(),
+                        Designation = c.String(),
+                        FromYear = c.DateTime(),
+                        ToYear = c.DateTime(),
+                        UserID = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.ExpId)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
@@ -133,7 +133,7 @@
                 .Index(t => t.User_UserID);
             
         }
-
+        
         public override void Down()
         {
             DropForeignKey("dbo.WorkExperiences", "UserID", "dbo.Users");

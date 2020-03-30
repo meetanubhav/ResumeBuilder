@@ -33,7 +33,7 @@ TestResults/
 # Resharper #
 #############
 /_ReSharper.*
-.ReSharper.
+*.ReSharper.*
 ############
 # Packages #
 ############
@@ -64,7 +64,7 @@ Thumbs.db
 *.suo
 *.user
 *.[Cc]ache
-[Rr]esharper
+*[Rr]esharper*
 packages
 NuGet.exe
 _[Ss]cripts
