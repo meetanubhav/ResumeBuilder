@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using System;

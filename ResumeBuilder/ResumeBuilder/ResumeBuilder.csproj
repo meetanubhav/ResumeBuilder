@@ -23,7 +23,6 @@
     <IISExpressUseClassicPipelineMode />
     <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
     <NuGetPackageImportStamp>26e3b02e</NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,58 +54,45 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="IronPdf, Version=2020.3.2.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPdf.2020.3.2\lib\net40\IronPdf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=18.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iron.Assets.Rendering.Windows.18.0.1\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +105,9 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\template2style.css" />
-    <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\rb-logo.png" />
+    <Content Include="Images\user.jpg" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -135,6 +121,9 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\font-awesome\css\font-awesome.css" />
+    <Content Include="Scripts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
@@ -150,6 +139,39 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\font-awesome\less\animated.less" />
+    <Content Include="Scripts\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Scripts\font-awesome\less\core.less" />
+    <Content Include="Scripts\font-awesome\less\fixed-width.less" />
+    <Content Include="Scripts\font-awesome\less\font-awesome.less" />
+    <Content Include="Scripts\font-awesome\less\icons.less" />
+    <Content Include="Scripts\font-awesome\less\larger.less" />
+    <Content Include="Scripts\font-awesome\less\list.less" />
+    <Content Include="Scripts\font-awesome\less\mixins.less" />
+    <Content Include="Scripts\font-awesome\less\path.less" />
+    <Content Include="Scripts\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Scripts\font-awesome\less\screen-reader.less" />
+    <Content Include="Scripts\font-awesome\less\stacked.less" />
+    <Content Include="Scripts\font-awesome\less\variables.less" />
+    <Content Include="Scripts\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Scripts\font-awesome\scss\_animated.scss" />
+    <Content Include="Scripts\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Scripts\font-awesome\scss\_core.scss" />
+    <Content Include="Scripts\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Scripts\font-awesome\scss\_icons.scss" />
+    <Content Include="Scripts\font-awesome\scss\_larger.scss" />
+    <Content Include="Scripts\font-awesome\scss\_list.scss" />
+    <Content Include="Scripts\font-awesome\scss\_mixins.scss" />
+    <Content Include="Scripts\font-awesome\scss\_path.scss" />
+    <Content Include="Scripts\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Scripts\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Scripts\font-awesome\scss\_stacked.scss" />
+    <Content Include="Scripts\font-awesome\scss\_variables.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -233,7 +255,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -254,6 +278,10 @@
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003131102140_new_model.cs" />
+    <Compile Include="Migrations\202003131102140_new_model.designer.cs">
+      <DependentUpon>202003131102140_new_model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202003131110418_made_settingID_nullable.cs" />
     <Compile Include="Migrations\202003131110418_made_settingID_nullable.designer.cs">
@@ -282,6 +310,7 @@
     <Compile Include="Models\ViewModel\LoginVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
+    <Compile Include="Models\ViewModel\SearchUserDataVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
@@ -299,12 +328,10 @@
     <Content Include="Views\Resume\Login.cshtml" />
     <Content Include="Views\Resume\Dashboard.cshtml" />
     <Content Include="Views\Resume\Edit.cshtml" />
-    <Content Include="Views\Resume\Summary.cshtml" />
-    <Content Include="Views\Resume\PublicProfile.cshtml" />
-    <Content Include="Views\Resume\Settings.cshtml" />
     <Content Include="Views\Resume\Template.cshtml" />
-    <Content Include="Views\Resume\Template2.cshtml" />
-        <Content Include="Views\Resume\Search.cshtml" />
+    <Content Include="Views\Resume\Settings.cshtml" />
+    <Content Include="Views\Resume\PublicProfile.cshtml" />
+    <Content Include="Views\Resume\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -314,10 +341,30 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
+    <Folder Include="Scripts\DataTables\extensions\AutoFill\js\" />
+    <Folder Include="Scripts\DataTables\extensions\Buttons\js\" />
+    <Folder Include="Scripts\DataTables\extensions\Buttons\swf\" />
+    <Folder Include="Scripts\DataTables\extensions\ColReorder\js\" />
+    <Folder Include="Scripts\DataTables\extensions\FixedColumns\js\" />
+    <Folder Include="Scripts\DataTables\extensions\FixedHeader\js\" />
+    <Folder Include="Scripts\DataTables\extensions\JSZip\" />
+    <Folder Include="Scripts\DataTables\extensions\KeyTable\js\" />
+    <Folder Include="Scripts\DataTables\extensions\pdfmake\" />
+    <Folder Include="Scripts\DataTables\extensions\Responsive\js\" />
+    <Folder Include="Scripts\DataTables\extensions\RowGroup\js\" />
+    <Folder Include="Scripts\DataTables\extensions\RowReorder\js\" />
+    <Folder Include="Scripts\DataTables\extensions\Scroller\js\" />
+    <Folder Include="Scripts\DataTables\extensions\Select\js\" />
+    <Folder Include="Scripts\DataTables\media\js\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003131102140_new_model.resx">
+      <DependentUpon>202003131102140_new_model.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003131110418_made_settingID_nullable.resx">
       <DependentUpon>202003131110418_made_settingID_nullable.cs</DependentUpon>
     </EmbeddedResource>
