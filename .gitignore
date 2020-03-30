@@ -154,3 +154,6 @@ ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.dll
 ResumeBuilder/ResumeBuilder/obj/Debug/ResumeBuilder.pdb
 ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj
 ResumeBuilder/ResumeBuilder/ResumeBuilder.csproj.user
+*.suo
+*.dll
+*.pdb
