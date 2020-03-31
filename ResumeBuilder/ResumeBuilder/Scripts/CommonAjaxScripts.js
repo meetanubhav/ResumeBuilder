@@ -658,3 +658,51 @@ $('body').on("click", "a.viewBtn", function () {
     var templateId = $(this).data("template-id");
     $('.render-partial-view').load("/Template/Template"+templateId);
 });
+
+$('body').on("click", ".download-template", function () {
+        // Define variables
+        var
+         form = $(this).next(),
+         cache_width = form.width(),
+         cache_height = form.height(),
+         a4 = [595.28, 841.89]; // for a5 size paper width and height
+
+        if (form != null) {
+            // Scroll screen
+            $('body').scrollTop(0);
+            // Call function createPDF
+            createPDF();
+        }
+        //create pdf
+        function createPDF() {
+            if (cache_height > 600)
+                cache_height = 600;
+
+            // Call create canvas function
+            getCanvas().then(function (canvas) {
+                var
+                 img = canvas.toDataURL("image/png"),
+                 doc = new jsPDF({
+                     unit: 'px',
+                     format: 'a4'
+                 });
+                doc.setFont("arial", "bold");
+                doc.addImage(img, 'JPEG', 10, 10, 420, cache_height);
+                
+                doc.save('YourResume.pdf');
+                form.width(cache_width);
+            });
+        }
+
+        // create canvas object
+        function getCanvas() {
+
+            form.width((a4[0] * 1.33333)).css('max-width', 'none');
+            return html2canvas(form, {
+                imageTimeout: 3000,
+                removeContainer: true
+            });
+        }
+
+});
+
