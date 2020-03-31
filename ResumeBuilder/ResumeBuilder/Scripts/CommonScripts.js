@@ -5,13 +5,14 @@
         EditSectionScripts();
         return false;
     });
+    $('.js-template').on('click', function (e) {
+        e.preventDefault();
+        $('.render-partial-view').load("/Resume/Template");
+    });
+
     $('.message a').click(function () {
         $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
     });
-    $('.js-template').on('click', function () {
-        $('.render-partial-view').load("");
-    });
-
     $('.js-public-profile').on('click', function (e) {
         e.preventDefault();
         window.open('/Resume/PublicProfile?userId='+ $('#userId').val(), '_blank');
