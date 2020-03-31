@@ -106,8 +106,14 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\template2style.css" />
+    <Content Include="Content\TemplateReveal.css" />
+    <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\dashboard-image.jpg" />
     <Content Include="Images\rb-logo.png" />
+    <Content Include="Images\template1.png" />
+    <Content Include="Images\template2.png" />
     <Content Include="Images\user.jpg" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -275,6 +281,7 @@
     <Compile Include="Controllers\EditResumeController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,6 +338,8 @@
     <Content Include="Views\Resume\Settings.cshtml" />
     <Content Include="Views\Resume\PublicProfile.cshtml" />
     <Content Include="Views\Resume\Search.cshtml" />
+    <Content Include="Views\Template\Template1.cshtml" />
+    <Content Include="Views\Template\Template2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,12 @@
 ﻿function AjaxScripts() {
+    //Universal Function for Empty Fields
+    //$('body').on("blur", "input", function () {
+    //    if ($(this).val() == "") {
+    //        //$(this).prev().removeAttr('class');
+    //        //$(this).removeClass('errorstyle');
+    //        $(this).focus();
+    //    }
+    //});
     /*              Save Buttons            */
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
@@ -254,7 +262,6 @@
     });
 
     $('body').on("click", ".save-language", function (e) {
-        CheckNull();
         e.preventDefault();
         var $button = $(this);
 
@@ -653,8 +660,3 @@ function doAjax(doAjax_params) {
         }
     });
 }
-
-$('body').on("click", "a.viewBtn", function () {
-    var templateId = $(this).data("template-id");
-    $('.render-partial-view').load("/Template/Template"+templateId);
-});

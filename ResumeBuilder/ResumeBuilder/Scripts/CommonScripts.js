@@ -43,8 +43,11 @@
             });
         });
     });
-
     AjaxScripts();
 
+    $('body').on("click", "a.viewBtn", function () {
+        var templateId = $(this).data("template-id");
+        $('.render-partial-view').load("/Template/Template" + templateId);
+    });
     
 });    

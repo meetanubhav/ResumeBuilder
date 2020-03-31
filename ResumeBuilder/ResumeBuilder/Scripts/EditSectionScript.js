@@ -37,14 +37,6 @@
     //    });
     //    event.preventDefault();
     //});
+   
 
-}
-function CheckNull() {
-    $('input').each(function () {
-        if (!$(this).val()) {
-            $(this).attr("border-color", "red");
-            alert('Some fields are empty');
-            return false;
-        }
-    });
 }
