@@ -24,6 +24,7 @@
             ResumeSettingsScript();
         });
     });
+
     $('.js-search').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Resume/Search", function () {

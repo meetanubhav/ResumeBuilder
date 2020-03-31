@@ -28,8 +28,7 @@ namespace ResumeBuilder.Controllers
         {
             var education = db.Educations.AsNoTracking().FirstOrDefault(x => x.EduID == educationId);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Education, EducationVM>());
-            EducationVM educationVM = Mapper.Map<Education, EducationVM>(education);
+            EducationVM educationVM = AutoMapper.Mapper.Map<EducationVM>(education);
 
             return Json(educationVM, JsonRequestBehavior.AllowGet);
         }
@@ -39,8 +38,7 @@ namespace ResumeBuilder.Controllers
         {
             var project = db.Projects.AsNoTracking().FirstOrDefault(x => x.ProjectID == projectId);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Project, ProjectVM>());
-            ProjectVM projectVM = Mapper.Map<Project, ProjectVM>(project);
+            ProjectVM projectVM = AutoMapper.Mapper.Map<ProjectVM>(project);
 
             return Json(projectVM, JsonRequestBehavior.AllowGet);
         }
@@ -50,8 +48,7 @@ namespace ResumeBuilder.Controllers
         {
             var workExperience = db.WorkExperiences.AsNoTracking().FirstOrDefault(x => x.ExpId == workExperienceId);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<WorkExperience, WorkExperienceVM>());
-            WorkExperienceVM workExperienceVM = Mapper.Map<WorkExperience, WorkExperienceVM>(workExperience);
+            WorkExperienceVM workExperienceVM = AutoMapper.Mapper.Map<WorkExperienceVM>(workExperience);
 
             return Json(workExperienceVM, JsonRequestBehavior.AllowGet);
         }
@@ -107,8 +104,7 @@ namespace ResumeBuilder.Controllers
             int userId = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<EducationVM, Education>());
-                Education edu = Mapper.Map<EducationVM, Education>(education);
+                Education edu = AutoMapper.Mapper.Map<Education>(education);
                 int id = _resumeRepository.AddOrUpdateEducation(edu, userId);
                 education.EduID = id;
 
@@ -124,8 +120,7 @@ namespace ResumeBuilder.Controllers
             int userId = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<SkillVM, Skill>());
-                Skill sk = Mapper.Map<SkillVM, Skill>(skill);
+                Skill sk = AutoMapper.Mapper.Map<Skill>(skill);
                 string msg = _resumeRepository.AddorUpdateSkill(sk, userId);
 
                 skill.SkillID = sk.SkillID;
@@ -141,8 +136,7 @@ namespace ResumeBuilder.Controllers
             int userId = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<ProjectVM, Project>());
-                Project pr = Mapper.Map<ProjectVM, Project>(project);
+                Project pr = AutoMapper.Mapper.Map<Project>(project);
                 string msg = _resumeRepository.AddorUpdateProject(pr, userId);
 
                 project.ProjectID = pr.ProjectID;
@@ -158,8 +152,7 @@ namespace ResumeBuilder.Controllers
             int userId = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<WorkExperienceVM, WorkExperience>());
-                WorkExperience workExperience = Mapper.Map<WorkExperienceVM, WorkExperience>(work);
+                WorkExperience workExperience = AutoMapper.Mapper.Map<WorkExperience>(work);
                 string msg = _resumeRepository.AddOrUpdateExperience(workExperience, userId);
 
                 work.ExpId = workExperience.ExpId;
@@ -175,8 +168,7 @@ namespace ResumeBuilder.Controllers
             int userId = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<LanguageVM, Language>());
-                Language language = Mapper.Map<LanguageVM, Language>(lang);
+                Language language = AutoMapper.Mapper.Map<Language>(lang);
                 string msg = _resumeRepository.AddorUpdateLanguage(language, userId);
 
                 lang.LanguageID = language.LanguageID;

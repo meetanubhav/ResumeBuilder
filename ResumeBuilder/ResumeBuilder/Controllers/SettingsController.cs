@@ -1,54 +1,80 @@
 ﻿using AutoMapper;
+using ResumeBuilder.Mapper;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace ResumeBuilder.Controllers
 {
-    public class SettingsController : Controller
+    public class SettingsController : Controller 
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
-        
+
+        [HttpGet]
         public ActionResult Settings()
         {
             var userId = Int32.Parse(User.Identity.Name);
-            var settings = db.Users.Include("Settings").Where(x => x.UserID == userId).Select(x => x.Settings).FirstOrDefault(); 
+            var personEntity = db.Users.Include("Settings").Where(x => x.UserID == userId).FirstOrDefault();
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Settings, SettingsVM>());
-            SettingsVM settingsVM = Mapper.Map<Settings, SettingsVM>(settings);
+            if (personEntity.Settings == null)
+            {
+                personEntity.Settings = new Settings();
+                db.SaveChanges();
+            }
+
+            var settings = personEntity.Settings;
+
+            var settingsVM = AutoMapper.Mapper.Map<Settings, SettingsVM>(settings);
 
             return PartialView("~/Views/Resume/Settings.cshtml", settingsVM);
         }
 
         public void AddOrUpdateSettings(SettingsVM settings)
         {
-            //var setting = db.Users.Include("Settings").Where(x => x.UserID == Int32.Parse(User.Identity.Name)).Select(x => x.Settings).FirstOrDefault();
-
-            Mapper.Initialize(cfg => cfg.CreateMap<SettingsVM, Settings>());
-            Settings userSettings = Mapper.Map<SettingsVM, Settings>(settings);
-
+            Settings userSettings = AutoMapper.Mapper.Map<Settings>(settings);
+            
             var userId = Int32.Parse(User.Identity.Name);
             var personEntity = db.Users.Include("Settings").FirstOrDefault(x => x.UserID == userId);
 
             if (personEntity != null)
             {
-                if (!(personEntity.SettingsID > 0))
-                {
-                    personEntity.Settings = new Settings();
-                }
-
                 personEntity.Settings.Education = userSettings.Education;
                 personEntity.Settings.Project = userSettings.Project;
                 personEntity.Settings.Skill = userSettings.Skill;
                 personEntity.Settings.WorkExperience = userSettings.WorkExperience;
                 personEntity.Settings.Language = userSettings.Language;
 
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw e;
+                }
             }
+
+
         }
     }
 }
