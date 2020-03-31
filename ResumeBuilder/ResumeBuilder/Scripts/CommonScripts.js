@@ -5,9 +5,11 @@
         EditSectionScripts();
         return false;
     });
+
     $('.message a').click(function () {
         $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
     });
+
     $('.js-template').on('click', function () {
         $('.render-partial-view').load("");
     });
@@ -23,6 +25,7 @@
             ResumeSettingsScript();
         });
     });
+
     $('.js-search').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Resume/Search", function () {

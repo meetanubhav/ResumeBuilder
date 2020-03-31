@@ -13,6 +13,7 @@ namespace ResumeBuilder.Controllers
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -173,8 +174,7 @@ namespace ResumeBuilder.Controllers
 
             UserResumeVM vm = new UserResumeVM();
 
-            Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
-            vm = Mapper.Map<User, UserResumeVM>(user);
+            vm = AutoMapper.Mapper.Map<UserResumeVM>(user);
             vm.Project = user.Projects;
             vm.Skill = user.Skills;
             vm.Education = user.Education;
