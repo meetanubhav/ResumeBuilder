@@ -172,7 +172,7 @@
             </div>
             <div class="modal-body">
                 @using (Html.BeginForm())
-                {
+                { 
                     <div class="form-group">
                         @Html.LabelFor(x => x.ResumeName)
                         @Html.TextBoxFor(x => x.ResumeName, new { @class = "form-control", @placeholder = "Resume Name" })
@@ -183,7 +183,7 @@
                         @Html.TextAreaFor(x => x.Summary, new { @class = "form-control", @placeholder = "Summary" })
                         @Html.ValidationMessageFor(x => x.Summary, "", new { @class = "text-danger" })
                     </div>
-                    <button type="submit" class="mt-2 btn btn-sm btn-success ajax-change save-summary-info btn-save">SAVE</button>
+                    <button type="button" class="mt-2 btn btn-sm btn-success ajax-change save-summary-info btn-save">SAVE</button>
                 }
             </div>
         </div>

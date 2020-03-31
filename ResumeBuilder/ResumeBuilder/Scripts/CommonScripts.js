@@ -44,6 +44,7 @@
             });
         });
     });
+
     AjaxScripts();
 
     $('body').on("click", "a.viewBtn", function () {
