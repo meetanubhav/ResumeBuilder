@@ -1,0 +1,96 @@
+﻿@model ResumeBuilder.Models.ViewModel.UserResumeVM
+@{
+    Layout = null;
+
+}
+
+<title>One Page Resume</title>
+
+<div id="page-wrap" class="bg-light p-3">
+
+    <div id="contact-info" class="vcard">
+
+        <!-- Microformats! -->
+
+        <h1 class="fn mb-2 boldhead">@Model.FirstName @Model.LastName</h1>
+
+        <p>
+            Cell: <span class="tel">@Model.PhoneNumber</span><br />
+            Email: <a class="email" href=@Model.Email +"">@Model.Email</a>
+        </p>
+    </div>
+
+    <div id="objective">
+        <p>@Model.Summary</p>
+    </div>
+
+    <div class="clear"></div>
+
+    <dl>
+        <dd class="clear"></dd>
+
+        <dt>Education</dt>
+        <dd>
+            @foreach (var item in @Model.Education)
+            {
+                <h2 class="font-weight-bold heading">@item.Institution <span>@item.YearOfPassing</span></h2>
+                <h4>( @item.Board Board )</h4>
+                <p>
+                    <strong>Education Level:</strong> @item.EducationLevel<br />
+                    <strong>CGPA or Percentage:</strong> @item.Score
+                </p>
+            }
+
+        </dd>
+
+        <dd class="clear"></dd>
+
+        <dt>Skills</dt>
+        <dd>
+            @foreach (var item in @Model.Skill)
+            {
+                <h2>@item.SkillName</h2>
+            }
+        </dd>
+
+        <dd class="clear"></dd>
+
+        <dt>Projects</dt>
+        <dd>
+            @foreach (var item in @Model.Project)
+            {
+                <h2 class="font-weight-bold heading">@item.ProjectName </h2>
+                <h5>( @item.YourRole )</h5>
+                <div>About Project : @item.ProjectDetails</div>
+            }
+
+        </dd>
+
+        <dd class="clear"></dd>
+
+        <dt>Experience</dt>
+        <dd>
+            @foreach (var item in @Model.WorkExperience)
+            {
+                <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</span></h2>
+                <div>Designation - @item.Designation</div>
+            }
+
+        </dd>
+
+        <dd class="clear"></dd>
+
+        <dt>Languages Known</dt>
+        @foreach (var item in @Model.Language)
+        {
+            <dd>@item.LanguageName</dd>
+        }
+
+
+    </dl>
+
+    <div class="clear"></div>
+
+</div>
+
+

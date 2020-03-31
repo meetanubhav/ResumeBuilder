@@ -10,11 +10,11 @@ Web based editor to create Resume in a customizable template with the facility t
 - Options provided in the left panel to modify the template and formatting.
 - Download the PDF option available.
 
-###### Technologies: 
-FrontEnd - HTML 5, CSS 3, JavaScript 
-BackEnd - .NET MVC , C#
-DataBase - Microsoft MySQL Server
-Frameworks - Bootstrap 4 , JQUERY , DataTables , BootBox , Entity (EF6)
+#### Technologies: 
+- FrontEnd - HTML 5, CSS 3, JavaScript 
+- BackEnd - .NET MVC , C#
+- DataBase - Microsoft MySQL Server
+- Frameworks - Bootstrap 4 , JQUERY , DataTables , BootBox , Entity (EF6)
 
 ----------------------------------------------------------------------------------------------------------------
 To setup the project on your local machine:
@@ -43,8 +43,8 @@ For any doubts related to the issues, i.e., to understand the issue better etc, 
 
 
 #### Contributors 
-- Anubhav Gupta [here](https://github.com/meetanubhav)
-- Bhabani Maharana  [here](https://github.com/bhabani-maharana)
-- Chinmay Mishra [here](https://github.com/chinmaymishra522)
-- Devesh Kaushik [here](https://github.com/deveshkau)
-- Rishab Daga [here](https://github.com/rishabdaga)
+- [Anubhav Gupta](https://github.com/meetanubhav)
+- [Bhabani Maharana](https://github.com/bhabani-maharana)
+- [Chinmay Mishra](https://github.com/chinmaymishra522)
+- [Devesh Kaushik](https://github.com/deveshkau)
+- [Rishab Daga](https://github.com/rishabdaga)

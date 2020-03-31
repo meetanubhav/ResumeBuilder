@@ -183,13 +183,13 @@ namespace ResumeBuilder.Controllers
 
             return Json(vm, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
         [Authorize]
         public ActionResult Template()
         {
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
-            return PartialView();
+            return PartialView("~/Views/Resume/Template.cshtml");
         }
         //This action method is triggered in search
         public ActionResult GetAllUsersData()

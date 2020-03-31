@@ -28,5 +28,15 @@
         }
 
     });
+    //$("body").submit( function (event) {
+    //    $('input').each(function () {
+    //        if (!$(this).val()) {
+    //            alert('Some fields are empty');
+    //            return false;
+    //        }
+    //    });
+    //    event.preventDefault();
+    //});
+   
 
 }
