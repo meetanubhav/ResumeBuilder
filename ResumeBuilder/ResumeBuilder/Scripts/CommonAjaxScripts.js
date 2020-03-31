@@ -273,7 +273,6 @@
             userData.LanguageID = $('.js-language-id').val();
             userData.LanguageName = $("input[name = language]").val();
         }
-
         var parameter = $.extend({}, doAjax_parameter_default);
         parameter['url'] = '/EditResume/AddLanguage';
         parameter['data'] = userData;
@@ -386,104 +385,6 @@
         doAjax(parameter);
 
     });
-
-    //$('.js-template, .js-edit-resume').on('click', function () {
-    //    var $button = $(this);
-
-    //    $.ajax({
-    //        url: "/Resume/GetTemplateDetails",
-    //        type: "GET",
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json",
-    //        success: function (response) {
-    //            if (response != null) {
-    //                currentData = response;
-    //                $.each(response.WorkExperience, function (i, item) {
-    //                    if (item['ExpId'] != null) {
-    //                        fromDate = new Date(parseInt(item['FromYear'].substr(6)));
-    //                        toDate = new Date(parseInt(item['ToYear'].substr(6)));
-    //                        var workDetails = $('.tWorkexperience').append($('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
-    //                                                                 $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
-
-    //                        $('.workexpData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 we-edit" data-workexp-id="' + item['ExpId'] + '"></i><i class="fas fa-trash we-delete" style="color: red;" data-workexp-id="' + item['ExpId'] + '"></i></div>'),
-    //                                                 $('<div class="font-weight-bold">').text(item['Organization'] + " (" + item['Designation'] + ")"),
-    //                                                 $('<div class="bg-light w-50 rounded">').text(fromDate.getFullYear() + " - " + toDate.getFullYear()));
-    //                    }
-    //                    //workDetails.html();
-    //                });
-
-    //                $.each(response.Project, function (i, item) {
-    //                    var projectDetails = $('.tproject').append($('<div class="font-weight-bold">').text(item['ProjectName']),
-    //                                                             $('<div class="bg-light rounded">').text(item['ProjectDetails']));
-    //                    $('.projectData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 pr-edit" data-project-id="' + item['ProjectID'] + '"></i><i class="fas fa-trash pr-delete" style="color: red;" data-project-id="' + item['ProjectID'] + '"></i></div>'),
-    //                                                 $('<div class="font-weight-bold">').text(item['ProjectName']),
-    //                                                 $('<div class="bg-light rounded">').text(item['ProjectDetails']));
-    //                });
-
-    //                $.each(response.Skill, function (i, item) {
-    //                    if (item['SkillID'] != null) {
-    //                        var skillDetails = $('.tskill').append($('<div class="font-weight-bold">').text(item['SkillName']));
-    //                        $('.skillData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 sk-edit" data-skill-id="' + item['SkillID'] + '"></i><i class="fas fa-trash sk-delete" style="color: red;" data-skill-id="' + item['SkillID'] + '"></i></div>'),
-    //                                               $('<div class="font-weight-bold">').text(item['SkillName']));
-    //                    }
-    //                });
-
-    //                $.each(response.Education, function (i, item) {
-    //                    if (item['EducationLevel'] != null) {
-    //                        var educationDetails = $('.teducation').append($('<div class="font-weight-bold">').text(item['EducationLevel']),
-    //                                                                       $('<div class="bg-light rounded">').text("Scored: " + item['Score']),
-    //                                                                       $('<div class="bg-light rounded">').text("Y.O.P: " + item['YearOfPassing']));
-    //                        //-------Data Visible in Edit Page-------
-    //                        $('.educationData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 edu-edit" data-education-id="' + item['EduID'] + '"></i><i class="fas fa-trash edu-delete" style="color: red;" data-education-id="' + item['EduID'] + '"></i></div>'),
-    //                                       $('<div class="font-weight-bold">').text(item['EducationLevel']),
-    //                                       $('<div>').text("Scored: " + item['Score']),
-    //                                       $('<div>').text("Year of Passing: " + item['YearOfPassing']),
-    //                                       $('<div>').text("Stream: " + item['Stream']));
-    //                    }
-    //                });
-
-    //                $.each(response.Language, function (i, item) {
-    //                    if (item['LanguageName'] != null) {
-    //                        var languageKnown = $('.tlanguage').append($('<div class="bg-light rounded">').text(item['LanguageName']));
-    //                        //-----Data Visible in Edit Page------------
-    //                        $('.languageData').append($('<div class="display-inline float-right"><i class="far fa-edit mr-2 lang-edit" data-language-id="' + item['LanguageID'] + '"></i><i class="fas fa-trash lang-delete" style="color: red;" data-language-id="' + item['LanguageID'] + '"></i></div>'),
-    //                                                     $('<div class="bg-light font-weight-bold rounded">').text(item['LanguageName']));
-    //                    }
-    //                });
-
-    //                $('.tName').text(response['FirstName'] + " " + response['LastName']);
-    //                $('.tEmail').text(response['Email']);
-    //                $('.tPhone').text(response['PhoneNumber']);
-    //                $('.tResume').text(response['ResumeName']);
-    //                $('.tSummary').text(response['Summary']);
-    //                //---Data visible in Edit Page
-    //                $('.summaryData').append($('<button class="far fa-edit float-right su-edit" data-summary-id="' + response['UserID'] + '"></button>'),
-    //                                     $('<div class="font-weight-bold">').text(response['ResumeName']),
-    //                                     $('<div>').text(response['Summary']));
-
-    //            }
-
-    //            else {
-    //                alert(response.responseText);
-    //            }
-    //        },
-    //        error: function (response) {
-    //            alert(response.responseText);
-    //        }
-    //    });
-
-    //    //if ($button.hasClass('js-template')) {
-
-    //    //    $('.render-partial-view').load("/Resume/Template");
-    //    //}
-    //    //else if ($button.hasClass("js-edit-resume")) {
-    //    //    $('.render-partial-view').load("/Resume/Edit", function () {
-    //    //        EditSectionScripts();
-    //    //    });
-    //    //}
-
-    //    return false;
-    //});
 
     /*              Delete Buttons        */
 
@@ -600,7 +501,9 @@
         });
     }
 }
+function checkNull() {
 
+}
 String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };

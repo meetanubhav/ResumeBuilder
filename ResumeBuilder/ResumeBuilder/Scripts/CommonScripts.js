@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $(".se-pre-con").fadeOut("slow");
+
     $('.js-edit-resume').on("click", function () {
         //var userId = parseInt($("#userId").val());
         $('.render-partial-view').load("/Resume/Edit");

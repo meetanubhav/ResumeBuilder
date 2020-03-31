@@ -140,50 +140,6 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
-        [HttpGet]
-        public ActionResult GetTemplateDetails()
-        {
-            var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Include("Projects")
-                .Include("Skills")
-                .Include("Education")
-                .Include("WorkExperiences")
-                .Include("Languages")
-            .FirstOrDefault(x => x.UserID == userId);
-
-            foreach (var i in user.Projects)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.Skills)
-            {
-                i.Users = null;
-            }
-            foreach (var i in user.Education)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.WorkExperiences)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.Languages)
-            {
-                i.Users = null;
-            }
-
-            UserResumeVM vm = new UserResumeVM();
-
-            vm = AutoMapper.Mapper.Map<UserResumeVM>(user);
-            vm.Project = user.Projects;
-            vm.Skill = user.Skills;
-            vm.Education = user.Education;
-            vm.WorkExperience = user.WorkExperiences;
-            vm.Language = user.Languages;
-
-            return Json(vm, JsonRequestBehavior.AllowGet);
-
-        //}
 
         [Authorize]
         public ActionResult Template()
