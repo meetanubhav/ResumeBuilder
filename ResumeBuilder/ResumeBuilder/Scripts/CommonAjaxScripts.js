@@ -660,7 +660,7 @@ $('body').on("click", "a.viewBtn", function () {
 });
 
 $('body').on("click", ".download-template", function () {
-        // Define variables
+    // Define variables
         var
          form = $(this).next(),
          cache_width = form.width(),
@@ -687,7 +687,7 @@ $('body').on("click", ".download-template", function () {
                      format: 'a4'
                  });
                 doc.setFont("arial", "bold");
-                doc.addImage(img, 'JPEG', 10, 10, 420, cache_height);
+                doc.addImage(img, 'JPEG', 20, 20, 420, cache_height);
                 
                 doc.save('YourResume.pdf');
                 form.width(cache_width);
