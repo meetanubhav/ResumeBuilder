@@ -96,6 +96,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\ResumeBuilder.dll" />
+    <Content Include="bin\ResumeBuilder.pdb" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -109,7 +111,6 @@
     <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\dashboard-image.jpg" />
-    <Content Include="Images\Preloader_1.gif" />
     <Content Include="Images\Preloader_9.gif" />
     <Content Include="Images\rb-logo.png" />
     <Content Include="Images\template1.png" />
@@ -123,6 +124,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CommonAjaxScripts.js" />
     <Content Include="Scripts\CommonScripts.js" />
+    <Content Include="Scripts\css\bootstrap\bootstrap.min.css" />
+    <Content Include="Scripts\css\simple-line-icons\css\simple-line-icons.css" />
+    <Content Include="Scripts\css\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Scripts\css\style.css" />
     <Content Include="Scripts\EditSectionScript.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -153,6 +158,13 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\jquery-easing\jquery.easing.compatibility.js" />
+    <Content Include="Scripts\js\jquery-easing\jquery.easing.js" />
+    <Content Include="Scripts\js\jquery-easing\jquery.easing.min.js" />
+    <Content Include="Scripts\js\jquery\jquery.js" />
+    <Content Include="Scripts\js\jquery\jquery.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -280,11 +292,15 @@
     <Compile Include="Models\ViewModel\LanguageVM.cs" />
     <Compile Include="Models\ViewModel\LoginVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
+    <Compile Include="Models\ViewModel\PublicProfileVM.cs" />
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
     <Compile Include="Models\ViewModel\SearchUserDataVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
     <Compile Include="Models\ViewModel\SummaryVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />
     <Compile Include="Models\ViewModel\SettingsVM.cs" />

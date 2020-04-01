@@ -141,16 +141,16 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
-        
+
         [HttpGet]
         public ActionResult GetTemplateDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
             var user = db.Users.Include("Projects")
-                .Include("Skills")
-                .Include("Education")
-                .Include("WorkExperiences")
-                .Include("Languages")
+            .Include("Skills")
+            .Include("Education")
+            .Include("WorkExperiences")
+            .Include("Languages")
             .FirstOrDefault(x => x.UserID == userId);
 
             foreach (var i in user.Projects)
@@ -199,22 +199,22 @@ namespace ResumeBuilder.Controllers
         {
             //var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").OrderBy(x => x.FirstName).ToList();
             //var data = (from user in db.Users.Include("Skills")
-            //            select new SearchUserDataVM
-            //            {
-            //                FirstName = user.FirstName,
-            //                LastName = user.LastName,
-            //            }).Where(x => x.FirstName !=null && x.LastName !=null).OrderBy(x => x.FirstName).ToList();
+            // select new SearchUserDataVM
+            // {
+            // FirstName = user.FirstName,
+            // LastName = user.LastName,
+            // }).Where(x => x.FirstName !=null && x.LastName !=null).OrderBy(x => x.FirstName).ToList();
             //var data = db.Users
-            //                .Where(x => x.FirstName !=null && x.LastName !=null)
-            //                .Select(user => new
-            //                {
-            //                    Name = user.FirstName,
-            //                    TeamNames = user.Skills
-            //                        .Select(skill => skill.SkillName )
-            //                        .ToList(),
-            //                });
+            // .Where(x => x.FirstName !=null && x.LastName !=null)
+            // .Select(user => new
+            // {
+            // Name = user.FirstName,
+            // TeamNames = user.Skills
+            // .Select(skill => skill.SkillName )
+            // .ToList(),
+            // });
             var data = (from e in db.Users.Include("Skills")
-                                                    .Where(x => x.Skills.Any()).ToList()
+            .Where(x => x.Skills.Any()).ToList()
                         select new SearchUserDataVM
                         {
                             FirstName = e.FirstName,
@@ -226,13 +226,13 @@ namespace ResumeBuilder.Controllers
         }
         //public ActionResult PublicProfile(int? userId)
         //{
-        //    // var userId = Int32.Parse(User.Identity.Name);
-        //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
+        // // var userId = Int32.Parse(User.Identity.Name);
+        // var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        //    Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        //    var userVM = Mapper.Map<User, UserResumeVM>(user);
+        // Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        // var userVM = Mapper.Map<User, UserResumeVM>(user);
 
-        //    return View(userVM);
+        // return View(userVM);
         //}
 
         [Authorize]

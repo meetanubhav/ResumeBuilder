@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ResumeBuilder.Controllers
 {
-    public class SettingsController : Controller 
+    public class SettingsController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
 
@@ -37,7 +37,7 @@ namespace ResumeBuilder.Controllers
         public ActionResult AddOrUpdateSettings(SettingsVM settings)
         {
             Settings userSettings = Mapper.Map<Settings>(settings);
-            
+
             var userId = Int32.Parse(User.Identity.Name);
             var personEntity = db.Users.Include("Settings").FirstOrDefault(x => x.UserID == userId);
 
@@ -61,11 +61,11 @@ namespace ResumeBuilder.Controllers
                     foreach (var eve in e.EntityValidationErrors)
                     {
                         Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
                         foreach (var ve in eve.ValidationErrors)
                         {
                             Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
+                            ve.PropertyName, ve.ErrorMessage);
                         }
                     }
                     throw e;
