@@ -11,6 +11,7 @@ using ResumeBuilder.Models.ViewModel;
 namespace ResumeBuilder.Controllers {
     public class ResumeController : Controller {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext ();
+
         public ActionResult Login () {
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction ("Dashboard");
@@ -139,8 +140,7 @@ namespace ResumeBuilder.Controllers {
 
             UserResumeVM vm = new UserResumeVM ();
 
-            Mapper.Initialize (cfg => cfg.CreateMap<User, UserResumeVM> ());
-            vm = Mapper.Map<User, UserResumeVM> (user);
+            vm = Mapper.Map<UserResumeVM> (user);
             vm.Project = user.Projects;
             vm.Skill = user.Skills;
             vm.Education = user.Education;
@@ -154,8 +154,9 @@ namespace ResumeBuilder.Controllers {
         [Authorize]
         public ActionResult Template () {
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
-            return PartialView ();
+            return PartialView ("~/Views/Resume/Template.cshtml");
         }
+
         //This action method is triggered in search
         public ActionResult GetAllUsersData () {
             //var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").OrderBy(x => x.FirstName).ToList();
@@ -188,8 +189,8 @@ namespace ResumeBuilder.Controllers {
         //    // var userId = Int32.Parse(User.Identity.Name);
         //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+        //    Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        //    var userVM = Mapper.Map<User, UserResumeVM>(user);
 
         //    return View(userVM);
         //}

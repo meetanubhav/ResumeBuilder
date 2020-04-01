@@ -32,7 +32,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -105,11 +104,17 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Login.css" />
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\template2style.css" />
+    <Content Include="Content\TemplateReveal.css" />
+    <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\dashboard-image.jpg" />
+    <Content Include="Images\Preloader_9.gif" />
     <Content Include="Images\rb-logo.png" />
+    <Content Include="Images\template1.png" />
+    <Content Include="Images\template2.png" />
     <Content Include="Images\user.jpg" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -128,9 +133,6 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\font-awesome\css\font-awesome.css" />
-    <Content Include="Scripts\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
@@ -146,39 +148,6 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Scripts\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Scripts\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Scripts\font-awesome\less\animated.less" />
-    <Content Include="Scripts\font-awesome\less\bordered-pulled.less" />
-    <Content Include="Scripts\font-awesome\less\core.less" />
-    <Content Include="Scripts\font-awesome\less\fixed-width.less" />
-    <Content Include="Scripts\font-awesome\less\font-awesome.less" />
-    <Content Include="Scripts\font-awesome\less\icons.less" />
-    <Content Include="Scripts\font-awesome\less\larger.less" />
-    <Content Include="Scripts\font-awesome\less\list.less" />
-    <Content Include="Scripts\font-awesome\less\mixins.less" />
-    <Content Include="Scripts\font-awesome\less\path.less" />
-    <Content Include="Scripts\font-awesome\less\rotated-flipped.less" />
-    <Content Include="Scripts\font-awesome\less\screen-reader.less" />
-    <Content Include="Scripts\font-awesome\less\stacked.less" />
-    <Content Include="Scripts\font-awesome\less\variables.less" />
-    <Content Include="Scripts\font-awesome\scss\font-awesome.scss" />
-    <Content Include="Scripts\font-awesome\scss\_animated.scss" />
-    <Content Include="Scripts\font-awesome\scss\_bordered-pulled.scss" />
-    <Content Include="Scripts\font-awesome\scss\_core.scss" />
-    <Content Include="Scripts\font-awesome\scss\_fixed-width.scss" />
-    <Content Include="Scripts\font-awesome\scss\_icons.scss" />
-    <Content Include="Scripts\font-awesome\scss\_larger.scss" />
-    <Content Include="Scripts\font-awesome\scss\_list.scss" />
-    <Content Include="Scripts\font-awesome\scss\_mixins.scss" />
-    <Content Include="Scripts\font-awesome\scss\_path.scss" />
-    <Content Include="Scripts\font-awesome\scss\_rotated-flipped.scss" />
-    <Content Include="Scripts\font-awesome\scss\_screen-reader.scss" />
-    <Content Include="Scripts\font-awesome\scss\_stacked.scss" />
-    <Content Include="Scripts\font-awesome\scss\_variables.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -288,9 +257,11 @@
     <Compile Include="Controllers\EditResumeController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\AutoMapperProfile.cs" />
     <Compile Include="Migrations\202003131102140_new_model.cs" />
     <Compile Include="Migrations\202003131102140_new_model.designer.cs">
       <DependentUpon>202003131102140_new_model.cs</DependentUpon>
@@ -347,7 +318,8 @@
     <Content Include="Views\Resume\Settings.cshtml" />
     <Content Include="Views\Resume\PublicProfile.cshtml" />
     <Content Include="Views\Resume\Search.cshtml" />
-    <Content Include="Views\Resume\SummaryModal.cshtml" />
+    <Content Include="Views\Template\Template1.cshtml" />
+    <Content Include="Views\Template\Template2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -357,21 +329,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\DataTables\extensions\AutoFill\js\" />
-    <Folder Include="Scripts\DataTables\extensions\Buttons\js\" />
-    <Folder Include="Scripts\DataTables\extensions\Buttons\swf\" />
-    <Folder Include="Scripts\DataTables\extensions\ColReorder\js\" />
-    <Folder Include="Scripts\DataTables\extensions\FixedColumns\js\" />
-    <Folder Include="Scripts\DataTables\extensions\FixedHeader\js\" />
-    <Folder Include="Scripts\DataTables\extensions\JSZip\" />
-    <Folder Include="Scripts\DataTables\extensions\KeyTable\js\" />
-    <Folder Include="Scripts\DataTables\extensions\pdfmake\" />
-    <Folder Include="Scripts\DataTables\extensions\Responsive\js\" />
-    <Folder Include="Scripts\DataTables\extensions\RowGroup\js\" />
-    <Folder Include="Scripts\DataTables\extensions\RowReorder\js\" />
-    <Folder Include="Scripts\DataTables\extensions\Scroller\js\" />
-    <Folder Include="Scripts\DataTables\extensions\Select\js\" />
-    <Folder Include="Scripts\DataTables\media\js\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
