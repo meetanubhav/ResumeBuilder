@@ -22,7 +22,14 @@ namespace ResumeBuilder.Controllers
 
             if (personEntity.Settings == null)
             {
-                personEntity.Settings = new Settings();
+                personEntity.Settings = new Settings() { 
+                    Education = true,
+                    Project = true,
+                    Skill = true,
+                    WorkExperience = true,
+                    Language = true
+                };
+                
                 db.SaveChanges();
             }
 
