@@ -135,18 +135,26 @@
                 userData.SkillName = $("input[name = skill]").val();
             }
 
-            var parameter = $.extend({}, doAjax_parameter_default);
-            parameter['url'] = '/EditResume/AddSkill';
-            parameter['data'] = userData;
-            parameter['requestType'] = 'POST';
-            parameter['successCallbackFunction'] = function (data) {
+        var parameter = $.extend({}, doAjax_parameter_default);
+        parameter['url'] = '/EditResume/AddSkill';
+        parameter['data'] = userData;
+        parameter['requestType'] = 'POST';
+        parameter['dataType'] = null;
+        parameter['successCallbackFunction'] = function (data) {
+            if (data == "Skill already present")
+            {
+                $(".toast-message").addClass("text-warning");
+                $('.toast-message').text(data);
+                $(".my-toast").toast("show");
+            }
+            else {
                 $('.js-skill-details').append('<span class="btn btn-primary"> \
                     '+ data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
-
-            };
-            doAjax(parameter);
+            }
+        };
+        doAjax(parameter);
 
             return false;
         }
@@ -258,24 +266,32 @@
     $('body').on("click", ".save-language", function (e) {
         e.preventDefault();
         if (checkNull('.languageModal') === 0) {
-
-            var $button = $(this);
-            var userData = new Object();
+        var $button = $(this);
+        var userData = new Object();
+        {
+            userData.LanguageID = $('.js-language-id').val();
+            userData.LanguageName = $("input[name = language]").val();
+        }
+        var parameter = $.extend({}, doAjax_parameter_default);
+        parameter['url'] = '/EditResume/AddLanguage';
+        parameter['data'] = userData;
+        parameter['requestType'] = 'POST';
+        parameter['dataType'] = null;
+        parameter['successCallbackFunction'] = function (data) {
+            if (data == "Language already present")
             {
-                userData.LanguageID = $('.js-language-id').val();
-                userData.LanguageName = $("input[name = language]").val();
+                $(".toast-message").addClass("text-warning");
+                $('.toast-message').text(data);
+                $(".my-toast").toast("show");
             }
-            var parameter = $.extend({}, doAjax_parameter_default);
-            parameter['url'] = '/EditResume/AddLanguage';
-            parameter['data'] = userData;
-            parameter['requestType'] = 'POST';
-            parameter['successCallbackFunction'] = function (data) {
+            else {
                 $('.js-language-details').append('<span class="btn btn-primary"> \
                     ' + data.LanguageName + ' \
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
+            }
 
-            };
+            }
             doAjax(parameter);
 
             return false;
@@ -302,9 +318,17 @@
         params['dataType'] = 'text';
         params['successCallbackFunction'] = function (data) {
             if (data == 'success')
-                alert('settings updated successfully');
+            {
+                $(".toast-message").addClass("text-success");
+                $('.toast-message').text("settings updated successfully");
+                $(".my-toast").toast("show");
+            }
             else
-                alert('failed to update settings');
+            {
+                $(".toast-message").addClass("text-danger");
+                $('.toast-message').text("failed to update settings");
+                $(".my-toast").toast("show");
+            }
         };
 
         doAjax(parameter);
