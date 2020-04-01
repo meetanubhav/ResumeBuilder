@@ -104,13 +104,16 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\NavbarStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\template2style.css" />
     <Content Include="Content\TemplateReveal.css" />
     <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bg-login.jpg" />
     <Content Include="Images\dashboard-image.jpg" />
+    <Content Include="Images\Preloader_1.gif" />
     <Content Include="Images\Preloader_9.gif" />
     <Content Include="Images\rb-logo.png" />
     <Content Include="Images\template1.png" />

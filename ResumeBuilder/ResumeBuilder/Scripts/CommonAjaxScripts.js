@@ -146,7 +146,7 @@
                     $(".alert").show();
                     $(".alert").addClass("alert-warning");
                     $('.alert-message').text(data);
-                    $(".alert").fadeOut("slow");
+                    $(".alert").fadeOut(5000);
 
                 }
                 else {
@@ -284,7 +284,7 @@
                     $(".alert").show();
                     $(".alert").addClass("alert-warning");
                     $('.alert-message').text(data);
-                    $(".alert").fadeOut("slow");
+                    $(".alert").fadeOut(5000);
                 }
                 else {
                     $('.js-language-details').append('<span class="btn btn-primary"> \
@@ -313,23 +313,23 @@
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
 
-        var params = $.extend({}, doAjax_params_default);
-        params['url'] = '/Settings/AddOrUpdateSettings';
-        params['data'] = formDetails;
-        params['requestType'] = 'POST';
-        params['dataType'] = 'text';
-        params['successCallbackFunction'] = function (data) {
+        var parameter  = $.extend({}, doAjax_parameter_default);
+        parameter ['url'] = '/Settings/AddOrUpdateSettings';
+        parameter ['data'] = formDetails;
+        parameter ['requestType'] = 'POST';
+        parameter ['dataType'] = 'text';
+        parameter ['successCallbackFunction'] = function (data) {
             if (data == 'success') {
                 $(".alert").show();
                 $(".alert").addClass("alert-success");
                 $('.alert-message').text("Settings updated successfully");
-                $(".alert").fadeOut("slow");
+                $(".alert").fadeOut(5000);
             }
             else {
                 $(".alert").show();
                 $(".alert").addClass("alert-danger");
                 $('.alert-message').text("Failed to update settings");
-                $(".alert").fadeOut("slow");
+                $(".alert").fadeOut(5000);
             }
         };
 
@@ -575,10 +575,19 @@ function doAjax(doAjax_parameter) {
                 $('.modal').modal('hide');
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
-                $(".alert").show();
-                $(".alert").addClass("alert-success");
-                $('.alert-message').text("Saved Succesfully!");
-                $(".alert").fadeOut("slow");
+                if (requestType == "POST") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-success");
+                    $('.alert-message').text("Saved Succesfully!");
+                    $(".alert").fadeOut(5000);
+                    $('form').trigger('reset');
+                }
+                if (requestType == "DELETE") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-primary");
+                    $('.alert-message').text("Deleted Succesfully!");
+                    $(".alert").fadeOut(5000);
+                }
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -591,7 +600,7 @@ function doAjax(doAjax_parameter) {
             $(".alert").show();
             $(".alert").addClass("alert-danger");
             $('.alert-message').text("Error could not save.");
-            $(".alert").fadeOut("slow");
+            $(".alert").fadeOut(5000);
         },
         complete: function (jqXHR, textStatus) {
             if (typeof completeCallbackFunction === "function") {
