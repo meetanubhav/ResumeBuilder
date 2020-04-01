@@ -13,6 +13,7 @@ namespace ResumeBuilder.Controllers
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -76,6 +77,7 @@ namespace ResumeBuilder.Controllers
         {
             throw new NotImplementedException();
         }
+
         [Authorize]
         public ActionResult Dashboard()
         {
@@ -141,6 +143,7 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
+        
         [HttpGet]
         public ActionResult GetTemplateDetails()
         {
@@ -175,8 +178,7 @@ namespace ResumeBuilder.Controllers
 
             UserResumeVM vm = new UserResumeVM();
 
-            Mapper.Initialize(cfg => cfg.CreateMap<User, UserResumeVM>());
-            vm = Mapper.Map<User, UserResumeVM>(user);
+            vm = Mapper.Map<UserResumeVM>(user);
             vm.Project = user.Projects;
             vm.Skill = user.Skills;
             vm.Education = user.Education;
@@ -191,8 +193,9 @@ namespace ResumeBuilder.Controllers
         public ActionResult Template()
         {
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
-            return PartialView();
+            return PartialView("~/Views/Resume/Template.cshtml");
         }
+
         //This action method is triggered in search
         public ActionResult GetAllUsersData()
         {
@@ -228,8 +231,8 @@ namespace ResumeBuilder.Controllers
         //    // var userId = Int32.Parse(User.Identity.Name);
         //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+        //    Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        //    var userVM = Mapper.Map<User, UserResumeVM>(user);
 
         //    return View(userVM);
         //}

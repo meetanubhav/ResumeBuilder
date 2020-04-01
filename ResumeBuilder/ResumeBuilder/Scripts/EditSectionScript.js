@@ -28,5 +28,19 @@
         }
 
     });
-
+    //$("body").submit( function (event) {
+    //    $('input').each(function () {
+    //        if (!$(this).val()) {
+    //            alert('Some fields are empty');
+    //            return false;
+    //        }
+    //    });
+    //    event.preventDefault();
+    //});
+   
+    //$("body").on("keyup", "input", function () {
+    //    if (!$(this).val()) {
+    //        $(this).focus();
+    //    };
+    //});
 }

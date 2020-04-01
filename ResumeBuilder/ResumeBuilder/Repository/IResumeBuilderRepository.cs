@@ -11,7 +11,6 @@ namespace ResumeBuilder.Repository
     {
         bool AddBasicInformation(User userInfo);
         int AddOrUpdateEducation(Education education, int idUser);
-        int GetIdPerson(string email);
         string AddOrUpdateExperience(WorkExperience workExperience, int idUser);
         string AddorUpdateSkill(Skill skill, int idUser);
         string AddorUpdateProject(Project project, int idUser);
