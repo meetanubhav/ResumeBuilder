@@ -297,7 +297,13 @@
         params['url'] = '/Settings/AddOrUpdateSettings';
         params['data'] = formDetails;
         params['requestType'] = 'POST';
-        params['dataType'] = null;
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            if (data == 'success')
+                alert('settings updated successfully');
+            else
+                alert('failed to update settings');
+        };
 
         doAjax(params);
 

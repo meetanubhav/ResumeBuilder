@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,9 +23,6 @@ namespace ResumeBuilder.Repository
                 if (userInfo != null)
                 {
                     db.Users.Add(userInfo);
-                    //userInfo.Summary = string.Empty;
-                    //userInfo.ResumeName = string.Empty;
-                    //db.Users.Add(userInfo);
                     db.Entry(userInfo).State = EntityState.Modified;
                     records = db.SaveChanges();
                 }
@@ -68,7 +66,7 @@ namespace ResumeBuilder.Repository
         public int AddOrUpdateEducation(Education education, int idUser)
         {
 
-            var personEntity = db.Users.Include("Education").FirstOrDefault(x => x.UserID == idUser);
+            var personEntity = db.Users.AsNoTracking().Include("Education").FirstOrDefault(x => x.UserID == idUser);
 
             if (personEntity != null)
             {
@@ -77,34 +75,37 @@ namespace ResumeBuilder.Repository
                     //we will update education entity
                     education.UserID = idUser;
                     db.Entry(education).State = EntityState.Modified;
-                    db.SaveChanges();
 
                 }
                 else
                 {
                     // we will add new education entity
                     personEntity.Education.Add(education);
-                    db.SaveChanges();
 
                 }
+
+                try {
+                    db.SaveChanges();
+                    return education.EduID;
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid User");
             }
 
-            return education.EduID;
-        }
-
-        public int GetIdPerson(string email)
-        {
-            int idSelected = db.Users.Where(p => p.Email.Equals(email))
-                                              .Select(p => p.UserID).FirstOrDefault();
-
-            return idSelected;
+            return 0;
         }
 
         public string AddorUpdateSkill(Skill skill, int idUser)
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include("Skills").FirstOrDefault(x => x.UserID == idUser);
+            var personEntity = db.Users.AsNoTracking().Include("Skills").FirstOrDefault(x => x.UserID == idUser);
 
             if (personEntity != null && skill != null)
             {
@@ -132,8 +133,8 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include("Projects").FirstOrDefault(x => x.UserID == idUser);
-            project.UserID = idUser;
+            var personEntity = db.Users.AsNoTracking().Include("Projects").FirstOrDefault(x => x.UserID == idUser);
+            
             if (personEntity != null && project != null)
             {
                 if (project.ProjectID > 0)
@@ -158,7 +159,8 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include("WorkExperiences").FirstOrDefault(x => x.UserID == idUser);
+            var personEntity = db.Users.AsNoTracking().Include("WorkExperiences").FirstOrDefault(x => x.UserID == idUser);
+            
             if (personEntity != null && work != null)
             {
                 if (work.ExpId > 0)
@@ -183,7 +185,7 @@ namespace ResumeBuilder.Repository
         {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include("Languages").FirstOrDefault(x => x.UserID == idUser);
+            var personEntity = db.Users.AsNoTracking().Include("Languages").FirstOrDefault(x => x.UserID == idUser);
 
             if (language.LanguageID > 0)
             {
@@ -204,14 +206,14 @@ namespace ResumeBuilder.Repository
 
         public User GetBasicInfo(int idUser)
         {
-            var user = db.Users.FirstOrDefault(x => x.UserID == idUser);
+            var user = db.Users.AsNoTracking().FirstOrDefault(x => x.UserID == idUser);
 
             return user;
         }
 
         public IQueryable<Education> GetEducationById(int idUser)
         {
-            var education = db.Educations.Where(x => x.UserID == idUser);
+            var education = db.Educations.AsNoTracking().Where(x => x.UserID == idUser);
 
             return education;
 
@@ -219,28 +221,28 @@ namespace ResumeBuilder.Repository
 
         public IQueryable<WorkExperience> GetWorkExperienceById(int idUser)
         {
-            var workExperience = db.WorkExperiences.Where(x => x.UserID == idUser);
+            var workExperience = db.WorkExperiences.AsNoTracking().Where(x => x.UserID == idUser);
 
             return workExperience;
         }
 
         public IQueryable<Skill> GetSkillsById(int idUser)
         {
-            var userSkill = db.Skills.Where(x => x.Users.Any(y=>y.UserID==idUser));
+            var userSkill = db.Skills.AsNoTracking().Where(x => x.Users.Any(y=>y.UserID==idUser));
 
             return userSkill;
         }
 
         public IQueryable<Project> GetProjectById(int idUser)
         {
-            var project = db.Projects.Where(x => x.User.UserID == idUser);
+            var project = db.Projects.AsNoTracking().Where(x => x.User.UserID == idUser);
 
             return project;
         }
 
         public IQueryable<Language> GetLanguageById(int idUser)
         {
-            var language = db.Languages.Where(x => x.Users.Any(y => y.UserID == idUser));
+            var language = db.Languages.AsNoTracking().Where(x => x.Users.Any(y => y.UserID == idUser));
 
             return language;
         }

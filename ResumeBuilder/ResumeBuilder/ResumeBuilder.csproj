@@ -247,7 +247,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapper\AutoMapperProfile.cs" />
+    <Compile Include="App_Start\AutoMapperProfile.cs" />
     <Compile Include="Migrations\202003131102140_new_model.cs" />
     <Compile Include="Migrations\202003131102140_new_model.designer.cs">
       <DependentUpon>202003131102140_new_model.cs</DependentUpon>
@@ -312,7 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>

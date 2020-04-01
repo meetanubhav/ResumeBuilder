@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using ResumeBuilder.Mapper;
-using ResumeBuilder.Models;
-using ResumeBuilder.Models.ViewModel;
+using ResumeBuilder.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +15,7 @@ namespace ResumeBuilder
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperProfile>());
+            Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperProfile>());
         }
     }
 }

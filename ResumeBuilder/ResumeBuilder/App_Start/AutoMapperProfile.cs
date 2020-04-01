@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ResumeBuilder.Mapper
+namespace ResumeBuilder.App_Start
 {
     public class AutoMapperProfile : Profile
     {

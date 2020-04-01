@@ -76,6 +76,7 @@ namespace ResumeBuilder.Controllers
         {
             throw new NotImplementedException();
         }
+
         [Authorize]
         public ActionResult Dashboard()
         {
@@ -140,6 +141,7 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
+
         [HttpGet]
         public ActionResult GetTemplateDetails()
         {
@@ -174,7 +176,7 @@ namespace ResumeBuilder.Controllers
 
             UserResumeVM vm = new UserResumeVM();
 
-            vm = AutoMapper.Mapper.Map<UserResumeVM>(user);
+            vm = Mapper.Map<UserResumeVM>(user);
             vm.Project = user.Projects;
             vm.Skill = user.Skills;
             vm.Education = user.Education;
@@ -183,7 +185,7 @@ namespace ResumeBuilder.Controllers
 
             return Json(vm, JsonRequestBehavior.AllowGet);
 
-        //}
+        }
 
         [Authorize]
         public ActionResult Template()
@@ -191,6 +193,7 @@ namespace ResumeBuilder.Controllers
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView("~/Views/Resume/Template.cshtml");
         }
+
         //This action method is triggered in search
         public ActionResult GetAllUsersData()
         {
@@ -226,8 +229,8 @@ namespace ResumeBuilder.Controllers
         //    // var userId = Int32.Parse(User.Identity.Name);
         //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+        //    Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        //    var userVM = Mapper.Map<User, UserResumeVM>(user);
 
         //    return View(userVM);
         //}

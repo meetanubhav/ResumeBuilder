@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ResumeBuilder.Mapper;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using System;
@@ -29,14 +28,15 @@ namespace ResumeBuilder.Controllers
 
             var settings = personEntity.Settings;
 
-            var settingsVM = AutoMapper.Mapper.Map<Settings, SettingsVM>(settings);
+            var settingsVM = Mapper.Map<Settings, SettingsVM>(settings);
 
             return PartialView("~/Views/Resume/Settings.cshtml", settingsVM);
         }
 
-        public void AddOrUpdateSettings(SettingsVM settings)
+        [HttpPost]
+        public ActionResult AddOrUpdateSettings(SettingsVM settings)
         {
-            Settings userSettings = AutoMapper.Mapper.Map<Settings>(settings);
+            Settings userSettings = Mapper.Map<Settings>(settings);
             
             var userId = Int32.Parse(User.Identity.Name);
             var personEntity = db.Users.Include("Settings").FirstOrDefault(x => x.UserID == userId);
@@ -52,6 +52,9 @@ namespace ResumeBuilder.Controllers
                 try
                 {
                     db.SaveChanges();
+                    Console.WriteLine("Settings Updated");
+
+                    return Content("success");
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -74,7 +77,7 @@ namespace ResumeBuilder.Controllers
                 }
             }
 
-
+            return Content("failure");
         }
     }
 }
