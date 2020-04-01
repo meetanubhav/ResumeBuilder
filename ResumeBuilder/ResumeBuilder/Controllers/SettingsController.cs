@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ResumeBuilder.Controllers
 {
-    public class SettingsController : Controller 
+    public class SettingsController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
 
@@ -37,7 +37,7 @@ namespace ResumeBuilder.Controllers
         public ActionResult AddOrUpdateSettings(SettingsVM settings)
         {
             Settings userSettings = Mapper.Map<Settings>(settings);
-            
+
             var userId = Int32.Parse(User.Identity.Name);
             var personEntity = db.Users.Include("Settings").FirstOrDefault(x => x.UserID == userId);
 
