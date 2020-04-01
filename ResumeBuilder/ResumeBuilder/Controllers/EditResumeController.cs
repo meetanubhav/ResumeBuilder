@@ -79,7 +79,7 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
+        public ActionResult AddSummaryInfo(SummaryVM summaryInfo)
         {
             var userID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)

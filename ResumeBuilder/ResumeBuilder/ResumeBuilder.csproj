@@ -282,6 +282,7 @@
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
     <Compile Include="Models\ViewModel\SearchUserDataVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
+    <Compile Include="Models\ViewModel\SummaryVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="Repository\IResumeBuilderRepository.cs" />
     <Compile Include="Repository\ResumeBuilderRepository.cs" />

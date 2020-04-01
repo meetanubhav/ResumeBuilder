@@ -43,7 +43,7 @@
 
         var userData = {};
         userData.ResumeName = $("input[name = ResumeName]").val();
-        userData.Summary = $("input[name = Summary]").val();
+        userData.Summary = $("textarea[name = Summary]").val();
 
         var parameter = $.extend({}, doAjax_parameter_default);
         parameter['url'] = '/EditResume/AddSummaryInfo';
@@ -51,7 +51,7 @@
         parameter['requestType'] = 'POST';
         parameter['successCallbackFunction'] = function (userData) {
             $("input[name = ResumeName]").val(userData.ResumeName);
-            $("input[name = Summary]").val(userData.Summary);
+            $("textarea[name = Summary]").val(userData.Summary);
 
             $(".show-summary-info").text(userData.Summary);
             $(".show-resume-info").text(userData.ResumeName);
