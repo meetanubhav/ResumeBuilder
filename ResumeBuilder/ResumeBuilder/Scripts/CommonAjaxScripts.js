@@ -26,10 +26,6 @@
             $(".show-email").text(userData.Email);
             $(".show-phone-number").text(userData.PhoneNumber);
             $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
-
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
         };
         doAjax(parameter);
 
@@ -56,9 +52,6 @@
             $(".show-summary-info").text(userData.Summary);
             $(".show-resume-info").text(userData.ResumeName);
 
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
         };
         doAjax(parameter);
 
@@ -118,10 +111,7 @@
                         </div>');
             }
 
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-
+           
         };
         doAjax(parameter);
 
@@ -150,9 +140,6 @@
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
 
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
         };
         doAjax(parameter);
 
@@ -171,7 +158,7 @@
             userData.ProjectID = $('.js-project-id').val();
             userData.DurationInMonth = $("#projectDuration option:selected").val();
             userData.ProjectName = $("input[name = projectName]").val();
-            userData.ProjectDetails = $("input[name = projectDetails]").val();
+            userData.ProjectDetails = $("textarea[name = projectDetails]").val();
             userData.YourRole = $("input[name = projectRole]").val();
         }
 
@@ -198,9 +185,6 @@
                 $button.parents('.row').html($html);
             }
 
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
 
         };
         doAjax(parameter);
@@ -253,10 +237,6 @@
                 $button.parents('.row').html($html);
             }
 
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-
         };
         doAjax(parameter);
 
@@ -283,9 +263,6 @@
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
 
-            $('.modal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
         };
         doAjax(parameter);
 
@@ -350,7 +327,7 @@
             var $form = $('.project-form');
             $form.find('.js-project-id').val(data.ProjectID);
             $form.find('input[name = projectName]').val(data.ProjectName);
-            $form.find('input[name = projectDetails]').val(data.projectDetails);
+            $form.find('textarea[name = projectDetails]').val(data.projectDetails);
             $form.find("input[name = projectRole]").val(data.YourRole);
             $form.find("#projectDuration").val(data.DurationInMonth);
             $('a[data-target=".projectModal"]').click()
@@ -501,9 +478,6 @@
         });
     }
 }
-function checkNull() {
-
-}
 String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
@@ -553,12 +527,24 @@ function doAjax(doAjax_parameter) {
         success: function (data, textStatus, jqXHR) {
             if (typeof successCallbackFunction === "function") {
                 successCallbackFunction(data);
+                $('.modal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $(".toast-message").addClass("text-success");
+                $('.toast-message').text("Saved Succesfully!");
+                $(".my-toast").toast("show");
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             if (typeof errorCallBackFunction === "function") {
                 errorCallBackFunction(errorThrown);
             }
+            $('.modal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $(".toast-message").addClass("text-danger");
+            $('.toast-message').text("Error could not save.");
+            $(".my-toast").toast("show");
 
         },
         complete: function (jqXHR, textStatus) {
