@@ -12,7 +12,7 @@
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: url(https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif) center no-repeat #fff;
+	background: url(~/Images/Preloader_1.gif) center no-repeat #fff;
 }
 @media (min-width: 992px) {
   body {
@@ -20,7 +20,7 @@
     padding-left: 17rem;
   }
 }
-.toast{
+.my-toast{
     position: fixed; bottom: 0; right: 0;
 }
 .social-icons a.nav-link {

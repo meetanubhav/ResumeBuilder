@@ -3,6 +3,17 @@
 @{
     Layout = null;
 }
+<div class="toast my-toast">
+    <div class="toast-header">
+        <strong class="mr-auto"><i class="fab fa-grav" aria-hidden="true"></i> Hello @Model.FirstName @Model.LastName!</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        <div class="toast-message"></div>
+    </div>
+</div>
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
     <h2 class="text-center show-resume-info">@Model.ResumeName</h2>
     <div>
@@ -361,6 +372,7 @@
                     <div class="js-language-id" hidden value=""></div>
                     <div class="mt-3 mb-3">
                         <input type="text" class="form-control" name="language" placeholder="Add Language" required />
+                        <small class="text-danger validation-message"></small>
                     </div>
                     <button type="submit" class="mt-2 btn btn-sm btn-success save-work save-language">SAVE</button>
                 </form>
