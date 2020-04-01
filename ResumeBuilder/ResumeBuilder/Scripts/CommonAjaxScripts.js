@@ -311,7 +311,7 @@
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
 
-        var params = $.extend({}, doAjax_params_default);
+        var params = $.extend({}, doAjax_parameter_default);
         params['url'] = '/Settings/AddOrUpdateSettings';
         params['data'] = formDetails;
         params['requestType'] = 'POST';
@@ -331,7 +331,7 @@
             }
         };
 
-        doAjax(parameter);
+        doAjax(params);
 
         return false;
     });

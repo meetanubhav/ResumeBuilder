@@ -7,12 +7,14 @@ using System.Web.Security;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using AutoMapper;
+using ResumeBuilder.Repository;
 
 namespace ResumeBuilder.Controllers
 {
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+        private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
 
         public ActionResult Login()
         {
@@ -114,26 +116,22 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult PublicProfile(int? userId)
+        public ActionResult PublicProfile(int userId)
         {
-            var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+            User user = _resumeRepository.GetUserInfo(userId);
+
             if (user != null)
             {
                 UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Language = user.Languages;
-                    vm.Skill = user.Skills;
-                    vm.Project = user.Projects;
-                }
+
+                vm = Mapper.Map<UserResumeVM>(user);
+
+                vm.Project = user.Settings.Project ? user.Projects : new List<Project>();
+                vm.Skill = user.Settings.Skill ? user.Skills : new List<Skill>();
+                vm.Education = user.Settings.Education ? user.Education : new List<Education>();
+                vm.WorkExperience = user.Settings.WorkExperience ? user.WorkExperiences : new List<WorkExperience>();
+                vm.Language = user.Settings.Language ? user.Languages : new List<Language>();
+                
                 return View(vm);
             }
             else
@@ -146,33 +144,7 @@ namespace ResumeBuilder.Controllers
         public ActionResult GetTemplateDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Include("Projects")
-            .Include("Skills")
-            .Include("Education")
-            .Include("WorkExperiences")
-            .Include("Languages")
-            .FirstOrDefault(x => x.UserID == userId);
-
-            foreach (var i in user.Projects)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.Skills)
-            {
-                i.Users = null;
-            }
-            foreach (var i in user.Education)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.WorkExperiences)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.Languages)
-            {
-                i.Users = null;
-            }
+            User user = _resumeRepository.GetUserInfo(userId);
 
             UserResumeVM vm = new UserResumeVM();
 
@@ -184,7 +156,6 @@ namespace ResumeBuilder.Controllers
             vm.Language = user.Languages;
 
             return Json(vm, JsonRequestBehavior.AllowGet);
-
         }
 
         [Authorize]
