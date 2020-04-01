@@ -144,12 +144,16 @@
         parameter['url'] = '/EditResume/AddSkill';
         parameter['data'] = userData;
         parameter['requestType'] = 'POST';
+        parameter['dataType'] = null;
         parameter['successCallbackFunction'] = function (data) {
-            $('.js-skill-details').append('<span class="btn btn-primary"> \
+            if (data == "Skill already present")
+                alert(data);
+            else {
+                $('.js-skill-details').append('<span class="btn btn-primary"> \
                     '+ data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
-
+            }
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
@@ -277,11 +281,16 @@
         parameter['url'] = '/EditResume/AddLanguage';
         parameter['data'] = userData;
         parameter['requestType'] = 'POST';
+        parameter['dataType'] = null;
         parameter['successCallbackFunction'] = function (data) {
-            $('.js-language-details').append('<span class="btn btn-primary"> \
+            if (data == "Language already present")
+                alert(data);
+            else {
+                $('.js-language-details').append('<span class="btn btn-primary"> \
                     ' + data.LanguageName + ' \
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
+            }
 
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
@@ -507,9 +516,11 @@
         });
     }
 }
+
 function checkNull() {
 
 }
+
 String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
