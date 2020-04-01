@@ -111,7 +111,6 @@
     <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\dashboard-image.jpg" />
-    <Content Include="Images\Preloader_1.gif" />
     <Content Include="Images\Preloader_9.gif" />
     <Content Include="Images\rb-logo.png" />
     <Content Include="Images\template1.png" />
@@ -293,6 +292,7 @@
     <Compile Include="Models\ViewModel\LanguageVM.cs" />
     <Compile Include="Models\ViewModel\LoginVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
+    <Compile Include="Models\ViewModel\PublicProfileVM.cs" />
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
     <Compile Include="Models\ViewModel\SearchUserDataVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
