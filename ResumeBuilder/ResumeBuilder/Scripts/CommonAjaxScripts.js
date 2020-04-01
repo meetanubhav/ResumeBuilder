@@ -574,6 +574,7 @@ function doAjax(doAjax_parameter) {
     });
 }
 function checkNull(divName) {
+    $("small").text('');
     var counter = 0;
     $(divName).find("input[type = 'text']").each(function () {
         if (this.value == "") {
@@ -594,6 +595,23 @@ function checkNull(divName) {
             $("this").css("border-color", "red");
             $(this).next("small").text('Empty Field');
             counter += 1;
+        }
+    });
+    $(divName).find("input[type = 'date']").each(function () {
+        if (this.value == "") {
+            $("this").css("border-color", "red");
+            $(this).next("small").text('Empty Field');
+            counter += 1;
+        }
+        var dateObj = new Date();
+        if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
+            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth()+1) {
+                if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
+                    $("this").css("border-color", "red");
+                    $(this).next("small").text("Date is larger than Today's date");
+                    counter += 1;
+                }
+            }
         }
     });
     return counter
