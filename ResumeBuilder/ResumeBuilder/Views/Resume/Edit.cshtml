@@ -3,17 +3,22 @@
 @{
     Layout = null;
 }
-<div class="toast my-toast">
+<div class="alert alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong class="alert-message"></strong>
+</div>
+@*<div class="my-toast">
     <div class="toast-header">
         <strong class="mr-auto"><i class="fab fa-grav" aria-hidden="true"></i> Hello @Model.FirstName @Model.LastName!</strong>
         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
             <span aria-hidden="true">&times;</span>
         </button>
+        haha
     </div>
     <div class="toast-body">
         <div class="toast-message"></div>
     </div>
-</div>
+</div>*@
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
     <h2 class="text-center show-resume-info">@Model.ResumeName</h2>
     <div>
