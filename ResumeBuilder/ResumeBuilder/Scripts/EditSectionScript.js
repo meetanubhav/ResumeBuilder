@@ -38,5 +38,9 @@
     //    event.preventDefault();
     //});
    
-
+    //$("body").on("keyup", "input", function () {
+    //    if (!$(this).val()) {
+    //        $(this).focus();
+    //    };
+    //});
 }
