@@ -282,11 +282,17 @@
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
 
-        var parameter = $.extend({}, doAjax_parameter_default);
-        parameter['url'] = '/Settings/AddOrUpdateSettings';
-        parameter['data'] = formDetails;
-        parameter['requestType'] = 'POST';
-        parameter['dataType'] = null;
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/Settings/AddOrUpdateSettings';
+        params['data'] = formDetails;
+        params['requestType'] = 'POST';
+        params['dataType'] = 'text';
+        params['successCallbackFunction'] = function (data) {
+            if (data == 'success')
+                alert('settings updated successfully');
+            else
+                alert('failed to update settings');
+        };
 
         doAjax(parameter);
 

@@ -76,6 +76,7 @@ namespace ResumeBuilder.Controllers
         {
             throw new NotImplementedException();
         }
+
         [Authorize]
         public ActionResult Dashboard()
         {
@@ -140,6 +141,51 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
+        
+        [HttpGet]
+        public ActionResult GetTemplateDetails()
+        {
+            var userId = Int32.Parse(User.Identity.Name);
+            var user = db.Users.Include("Projects")
+                .Include("Skills")
+                .Include("Education")
+                .Include("WorkExperiences")
+                .Include("Languages")
+            .FirstOrDefault(x => x.UserID == userId);
+
+            foreach (var i in user.Projects)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Skills)
+            {
+                i.Users = null;
+            }
+            foreach (var i in user.Education)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.WorkExperiences)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Languages)
+            {
+                i.Users = null;
+            }
+
+            UserResumeVM vm = new UserResumeVM();
+
+            vm = Mapper.Map<UserResumeVM>(user);
+            vm.Project = user.Projects;
+            vm.Skill = user.Skills;
+            vm.Education = user.Education;
+            vm.WorkExperience = user.WorkExperiences;
+            vm.Language = user.Languages;
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
+
+        }
 
         [Authorize]
         public ActionResult Template()
@@ -147,6 +193,7 @@ namespace ResumeBuilder.Controllers
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView("~/Views/Resume/Template.cshtml");
         }
+
         //This action method is triggered in search
         public ActionResult GetAllUsersData()
         {
@@ -182,8 +229,8 @@ namespace ResumeBuilder.Controllers
         //    // var userId = Int32.Parse(User.Identity.Name);
         //    var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        //    AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        //    var userVM = AutoMapper.Mapper.Map<User, UserResumeVM>(user);
+        //    Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
+        //    var userVM = Mapper.Map<User, UserResumeVM>(user);
 
         //    return View(userVM);
         //}
