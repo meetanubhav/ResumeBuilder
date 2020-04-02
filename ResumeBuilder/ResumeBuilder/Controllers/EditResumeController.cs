@@ -83,7 +83,7 @@ namespace ResumeBuilder.Controllers
             var userID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                var userFromDB = db.Users.AsNoTracking().FirstOrDefault(x => x.UserID == userID);
+                var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
                 userFromDB.FirstName = userBasicInfo.FirstName;
                 userFromDB.LastName = userBasicInfo.LastName;
                 userFromDB.Email = userBasicInfo.Email;

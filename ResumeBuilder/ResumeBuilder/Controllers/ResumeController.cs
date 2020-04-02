@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.Optimization;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using AutoMapper;
@@ -11,6 +12,48 @@ using ResumeBuilder.Repository;
 
 namespace ResumeBuilder.Controllers
 {
+    public class BundleConfig
+    {
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/site.css",
+                "~/content/templatereveal.css",
+                "~/content/templatestyle.css",
+                "~/content/template2style.css",
+                "~/Content/DataTables/css/jquery.dataTables.css",
+                "~/Content/bootstrap-responsive.css"));
+
+            bundles.Add(new ScriptBundle("~/Bundles").Include(
+                "~/Scripts/modernizr-2.6.2.js",
+                "~/Scripts/jquery-3.4.1.min.js",
+                "~/Scripts/bootstrap.min.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/bootbox.js",
+                "~/Scripts/DataTables/jquery.dataTables.js",
+                "~/Scripts/EditSectionScript.js",
+                "~/Scripts/ResumeSettings.js",
+                "~/Scripts/CommonAjaxScripts.js",
+                "~/Scripts/CommonScripts.js"));
+        }
+    }
+    //public class MyHttpHandler : IHttpHandler
+    //{
+    //    public void ProcessRequest(HttpContext context)
+    //    {
+    //        context.Response.Redirect("AccessForbidden");
+    //    }
+    //    public bool IsReusable
+    //    {
+    //        get
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //}
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
@@ -73,7 +116,10 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Login");
             }
         }
-
+        public ActionResult AccessForbidden()
+        {
+            return View();
+        }
         private void alert(string p)
         {
             throw new NotImplementedException();
