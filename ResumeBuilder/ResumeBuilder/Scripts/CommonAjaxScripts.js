@@ -3,6 +3,7 @@
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
         if (checkNull('.basicInfomodal') === 0) {
+            //if (checkNull(["input[name = FirstName]", "input[name = LastName]", "input[name = Email]", "input[name = PhoneNumber]", "input[name = AlternatePhoneNumber]"]) === 0) {
             var userData = {};
             userData.FirstName = $("input[name = FirstName]").val();
             userData.LastName = $("input[name = LastName]").val();
@@ -135,22 +136,28 @@
                 userData.SkillName = $("input[name = skill]").val();
             }
 
-        var parameter = $.extend({}, doAjax_parameter_default);
-        parameter['url'] = '/EditResume/AddSkill';
-        parameter['data'] = userData;
-        parameter['requestType'] = 'POST';
-        parameter['dataType'] = null;
-        parameter['successCallbackFunction'] = function (data) {
-            if (data == "Skill already present")
-                alert(data);
-            else {
-                $('.js-skill-details').append('<span class="btn btn-primary"> \
+            var parameter = $.extend({}, doAjax_parameter_default);
+            parameter['url'] = '/EditResume/AddSkill';
+            parameter['data'] = userData;
+            parameter['requestType'] = 'POST';
+            parameter['dataType'] = null;
+            parameter['successCallbackFunction'] = function (data) {
+                if (data == "Skill already present") 
+                    {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-warning");
+                    $('.alert-message').text(data);
+                    $(".alert").fadeOut(5000);
+
+                }
+                else {
+                    $('.js-skill-details').append('<span class="btn btn-primary"> \
                     '+ data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
-            }
-        };
-        doAjax(parameter);
+                }
+            };
+            doAjax(parameter);
 
             return false;
         }
@@ -274,15 +281,20 @@
             parameter['requestType'] = 'POST';
             parameter['dataType'] = null;
             parameter['successCallbackFunction'] = function (data) {
-                if (data == "Language already present")
-                    alert(data);
+                if (data == "Language already present") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-warning");
+                    $('.alert-message').text(data);
+                    $(".alert").fadeOut(5000);
+                }
                 else {
                     $('.js-language-details').append('<span class="btn btn-primary"> \
-                        ' + data.LanguageName + ' \
-                        <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
-                        </span>');
+                    ' + data.LanguageName + ' \
+                    <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
+                    </span>');
                 }
-            };
+
+            }
             doAjax(parameter);
 
             return false;
@@ -302,16 +314,24 @@
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
 
-        var params = $.extend({}, doAjax_params_default);
-        params['url'] = '/Settings/AddOrUpdateSettings';
-        params['data'] = formDetails;
-        params['requestType'] = 'POST';
-        params['dataType'] = 'text';
-        params['successCallbackFunction'] = function (data) {
-            if (data == 'success')
-                alert('settings updated successfully');
-            else
-                alert('failed to update settings');
+        var parameter  = $.extend({}, doAjax_parameter_default);
+        parameter ['url'] = '/Settings/AddOrUpdateSettings';
+        parameter ['data'] = formDetails;
+        parameter ['requestType'] = 'POST';
+        parameter ['dataType'] = 'text';
+        parameter ['successCallbackFunction'] = function (data) {
+            if (data == 'success') {
+                $(".alert").show();
+                $(".alert").addClass("alert-success");
+                $('.alert-message').text("Settings updated successfully");
+                $(".alert").fadeOut(5000);
+            }
+            else {
+                $(".alert").show();
+                $(".alert").addClass("alert-danger");
+                $('.alert-message').text("Failed to update settings");
+                $(".alert").fadeOut(5000);
+            }
         };
 
         doAjax(parameter);
@@ -356,7 +376,7 @@
             $form.find('textarea[name = projectDetails]').val(data.projectDetails);
             $form.find("input[name = projectRole]").val(data.YourRole);
             $form.find("#projectDuration").val(data.DurationInMonth);
-            $('a[data-target=".projectModal"]').click()
+            $('a[data-target=".projectModal"]').click();
         };
 
         doAjax(parameter);
@@ -556,9 +576,19 @@ function doAjax(doAjax_parameter) {
                 $('.modal').modal('hide');
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
-                $(".toast-message").addClass("text-success");
-                $('.toast-message').text("Saved Succesfully!");
-                $(".my-toast").toast("show");
+                if (requestType == "POST") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-success");
+                    $('.alert-message').text("Saved Succesfully!");
+                    $(".alert").fadeOut(5000);
+                    $('form').trigger('reset');
+                }
+                if (requestType == "DELETE") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-primary");
+                    $('.alert-message').text("Deleted Succesfully!");
+                    $(".alert").fadeOut(5000);
+                }
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -568,10 +598,10 @@ function doAjax(doAjax_parameter) {
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-            $(".toast-message").addClass("text-danger");
-            $('.toast-message').text("Error could not save.");
-            $(".my-toast").toast("show");
-
+            $(".alert").show();
+            $(".alert").addClass("alert-danger");
+            $('.alert-message').text("Error could not save.");
+            $(".alert").fadeOut(5000);
         },
         complete: function (jqXHR, textStatus) {
             if (typeof completeCallbackFunction === "function") {
@@ -583,6 +613,12 @@ function doAjax(doAjax_parameter) {
 function checkNull(divName) {
     $("small").text('');
     var counter = 0;
+    //for (var i = 0; i < divName.length; i++) {
+    //    if ($(divName[i]).val() == "") {
+    //        $(this).next("small").text('Empty Field');
+    //                counter += 1;
+    //    }
+    //}
     $(divName).find("input[type = 'text']").each(function () {
         if (this.value == "") {
             $("this").css("border-color", "red");
@@ -612,7 +648,7 @@ function checkNull(divName) {
         }
         var dateObj = new Date();
         if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth()+1) {
+            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth() + 1) {
                 if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
                     $("this").css("border-color", "red");
                     $(this).next("small").text("Date is larger than Today's date");
@@ -621,5 +657,7 @@ function checkNull(divName) {
             }
         }
     });
+
+
     return counter
 }
