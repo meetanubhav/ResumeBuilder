@@ -111,6 +111,7 @@
     <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\dashboard-image.jpg" />
+    <Content Include="Images\Preloader_1.gif" />
     <Content Include="Images\Preloader_9.gif" />
     <Content Include="Images\rb-logo.png" />
     <Content Include="Images\template1.png" />
