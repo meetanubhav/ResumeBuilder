@@ -149,6 +149,7 @@
                         <div class="col">
                             @Html.LabelFor(x => x.FirstName)
                             @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                            <small class="text-danger validation-message"></small>
                         </div>
                         <div class="col">
                             @Html.LabelFor(x => x.LastName)

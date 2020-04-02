@@ -404,6 +404,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Handler\MyHandler.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -518,6 +519,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AutoMapperProfile.cs" />
+    <Compile Include="Handler\MyHandler.ashx.cs">
+      <DependentUpon>MyHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202003131102140_new_model.cs" />
     <Compile Include="Migrations\202003131102140_new_model.designer.cs">
       <DependentUpon>202003131102140_new_model.cs</DependentUpon>
@@ -578,6 +582,7 @@
     <Content Include="Views\Resume\Search.cshtml" />
     <Content Include="Views\Template\Template1.cshtml" />
     <Content Include="Views\Template\Template2.cshtml" />
+    <Content Include="Views\Resume\AccessForbidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

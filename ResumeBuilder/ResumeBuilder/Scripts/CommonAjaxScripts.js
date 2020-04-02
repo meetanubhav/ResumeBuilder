@@ -3,6 +3,7 @@
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
         if (checkNull('.basicInfomodal') === 0) {
+            //if (checkNull(["input[name = FirstName]", "input[name = LastName]", "input[name = Email]", "input[name = PhoneNumber]", "input[name = AlternatePhoneNumber]"]) === 0) {
             var userData = {};
             userData.FirstName = $("input[name = FirstName]").val();
             userData.LastName = $("input[name = LastName]").val();
@@ -375,7 +376,7 @@
             $form.find('textarea[name = projectDetails]').val(data.projectDetails);
             $form.find("input[name = projectRole]").val(data.YourRole);
             $form.find("#projectDuration").val(data.DurationInMonth);
-            $('a[data-target=".projectModal"]').click()
+            $('a[data-target=".projectModal"]').click();
         };
 
         doAjax(parameter);
@@ -612,6 +613,12 @@ function doAjax(doAjax_parameter) {
 function checkNull(divName) {
     $("small").text('');
     var counter = 0;
+    //for (var i = 0; i < divName.length; i++) {
+    //    if ($(divName[i]).val() == "") {
+    //        $(this).next("small").text('Empty Field');
+    //                counter += 1;
+    //    }
+    //}
     $(divName).find("input[type = 'text']").each(function () {
         if (this.value == "") {
             $("this").css("border-color", "red");
@@ -650,5 +657,7 @@ function checkNull(divName) {
             }
         }
     });
+
+
     return counter
 }

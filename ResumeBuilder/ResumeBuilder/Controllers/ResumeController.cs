@@ -39,6 +39,20 @@ namespace ResumeBuilder.Controllers
                 "~/Scripts/CommonScripts.js"));
         }
     }
+    //public class MyHttpHandler : IHttpHandler
+    //{
+    //    public void ProcessRequest(HttpContext context)
+    //    {
+    //        context.Response.Redirect("AccessForbidden");
+    //    }
+    //    public bool IsReusable
+    //    {
+    //        get
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //}
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
@@ -100,7 +114,10 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Login");
             }
         }
-
+        public ActionResult AccessForbidden()
+        {
+            return View();
+        }
         private void alert(string p)
         {
             throw new NotImplementedException();
