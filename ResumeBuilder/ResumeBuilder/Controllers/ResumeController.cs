@@ -69,9 +69,8 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                var getUserId = db.Users.Where(x => x.Username == user.LoginModel.Username);
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.LoginModel.Username);
-                if (getUserId.Where(x => x.Password == user.LoginModel.Password).Any())
+                if (userData.Password == FormsAuthentication.HashPasswordForStoringInConfigFile(user.LoginModel.Password,"SHA1"))
                 {
                     FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
@@ -94,11 +93,13 @@ namespace ResumeBuilder.Controllers
             {
                 if (!db.Users.Any(x => x.Username == newUser.RegisterModel.RegisterUsername))
                 {
+                    string passwordInDatabase = FormsAuthentication.HashPasswordForStoringInConfigFile(newUser.RegisterModel.RegisterPassword, "SHA1");
                     db.Users.Add(new Models.User
                     {
                         Username = newUser.RegisterModel.RegisterUsername,
-                        Password = newUser.RegisterModel.RegisterPassword
+                        Password = passwordInDatabase
                     });
+                    
                     db.SaveChanges();
 
                 }
@@ -129,7 +130,8 @@ namespace ResumeBuilder.Controllers
             return View();
         }
 
-        [Authorize]
+
+        [ChildActionOnly]
         public ActionResult Edit()
         {
             var userId = Int32.Parse(User.Identity.Name);
