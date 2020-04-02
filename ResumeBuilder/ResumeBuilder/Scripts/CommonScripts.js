@@ -57,12 +57,6 @@ $(document).ready(function () {
         $('.render-partial-view').load("/Template/Template" + templateId);
     });
 
-
-    $('body').on("click", "a.viewBtn", function () {
-        var templateId = $(this).data("template-id");
-        $('.render-partial-view').load("/Template/Template" + templateId);
-    });
-
     $('body').on("click", ".download-template", function () {
         // Define variables
         var
@@ -107,6 +101,12 @@ $(document).ready(function () {
                 removeContainer: true
             });
         }
+
+    $('body').on("hide.bs.modal", '.modal', function () {
+        var modal = $(this);
+        $(modal.find('input:not(:checkbox)')).val('');
+        $(modal.find('input[type=checkbox]')).prop("checked", false);
+        $(modal.find('input[type=radio]')).prop("checked", false);
 
     });
 
