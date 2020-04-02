@@ -1,8 +1,8 @@
 ﻿@model ResumeBuilder.Models.ViewModel.UserResumeVM
 @{
     Layout = null;
-
-    <title>One Page Resume</title>
+}
+<title>One Page Resume</title>
 <label class="bg-primary float-right p-2 rounded position-fixed download-template"><i class="fas fa-download"></i>Download</label>
 
 <title>One Page Resume</title>
@@ -42,31 +42,31 @@
                 </p>
             }
 
-            <dt>Education</dt>
-            <dd>
-                @foreach (var item in @Model.Education)
-                {
-                    
-                    <h2 class="font-weight-bold heading">@item.Institution <span>@item.YearOfPassing</span></h2>
-                    <label>Board/University: @item.Board </label>
-                    <p>
-                        <strong>Education Level:</strong> @item.EducationLevel<br />
-                        <strong>CGPA or Percentage:</strong> @item.Score
-                    </p>
-          
-                }
-                
-            </dd>
+        <dt>Education</dt>
+        <dd>
+            @foreach (var item in @Model.Education)
+            {
+
+                <h2 class="font-weight-bold heading">@item.Institution <span>@item.YearOfPassing</span></h2>
+                <label>Board/University: @item.Board </label>
+                <p>
+                    <strong>Education Level:</strong> @item.EducationLevel<br />
+                    <strong>CGPA or Percentage:</strong> @item.Score
+                </p>
+
+            }
+
+        </dd>
 
         <dd class="clear"></dd>
 
-            <dt>Skills</dt>
-            <dd>
-                @foreach (var item in @Model.Skill)
-                {
-                    <h2 class="heading">@item.SkillName</h2>
-                }
-            </dd>
+        <dt>Skills</dt>
+        <dd>
+            @foreach (var item in @Model.Skill)
+            {
+                <h2 class="heading">@item.SkillName</h2>
+            }
+        </dd>
 
         <dd class="clear"></dd>
 
