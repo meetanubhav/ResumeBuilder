@@ -74,7 +74,10 @@
                         <p>
                             <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
                             <br />
-                            <b> @userWorkExperience.FromYear </b> - <b> @userWorkExperience.ToYear </b>
+                            <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) </b> - <b> @if( userWorkExperience.CurrentlyWorking == false){
+                                                                            @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) }
+                                                                                                          else
+                                                                                                          { @Html.Raw("Current") } </b>
                         </p>
                     </div>
                     <div class="col-md-2 col-sm-4">
