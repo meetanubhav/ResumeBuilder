@@ -12,16 +12,17 @@ namespace ResumeBuilder.Controllers
     {
        
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
-
-       
-        public ActionResult Template1()
+        
+        [NonAction]
+        public UserResumeVM GetDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
+            UserResumeVM vm = new UserResumeVM();
             if (User.Identity.Name != null)
             {
                 var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
 
-                UserResumeVM vm = new UserResumeVM();
+                vm = new UserResumeVM();
                 {
                     vm.FirstName = user.FirstName;
                     vm.LastName = user.LastName;
@@ -36,12 +37,21 @@ namespace ResumeBuilder.Controllers
                     vm.Skill = user.Skills;
                     vm.Language = user.Languages;
                 }
-                return PartialView("~/Views/Template/Template1.cshtml", vm);
+            }
+            return vm;
+        }
+        public ActionResult Template1()
+        {
+            var userId = Int32.Parse(User.Identity.Name);
+            if (User.Identity.Name != null)
+            {
+                return PartialView("~/Views/Template/Template1.cshtml", GetDetails());
             }
             else
             {
                 return RedirectToAction("Dashboard");
             }
+
         }
 
         public ActionResult Template2()
@@ -49,24 +59,8 @@ namespace ResumeBuilder.Controllers
             var userId = Int32.Parse(User.Identity.Name);
             if (User.Identity.Name != null)
             {
-                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
-
-                UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.Project = user.Projects;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Skill = user.Skills;
-                    vm.Language = user.Languages;
-                }
-                return PartialView("~/Views/Template/Template2.cshtml", vm);
+              
+                return PartialView("~/Views/Template/Template2.cshtml", GetDetails());
             }
             else
             {
