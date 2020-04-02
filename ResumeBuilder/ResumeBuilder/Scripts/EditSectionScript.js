@@ -20,13 +20,27 @@
     });
     $("body").on("click", "#currentWork", function () {
         if (this.checked == true) {
-            $("#ToYear").hide();
-            $("#ToYear").val('Current');
+            $("#toYear").hide();
+            $("#toDate").val("2000-01-01");
         } else {
             $("#toYear").show();
-            $("#toYear").val('');
+            //$("#toDate").val("2000-01-01");
         }
 
     });
-
+    //$("body").submit( function (event) {
+    //    $('input').each(function () {
+    //        if (!$(this).val()) {
+    //            alert('Some fields are empty');
+    //            return false;
+    //        }
+    //    });
+    //    event.preventDefault();
+    //});
+   
+    //$("body").on("keyup", "input", function () {
+    //    if (!$(this).val()) {
+    //        $(this).focus();
+    //    };
+    //});
 }
