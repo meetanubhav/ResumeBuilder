@@ -131,7 +131,7 @@ namespace ResumeBuilder.Controllers
         }
 
 
-        [ChildActionOnly]
+        [Authorize]
         public ActionResult Edit()
         {
             var userId = Int32.Parse(User.Identity.Name);
