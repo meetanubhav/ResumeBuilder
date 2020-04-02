@@ -27,6 +27,8 @@
                 $(".show-email").text(userData.Email);
                 $(".show-phone-number").text(userData.PhoneNumber);
                 $(".show-alt-phone-number").text(userData.AlternatePhoneNumber);
+
+                hideModal();
             };
             doAjax(parameter);
 
@@ -53,6 +55,8 @@
 
                 $(".show-summary-info").text(userData.Summary);
                 $(".show-resume-info").text(userData.ResumeName);
+
+                hideModal();
 
             };
             doAjax(parameter);
@@ -115,6 +119,7 @@
                         </div>');
                 }
 
+                hideModal();
 
             };
             doAjax(parameter);
@@ -156,6 +161,9 @@
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
                 }
+
+                hideModal();
+
             };
             doAjax(parameter);
 
@@ -203,6 +211,7 @@
                     $button.parents('.row').html($html);
                 }
 
+                hideModal();
 
             };
             doAjax(parameter);
@@ -257,6 +266,8 @@
                     $button.parents('.row').html($html);
                 }
 
+                hideModal();
+
             };
             doAjax(parameter);
 
@@ -293,6 +304,7 @@
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
                 }
+                hideModal();
 
             }
             doAjax(parameter);
@@ -357,7 +369,7 @@
             $form.find("input[name = Board]").val(data.Board);
             $form.find("input[name = Stream]").val(data.Stream);
             $form.find("input[name = Institution]").val(data.Institution);
-            $('a[data-target=".educationModal"]').click()
+            $('a[data-target=".educationModal"]').click();
         };
 
         doAjax(parameter);
@@ -573,9 +585,7 @@ function doAjax(doAjax_parameter) {
         success: function (data, textStatus, jqXHR) {
             if (typeof successCallbackFunction === "function") {
                 successCallbackFunction(data);
-                $('.modal').modal('hide');
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
+                
                 if (requestType == "POST") {
                     $(".alert").show();
                     $(".alert").addClass("alert-success");
@@ -661,3 +671,9 @@ function checkNull(divName) {
 
     return counter
 }
+
+var hideModal = function () {
+    $('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+};
