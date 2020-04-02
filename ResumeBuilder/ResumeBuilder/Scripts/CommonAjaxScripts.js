@@ -156,7 +156,7 @@
 
                 }
                 else {
-                    $('.js-skill-details').append('<span class="btn btn-primary"> \
+                    $('.js-skill-details').append('<span class="btn btn-primary ml-1 mt-1"> \
                     '+ data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
@@ -303,7 +303,7 @@
                     $(".alert").fadeOut(5000);
                 }
                 else {
-                    $('.js-language-details').append('<span class="btn btn-primary"> \
+                    $('.js-language-details').append('<span class="btn btn-primary ml-1 mt-1"> \
                     ' + data.LanguageName + ' \
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
