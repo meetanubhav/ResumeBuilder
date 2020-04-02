@@ -595,7 +595,6 @@ function doAjax(doAjax_parameter) {
                     $(".alert").addClass("alert-success");
                     $('.alert-message').text("Saved Succesfully!");
                     $(".alert").fadeOut(5000);
-                    $('form').trigger('reset');
                 }
                 if (requestType == "DELETE") {
                     $(".alert").show();
