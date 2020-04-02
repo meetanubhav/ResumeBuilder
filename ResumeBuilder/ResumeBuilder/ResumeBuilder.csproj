@@ -295,6 +295,7 @@
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
     <Compile Include="Models\ViewModel\SearchUserDataVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />
+    <Compile Include="Models\ViewModel\SummaryVM.cs" />
     <Compile Include="Models\ViewModel\WorkExperienceVM.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />

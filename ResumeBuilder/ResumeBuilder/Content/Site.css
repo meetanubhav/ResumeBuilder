@@ -20,7 +20,7 @@
     padding-left: 17rem;
   }
 }
-.toast{
+.my-toast{
     position: fixed; bottom: 0; right: 0;
 }
 .social-icons a.nav-link {
