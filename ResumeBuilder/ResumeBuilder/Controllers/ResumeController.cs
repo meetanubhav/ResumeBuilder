@@ -131,7 +131,7 @@ namespace ResumeBuilder.Controllers
                 vm.Education = user.Settings.Education ? user.Education : new List<Education>();
                 vm.WorkExperience = user.Settings.WorkExperience ? user.WorkExperiences : new List<WorkExperience>();
                 vm.Language = user.Settings.Language ? user.Languages : new List<Language>();
-                
+
                 return View(vm);
             }
             else

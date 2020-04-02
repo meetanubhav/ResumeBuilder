@@ -135,26 +135,27 @@
                 userData.SkillName = $("input[name = skill]").val();
             }
 
-        var parameter = $.extend({}, doAjax_parameter_default);
-        parameter['url'] = '/EditResume/AddSkill';
-        parameter['data'] = userData;
-        parameter['requestType'] = 'POST';
-        parameter['dataType'] = null;
-        parameter['successCallbackFunction'] = function (data) {
-            if (data == "Skill already present")
-            {
-                $(".toast-message").addClass("text-warning");
-                $('.toast-message').text(data);
-                $(".my-toast").toast("show");
-            }
-            else {
-                $('.js-skill-details').append('<span class="btn btn-primary"> \
+            var parameter = $.extend({}, doAjax_parameter_default);
+            parameter['url'] = '/EditResume/AddSkill';
+            parameter['data'] = userData;
+            parameter['requestType'] = 'POST';
+            parameter['dataType'] = null;
+            parameter['successCallbackFunction'] = function (data) {
+                if (data == "Skill already present") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-warning");
+                    $('.alert-message').text(data);
+                    $(".alert").fadeOut("slow");
+
+                }
+                else {
+                    $('.js-skill-details').append('<span class="btn btn-primary"> \
                     '+ data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
-            }
-        };
-        doAjax(parameter);
+                }
+            };
+            doAjax(parameter);
 
             return false;
         }
@@ -266,30 +267,30 @@
     $('body').on("click", ".save-language", function (e) {
         e.preventDefault();
         if (checkNull('.languageModal') === 0) {
-        var $button = $(this);
-        var userData = new Object();
-        {
-            userData.LanguageID = $('.js-language-id').val();
-            userData.LanguageName = $("input[name = language]").val();
-        }
-        var parameter = $.extend({}, doAjax_parameter_default);
-        parameter['url'] = '/EditResume/AddLanguage';
-        parameter['data'] = userData;
-        parameter['requestType'] = 'POST';
-        parameter['dataType'] = null;
-        parameter['successCallbackFunction'] = function (data) {
-            if (data == "Language already present")
+            var $button = $(this);
+            var userData = new Object();
             {
-                $(".toast-message").addClass("text-warning");
-                $('.toast-message').text(data);
-                $(".my-toast").toast("show");
+                userData.LanguageID = $('.js-language-id').val();
+                userData.LanguageName = $("input[name = language]").val();
             }
-            else {
-                $('.js-language-details').append('<span class="btn btn-primary"> \
+            var parameter = $.extend({}, doAjax_parameter_default);
+            parameter['url'] = '/EditResume/AddLanguage';
+            parameter['data'] = userData;
+            parameter['requestType'] = 'POST';
+            parameter['dataType'] = null;
+            parameter['successCallbackFunction'] = function (data) {
+                if (data == "Language already present") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-warning");
+                    $('.alert-message').text(data);
+                    $(".alert").fadeOut("slow");
+                }
+                else {
+                    $('.js-language-details').append('<span class="btn btn-primary"> \
                     ' + data.LanguageName + ' \
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
-            }
+                }
 
             }
             doAjax(parameter);
@@ -311,27 +312,27 @@
             formDetails.WorkExperience = form.find('#settingFormWorkExperience').is(':checked');
         }
 
-        var params = $.extend({}, doAjax_parameter_default);
-        params['url'] = '/Settings/AddOrUpdateSettings';
-        params['data'] = formDetails;
-        params['requestType'] = 'POST';
-        params['dataType'] = 'text';
-        params['successCallbackFunction'] = function (data) {
-            if (data == 'success')
-            {
-                $(".toast-message").addClass("text-success");
-                $('.toast-message').text("settings updated successfully");
-                $(".my-toast").toast("show");
+        var parameter = $.extend({}, doAjax_parameter_default);
+        parameter['url'] = '/Settings/AddOrUpdateSettings';
+        parameter['data'] = formDetails;
+        parameter['requestType'] = 'POST';
+        parameter['dataType'] = 'text';
+        parameter['successCallbackFunction'] = function (data) {
+            if (data == 'success') {
+                $(".alert").show();
+                $(".alert").addClass("alert-success");
+                $('.alert-message').text("Settings updated successfully");
+                $(".alert").fadeOut("slow");
             }
-            else
-            {
-                $(".toast-message").addClass("text-danger");
-                $('.toast-message').text("failed to update settings");
-                $(".my-toast").toast("show");
+            else {
+                $(".alert").show();
+                $(".alert").addClass("alert-danger");
+                $('.alert-message').text("Failed to update settings");
+                $(".alert").fadeOut("slow");
             }
         };
 
-        doAjax(params);
+        doAjax(parameter);
 
         return false;
     });
@@ -573,9 +574,10 @@ function doAjax(doAjax_parameter) {
                 $('.modal').modal('hide');
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
-                $(".toast-message").addClass("text-success");
-                $('.toast-message').text("Saved Succesfully!");
-                $(".my-toast").toast("show");
+                $(".alert").show();
+                $(".alert").addClass("alert-success");
+                $('.alert-message').text("Saved Succesfully!");
+                $(".alert").fadeOut("slow");
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -585,10 +587,10 @@ function doAjax(doAjax_parameter) {
             $('.modal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-            $(".toast-message").addClass("text-danger");
-            $('.toast-message').text("Error could not save.");
-            $(".my-toast").toast("show");
-
+            $(".alert").show();
+            $(".alert").addClass("alert-danger");
+            $('.alert-message').text("Error could not save.");
+            $(".alert").fadeOut("slow");
         },
         complete: function (jqXHR, textStatus) {
             if (typeof completeCallbackFunction === "function") {
@@ -629,7 +631,7 @@ function checkNull(divName) {
         }
         var dateObj = new Date();
         if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth()+1) {
+            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth() + 1) {
                 if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
                     $("this").css("border-color", "red");
                     $(this).next("small").text("Date is larger than Today's date");
