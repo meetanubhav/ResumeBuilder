@@ -20,11 +20,11 @@
     });
     $("body").on("click", "#currentWork", function () {
         if (this.checked == true) {
-            $("#ToYear").hide();
-            $("#ToYear").val('Current');
+            $("#toYear").hide();
+            $("#toDate").val("2000-01-01");
         } else {
             $("#toYear").show();
-            $("#toYear").val('');
+            //$("#toDate").val("2000-01-01");
         }
 
     });
