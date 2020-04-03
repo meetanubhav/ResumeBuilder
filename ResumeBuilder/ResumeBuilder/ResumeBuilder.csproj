@@ -285,6 +285,7 @@
     <Content Include="Content\TemplateReveal.css" />
     <Content Include="Content\templatestyle.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\backdrop.png" />
     <Content Include="Images\bg-login.jpg" />
     <Content Include="Images\dashboard-image.jpg" />
     <Content Include="Images\favicon.png" />
