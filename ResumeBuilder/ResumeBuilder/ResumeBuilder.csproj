@@ -557,7 +557,6 @@
     <Compile Include="Models\ViewModel\LanguageVM.cs" />
     <Compile Include="Models\ViewModel\LoginVM.cs" />
     <Compile Include="Models\ViewModel\ProjectVM.cs" />
-    <Compile Include="Models\ViewModel\PublicProfileVM.cs" />
     <Compile Include="Models\ViewModel\RegisterVM.cs" />
     <Compile Include="Models\ViewModel\SearchUserDataVM.cs" />
     <Compile Include="Models\ViewModel\SkillVM.cs" />

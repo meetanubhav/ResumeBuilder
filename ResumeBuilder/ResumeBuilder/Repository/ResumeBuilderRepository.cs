@@ -178,8 +178,35 @@ namespace ResumeBuilder.Repository {
             return countRecords > 0 ? msg : "Failed to add";
         }
 
-        public User GetBasicInfo (int idUser) {
-            var user = db.Users.AsNoTracking ().FirstOrDefault (x => x.UserID == idUser);
+        public User GetUserInfo (int idUser) {
+            var user = db.Users.Include("Projects")
+            .Include("Skills")
+            .Include("Education")
+            .Include("WorkExperiences")
+            .Include("Languages")
+            .Include("Settings")
+            .FirstOrDefault(x => x.UserID == idUser);
+
+            foreach (var i in user.Projects)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Skills)
+            {
+                i.Users = null;
+            }
+            foreach (var i in user.Education)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.WorkExperiences)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Languages)
+            {
+                i.Users = null;
+            }
 
             return user;
         }

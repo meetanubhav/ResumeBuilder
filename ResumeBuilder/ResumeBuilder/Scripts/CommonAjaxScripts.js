@@ -160,7 +160,7 @@
                     $(".alert").show();
                     $(".alert").addClass("alert-warning");
                     $('.alert-message').text(data);
-                    $(".alert").fadeOut(5000);
+                    $(".alert").fadeOut("slow");
 
                 }
                 else {
@@ -308,7 +308,7 @@
                     $(".alert").show();
                     $(".alert").addClass("alert-warning");
                     $('.alert-message').text(data);
-                    $(".alert").fadeOut(5000);
+                    $(".alert").fadeOut("slow");
                 }
                 else {
                     $('.js-language-details').append('<span class="btn btn-primary ml-1 mt-1"> \
@@ -348,13 +348,13 @@
                 $(".alert").show();
                 $(".alert").addClass("alert-success");
                 $('.alert-message').text("Settings updated successfully");
-                $(".alert").fadeOut(5000);
+                $(".alert").fadeOut("slow");
             }
             else {
                 $(".alert").show();
                 $(".alert").addClass("alert-danger");
                 $('.alert-message').text("Failed to update settings");
-                $(".alert").fadeOut(5000);
+                $(".alert").fadeOut("slow");
             }
         };
 
@@ -400,7 +400,7 @@
             $form.find('textarea[name = projectDetails]').val(data.projectDetails);
             $form.find("input[name = projectRole]").val(data.YourRole);
             $form.find("#projectDuration").val(data.DurationInMonth);
-            $('a[data-target=".projectModal"]').click();
+            $('a[data-target=".projectModal"]').click()
         };
 
         doAjax(parameter);
@@ -622,7 +622,7 @@ function doAjax(doAjax_parameter) {
             $(".alert").show();
             $(".alert").addClass("alert-danger");
             $('.alert-message').text("Error could not save.");
-            $(".alert").fadeOut(5000);
+            $(".alert").fadeOut("slow");
         },
         complete: function (jqXHR, textStatus) {
             if (typeof completeCallbackFunction === "function") {
