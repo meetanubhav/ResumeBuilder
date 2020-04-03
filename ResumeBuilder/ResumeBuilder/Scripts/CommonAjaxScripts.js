@@ -597,7 +597,6 @@ function doAjax(doAjax_parameter) {
         success: function (data, textStatus, jqXHR) {
             if (typeof successCallbackFunction === "function") {
                 successCallbackFunction(data);
-
                 if (requestType == "POST") {
                     $(".alert").show();
                     $(".alert").addClass("alert-success");
