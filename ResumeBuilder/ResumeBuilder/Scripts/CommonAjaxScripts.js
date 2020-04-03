@@ -165,7 +165,7 @@
 
                 }
                 else {
-                    $('.js-skill-details').append('<span class="btn btn-primary"> \
+                    $('.js-skill-details').append('<span class="btn btn-primary ml-1 mt-1"> \
                     '+ data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="'+ data.SkillID + '"> </i> \
                     </span>');
@@ -233,6 +233,9 @@
 
     $('body').on("click", ".save-workExp", function (e) {
         e.preventDefault();
+        //if ($('#currentWork').is(':checked') == true) {
+        //    $("input[name = toDate]").val("2000-01-01");
+        //}
         if (checkNull('.workExperienceModal') === 0) {
             var id = $('.js-work-experience-id').val();
             var $button = $('button [data-workexp-id="' + id + '"]');
@@ -244,6 +247,7 @@
                 userData.Designation = $("input[name = designation]").val();
                 userData.FromYear = $("input[name = fromDate]").val();
                 userData.ToYear = $("input[name = toDate]").val();
+                userData.CurrentlyWorking = $('#currentWork').is(':checked');
             }
 
             var parameter = $.extend({}, doAjax_parameter_default);
@@ -308,7 +312,7 @@
                     $(".alert").fadeOut(5000);
                 }
                 else {
-                    $('.js-language-details').append('<span class="btn btn-primary"> \
+                    $('.js-language-details').append('<span class="btn btn-primary ml-1 mt-1"> \
                     ' + data.LanguageName + ' \
                     <i class="fa fa-times js-delete-language text-danger" data-language-id="'+ data.LanguageID + '"> </i> \
                     </span>');
@@ -600,7 +604,6 @@ function doAjax(doAjax_parameter) {
                     $(".alert").addClass("alert-success");
                     $('.alert-message').text("Saved Succesfully!");
                     $(".alert").fadeOut(5000);
-                    $('form').trigger('reset');
                 }
                 if (requestType == "DELETE") {
                     $(".alert").show();
@@ -667,7 +670,7 @@ function checkNull(divName) {
         }
         var dateObj = new Date();
         if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth() + 1) {
+            if (parseInt(this.value.slice(5, 7)) >= (dateObj.getMonth() + 1)) {
                 if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
                     $("this").css("border-color", "red");
                     $(this).next("small").text("Date is larger than Today's date");
@@ -676,7 +679,6 @@ function checkNull(divName) {
             }
         }
     });
-
 
     return counter
 }

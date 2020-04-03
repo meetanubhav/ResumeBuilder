@@ -69,9 +69,8 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                var getUserId = db.Users.Where(x => x.Username == user.LoginModel.Username);
                 var userData = db.Users.SingleOrDefault(x => x.Username == user.LoginModel.Username);
-                if (getUserId.Where(x => x.Password == user.LoginModel.Password).Any())
+                if (userData.Password == FormsAuthentication.HashPasswordForStoringInConfigFile(user.LoginModel.Password,"SHA1"))
                 {
                     FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
                     return RedirectToAction("Dashboard");
@@ -94,11 +93,13 @@ namespace ResumeBuilder.Controllers
             {
                 if (!db.Users.Any(x => x.Username == newUser.RegisterModel.RegisterUsername))
                 {
+                    string passwordInDatabase = FormsAuthentication.HashPasswordForStoringInConfigFile(newUser.RegisterModel.RegisterPassword, "SHA1");
                     db.Users.Add(new Models.User
                     {
                         Username = newUser.RegisterModel.RegisterUsername,
-                        Password = newUser.RegisterModel.RegisterPassword
+                        Password = passwordInDatabase
                     });
+                    
                     db.SaveChanges();
 
                 }
@@ -128,6 +129,7 @@ namespace ResumeBuilder.Controllers
         {
             return View();
         }
+
 
         [Authorize]
         public ActionResult Edit()
@@ -236,6 +238,27 @@ namespace ResumeBuilder.Controllers
         [Authorize]
         public ActionResult Template()
         {
+            if (User.Identity.Name != null)
+            {
+                var userId = Int32.Parse(User.Identity.Name);
+                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+
+                UserResumeVM vm = new UserResumeVM();
+                {
+                    vm.FirstName = user.FirstName;
+                    vm.LastName = user.LastName;
+                    vm.Email = user.Email;
+                    vm.PhoneNumber = user.PhoneNumber;
+                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+                    vm.ResumeName = user.ResumeName;
+                    vm.Summary = user.Summary;
+                    vm.Education = user.Education;
+                    vm.Project = user.Projects;
+                    vm.WorkExperience = user.WorkExperiences;
+                    vm.Skill = user.Skills;
+                    vm.Language = user.Languages;
+                }
+            }
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView("~/Views/Resume/Template.cshtml");
         }

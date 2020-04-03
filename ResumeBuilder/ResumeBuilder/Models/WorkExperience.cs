@@ -19,7 +19,9 @@ namespace ResumeBuilder.Models
 
         [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
         public Nullable<DateTime> ToYear { get; set; }
-        
+
+        public bool CurrentlyWorking { get; set; }
+
         public int UserID { get; set; }
         [ForeignKey("UserID")]
         public virtual User User { get; set; }

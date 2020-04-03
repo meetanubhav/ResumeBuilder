@@ -74,7 +74,10 @@
                         <p>
                             <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
                             <br />
-                            <b> @userWorkExperience.FromYear </b> - <b> @userWorkExperience.ToYear </b>
+                            <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) </b> - <b> @if( userWorkExperience.CurrentlyWorking == false){
+                                                                            @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) }
+                                                                                                          else
+                                                                                                          { @Html.Raw("Current") } </b>
                         </p>
                     </div>
                     <div class="col-md-2 col-sm-4">
@@ -114,7 +117,7 @@
         <div class="js-language-details">
             @foreach (var userlanguages in Model.Language)
             {
-                <span class="btn btn-primary">@userlanguages.LanguageName <i class="fa fa-times js-delete-language text-danger" data-language-id="@userlanguages.LanguageID"> </i> </span>
+                <span class="btn btn-primary mt-1">@userlanguages.LanguageName <i class="fa fa-times js-delete-language text-danger" data-language-id="@userlanguages.LanguageID"> </i> </span>
             }
         </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2" data-toggle="modal" data-target=".languageModal">Add Languages<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
@@ -125,7 +128,7 @@
         <div class="js-skill-details">
             @foreach (var userSkills in Model.Skill)
             {
-                <span class="btn btn-primary">@userSkills.SkillName <i class="fa fa-times js-delete-skill text-danger" data-skill-id="@userSkills.SkillID"> </i> </span>
+                <span class="btn btn-primary mt-1">@userSkills.SkillName <i class="fa fa-times js-delete-skill text-danger" data-skill-id="@userSkills.SkillID"> </i> </span>
             }
         </div>
         <a class="list-group-item list-group-item-action bg-info rounded p-md-2 mb-2 mt-2 " data-toggle="modal" data-target=".skillModal">Add Skills<i class="fa fa-edit pl-3 float-right mt-1"></i></a>
@@ -304,7 +307,7 @@
                         </div>
                         <div class="col-md-6" id="toYear">
                             <label class="form-label">To</label>
-                            <input class="form-control" type="date" name="toDate" placeholder="To Year" />
+                            <input class="form-control" type="date" id="toDate" name="toDate" placeholder="To Year" />
                             <small class="text-danger validation-message"></small>
                         </div>
                     </div>

@@ -287,6 +287,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\bg-login.jpg" />
     <Content Include="Images\dashboard-image.jpg" />
+    <Content Include="Images\favicon.png" />
     <Content Include="Images\Preloader_1.gif" />
     <Content Include="Images\Preloader_9.gif" />
     <Content Include="Images\rb-logo.png" />
@@ -538,6 +539,10 @@
     <Compile Include="Migrations\202003230957536_changes in education model .designer.cs">
       <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004021317117_added a new coloum currently working in workExperience model.cs" />
+    <Compile Include="Migrations\202004021317117_added a new coloum currently working in workExperience model.designer.cs">
+      <DependentUpon>202004021317117_added a new coloum currently working in workExperience model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Language.cs" />
@@ -637,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003230957536_changes in education model .resx">
       <DependentUpon>202003230957536_changes in education model .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021317117_added a new coloum currently working in workExperience model.resx">
+      <DependentUpon>202004021317117_added a new coloum currently working in workExperience model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
