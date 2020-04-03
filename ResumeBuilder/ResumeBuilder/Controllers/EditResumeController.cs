@@ -5,6 +5,7 @@ using ResumeBuilder.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -107,7 +108,7 @@ namespace ResumeBuilder.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSummaryInfo(BasicDetailsVM summaryInfo)
+        public ActionResult AddSummaryInfo(SummaryVM summaryInfo)
         {
             var userID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
@@ -165,6 +166,11 @@ namespace ResumeBuilder.Controllers
                 {
                     Skill sk = Mapper.Map<Skill>(skill);
                     string msg = _resumeRepository.AddorUpdateSkill(sk, userId);
+
+                    if (msg == "Failed to add")
+                        return Content("Failed");
+                    else if (msg == "Skill already present")
+                        return Content(msg);
 
                     skill.SkillID = sk.SkillID;
                     return Json(skill, JsonRequestBehavior.AllowGet);
@@ -235,6 +241,10 @@ namespace ResumeBuilder.Controllers
                     Language language = Mapper.Map<Language>(lang);
                     string msg = _resumeRepository.AddorUpdateLanguage(language, userId);
 
+                    if (msg == "Failed to add")
+                        return Content("Failed");
+                    else if (msg == "Language already present")
+                        return Content(msg);
                     lang.LanguageID = language.LanguageID;
                     return Json(lang, JsonRequestBehavior.AllowGet);
                 }

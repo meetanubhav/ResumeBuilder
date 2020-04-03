@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @*<link rel="Icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d" type="image/x-icon" />*@
+    <link rel="shortcut icon" href="~/Images/user.jpg">
     <title>@Model.FirstName @Model.LastName</title>
 
     <!-- Global stylesheets -->
@@ -44,6 +44,9 @@
                     <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#languages">Languages</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Contacts</a>
                 </li>
             </ul>
@@ -67,7 +70,7 @@
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="educations">
             <div class="row my-auto">
                 <div class="col-12">
-                    <h2 class="  text-center">Educations</h2>
+                    <h2 class=" text-center">Educations</h2>
                     <div class="mb-5 heading-border"></div>
                 </div>
                 <div class="main-educations" id="educations-box">
@@ -76,11 +79,15 @@
                         <div class="educations">
                             <div class="educations-icon"></div>
                             <div class="educations-content">
+
                                 <span class="date"> @userEducations.YearOfPassing </span>
                                 <h5 class="title">
                                     @userEducations.Score @userEducations.CGPAorPercentage in @userEducations.EducationLevel
+
+
                                 </h5>
                                 <p class="description">
+
                                     @userEducations.Institution
                                 </p>
                             </div>
@@ -108,7 +115,7 @@
                                 </p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@userWorkExperience.FromYear - @userWorkExperience.ToYear</span>
+                                <span class="text-primary">@String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) - @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear)</span>
                             </div>
                         </div>
                     </div>
@@ -116,32 +123,32 @@
             </div>
         </section>
 
-        <!--Projects-->
-        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
+        <!--Project-->
+        <section class="resume-section p-3 p-lg-5 " id="projects">
             <div class="row my-auto">
                 <div class="col-12">
-                    <h2 class="  text-center">projects</h2>
+                    <h2 class="  text-center">Projects</h2>
                     <div class="mb-5 heading-border"></div>
                 </div>
-                <div class="main-projects" id="projects-box">
-                    @foreach (var userProject in Model.Project)
-                    {
-                        <div class="projects">
-                            <div class="projects-icon"></div>
-                            <div class="projects-content">
-                                <span class="date">@userProject.DurationInMonth Months</span>
-                                <h5 class="title">@userProject.ProjectName</h5>
-                                <p class="description">
-                                    Role - @userProject.YourRole
-                                    @userProject.ProjectDetails
-                                </p>
-                                <p class="description">
-                                    @userProject.ProjectSkills
+                @foreach (var userProject in Model.Project)
+                {
+                    <div class="resume-item col-md-6 col-sm-12 ">
+                        <div class="card mx-0 p-4 mb-5">
+                            <div class=" resume-content mr-auto">
+                                <h4 class="mb-3">@userProject.ProjectName</h4>
+
+                                <p>@userProject.ProjectDetails</p>
+                                <p>
+                                    Role:- @userProject.YourRole<br />
+                                    @*Skills:- @userProject.ProjectSkills<br />*@
                                 </p>
                             </div>
+                            <div class="resume-date text-md-right">
+                                <span class="text-primary">@userProject.DurationInMonth Months</span>
+                            </div>
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </section>
 
@@ -161,6 +168,24 @@
                 </div>
             </div>
         </section>
+        <br /><br />
+
+        <!--Language-->
+        <section class=" d-flex flex-column" id="languages">
+            <div class="p-lg-5 p-3 language-cover">
+                <h3 class="text-center text-white">Languages</h3>
+                <div class="row text-center my-auto ">
+                    @foreach (var userLanguage in Model.Language)
+                    {
+                        <div class="col-md-3 col-sm-6">
+                            <div class="language-item">
+                                <p>@userLanguage.LanguageName</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
 
         <!--Contacts-->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column">
@@ -171,10 +196,6 @@
                 </div>
                 <div class="col-md-4 col-sm-12 mt-5">
                     <div class="contact-cont2">
-                        @*<div class="contact-add contact-box-desc">
-                                <h3><i class="fa fa-map-marker cl-atlantis fa-2x"></i> Address</h3>
-                                <p>25, Dist town Street, Logn <br> California, US <br></p>
-                            </div>*@
                         <div class="contact-phone contact-side-desc contact-box-desc">
                             <h3><i class="fa fa-phone cl-atlantis fa-2x"></i> Phone</h3>
                             <p>@Model.PhoneNumber <br>@Model.AlternatePhoneNumber</p>

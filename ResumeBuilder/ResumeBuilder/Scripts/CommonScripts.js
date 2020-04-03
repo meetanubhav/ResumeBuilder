@@ -1,5 +1,7 @@
-﻿$(document).ready(function () {
+﻿$(window).on("load", function () {
     $(".se-pre-con").fadeOut("slow");
+});
+$(document).ready(function () {
 
     $('.js-edit-resume').on("click", function () {
         //var userId = parseInt($("#userId").val());
@@ -17,9 +19,9 @@
     });
     $('.js-public-profile').on('click', function (e) {
         e.preventDefault();
-        window.open('/Resume/PublicProfile?userId='+ $('#userId').val(), '_blank');
+        window.open('/Resume/PublicProfile?userId=' + $('#userId').val(), '_blank');
     });
-    
+
     $('.js-settings').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Settings/Settings", function () {
@@ -54,5 +56,5 @@
         var templateId = $(this).data("template-id");
         $('.render-partial-view').load("/Template/Template" + templateId);
     });
-    
-});    
+
+});
