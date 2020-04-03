@@ -14,6 +14,20 @@
 
         protected override void Seed(ResumeBuilder.Models.ResumeBuilderDBContext context)
         {
+            //if(!context.Users.Any())
+            //{
+            //    context.Users.Add(new Models.User { 
+            //        Username = "admin",
+            //        Password = "12345678"
+            //    });
+            //    context.Users.Add(new Models.User
+            //    {
+            //        Username = "ag",
+            //        Password = "12345678"
+            //    });
+            //    context.SaveChanges();
+
+            //}
         }
     }
 }
