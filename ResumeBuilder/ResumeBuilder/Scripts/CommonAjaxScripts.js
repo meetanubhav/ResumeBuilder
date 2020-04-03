@@ -213,6 +213,9 @@
 
     $('body').on("click", ".save-workExp", function (e) {
         e.preventDefault();
+        //if ($('#currentWork').is(':checked') == true) {
+        //    $("input[name = toDate]").val("2000-01-01");
+        //}
         if (checkNull('.workExperienceModal') === 0) {
             var id = $('.js-work-experience-id').val();
             var $button = $('button [data-workexp-id="' + id + '"]');
@@ -224,6 +227,7 @@
                 userData.Designation = $("input[name = designation]").val();
                 userData.FromYear = $("input[name = fromDate]").val();
                 userData.ToYear = $("input[name = toDate]").val();
+                userData.CurrentlyWorking = $('#currentWork').is(':checked');
             }
 
             var parameter = $.extend({}, doAjax_parameter_default);
@@ -631,7 +635,7 @@ function checkNull(divName) {
         }
         var dateObj = new Date();
         if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-            if (parseInt(this.value.slice(5, 7)) >= dateObj.getMonth() + 1) {
+            if (parseInt(this.value.slice(5, 7)) >= (dateObj.getMonth() + 1)) {
                 if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
                     $("this").css("border-color", "red");
                     $(this).next("small").text("Date is larger than Today's date");
