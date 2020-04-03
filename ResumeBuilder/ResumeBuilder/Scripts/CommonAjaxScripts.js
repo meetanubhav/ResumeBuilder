@@ -2,8 +2,7 @@
     /*              Save Basic Information            */
     $('body').on("click", ".save-basic-info", function (e) {
         e.preventDefault();
-        if (checkNull([["input[name = FirstName]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["input[name = LastName]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["input[name = Email]", /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Only email type expression"], ["input[name = PhoneNumber]", /^[0][1-9]\d{9}$|^[1-9]\d{9}$/, "Only Numbers allowed of length 10."], ["input[name = AlternatePhoneNumber]", /^[0][1-9]\d{9}$|^[1-9]\d{9}$/, "Only Numbers allowed of length 10."]]) === 0) {
-            //if (checkNull(["input[name = FirstName]", "input[name = LastName]", "input[name = Email]", "input[name = PhoneNumber]", "input[name = AlternatePhoneNumber]"]) === 0) {
+        if (checkNull([["input[name = FirstName]", /^[a-zA-Z ]+$/, "Only alphabets allowed."], ["input[name = LastName]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["input[name = Email]", /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Only email type expression"], ["input[name = PhoneNumber]", /^[0][1-9]\d{9}$|^[1-9]\d{9}$/, "Only Numbers allowed of length 10."], ["input[name = AlternatePhoneNumber]", /^[0][1-9]\d{9}$|^[1-9]\d{9}$/, "Only Numbers allowed of length 10."]]) === 0) {
             var userData = {};
             userData.FirstName = $("input[name = FirstName]").val();
             userData.LastName = $("input[name = LastName]").val();
@@ -69,7 +68,7 @@
 
     $('body').on("click", ".save-education-info", function (e) {
         e.preventDefault();
-        if (checkNull([["input[name = YearOfPassing]", /^(19[5-9]\d|20[0-4]\d|2050)$/, "Only number in range 1950 - 2050 (YYYY) ."], ["input[name = Score]", /^[0-9](\.[0-9]+)*.{1,4}$/, "Enter your marks ( eg 43.55 or 70 )"], ["input[name = Stream]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["input[name = Institution]", /^[a-zA-Z ']+$/, "Only alphabets allowed."]]) === 0 && checkRadio([["input[name='EducationLevel']:checked", ".education-error"], ["input[name='CGPAorPercentage']:checked", ".cgpa-error"]]) === 0) {
+        if (checkNull([["input[name = YearOfPassing]", /^(19[5-9]\d|20[0-4]\d|2050)$/, "Only number in range 1950 - 2050 (YYYY) ."], ["input[name = Score]", /^[0-9](\.[0-9]+)*.{1,4}$/, "Enter your marks ( eg 43.55 or 70 )"], ["input[name = Stream]", /^[a-zA-Z ]+$/, "Only alphabets allowed."], ["input[name = Institution]", /^[a-zA-Z ']+$/, "Only alphabets allowed."], ["input[name = Board]", /^[a-zA-Z. ']+$/, "Only alphabets allowed."]]) === 0 && checkRadio([["input[name='EducationLevel']:checked", ".education-error"], ["input[name='CGPAorPercentage']:checked", ".cgpa-error"]]) === 0) {
             var id = $('.js-education-id').val();
             var $button = $('button [data-education-id="' + id + '"]');
 
@@ -141,7 +140,7 @@
 
     $('body').on("click", ".save-skill", function (e) {
         e.preventDefault();
-        if (checkNull([["input[name = skill]", /^[a-zA-Z0-9]{0,15}$/, "Only Alphanumeric allowed."]]) === 0) {
+        if (checkNull([["input[name = skill]", /^^[^-]{1}?[^\"\']*.{0,15}$/, ""]]) === 0) {
             var $button = $(this);
 
             var userData = new Object();
@@ -183,7 +182,7 @@
 
     $('body').on("click", ".save-project", function (e) {
         e.preventDefault();
-        if (checkNull([["input[name = projectName]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["textarea[name = projectDetails]", /^[^-]{1}?[^]*$/, ""], ["input[name = projectRole]", /^([a-zA-Z ]*).{2,15}$/, "Only alphabets and spaces allowed."], ["#projectDuration option:selected", /^(?=.*\d)(?=.*[1-9]).{1,2}$/, "Select project duration."]]) === 0) {
+        if (checkNull([["input[name = projectName]", /^[a-zA-Z ]+$/, "Only alphabets allowed."], ["textarea[name = projectDetails]", /^[^-]{1}?[^]*$/, ""], ["input[name = projectRole]", /^([a-zA-Z ]*).{2,15}$/, "Only alphabets and spaces allowed."], ["#projectDuration option:selected", /^(?=.*\d)(?=.*[1-9]).{1,2}$/, "Select project duration."]]) === 0) {
             var id = $('.js-project-id').val();
             var $button = $('button [data-project-id="' + id + '"]');
 
@@ -235,7 +234,7 @@
         //if ($('#currentWork').is(':checked') == true) {
         //    $("input[name = toDate]").val("2000-01-01");
         //}
-        if (checkNull([["input[name = organization]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["input[name = designation]", /^[a-zA-Z]+$/, "Only alphabets allowed."], ["input[name = fromDate]", /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/, "Only Date type."], ["input[name = toDate]", /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/, "Only Date type."]]) === 0 && checkDate(".workExperienceModal") === 0) {
+        if (checkNull([["input[name = organization]", /^[a-zA-Z ]+$/, "Only alphabets allowed."], ["input[name = designation]", /^[a-zA-Z ]+$/, "Only alphabets allowed."], ["input[name = fromDate]", /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/, "Only Date type."], ["input[name = toDate]", /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/, "Only Date type."]]) === 0 && checkDate(".workExperienceModal") === 0) {
             var id = $('.js-work-experience-id').val();
             var $button = $('button [data-workexp-id="' + id + '"]');
 
