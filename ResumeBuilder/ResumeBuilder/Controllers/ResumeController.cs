@@ -177,7 +177,7 @@ namespace ResumeBuilder.Controllers
                 vm.Education = user.Settings.Education ? user.Education : new List<Education>();
                 vm.WorkExperience = user.Settings.WorkExperience ? user.WorkExperiences : new List<WorkExperience>();
                 vm.Language = user.Settings.Language ? user.Languages : new List<Language>();
-                
+
                 return View(vm);
             }
             else
@@ -214,22 +214,7 @@ namespace ResumeBuilder.Controllers
         //This action method is triggered in search
         public ActionResult GetAllUsersData()
         {
-            //var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").OrderBy(x => x.FirstName).ToList();
-            //var data = (from user in db.Users.Include("Skills")
-            // select new SearchUserDataVM
-            // {
-            // FirstName = user.FirstName,
-            // LastName = user.LastName,
-            // }).Where(x => x.FirstName !=null && x.LastName !=null).OrderBy(x => x.FirstName).ToList();
-            //var data = db.Users
-            // .Where(x => x.FirstName !=null && x.LastName !=null)
-            // .Select(user => new
-            // {
-            // Name = user.FirstName,
-            // TeamNames = user.Skills
-            // .Select(skill => skill.SkillName )
-            // .ToList(),
-            // });
+
             var data = (from e in db.Users.Include("Skills")
             .Where(x => x.Skills.Any()).ToList()
                         select new SearchUserDataVM
@@ -241,16 +226,7 @@ namespace ResumeBuilder.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
-        //public ActionResult PublicProfile(int? userId)
-        //{
-        // // var userId = Int32.Parse(User.Identity.Name);
-        // var user = db.Users.Where(x => x.UserID == userId).FirstOrDefault();
 
-        // Mapper.Initialize(cfg => cfg.CreateMap<User,UserResumeVM>());
-        // var userVM = Mapper.Map<User, UserResumeVM>(user);
-
-        // return View(userVM);
-        //}
 
         [Authorize]
         public ActionResult Search()
