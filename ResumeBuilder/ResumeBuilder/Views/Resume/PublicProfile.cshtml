@@ -135,7 +135,15 @@
                                     </p>
                                 </div>
                                 <div class="resume-date text-md-right">
-                                    <span class="text-primary">@String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) - @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear)</span>
+                                    <span class="text-primary">
+                                        <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear)</b> - <b>
+                                            @if (userWorkExperience.CurrentlyWorking == false)
+                                            {
+                                                @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) }
+                                            else
+                                            { @Html.Raw("Current") }
+                                        </b>
+                                    </span>
                                 </div>
                             </div>
                         </div>
