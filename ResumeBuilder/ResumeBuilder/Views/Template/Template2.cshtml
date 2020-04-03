@@ -66,30 +66,8 @@
             </section>
 
             <section>
-                @if (@Model.Project.Count() != 0) {
-                    <div class="sectionTitle">
-                        <h1 class="names">Projects</h1>
-                    </div>
-
-                    <div class="sectionContent">
-                    
-                       @foreach (var item in @Model.Project)
-                       {
-                             <article>
-                             <h2>@item.ProjectName</h2>
-                             <h6>Role: @item.YourRole</h6>
-                             <p>@item.ProjectDetails</p>
-                             </article>
-                       }
-                    
-                    </div>
-                    <div class="clear"></div>
-                }
-            </section>
-                
-
-            <section>
-                @if(@Model.WorkExperience.Count() != 0) {
+                @if (@Model.WorkExperience.Count() != 0)
+                {
                     <div class="sectionTitle">
                         <h1 class="names">Work Experience</h1>
                     </div>
@@ -110,6 +88,29 @@
             </section>
 
             <section>
+                @if (@Model.Project.Count() != 0) {
+                    <div class="sectionTitle">
+                        <h1 class="names">Projects</h1>
+                    </div>
+
+                    <div class="sectionContent">
+                    
+                       @foreach (var item in @Model.Project)
+                       {
+                             <article>
+                             <h2>@item.ProjectName</h2>
+                             <h6>Role: @item.YourRole</h6>
+                             <p>@item.ProjectDetails</p>
+                             </article>
+                       }
+                    
+                    </div>
+                    <div class="clear"></div>
+                }
+            </section>
+               
+
+            <section>
                 @if(@Model.Skill.Count() != 0) {
                     <div class="sectionTitle">
                         <h1 class="names">Key Skills</h1>
@@ -120,6 +121,26 @@
                             @foreach (var item in @Model.Skill)
                             {
                                 <li>@item.SkillName</li>
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="clear"></div>
+                }
+            </section>
+
+            <section>
+                @if (@Model.Language.Count() != 0)
+                {
+                    <div class="sectionTitle">
+                        <h1 class="names">Languages Known</h1>
+                    </div>
+
+                    <div class="sectionContent">
+                        <ul class="keySkills">
+                            @foreach (var item in @Model.Language)
+                            {
+                                <li>@item.LanguageName</li>
                             }
                         </ul>
 

@@ -53,16 +53,20 @@
 
         <dd class="clear"></dd>
 
-        @if (@Model.Skill.Count() != 0) { 
-            <dt>Skills</dt>
+        @if (@Model.WorkExperience.Count() != 0)
+        {
+            <dt>Experience</dt>
             <dd>
-                @foreach (var item in @Model.Skill)
+                @foreach (var item in @Model.WorkExperience)
                 {
-                    <h2 class="heading">@item.SkillName</h2>
+                    <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</span></h2>
+                    <div>Designation - @item.Designation</div>
                 }
+
             </dd>
         }
         <dd class="clear"></dd>
+
 
         @if (@Model.Project.Count() != 0) { 
             <dt>Projects</dt>
@@ -78,15 +82,14 @@
         }
         <dd class="clear"></dd>
 
-        @if (@Model.WorkExperience.Count() != 0) { 
-            <dt>Experience</dt>
+        @if (@Model.Skill.Count() != 0)
+        {
+            <dt>Skills</dt>
             <dd>
-                @foreach (var item in @Model.WorkExperience)
+                @foreach (var item in @Model.Skill)
                 {
-                    <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</span></h2>
-                    <div>Designation - @item.Designation</div>
+                    <h2 class="heading">@item.SkillName</h2>
                 }
-
             </dd>
         }
         <dd class="clear"></dd>
