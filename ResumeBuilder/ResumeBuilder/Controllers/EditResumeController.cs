@@ -141,14 +141,12 @@ namespace ResumeBuilder.Controllers
             if (ModelState.IsValid)
             {
                 Education edu = Mapper.Map<Education>(education);
-                int id = _resumeRepository.AddOrUpdateEducation(edu, userId);
+                string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
 
-                if (id == 0)
+                if (msg != "Education Added")
                 {
-                    return Content("Unauthorized access");
+                    return Content(msg);
                 }
-                
-                education.EduID = id;
 
                 return Json(education, JsonRequestBehavior.AllowGet);
             }

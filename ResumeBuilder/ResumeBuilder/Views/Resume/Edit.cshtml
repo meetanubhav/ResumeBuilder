@@ -8,17 +8,17 @@
     <strong class="alert-message"></strong>
 </div>
 @*<div class="my-toast">
-    <div class="toast-header">
-        <strong class="mr-auto"><i class="fab fa-grav" aria-hidden="true"></i> Hello @Model.FirstName @Model.LastName!</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        haha
-    </div>
-    <div class="toast-body">
-        <div class="toast-message"></div>
-    </div>
-</div>*@
+        <div class="toast-header">
+            <strong class="mr-auto"><i class="fab fa-grav" aria-hidden="true"></i> Hello @Model.FirstName @Model.LastName!</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            haha
+        </div>
+        <div class="toast-body">
+            <div class="toast-message"></div>
+        </div>
+    </div>*@
 <div class="container-fluid bg-light mt-5 mb-5 w-100 p-3">
     <h2 class="text-center show-resume-info">@Model.ResumeName</h2>
     <div>
@@ -74,10 +74,13 @@
                         <p>
                             <b> @userWorkExperience.Designation </b> at <b> @userWorkExperience.Organization </b>
                             <br />
-                            <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) </b> - <b> @if( userWorkExperience.CurrentlyWorking == false){
-                                                                            @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) }
-                                                                                                          else
-                                                                                                          { @Html.Raw("Current") } </b>
+                            <b> @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.FromYear) </b> - <b>
+                                @if (userWorkExperience.CurrentlyWorking == false)
+                                {
+                                    @String.Format("{0:dd/MM/yyyy}", @userWorkExperience.ToYear) }
+                                else
+                                { @Html.Raw("Current") }
+                            </b>
                         </p>
                     </div>
                     <div class="col-md-2 col-sm-4">
@@ -191,7 +194,7 @@
             </div>
             <div class="modal-body">
                 @using (Html.BeginForm())
-                { 
+                {
                     <div class="form-group">
                         @Html.LabelFor(x => x.ResumeName)
                         @Html.TextBoxFor(x => x.ResumeName, new { @class = "form-control", @placeholder = "Resume Name" })
@@ -224,54 +227,53 @@
                         <div class="js-education-id" hidden value=""></div>
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="form-check-label ml-4">
+                                <label class="form-check-label ml-4"></label>
                                     <input type="radio" class="form-check-input" name="EducationLevel" value="10th" />10th
-                                </label>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-check-label ml-4">
+                                <label class="form-check-label ml-4"></label>
                                     <input type="radio" class="form-check-input" name="EducationLevel" value="12th" />12th
-                                </label>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-check-label ml-4">
+                                <label class="form-check-label ml-4"></label>
                                     <input type="radio" class="form-check-input" name="EducationLevel" value="Graduation" />Graduation
-                                </label>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-check-label ml-4">
+                                <label class="form-check-label ml-4"></label>
                                     <input type="radio" class="form-check-input" name="EducationLevel" value="Post Graduation" />Post Graduation
-                                </label>
                             </div>
+                            <small class="text-danger validation-message education-error"></small>
+                        </div>
+                        <div class="input-group mt-2">
+                            <input type="text" class="form-control" name="YearOfPassing" placeholder="Year of Passing" required />
                             <small class="text-danger validation-message"></small>
                         </div>
-                        <div class="mt-3 mb-3">
+                        <div class="mt-3 ml-2 mb-3">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="YearOfPassing" placeholder="Year of Passing" required />
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-check-label">
+                                <div class="col-md-6">
+                                    <label class="form-check-label"></label>
                                         <input type="radio" class="form-check-input" name="CGPAorPercentage" value="CGPA" />CGPA
-                                    </label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-check-label">
+                                <div class="col-md-6">
+                                    <label class="form-check-label"></label>
                                         <input type="radio" class="form-check-input" name="CGPAorPercentage" value="Percent" />Percentage
-                                    </label>
                                 </div>
-                                <small class="text-danger validation-message"></small>
+                                <small class="text-danger cgpa-error validation-message"></small>
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" class="form-control" name="Score" placeholder="Marks Obtained" required />
                             <small class="text-danger validation-message"></small>
+                        </div>
+                        <div class="input-group mt-3">
                             <input type="text" class="form-control" name="Stream" placeholder="STREAM" required />
                             <small class="text-danger validation-message"></small>
                         </div>
                         <div class="input-group mt-3">
                             <input type="text" class="form-control" name="Board" placeholder="BOARD" required />
                             <small class="text-danger validation-message"></small>
+                        </div>
+                        <div class="input-group mt-3">
                             <input type="text" class="form-control" name="Institution" placeholder="UNIVERSITY" required />
                             <small class="text-danger validation-message"></small>
                         </div>
@@ -302,7 +304,7 @@
                     <div class="row form-group">
                         <div class="col-md-6">
                             <label class="form-label">From</label>
-                            <input class="form-control" type="date" name="fromDate" placeholder="From Year" />
+                            <input class="form-control" type="date" name="fromDate" id="fromDate" placeholder="From Year" />
                             <small class="text-danger validation-message"></small>
                         </div>
                         <div class="col-md-6" id="toYear">
@@ -351,7 +353,7 @@
                                 }
                             </select>
                             <br />
-                            <small class="text-danger validation-message"></small>
+                            <small class="text-dange validation-message"></small>
                         </div>
                     </div>
                     <button type="submit" class="mt-2 btn btn-sm btn-success save-work save-project">SAVE</button>

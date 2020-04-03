@@ -58,7 +58,7 @@
             <dd>
                 @foreach (var item in @Model.Skill)
                 {
-                    <h2 class="heading">@item.SkillName</h2>
+                    <span class="heading">@item.SkillName</span>
                 }
             </dd>
         }
@@ -83,7 +83,11 @@
             <dd>
                 @foreach (var item in @Model.WorkExperience)
                 {
-                    <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</span></h2>
+                    <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @if(item.CurrentlyWorking == false)
+                    {
+                        @String.Format("{0:dd/MM/yyyy}", @item.ToYear) }
+                    else
+                    { @Html.Raw("Current") } </span></h2>
                     <div>Designation - @item.Designation</div>
                 }
 

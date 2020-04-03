@@ -57,6 +57,12 @@ $(document).ready(function () {
         $('.render-partial-view').load("/Template/Template" + templateId);
     });
 
+    $('body').on("hide.bs.modal", '.modal', function () {
+        var modal = $(this);
+        $(modal.find('input:not(:checkbox):not(:radio)')).val('');
+        $(modal.find('input[type=checkbox]')).prop("checked", false);
+        $(modal.find('input[type=radio]')).prop("checked", false);
+    });
     $('body').on("click", ".download-template", function () {
         // Define variables
         var
