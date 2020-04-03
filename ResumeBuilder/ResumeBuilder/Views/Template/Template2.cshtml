@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-<div class="bg-primary float-right p-2 rounded position-fixed download-template"><i class="fas fa-download"></i><label>Download</label> </div>
+<label class="bg-primary float-right p-2 rounded position-fixed download-template"><i class="fas fa-download"></i>Download</label>
 <div class="top">
     <div id="cv" class="instaFade">
         <div class="mainDetails">
@@ -17,10 +17,12 @@
             </div>
 
             <div id="contactDetails" class="quickFade delayFour">
-                <ul>
-                    <li>e: <a href=@Model.Email +"" target="_blank">@Model.Email</a></li>
-                    <li>m: @Model.PhoneNumber</li>
-                </ul>
+                @if (@Model.Email.Count() != 0) { 
+                    <ul>
+                        <li>e: <a href=@Model.Email +"" target="_blank">@Model.Email</a></li>
+                        <li>m: @Model.PhoneNumber</li>
+                    </ul>
+                }
             </div>
             <div class="clear"></div>
         </div>
@@ -28,91 +30,102 @@
         <div id="mainArea" class="quickFade delayFive">
             <section>
                 <article>
-                    <div class="sectionTitle">
-                        <h1 class="names">@Model.ResumeName</h1>
-                    </div>
+                    @if (@Model.Summary.Count() != 0) { 
+                        <div class="sectionTitle">
+                            <h1 class="names">@Model.ResumeName</h1>
+                        </div>
 
-                    <div class="sectionContent">
-                        <p>@Model.Summary</p>
-                    </div>
+                        <div class="sectionContent">
+                            <p>@Model.Summary</p>
+                        </div>
+                    }
                 </article>
                 <div class="clear"></div>
             </section>
 
             <section>
-                <div class="sectionTitle">
-                    <h1 class="names">Education</h1>
-                </div>
+                @if (@Model.Education.Count() != 0) {
+                    <div class="sectionTitle">
+                        <h1 class="names">Education</h1>
+                    </div>
 
-                <div class="sectionContent">
-                    @foreach (var item in @Model.Education)
-                    {
-                        <article>
-                            <h2>@item.Institution</h2>
-                            <h1 class="subDetails">@item.EducationLevel ( @item.Board )</h1>
-                            <p>@item.Stream</p>
-                            <p>Secured: @item.Score</p>
-                        </article>
-                    }
-
-
-                </div>
-                <div class="clear"></div>
+                    <div class="sectionContent">
+                    
+                            @foreach (var item in @Model.Education)
+                            {
+                                <article>
+                                    <h2>@item.Institution</h2>
+                                    <h1 class="subDetails">@item.EducationLevel ( @item.Board )</h1>
+                                    <p>@item.Stream</p>
+                                    <p>Secured: @item.Score</p>
+                                </article>
+                            }
+                    </div>
+                    <div class="clear"></div>
+                }
             </section>
 
             <section>
-                <div class="sectionTitle">
-                    <h1 class="names">Projects</h1>
-                </div>
+                @if (@Model.Project.Count() != 0) {
+                    <div class="sectionTitle">
+                        <h1 class="names">Projects</h1>
+                    </div>
 
-                <div class="sectionContent">
-                    @foreach (var item in @Model.Project)
-                    {
-                        <article>
-                            <h2>@item.ProjectName</h2>
-                            <h4>Role: @item.YourRole</h4>
-                            <p>@item.ProjectDetails</p>
-                        </article>
-                    }
-
-                </div>
-                <div class="clear"></div>
+                    <div class="sectionContent">
+                    
+                       @foreach (var item in @Model.Project)
+                       {
+                             <article>
+                             <h2>@item.ProjectName</h2>
+                             <h6>Role: @item.YourRole</h6>
+                             <p>@item.ProjectDetails</p>
+                             </article>
+                       }
+                    
+                    </div>
+                    <div class="clear"></div>
+                }
             </section>
+                
 
             <section>
-                <div class="sectionTitle">
-                    <h1 class="names">Work Experience</h1>
-                </div>
+                @if(@Model.WorkExperience.Count() != 0) {
+                    <div class="sectionTitle">
+                        <h1 class="names">Work Experience</h1>
+                    </div>
 
-                <div class="sectionContent">
-                    @foreach (var item in @Model.WorkExperience)
-                    {
-                        <article>
-                            <h2>@item.Organization</h2>
-                            <p class="subDetails">@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</p>
-                            <p>@item.Designation</p>
-                        </article>
-                    }
-
-                </div>
-                <div class="clear"></div>
-            </section>
-
-            <section>
-                <div class="sectionTitle">
-                    <h1 class="names">Key Skills</h1>
-                </div>
-
-                <div class="sectionContent">
-                    <ul class="keySkills">
-                        @foreach (var item in @Model.Skill)
+                    <div class="sectionContent">
+                        @foreach (var item in @Model.WorkExperience)
                         {
-                            <li>@item.SkillName</li>
+                            <article>
+                                <h2>@item.Organization</h2>
+                                <p class="subDetails">@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</p>
+                                <p>@item.Designation</p>
+                            </article>
                         }
-                    </ul>
 
-                </div>
-                <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                }
+            </section>
+
+            <section>
+                @if(@Model.Skill.Count() != 0) {
+                    <div class="sectionTitle">
+                        <h1 class="names">Key Skills</h1>
+                    </div>
+
+                    <div class="sectionContent">
+                        <ul class="keySkills">
+                            @foreach (var item in @Model.Skill)
+                            {
+                                <li>@item.SkillName</li>
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="clear"></div>
+                }
             </section>
 
         </div>

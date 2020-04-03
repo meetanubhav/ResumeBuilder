@@ -83,7 +83,7 @@ namespace ResumeBuilder.Controllers
             var userID = Int32.Parse(User.Identity.Name);
             if (ModelState.IsValid)
             {
-                var userFromDB = db.Users.AsNoTracking().FirstOrDefault(x => x.UserID == userID);
+                var userFromDB = db.Users.FirstOrDefault(x => x.UserID == userID);
                 userFromDB.FirstName = userBasicInfo.FirstName;
                 userFromDB.LastName = userBasicInfo.LastName;
                 userFromDB.Email = userBasicInfo.Email;
@@ -141,14 +141,12 @@ namespace ResumeBuilder.Controllers
             if (ModelState.IsValid)
             {
                 Education edu = Mapper.Map<Education>(education);
-                int id = _resumeRepository.AddOrUpdateEducation(edu, userId);
+                string msg = _resumeRepository.AddOrUpdateEducation(edu, userId);
 
-                if (id == 0)
+                if (msg != "Education Added")
                 {
-                    return Content("Unauthorized access");
+                    return Content(msg);
                 }
-                
-                education.EduID = id;
 
                 return Json(education, JsonRequestBehavior.AllowGet);
             }

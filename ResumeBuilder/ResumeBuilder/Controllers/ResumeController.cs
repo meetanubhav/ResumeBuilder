@@ -39,6 +39,20 @@ namespace ResumeBuilder.Controllers
                 "~/Scripts/CommonScripts.js"));
         }
     }
+    //public class MyHttpHandler : IHttpHandler
+    //{
+    //    public void ProcessRequest(HttpContext context)
+    //    {
+    //        context.Response.Redirect("AccessForbidden");
+    //    }
+    //    public bool IsReusable
+    //    {
+    //        get
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //}
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
@@ -101,7 +115,10 @@ namespace ResumeBuilder.Controllers
                 return RedirectToAction("Login");
             }
         }
-
+        public ActionResult AccessForbidden()
+        {
+            return View();
+        }
         private void alert(string p)
         {
             throw new NotImplementedException();
@@ -114,7 +131,7 @@ namespace ResumeBuilder.Controllers
         }
 
 
-        [ChildActionOnly]
+        [Authorize]
         public ActionResult Edit()
         {
             var userId = Int32.Parse(User.Identity.Name);
@@ -221,6 +238,27 @@ namespace ResumeBuilder.Controllers
         [Authorize]
         public ActionResult Template()
         {
+            if (User.Identity.Name != null)
+            {
+                var userId = Int32.Parse(User.Identity.Name);
+                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+
+                UserResumeVM vm = new UserResumeVM();
+                {
+                    vm.FirstName = user.FirstName;
+                    vm.LastName = user.LastName;
+                    vm.Email = user.Email;
+                    vm.PhoneNumber = user.PhoneNumber;
+                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
+                    vm.ResumeName = user.ResumeName;
+                    vm.Summary = user.Summary;
+                    vm.Education = user.Education;
+                    vm.Project = user.Projects;
+                    vm.WorkExperience = user.WorkExperiences;
+                    vm.Skill = user.Skills;
+                    vm.Language = user.Languages;
+                }
+            }
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView("~/Views/Resume/Template.cshtml");
         }
