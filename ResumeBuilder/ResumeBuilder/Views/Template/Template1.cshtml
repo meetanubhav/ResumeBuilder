@@ -2,10 +2,9 @@
 @{
     Layout = null;
 }
-    <title>One Page Resume</title>
-<label class="bg-primary float-right p-2 rounded position-fixed download-template"><i class="fas fa-download"></i>Download</label>
 
 <title>One Page Resume</title>
+<label class="bg-primary float-right p-2 rounded position-fixed download-template"><i class="fas fa-download"></i>Download</label>
 
 <div id="page-wrap" class="bg-light p-3">
 
@@ -61,7 +60,6 @@
                 {
                     <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @item.ToYear.Value.ToString("MM/dd/yyyy")</span></h2>
                     <div>Designation - @item.Designation</div>
-                    <span class="heading">@item.SkillName</span>
                 }
 
             </dd>
@@ -86,17 +84,10 @@
         @if (@Model.Skill.Count() != 0)
         {
             <dt>Skills</dt>
-            <dd>
-                @foreach (var item in @Model.Skill)
-                {
-                    <h2 class="font-weight-bold heading">@item.Organization <span>@item.FromYear.Value.ToString("MM/dd/yyyy") - @if(item.CurrentlyWorking == false)
-                    {
-                        @String.Format("{0:dd/MM/yyyy}", @item.ToYear) }
-                    else
-                    { @Html.Raw("Current") } </span></h2>
-                    <div>Designation - @item.Designation</div>
-                }
-            </dd>
+            foreach (var item in @Model.Skill)
+            {
+               <dd>@item.SkillName </dd>
+            }
         }
         <dd class="clear"></dd>
 
