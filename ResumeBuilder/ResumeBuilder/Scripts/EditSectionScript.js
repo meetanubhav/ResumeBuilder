@@ -10,14 +10,7 @@
     //        $('input[name = "university"]').show();
     //    }
     //});
-    $('body').on("click", 'input[name = "optradio"]', function () {
-        if ($(this).attr('value') == "percentage") {
-            $('input[name = "gradetype"]').attr('placeholder', "Percentage");
-        }
-        else {
-            $('input[name = "gradetype"]').attr('placeholder', "CGPA");
-        }
-    });
+    
     $("body").on("click", "#currentWork", function () {
         if (this.checked == true) {
             $("#toYear").hide();
