@@ -52,11 +52,12 @@ namespace ResumeBuilder.Repository {
             return records > 0 ? true : false;
         }
 
-        public int AddOrUpdateEducation (Education education, int idUser) {
+        public string AddOrUpdateEducation (Education education, int idUser) {
 
-            var personEntity = db.Users.Include ("Education").FirstOrDefault (x => x.UserID == idUser);
+            var personEntity = db.Users.Include("Education").FirstOrDefault (x => x.UserID == idUser);
+            bool repeatition = personEntity.Education.Any(x => x.EducationLevel == education.EducationLevel);
 
-            if (personEntity != null) {
+            if (personEntity != null && !repeatition) {
                 if (education.EduID > 0) {
                     //we will update education entity
                     education.UserID = idUser;
@@ -70,21 +71,23 @@ namespace ResumeBuilder.Repository {
 
                 try {
                     db.SaveChanges ();
-                    return education.EduID;
+                    return "Education Added";
                 } catch (Exception e) {
                     throw e;
                 }
             } else {
-                Console.WriteLine ("Invalid User");
+                if (personEntity == null)
+                    return "Invalid User";
+                else
+                    return "Repeatition of data";
             }
 
-            return 0;
         }
 
         public string AddorUpdateSkill (Skill skill, int idUser) {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include ("Skills").FirstOrDefault (x => x.UserID == idUser);
+            var personEntity = db.Users.Include("Skills").FirstOrDefault (x => x.UserID == idUser);
             var ifSkillInDb = db.Skills.FirstOrDefault (x => x.SkillName == skill.SkillName);
 
             if (personEntity != null && skill != null) {
@@ -111,7 +114,7 @@ namespace ResumeBuilder.Repository {
         public string AddorUpdateProject (Project project, int idUser) {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include ("Projects").FirstOrDefault (x => x.UserID == idUser);
+            var personEntity = db.Users.Include("Projects").FirstOrDefault (x => x.UserID == idUser);
 
             if (personEntity != null && project != null) {
                 if (project.ProjectID > 0) {
@@ -131,7 +134,7 @@ namespace ResumeBuilder.Repository {
         public string AddOrUpdateExperience (WorkExperience work, int idUser) {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include ("WorkExperiences").FirstOrDefault (x => x.UserID == idUser);
+            var personEntity = db.Users.Include("WorkExperiences").FirstOrDefault (x => x.UserID == idUser);
 
             if (personEntity != null && work != null) {
                 if (work.ExpId > 0) {
@@ -151,7 +154,7 @@ namespace ResumeBuilder.Repository {
         public string AddorUpdateLanguage (Language language, int idUser) {
             string msg = string.Empty;
             int countRecords = 0;
-            var personEntity = db.Users.Include ("Languages").FirstOrDefault (x => x.UserID == idUser);
+            var personEntity = db.Users.Include("Languages").FirstOrDefault (x => x.UserID == idUser);
             var ifLanguageInDb = db.Languages.FirstOrDefault (x => x.LanguageName == language.LanguageName);
 
             if (personEntity != null && language != null) {
@@ -175,8 +178,35 @@ namespace ResumeBuilder.Repository {
             return countRecords > 0 ? msg : "Failed to add";
         }
 
-        public User GetBasicInfo (int idUser) {
-            var user = db.Users.AsNoTracking ().FirstOrDefault (x => x.UserID == idUser);
+        public User GetUserInfo (int idUser) {
+            var user = db.Users.Include("Projects")
+            .Include("Skills")
+            .Include("Education")
+            .Include("WorkExperiences")
+            .Include("Languages")
+            .Include("Settings")
+            .FirstOrDefault(x => x.UserID == idUser);
+
+            foreach (var i in user.Projects)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Skills)
+            {
+                i.Users = null;
+            }
+            foreach (var i in user.Education)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.WorkExperiences)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Languages)
+            {
+                i.Users = null;
+            }
 
             return user;
         }
