@@ -88,10 +88,19 @@
             var parameter = $.extend({}, doAjax_parameter_default);
             parameter['url'] = '/EditResume/AddEducationInfo';
             parameter['data'] = userData;
+            parameter['dataType'] = null;
             parameter['requestType'] = 'POST';
             parameter['successCallbackFunction'] = function (data) {
-                if (!(userData.EduID > 0)) {
-                    $('.js-education-details').append('<div class="row text-secondary"> \
+                if (data != "Education Added") {
+                    $(".alert").show();
+                    $(".alert").addClass("alert-success");
+                    $('.alert-message').text(data);
+                    $(".alert").fadeOut(5000);
+                    console.log(data);
+                }
+                else {
+                    if (!(userData.EduID > 0)) {
+                        $('.js-education-details').append('<div class="row text-secondary"> \
                      <hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
                             <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
@@ -104,9 +113,9 @@
                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="' + data.EduID + '"></i></button> \
                         </div> \
                     </div>');
-                }
-                else {
-                    $button.parents('.text-secondary').html('<hr width="90%">\
+                    }
+                    else {
+                        $button.parents('.text-secondary').html('<hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
                             <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
                             <p> ' + data.YearOfPassing + '</p> \
@@ -117,8 +126,8 @@
                             <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-education" data-education-id="' + data.EduID + '"></i></button> \
                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="' + data.EduID + '"></i></button> \
                         </div>');
+                    }
                 }
-
                 hideModal();
 
             };
