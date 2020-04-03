@@ -3,12 +3,12 @@
 });
 $(document).ready(function () {
 
-    $('.js-edit-resume').on("click", function () {
-        //var userId = parseInt($("#userId").val());
-        $('.render-partial-view').load("/Resume/Edit");
-        EditSectionScripts();
-        return false;
-    });
+    //$('.js-edit-resume').on("click", function () {
+    //    //var userId = parseInt($("#userId").val());
+    //    $('.render-partial-view').load("/Resume/Edit");
+    //    EditSectionScripts();
+    //    return false;
+    //});
     $('.js-template').on('click', function (e) {
         e.preventDefault();
         $('.render-partial-view').load("/Resume/Template");
