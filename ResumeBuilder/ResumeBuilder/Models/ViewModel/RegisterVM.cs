@@ -14,14 +14,14 @@ namespace ResumeBuilder.Models.ViewModel
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [RegularExpression("^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$", ErrorMessage = "Password must contain at least one letter, at least one number, and be longer than six charaters.")]
+        [RegularExpression("^.*(?=.{6,})(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$", ErrorMessage = "Password size must be ateast 6 digit and contain atleast one lower case, one upper case and special character (@,#,$,%,&)")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string RegisterPassword { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [RegularExpression("^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$", ErrorMessage = "Password must contain at least one letter, at least one number, and be longer than six charaters.")]
+        [RegularExpression("^.*(?=.{6,})(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$", ErrorMessage = "Password size must be ateast 6 digit and contain atleast one lower case, one upper case and special character (@,#,$,%,&)")]
         [DataType(DataType.Password)]
         [Compare("RegisterPassword")]
         [Display(Name = "Confirm Password")]
