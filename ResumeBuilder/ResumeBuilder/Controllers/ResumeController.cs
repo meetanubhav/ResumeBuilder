@@ -8,6 +8,7 @@ using System.Web.Optimization;
 using ResumeBuilder.Models;
 using ResumeBuilder.Models.ViewModel;
 using AutoMapper;
+using ResumeBuilder.Repository;
 
 namespace ResumeBuilder.Controllers
 {
@@ -56,6 +57,7 @@ namespace ResumeBuilder.Controllers
     public class ResumeController : Controller
     {
         ResumeBuilderDBContext db = new ResumeBuilderDBContext();
+        private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
 
         public ActionResult Login()
         {
@@ -69,7 +71,7 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userData = db.Users.SingleOrDefault(x => x.Username == user.LoginModel.Username);
+                var userData = db.Users.AsNoTracking().SingleOrDefault(x => x.Username == user.LoginModel.Username);
                 if (userData.Password == FormsAuthentication.HashPasswordForStoringInConfigFile(user.LoginModel.Password,"SHA1"))
                 {
                     FormsAuthentication.SetAuthCookie(userData.UserID.ToString(), false);
@@ -91,7 +93,7 @@ namespace ResumeBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!db.Users.Any(x => x.Username == newUser.RegisterModel.RegisterUsername))
+                if (!db.Users.AsNoTracking().Any(x => x.Username == newUser.RegisterModel.RegisterUsername))
                 {
                     string passwordInDatabase = FormsAuthentication.HashPasswordForStoringInConfigFile(newUser.RegisterModel.RegisterPassword, "SHA1");
                     db.Users.Add(new Models.User
@@ -137,23 +139,14 @@ namespace ResumeBuilder.Controllers
             var userId = Int32.Parse(User.Identity.Name);
             if (User.Identity.Name != null)
             {
-                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+                var user = _resumeRepository.GetUserInfo(userId);
+                UserResumeVM vm = Mapper.Map<UserResumeVM>(user);
+                vm.Education = user.Education;
+                vm.Project = user.Projects;
+                vm.WorkExperience = user.WorkExperiences;
+                vm.Skill = user.Skills;
+                vm.Language = user.Languages;
 
-                UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.Project = user.Projects;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Skill = user.Skills;
-                    vm.Language = user.Languages;
-                }
                 return PartialView("~/Views/Resume/Edit.cshtml", vm);
             }
             else
@@ -162,26 +155,18 @@ namespace ResumeBuilder.Controllers
             }
         }
 
-        public ActionResult PublicProfile(int? userId)
+        public ActionResult PublicProfile(int userId)
         {
-            var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+            var user = _resumeRepository.GetUserInfo(userId);
             if (user != null)
             {
-                UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Language = user.Languages;
-                    vm.Skill = user.Skills;
-                    vm.Project = user.Projects;
-                }
+                UserResumeVM vm = Mapper.Map<UserResumeVM>(user);
+                vm.Education = user.Education;
+                vm.Project = user.Projects;
+                vm.WorkExperience = user.WorkExperiences;
+                vm.Skill = user.Skills;
+                vm.Language = user.Languages;
+
                 return View(vm);
             }
             else
@@ -194,37 +179,9 @@ namespace ResumeBuilder.Controllers
         public ActionResult GetTemplateDetails()
         {
             var userId = Int32.Parse(User.Identity.Name);
-            var user = db.Users.Include("Projects")
-            .Include("Skills")
-            .Include("Education")
-            .Include("WorkExperiences")
-            .Include("Languages")
-            .FirstOrDefault(x => x.UserID == userId);
+            var user = _resumeRepository.GetUserInfo(userId);
 
-            foreach (var i in user.Projects)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.Skills)
-            {
-                i.Users = null;
-            }
-            foreach (var i in user.Education)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.WorkExperiences)
-            {
-                i.User = null;
-            }
-            foreach (var i in user.Languages)
-            {
-                i.Users = null;
-            }
-
-            UserResumeVM vm = new UserResumeVM();
-
-            vm = Mapper.Map<UserResumeVM>(user);
+            UserResumeVM vm = Mapper.Map<UserResumeVM>(user);
             vm.Project = user.Projects;
             vm.Skill = user.Skills;
             vm.Education = user.Education;
@@ -241,23 +198,14 @@ namespace ResumeBuilder.Controllers
             if (User.Identity.Name != null)
             {
                 var userId = Int32.Parse(User.Identity.Name);
-                var user = db.Users.Include("Education").Include("Projects").Include("Languages").Include("WorkExperiences").Include("Skills").Where(x => x.UserID == userId).FirstOrDefault();
+                var user = _resumeRepository.GetUserInfo(userId);
 
-                UserResumeVM vm = new UserResumeVM();
-                {
-                    vm.FirstName = user.FirstName;
-                    vm.LastName = user.LastName;
-                    vm.Email = user.Email;
-                    vm.PhoneNumber = user.PhoneNumber;
-                    vm.AlternatePhoneNumber = user.AlternatePhoneNumber;
-                    vm.ResumeName = user.ResumeName;
-                    vm.Summary = user.Summary;
-                    vm.Education = user.Education;
-                    vm.Project = user.Projects;
-                    vm.WorkExperience = user.WorkExperiences;
-                    vm.Skill = user.Skills;
-                    vm.Language = user.Languages;
-                }
+                UserResumeVM vm = Mapper.Map<UserResumeVM>(user);
+                vm.Project = user.Projects;
+                vm.Skill = user.Skills;
+                vm.Education = user.Education;
+                vm.WorkExperience = user.WorkExperiences;
+                vm.Language = user.Languages;
             }
             //var user = db.Users.Where(x => x.UserID == 1).FirstOrDefault();
             return PartialView("~/Views/Resume/Template.cshtml");
@@ -282,6 +230,15 @@ namespace ResumeBuilder.Controllers
             // .Select(skill => skill.SkillName )
             // .ToList(),
             // });
+            //var users = db.Users.AsNoTracking().Include("Skills").ToList();
+            //foreach(var i in users)
+            //{
+            //   foreach(var j in i.Skills)
+            //   {
+            //       j.Users = null;
+            //   }
+            //}
+
             var data = (from e in db.Users.Include("Skills")
             .Where(x => x.Skills.Any()).ToList()
                         select new SearchUserDataVM

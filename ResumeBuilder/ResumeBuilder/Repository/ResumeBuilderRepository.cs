@@ -54,34 +54,42 @@ namespace ResumeBuilder.Repository {
 
         public string AddOrUpdateEducation (Education education, int idUser) {
 
-            var personEntity = db.Users.Include("Education").FirstOrDefault (x => x.UserID == idUser);
+            var personEntity = db.Users.Include(p => p.Education).FirstOrDefault(x => x.UserID == idUser);
             bool repeatition = personEntity.Education.Any(x => x.EducationLevel == education.EducationLevel);
 
-            if (personEntity != null && !repeatition) {
-                if (education.EduID > 0) {
+            if (personEntity != null) {
+                if (education.EduID > 0)
+                {
                     //we will update education entity
                     education.UserID = idUser;
-                    db.Entry (education).State = EntityState.Modified;
+                    var educationToChange = db.Educations.Find(education.EduID);
+                    db.Entry(educationToChange).State = EntityState.Detached;
+                    db.Entry(education).State = EntityState.Modified;
+                }
+                else
+                {
+                    if (!repeatition)
+                    {
+                        // we will add new education entity
+                        personEntity.Education.Add(education);
 
-                } else {
-                    // we will add new education entity
-                    personEntity.Education.Add (education);
-
+                    }
+                    else
+                    {
+                        return "Repeatition of data";
+                    }
                 }
 
                 try {
-                    db.SaveChanges ();
+                    db.SaveChanges();
                     return "Education Added";
                 } catch (Exception e) {
                     throw e;
                 }
-            } else {
-                if (personEntity == null)
-                    return "Invalid User";
-                else
-                    return "Repeatition of data";
-            }
+            } 
 
+            return "Invalid User";
+           
         }
 
         public string AddorUpdateSkill (Skill skill, int idUser) {
@@ -119,6 +127,8 @@ namespace ResumeBuilder.Repository {
             if (personEntity != null && project != null) {
                 if (project.ProjectID > 0) {
                     project.UserID = idUser;
+                    var projectToChange = db.Projects.Find(project.ProjectID);
+                    db.Entry(projectToChange).State = EntityState.Detached;
                     db.Entry (project).State = EntityState.Modified;
                     db.SaveChanges ();
                     msg = "Project has been updated successfully";
@@ -139,11 +149,13 @@ namespace ResumeBuilder.Repository {
             if (personEntity != null && work != null) {
                 if (work.ExpId > 0) {
                     work.UserID = idUser;
-                    db.Entry (work).State = EntityState.Modified;
+                    var workExpToChange = db.WorkExperiences.Find(work.ExpId);
+                    db.Entry(workExpToChange).State = EntityState.Detached;
+                    db.Entry(work).State = EntityState.Modified;
                     db.SaveChanges ();
                     msg = "Work Experience has been updated successfully";
                 } else {
-                    personEntity.WorkExperiences.Add (work);
+                    personEntity.WorkExperiences.Add(work);
                     countRecords = db.SaveChanges ();
                     msg = "Work Experience has been Added successfully";
                 }
@@ -178,8 +190,36 @@ namespace ResumeBuilder.Repository {
             return countRecords > 0 ? msg : "Failed to add";
         }
 
-        public User GetBasicInfo (int idUser) {
-            var user = db.Users.AsNoTracking ().FirstOrDefault (x => x.UserID == idUser);
+        public User GetUserInfo (int idUser) {
+            var user = db.Users.AsNoTracking()
+            .Include("Projects")
+            .Include("Skills")
+            .Include("Education")
+            .Include("WorkExperiences")
+            .Include("Languages")
+            .Include("Settings")
+            .FirstOrDefault(x => x.UserID == idUser);
+
+            foreach (var i in user.Projects)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Skills)
+            {
+                i.Users = null;
+            }
+            foreach (var i in user.Education)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.WorkExperiences)
+            {
+                i.User = null;
+            }
+            foreach (var i in user.Languages)
+            {
+                i.Users = null;
+            }
 
             return user;
         }
