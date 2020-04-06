@@ -88,7 +88,7 @@
   color: #EF3B3A;
 }
 body {
-  background :url("../Images/bg-login.jpg");
+  background :url("../Images/backdrop.png");
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      

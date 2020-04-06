@@ -90,7 +90,7 @@
             parameter['dataType'] = null;
             parameter['requestType'] = 'POST';
             parameter['successCallbackFunction'] = function (data) {
-                if (data != "Education Added") {
+                if (data == "Repeatition of data" || data == "Invalid User" || data == "Failed") {
                     $(".alert").show();
                     $(".alert").addClass("alert-success");
                     $('.alert-message').text(data);
@@ -644,44 +644,6 @@ function checkNull(valueArray) {
         }
         $($(valueArray[i][0])).next("small").text(displayMessage);
     }
-    //$(divName).find("input[type = 'text']").each(function () {
-    //    if (this.value == "") {
-    //        $("this").css("border-color", "red");
-    //        $(this).next("small").text('Empty Field');
-    //        counter += 1;
-    //    }
-    //});
-    //$(divName).find("textarea").each(function () {
-    //    if (this.value == "") {
-    //        $("this").css("border-color", "red");
-    //        $(this).next("small").text('Empty Field');
-    //        counter += 1;
-    //    }
-    //});
-    //$(divName).find("select").each(function () {
-    //    if (this.value == 0) {
-    //        $("this").css("border-color", "red");
-    //        $(this).next("small").text('Empty Field');
-    //        counter += 1;
-    //    }
-    //});
-    //$(divName).find("input[type = 'date']").each(function () {
-    //    if (this.value == "") {
-    //        $("this").css("border-color", "red");
-    //        $(this).next("small").text('Empty Field');
-    //        counter += 1;
-    //    }
-    //    var dateObj = new Date();
-    //    if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-    //        if (parseInt(this.value.slice(5, 7)) >= (dateObj.getMonth() + 1)) {
-    //            if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
-    //                $("this").css("border-color", "red");
-    //                $(this).next("small").text("Date is larger than Today's date");
-    //                counter += 1;
-    //            }
-    //        }
-    //    }
-    //});
 
     return counter
 }
