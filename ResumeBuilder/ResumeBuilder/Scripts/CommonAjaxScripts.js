@@ -90,7 +90,7 @@
             parameter['dataType'] = null;
             parameter['requestType'] = 'POST';
             parameter['successCallbackFunction'] = function (data) {
-                if (data != "Education Added") {
+                if (data == "Repeatition of data" || data == "Invalid User" || data == "Failed") {
                     $(".alert").show();
                     $(".alert").addClass("alert-success");
                     $('.alert-message').text(data);
