@@ -100,50 +100,22 @@
                         userData.Stream = $("input[name = Stream]").val();
                         userData.Institution = $("input[name = Institution]").val();
                     }
-                });
 
-            /*              Save Education Information            */
-
-            $('body').on("click", ".save-education-info", function(e) {
-                    e.preventDefault();
-                    if (checkNull([
-                            ["input[name = YearOfPassing]", /^(19[5-9]\d|20[0-4]\d|2050)$/, "Only number in range 1950 - 2050 (YYYY) ."],
-                            ["input[name = Score]", /^[0-9](\.[0-9]+)*.{1,4}$/, "Enter your marks ( eg 43.55 or 70 )"],
-                            ["input[name = Stream]", /^[a-zA-Z]+$/, "Only alphabets allowed."],
-                            ["input[name = Institution]", /^[a-zA-Z ']+$/, "Only alphabets allowed."]
-                        ]) === 0 && checkRadio([
-                            ["input[name='EducationLevel']:checked", ".education-error"],
-                            ["input[name='CGPAorPercentage']:checked", ".cgpa-error"]
-                        ]) === 0) {
-                        var id = $('.js-education-id').val();
-                        var $button = $('button [data-education-id="' + id + '"]');
-
-                        var userData = {}; {
-                            userData.EduID = $('.js-education-id').val();
-                            userData.EducationLevel = ($('.form-check-input').serializeArray())[0]['value'];
-                            userData.CgpaOrPercentage = ($('.form-check-input').serializeArray())[1]['value'];
-                            userData.YearOfPassing = $("input[name = YearOfPassing]").val();
-                            userData.Score = $("input[name = Score]").val();
-                            userData.Board = $("input[name = Board]").val();
-                            userData.Stream = $("input[name = Stream]").val();
-                            userData.Institution = $("input[name = Institution]").val();
-                        }
-
-                        var parameter = $.extend({}, doAjax_parameter_default);
-                        parameter['url'] = '/EditResume/AddEducationInfo';
-                        parameter['data'] = userData;
-                        parameter['dataType'] = null;
-                        parameter['requestType'] = 'POST';
-                        parameter['successCallbackFunction'] = function(data) {
-                                if (data != "Education Added") {
-                                    $(".alert").show();
-                                    $(".alert").addClass("alert-success");
-                                    $('.alert-message').text(data);
-                                    $(".alert").fadeOut(5000);
-                                    console.log(data);
-                                } else {
-                                    if (!(userData.EduID > 0)) {
-                                        $('.js-education-details').append('<div class="row text-secondary"> \
+                    var parameter = $.extend({}, doAjax_parameter_default);
+                    parameter['url'] = '/EditResume/AddEducationInfo';
+                    parameter['data'] = userData;
+                    parameter['dataType'] = null;
+                    parameter['requestType'] = 'POST';
+                    parameter['successCallbackFunction'] = function(data) {
+                            if (data == "Repeatition of data" || data == "Invalid User" || data == "Failed") {
+                                $(".alert").show();
+                                $(".alert").addClass("alert-success");
+                                $('.alert-message').text(data);
+                                $(".alert").fadeOut(5000);
+                                console.log(data);
+                            } else {
+                                if (!(userData.EduID > 0)) {
+                                    $('.js-education-details').append('<div class="row text-secondary"> \
                      <hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
                             <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
@@ -156,8 +128,8 @@
                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="' + data.EduID + '"></i></button> \
                         </div> \
                     </div>');
-                                    } else {
-                                        $button.parents('.text-secondary').html('<hr width="90%">\
+                                } else {
+                                    $button.parents('.text-secondary').html('<hr width="90%">\
                         <div class="col-md-10 col-sm-8"> \
                             <p> ' + data.Score + ' ' + data.CGPAorPercentage + ' in ' + data.EducationLevel + '</p> \
                             <p> ' + data.YearOfPassing + '</p> \
@@ -168,66 +140,66 @@
                             <button class="btn btn-sm btn-primary"><i class="fa fa-edit text-white js-edit-education" data-education-id="' + data.EduID + '"></i></button> \
                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt text-white js-delete-education" data-education-id="' + data.EduID + '"></i></button> \
                         </div>');
-                                    }
                                 }
-                                hideModal();
+                            }
+                            hideModal();
 
-                                $('body').on("click", ".save-skill", function(e) {
-                                    e.preventDefault();
-                                    if (checkNull([
-                                            ["input[name = skill]", /^^[^-]{1}?[^\"\']*.{0,15}$/, ""]
-                                        ]) === 0) {
-                                        var $button = $(this);
+                            $('body').on("click", ".save-skill", function(e) {
+                                e.preventDefault();
+                                if (checkNull([
+                                        ["input[name = skill]", /^^[^-]{1}?[^\"\']*.{0,15}$/, ""]
+                                    ]) === 0) {
+                                    var $button = $(this);
 
-                                        return false;
+                                    return false;
+                                }
+                            });
+
+                            /*              Save Skills Information            */
+
+                            $('body').on("click", ".save-skill", function(e) {
+                                e.preventDefault();
+                                if (checkNull([
+                                        ["input[name = skill]", /^[a-zA-Z0-9]{0,15}$/, "Only Alphanumeric allowed."]
+                                    ]) === 0) {
+                                    var $button = $(this);
+
+                                    var userData = new Object(); {
+                                        userData.SkillID = $('.js-skill-id').val();
+                                        userData.SkillName = $("input[name = skill]").val();
                                     }
-                                });
 
-                                /*              Save Skills Information            */
+                                    var parameter = $.extend({}, doAjax_parameter_default);
+                                    parameter['url'] = '/EditResume/AddSkill';
+                                    parameter['data'] = userData;
+                                    parameter['requestType'] = 'POST';
+                                    parameter['dataType'] = null;
+                                    parameter['successCallbackFunction'] = function(data) {
+                                        if (data == "Skill already present") {
+                                            $(".alert").show();
+                                            $(".alert").addClass("alert-warning");
+                                            $('.alert-message').text(data);
+                                            $(".alert").fadeOut("slow");
 
-                                $('body').on("click", ".save-skill", function(e) {
-                                    e.preventDefault();
-                                    if (checkNull([
-                                            ["input[name = skill]", /^[a-zA-Z0-9]{0,15}$/, "Only Alphanumeric allowed."]
-                                        ]) === 0) {
-                                        var $button = $(this);
-
-                                        var userData = new Object(); {
-                                            userData.SkillID = $('.js-skill-id').val();
-                                            userData.SkillName = $("input[name = skill]").val();
-                                        }
-
-                                        var parameter = $.extend({}, doAjax_parameter_default);
-                                        parameter['url'] = '/EditResume/AddSkill';
-                                        parameter['data'] = userData;
-                                        parameter['requestType'] = 'POST';
-                                        parameter['dataType'] = null;
-                                        parameter['successCallbackFunction'] = function(data) {
-                                            if (data == "Skill already present") {
-                                                $(".alert").show();
-                                                $(".alert").addClass("alert-warning");
-                                                $('.alert-message').text(data);
-                                                $(".alert").fadeOut("slow");
-
-                                            } else {
-                                                $('.js-skill-details').append('<span class="btn btn-primary ml-1 mt-1"> \
+                                        } else {
+                                            $('.js-skill-details').append('<span class="btn btn-primary ml-1 mt-1"> \
                     ' + data.SkillName + ' \
                 <i class="fa fa-times js-delete-skill text-danger" data-skill-id="' + data.SkillID + '"> </i> \
                     </span>');
-                                            }
+                                        }
 
-                                            hideModal();
+                                        hideModal();
 
-                                        };
-                                        doAjax(parameter);
+                                    };
+                                    doAjax(parameter);
 
-                                        return false;
-                                    }
-                                });
+                                    return false;
+                                }
+                            });
 
-                                /*              Save Project Information            */
+                            /*              Save Project Information            */
 
-                                $('body').on("click", ".save-project", function(e) {
+                            $('body').on("click", ".save-project", function(e) {
                                         e.preventDefault();
                                         if (checkNull([
                                                 ["input[name = projectName]", /^[a-zA-Z ]+$/, "Only alphabets allowed."],
@@ -695,7 +667,6 @@
                                             success: function(data, textStatus, jqXHR) {
                                                 if (typeof successCallbackFunction === "function") {
                                                     successCallbackFunction(data);
-
                                                     if (requestType == "POST") {
                                                         $(".alert").show();
                                                         $(".alert").addClass("alert-success");
@@ -729,151 +700,55 @@
                                             }
                                         });
                                     }
-                                }
-                                String.prototype.endsWith = function(suffix) {
-                                    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-                                };
 
-                                var doAjax_parameter_default = {
-                                    'url': null,
-                                    'requestType': "GET",
-                                    'contentType': 'application/x-www-form-urlencoded; charset=UTF-8',
-                                    'dataType': 'json',
-                                    'data': {},
-                                    'beforeSendCallbackFunction': null,
-                                    'successCallbackFunction': null,
-                                    'completeCallbackFunction': null,
-                                    'errorCallBackFunction': null,
-                                };
-
-
-                                function doAjax(doAjax_parameter) {
-
-                                    var url = doAjax_parameter['url'];
-                                    var requestType = doAjax_parameter['requestType'];
-                                    var contentType = doAjax_parameter['contentType'];
-                                    var dataType = doAjax_parameter['dataType'];
-                                    var data = doAjax_parameter['data'];
-                                    var beforeSendCallbackFunction = doAjax_parameter['beforeSendCallbackFunction'];
-                                    var successCallbackFunction = doAjax_parameter['successCallbackFunction'];
-                                    var completeCallbackFunction = doAjax_parameter['completeCallbackFunction'];
-                                    var errorCallBackFunction = doAjax_parameter['errorCallBackFunction'];
-
-                                    //make sure that url ends with '/'
-                                    /*if(!url.endsWith("/")){
-                                     url = url + "/";
-                                    }*/
-                                    $("small").text('');
-                                    $.ajax({
-                                                url: url,
-                                                crossDomain: true,
-                                                type: requestType,
-                                                contentType: contentType,
-                                                dataType: dataType,
-                                                data: data,
-                                                beforeSend: function(jqXHR, settings) {
-                                                    if (typeof beforeSendCallbackFunction === "function") {
-                                                        beforeSendCallbackFunction();
-                                                    }
-                                                },
-                                                success: function(data, textStatus, jqXHR) {
-                                                    if (typeof successCallbackFunction === "function") {
-                                                        successCallbackFunction(data);
-                                                        if (requestType == "POST") {
-                                                            $(".alert").show();
-                                                            $(".alert").addClass("alert-success");
-                                                            $('.alert-message').text("Saved Succesfully!");
-                                                            $(".alert").fadeOut(5000);
-                                                        }
-                                                        if (requestType == "DELETE") {
-                                                            $(".alert").show();
-                                                            $(".alert").addClass("alert-primary");
-                                                            $('.alert-message').text("Deleted Succesfully!");
-                                                            $(".alert").fadeOut(5000);
-                                                        }
-                                                    }
-                                                },
-                                                error: function(jqXHR, textStatus, errorThrown) {
-                                                        if (typeof errorCallBackFunction === "function") {
-                                                            errorCallBackFunction(errorThrown);
-                                                        }
-                                                        if (!(valueArray[i][1]).test($(valueArray[i][0]).val().trim())) {
-                                                            displayMessage += valueArray[i][2];
-                                                            counter += 1;
-                                                        }
-                                                        $($(valueArray[i][0])).next("small").text(displayMessage);
-                                                    }
-                                                    //$(divName).find("input[type = 'text']").each(function () {
-                                                    //    if (this.value == "") {
-                                                    //        $("this").css("border-color", "red");
-                                                    //        $(this).next("small").text('Empty Field');
-                                                    //        counter += 1;
-                                                    //    }
-                                                    //});
-                                                    //$(divName).find("textarea").each(function () {
-                                                    //    if (this.value == "") {
-                                                    //        $("this").css("border-color", "red");
-                                                    //        $(this).next("small").text('Empty Field');
-                                                    //        counter += 1;
-                                                    //    }
-                                                    //});
-                                                    //$(divName).find("select").each(function () {
-                                                    //    if (this.value == 0) {
-                                                    //        $("this").css("border-color", "red");
-                                                    //        $(this).next("small").text('Empty Field');
-                                                    //        counter += 1;
-                                                    //    }
-                                                    //});
-                                                    //$(divName).find("input[type = 'date']").each(function () {
-                                                    //    if (this.value == "") {
-                                                    //        $("this").css("border-color", "red");
-                                                    //        $(this).next("small").text('Empty Field');
-                                                    //        counter += 1;
-                                                    //    }
-                                                    //    var dateObj = new Date();
-                                                    //    if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-                                                    //        if (parseInt(this.value.slice(5, 7)) >= (dateObj.getMonth() + 1)) {
-                                                    //            if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
-                                                    //                $("this").css("border-color", "red");
-                                                    //                $(this).next("small").text("Date is larger than Today's date");
-                                                    //                counter += 1;
-                                                    //            }
-                                                    //        }
-                                                    //    }
-                                                    //});
-
-                                                    return counter
+                                    function checkNull(valueArray) {
+                                        $("small").text('');
+                                        var counter = 0;
+                                        for (var i = 0; i < valueArray.length; i++) {
+                                            var displayMessage = "";
+                                            if ($(valueArray[i][0]).val() === "") {
+                                                displayMessage += "Empty Field ! ";
+                                                counter += 1;
                                             }
-
-                                            function checkDate(divName) {
-                                                var dateObj = new Date();
-                                                var dateCounter = 0;
-                                                $(divName).find("input[type = 'date']").each(function() {
-                                                    if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
-                                                        if (parseInt(this.value.slice(5, 7)) >= (dateObj.getMonth() + 1)) {
-                                                            if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
-                                                                $("this").css("border-color", "red");
-                                                                $(this).next("small").text("Date is larger than Today's date");
-                                                                dateCounter += 1;
-                                                            }
-                                                        }
-                                                    }
-                                                });
-                                                return dateCounter;
+                                            if (!(valueArray[i][1]).test($(valueArray[i][0]).val().trim())) {
+                                                displayMessage += valueArray[i][2];
+                                                counter += 1;
                                             }
+                                            $($(valueArray[i][0])).next("small").text(displayMessage);
+                                        }
 
-                                            function checkRadio(radioInputName) {
-                                                var radiocounter = 0;
-                                                for (var i = 0; i < radioInputName.length; i++) {
-                                                    if ($(radioInputName[i][0]).val() == this.undefined) {
-                                                        $(radioInputName[i][1]).text("Select suitable option");
-                                                        radiocounter += 1;
+                                        return counter
+                                    }
+
+                                    function checkDate(divName) {
+                                        var dateObj = new Date();
+                                        var dateCounter = 0;
+                                        $(divName).find("input[type = 'date']").each(function() {
+                                            if (parseInt(this.value.slice(0, 4)) >= dateObj.getFullYear()) {
+                                                if (parseInt(this.value.slice(5, 7)) >= (dateObj.getMonth() + 1)) {
+                                                    if (parseInt(this.value.slice(8, 10)) > dateObj.getDate()) {
+                                                        $("this").css("border-color", "red");
+                                                        $(this).next("small").text("Date is larger than Today's date");
+                                                        dateCounter += 1;
                                                     }
                                                 }
-                                                return radiocounter;
                                             }
-                                            var hideModal = function() {
-                                                $('.modal').modal('hide');
-                                                $('body').removeClass('modal-open');
-                                                $('.modal-backdrop').remove();
-                                            };
+                                        });
+                                        return dateCounter;
+                                    }
+
+                                    function checkRadio(radioInputName) {
+                                        var radiocounter = 0;
+                                        for (var i = 0; i < radioInputName.length; i++) {
+                                            if ($(radioInputName[i][0]).val() == this.undefined) {
+                                                $(radioInputName[i][1]).text("Select suitable option");
+                                                radiocounter += 1;
+                                            }
+                                        }
+                                        return radiocounter;
+                                    }
+                                    var hideModal = function() {
+                                        $('.modal').modal('hide');
+                                        $('body').removeClass('modal-open');
+                                        $('.modal-backdrop').remove();
+                                    };

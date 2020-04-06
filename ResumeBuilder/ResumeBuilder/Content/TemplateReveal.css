@@ -22,7 +22,7 @@
   border:2px solid darkorange;
 }
 
-img {
+.template-img {
   position: absolute;
   width: 300px;
   height: 350px;
