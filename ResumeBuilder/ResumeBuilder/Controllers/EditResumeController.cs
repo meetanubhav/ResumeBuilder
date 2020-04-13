@@ -13,14 +13,15 @@ namespace ResumeBuilder.Controllers
 {
     public class EditResumeController : Controller
     {
-        ResumeBuilderDBContext db = new ResumeBuilder.Models.ResumeBuilderDBContext();
+        ResumeBuilderDBContext db = new ResumeBuilderDBContext();
         private readonly IResumeBuilderRepository _resumeRepository = new ResumeBuilderRepository();
 
         // Get Actions
+        [HttpGet]
         public ActionResult GetUserInfo()
         {
             var userID = Int32.Parse(User.Identity.Name);
-            var userFromDB = db.Users.AsNoTracking().FirstOrDefault(x => x.UserID == userID);
+            var userFromDB = _resumeRepository.GetUserInfo(userID);
             return Json(userFromDB, JsonRequestBehavior.AllowGet);
         }
 
